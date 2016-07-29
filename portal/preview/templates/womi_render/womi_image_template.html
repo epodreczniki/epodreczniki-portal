@@ -1,0 +1,11 @@
+{% autoescape off %}
+    <div class="image-container" data-alt="tekst alternatywny" data-width="100%" data-src="{{ data_src }}"
+         data-display-mode="2d">
+        {% for res in resolutions %}
+            <div data-resolution="{{ res }}"></div>
+        {% endfor %}
+        <noscript>
+            <img src="{{ data_src }}" alt="tekst alternatywny">
+        </noscript>
+    </div>
+{% endautoescape %}

@@ -1,0 +1,41 @@
+{% extends "womi_preview.html" %}
+
+{% load compress staticfiles extensions common_ext endpoints %}
+
+{% block title %}Podgląd zasobu KZD • epodreczniki.pl{% endblock %}
+{% block title_pattern %}Podgląd - {0} • epodreczniki.pl{% endblock %}
+
+
+
+{% block stylesheets %}
+    {{ block.super }}
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}reader/less/womis/aggregate_show.less">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    {% include 'topbars/topbar_kzd.html' %}
+
+    <div id="womi-placeholder">
+        {{ womi_content }}
+    </div>
+
+{% endblock %}
+
+
+{% block scripts_bottom %}
+    {% compress js %}
+
+        <script src="{{ STATIC_URL }}reader/js/libs/matchmedia.js"></script>
+
+    {% endcompress %}
+
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}reader/js/build/common.js"></script>
+    {% endcompress %}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}reader/js/build/aggregate_womi_preview.js"></script>
+
+    {% endcompress %}
+{% endblock %}

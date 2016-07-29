@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load compress staticfiles %}
+<html class="ie-zoom" lang="pl">
+<head>
+
+    {% block head %}
+    {% endblock %}
+
+
+    {% block stylesheets %}
+    {% compress css %}
+
+    {% endcompress %}
+{% endblock %}
+
+
+    {% compress js %}
+        <script src="{{ STATIC_URL }}common/js/libs/require.js"></script>
+    {% endcompress %}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}editcommon/js/build/locks.js"></script>
+    {% endcompress %}
+
+    {% block scripts_top %}
+        <script type="text/lock-payload" id="collection_30636_1">
+            {"status": "ok", "lockid": "cfb2723d5a15728015bcb6103e824f94", "mode": "watch", "expiresin": 40, "others": []}
+        </script>
+    {% endblock %}
+
+</head>
+
+<body>
+
+{% block content %}
+{% endblock %}
+
+{% block scripts_bottom %}
+{% endblock %}
+
+</body>
+
+</html>

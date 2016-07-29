@@ -1,0 +1,57 @@
+{% extends 'front/base_front_with_navbar.html' %}
+
+{% load staticfiles compress requirejs extensions common_ext collection_cover %}
+
+{% block body_class %}class="profile-body theme-100percent"{% endblock %}
+{% comment %}{% block body_class %}class="theme{{ theme }} theme-100percent"{% endblock %} Previous version {% endcomment %}
+
+{% block content %}
+
+    {% block topbar_include %}
+        {% include 'topbars/topbar_profile.html' %}
+    {% endblock %}
+
+    {% block container %}
+        <div id="profile-content" data-url-pattern="{{ reader_url_pattern }}">
+
+            {% block profile_stats %}
+                {% include 'new_templates/profile_stats.html' %}
+            {% endblock %}
+
+            {% block profile_notes %}
+                {% include 'new_templates/profile_notes.html' %}
+            {% endblock %}
+
+            {% block profile_progress %}
+                {% include 'new_templates/profile_progress.html' %}
+            {% endblock %}
+
+            {% block profile_readings %}
+                {% include 'new_templates/profile_readings.html' %}
+            {% endblock %}
+
+            {% block profile_edit %}
+                {% include 'new_templates/profile_edit.html' %}
+            {% endblock %}
+
+        </div>
+    {% endblock %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ block.super }}
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}front/less/front.less">
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}front/css/jquery-ui-1.10.4.custom.css">
+    {% endcompress %}
+{% endblock %}
+
+{% block scripts_bottom %}
+    {{ block.super }}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}front/js/build/common.js"></script>
+    {% endcompress %}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}front/js/build/new_profile.js"></script>
+    {% endcompress %}
+{% endblock %}

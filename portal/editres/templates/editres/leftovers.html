@@ -1,0 +1,31 @@
+
+{% if EPO_EDITRES_PRESENT_LABELS %}
+<div class="well">
+    Etykiety:
+    <div class="container-fluid">
+        {% for label in driver.all_labels %}
+            <div class="row">
+                <a class="inline-elements" href="{% url 'editres.views.listing' driver.category %}?label={{ label }}">
+                    <span class="label label-default">{{ label }}</span>
+                </a>
+                {% if label.is_user %}
+                    <form class="inline-elements" action="{% url 'editres.views.change_user_label' driver.spaceid driver.category driver.identifier driver.version %}" method="post">
+                        <input name="operation" value="1" type="hidden" />
+                        <input name="label" value="{{ label }}" type="hidden" />
+                        <button type="submit" class="btn btn-default btn-xs">X</button>
+                    </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <div>
+        &nbsp;
+    </div>
+    <form action="{% url 'editres.views.change_user_label' driver.spaceid driver.category driver.identifier driver.version %}" method="post">
+        {% csrf_token %}
+        <input name="operation" value="0" type="hidden" />
+        <input type="text" class="form-control input-label" name="label" value="{{ label }}" />
+        <button type="submit" class="btn btn-default">Dodaj</button>
+    </form>
+</div>
+{% endif %}

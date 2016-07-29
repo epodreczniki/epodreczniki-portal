@@ -1,0 +1,9 @@
+{% block content %}
+Dzień dobry,
+
+dziękujemy za przesłanie zgłoszenia. W celu uzyskania dodatkowych informacji skontaktujemy się z Państwem, wysyłając wiadomość na ten adres e-mail.
+
+
+Z poważaniem
+Zespół epodreczniki.pl
+{% endblock %}

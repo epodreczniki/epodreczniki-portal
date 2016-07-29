@@ -1,0 +1,54 @@
+{% load staticfiles compress requirejs extensions common_ext collection_cover url_process %}
+
+<div id="main-div-123">
+    <div id="book-list">
+        {% comment %}<div>Kolekcje: {{ collections }}</div>{% endcomment %}
+        {% for coll in collections %}
+            <div class="book-view" data-class="{{ coll.collection.md_school.ep_class }}">
+                {% comment %} <div class="central-circle"
+                     style="background-image: url('{% static "front/img/one2three/1_ikony.svg" %}')!important"/>
+                 {% endcomment %}
+
+                {% if coll.collection.md_school.ep_class == 1 %}
+                    <div class="central-circle" style="background-image: url('{% static "front/img/one2three/klasa1_ikony.svg" %}')"></div>
+                {% elif coll.collection.md_school.ep_class == 2 %}
+                    <div class="central-circle" style="background-image: url('{% static "front/img/one2three/klasa2_ikony.svg" %}')"></div>
+                {% elif coll.collection.md_school.ep_class == 3 %}
+                    <div class="central-circle" style="background-image: url('{% static "front/img/one2three/klasa3_ikony.svg" %}')"></div>
+                {% else %}
+                   <div class="central-circle" style="background-image: url('{% static "front/img/one2three/klasa1_ikony.svg" %}')"></div>
+                {% endif %}
+
+                <div class="chapter-list">
+                    {% for subcoll in coll.subcollections %}
+                        <div class="chapter-circle {% if not subcoll.url %}disabled-circle{% endif %} {% if subcoll.parent_collection.volume %}volumized{% endif %}">
+                            <a href="{% if subcoll.url %}{{ subcoll.url }}{% else %}#{% endif %}"
+                               title="Przejście do czytania podręcznika {{ coll.collection.md_school.class_human_readable_form }} {{ subcoll.md_title }}">
+                                <span style="background-image: url('{{ subcoll.icon_url }}')!important"></span>
+                            </a>
+
+                        {% if subcoll.parent_collection.volume %}
+                            <a class="chapter-details" href="{% url 'reader_collection_details' subcoll.parent_collection.md_content_id subcoll.parent_collection.md_version %}"
+                                   title="Przejście do strony detali podręcznika {{ subcoll.parent_collection.md_school.class_human_readable_form }}">
+                                <span style="background-image: url('{% static "front/img/one2three/fiszka_ikony_round.svg" %}')!important"></span>
+                            </a>
+                        {% endif %}
+
+
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {% if not coll.collection.volume %}
+                    <div class="details-circle">
+                        <a href="{% url 'reader_collection_details' coll.collection.md_content_id coll.collection.md_version %}"
+                           title="Przejście do strony detali podręcznika {{ coll.collection.md_school.class_human_readable_form }}">
+                        <span
+                            style="background-image: url('{% static "front/img/one2three/fiszka_ikony_round.svg" %}')!important"></span>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>

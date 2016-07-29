@@ -1,0 +1,48 @@
+.reader-content {
+    table {
+        padding: 0;
+        margin: 8px auto;
+        max-width: 948px;
+        table-layout: fixed;
+    }
+
+    thead,
+    tbody {
+        background-color: #fff;
+    }
+
+    .table {
+        margin: @space-D 0;
+        padding: 0;
+
+        th,
+        tr,
+        td {
+            border: solid 1px #000;
+            padding: 4px 8px;
+        }
+
+        .table-text {
+            margin: 0 0 @space-A;
+
+            .label {
+                font-family: @sansLight;
+                font-size: 14px;
+            }
+
+            .title {
+                color: #272727;
+                line-height: 19px; // ---> convert to 1.35
+                font-family: @sansLightItalic;
+                font-size: 15px;
+            }
+        }
+    }
+
+    .table-layout-auto {
+        table {
+            table-layout: auto !important;
+        }
+    }
+
+}

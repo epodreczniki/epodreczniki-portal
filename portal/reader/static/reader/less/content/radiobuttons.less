@@ -1,0 +1,21 @@
+.radio-simulator{
+    position: absolute;
+    background-color: white;
+    background-size: 100% 200%;
+    background-image: url(../../../img/radiobutton1.svg);
+    border-radius: 50%;
+
+    width: 16px!important;
+    height: 16px!important;
+    margin-right: 2px;
+
+    //outline: none;
+
+    &:last-of-type{
+        margin-left: 50px;
+    }
+
+    &:hover, &.active {
+        background-position: 200% 100%;
+    }
+}

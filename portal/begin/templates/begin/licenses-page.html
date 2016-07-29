@@ -1,0 +1,105 @@
+{% extends "begin/base.html" %}
+
+{% load static begin_tags wagtailimages_tags wagtailembeds_tags wagtailcore_tags %}
+{% get_site_root as site_root %}
+{% block menu %}
+{% endblock %}
+{% block title %}Licencje{% endblock %}
+
+{% block body_class %}template-{{ self.get_verbose_name|slugify }} home page page-id-8 page-template
+    page-template-page-templatestemplate-homepage-php loading{% endblock %}
+
+
+{% block content %}
+    {% comment %}{% include "begin/includes/page_header.html" with page=self request=request only %}{% endcomment %}
+    <div class="page-header clearfix"
+         style="background:url({% static 'begin/images/epo/library_.jpg' %}); background-size: cover;">
+
+        <div class="page-header-inner clearfix">
+            <div class="page-title">
+                <h2>Zasady korzystania z&nbsp;e&#8209;podręczników</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-wrapper page-content-wrapper clearfix">
+
+        <!-- BEGIN .main-content -->
+        <div class="main-content page-content">
+
+            <!-- BEGIN .inner-content-wrapper -->
+            <div class="inner-content-wrapper justified-content">
+                <p>Wszystkie materiały zawarte w&nbsp;e&#8209;podręcznikach, tj.&nbsp;teksty i&nbsp;materiały
+                    ilustracyjne, dostępne są&nbsp;na&nbsp;zasadzie wolnej licencji CC&nbsp;BY&nbsp;3.0&nbsp;Polska lub&nbsp;na&nbsp;zasadzie
+                    tzw.&nbsp;„dozwolonego użytku”, tj.&nbsp;można korzystać
+                    z&nbsp;takich materiałów&nbsp;m.in.&nbsp;dla&nbsp;celów edukacyjnych.</p>
+
+                <p>Informacje o&nbsp;licencji znajdują się&nbsp;w&nbsp;zakładce „Ustawienia” widocznej po&nbsp;wejściu
+                    do&nbsp;każdej
+                    lekcji, w&nbsp;wybranym e&#8209;podręczniku (prawy, górny róg&nbsp;ekranu).</p>
+
+                <p>Dostępność na&nbsp;licencji CC&nbsp;BY&nbsp;3.0&nbsp;Polska (tzw.&nbsp;„Wolna licencja – Uznanie
+                    autorstwa 3.0 Polska”)
+                    oznacza prawo do&nbsp;dzielenia się&nbsp;materiałem na&nbsp;zasadzie „kopiuj i&nbsp;rozpowszechniaj
+                    utwór w&nbsp;dowolnym medium i&nbsp;formacie”. Można także dokonywać adaptacji materiału, co&nbsp;oznacza
+                    „remiksuj, zmieniaj i&nbsp;twórz na&nbsp;bazie
+                    utworu”. Możesz wykorzystywać materiał do&nbsp;dowolnego celu, także komercyjnego. Licencjodawca nie&nbsp;może
+                    odwołać udzielonych praw, o&nbsp;ile&nbsp;są&nbsp;przestrzegane warunki licencji. Uznanie autorstwa
+                    oznacza, że&nbsp;wykorzystywany utwór należy odpowiednio oznaczyć (podać autora utworu), podać link
+                    do&nbsp;licencji i&nbsp;wskazać, jeśli zostały dokonane w&nbsp;nim&nbsp;zmiany. Możesz to&nbsp;zrobić
+                    w&nbsp;dowolny, rozsądny sposób, o&nbsp;ile&nbsp;nie&nbsp;sugeruje to&nbsp;udzielania przez
+                    licencjodawcę poparcia dla&nbsp;Ciebie lub&nbsp;sposobu, w&nbsp;jaki wykorzystujesz
+                    ten&nbsp;utwór.</p>
+
+                <p><span class="attention">UWAGA!</span> Warunki licencyjne&nbsp;nie&nbsp;muszą być&nbsp;przestrzegane w&nbsp;odniesieniu
+                    do
+                    &nbsp;tych fragmentów licencjonowanych
+                    treści, które znajdują się&nbsp;w&nbsp;domenie publicznej lub&nbsp;w&nbsp;przypadku sposobów
+                    korzystania dozwolonych
+                    przez
+                    odpowiednie <a href="{% url 'begin_copyright_exceptions' %}" class="license-special-text">wyjątki
+                        lub&nbsp;ograniczenia prawa
+                        autorskiego</a>.
+                    Licencjodawca nie&nbsp;daje żadnych gwarancji.
+                    Licencja może nie&nbsp;zapewniać wszystkich niezbędnych pozwoleń dla&nbsp;niektórych sposobów
+                    wykorzystania
+                    utworu. Dotyczy to&nbsp;w&nbsp;szczególności innych praw, takich jak&nbsp;<a
+                            href="{% url 'begin_data_protection' %}" class="license-special-text">ochrona wizerunku,
+                        prywatności czy&nbsp;autorskie
+                        prawa osobiste</a>. Mogą one&nbsp;ograniczać możliwości wykorzystania utworu.</p>
+
+                <p>Dostępność na&nbsp;zasadzie tzw.&nbsp;„dozwolonego użytku” oznacza, że&nbsp;instytucje naukowe i&nbsp;oświatowe
+                    (w&nbsp;tym&nbsp;szkoły) mogą, w&nbsp;celach dydaktycznych, korzystać z&nbsp;rozpowszechnionych
+                    utworów w&nbsp;oryginale i&nbsp;w&nbsp;tłumaczeniu
+                    oraz sporządzać w&nbsp;tym&nbsp;celu egzemplarze fragmentów rozpowszechnionego utworu. Oznacza to,&nbsp;iż&nbsp;nauczyciel
+                    może wykorzystywać na&nbsp;lekcjach cudze utwory w&nbsp;celu prowadzenia zajęć. Takie korzystanie
+                    jest
+                    nieodpłatne
+                    i&nbsp;nie&nbsp;wymaga zgody twórcy (lub&nbsp;jego spadkobierców). Należy jedynie pamiętać o&nbsp;poszanowaniu
+                    autorskich
+                    praw osobistych twórcy (które nigdy nie&nbsp;wygasają), czyli o&nbsp;oznaczeniu utworu imieniem i&nbsp;nazwiskiem
+                    twórcy.</p>
+
+                <p class="attention">
+                    UWAGA!
+                </p>
+
+                <p>
+                    Niektóre zdjęcia w&nbsp;rubrykach „Aktualności” i&nbsp;w&nbsp;innych lokalizacjach portalu
+                    przeznaczonego do&nbsp;prezentacji e&#8209;podręczników nie&nbsp;są&nbsp;dostępne na&nbsp;wolnych
+                    licencjach. Zdjęcia nieprzeznaczone do&nbsp;pobierania&nbsp;ze strony i&nbsp;dalszego użytku w&nbsp;jakiejkolwiek
+                    formie oznaczone są&nbsp;znakiem&nbsp;<span
+                        class="copyright-sign">&copy;</span>. Za&nbsp;każdym razem,&nbsp;gdy chcesz
+                    wykorzystać dany utwór, zapoznaj się&nbsp;z&nbsp;warunkami jego korzystania, które znajdziesz w&nbsp;opisie
+                    utworu.
+                </p>
+
+            </div>
+
+            <!-- END .main-content -->
+        </div>
+
+        {% include "begin/includes/sidebar.html" with page=self side="right" %}
+        <!-- END .content-wrapper -->
+    </div>
+{% endblock %}

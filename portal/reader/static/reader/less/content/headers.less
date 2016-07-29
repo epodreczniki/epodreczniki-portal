@@ -1,0 +1,219 @@
+// Refactoring of this file might be useful in the new layout - elements should not depend on header levels (h1-h6)
+
+.reader-content {
+    color: #353535;// EPP-7448  #575757;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 0;
+        line-height: 1.1;
+        font-weight: 500;
+        font-size: inherit;
+        word-wrap: break-word;
+
+        & .section-header {
+            display: flex;
+
+            .title {
+                width: 100%;
+                margin: 0;
+            }
+        }
+
+        @media (max-width: 479px) {
+            line-height: 120%;
+        }
+    }
+
+    h1 {
+        margin: 0;
+        padding: 0;
+        border-bottom: 2px solid black;
+        line-height: 125%;
+        font-size: 36px;
+
+        @media (max-width: 479px) {
+            font-size: 2em;
+        }
+
+        &.module-header {
+            margin: 0;
+            padding: 0;
+            border-bottom: 1px solid #d9d9d9;
+        }
+    }
+
+    h2 {
+        font-size: 24px;
+
+        &.module-header {
+            margin: 0;
+            padding: 0;
+            border-bottom: 1px solid #d9d9d9;
+        }
+
+        &.section-header {
+            margin-top: @space-D;
+            font-size: 34px;
+        }
+    }
+
+    .pagination-page > .section:first-child h2.section-header,
+    #module-content > div > .section:first-of-type h2.section-header {
+        margin-top: 0;
+        padding-top: @space-D;
+    }
+
+    @media (max-width: @phoneBreakpoint) {
+
+        h2.section-header {
+            padding: 0;
+        }
+    }
+
+    h3 {
+        font-size: 14px;
+
+        &.section-header {
+
+            strong {
+                font-family: @sansLight;
+                font-size: 2em;
+            }
+
+            @media (max-width: 479px) {
+                strong {
+                    font-size: 1.5em;
+                }
+            }
+        }
+    }
+
+    h4 {
+        font-size: 1.25em;
+
+        &.section-header {
+            padding: 0;
+            line-height: 120%;
+
+            strong {
+                font-family: @sansLight;
+                font-size: 1.5em;
+            }
+        }
+    }
+
+    h5 {
+        font-size: 1em;
+
+        &.section-header {
+            padding: 0;
+            line-height: 110%;
+
+            strong {
+                font-family: @sansLight;
+                font-size: 16px;
+            }
+        }
+    }
+
+    h6 {
+        font-size: 0.9em;
+
+        &.section-header {
+            padding: 0;
+            line-height: 100%;
+
+            strong {
+                font-family: @sansLight;
+                font-size: 16px;
+            }
+        }
+    }
+
+    .level_1 {
+
+        &:not(:first-child) { // Fixing section first child top margin
+            overflow: auto;
+        }
+
+        h2.section-header,
+        h3.section-header,
+        h4.section-header {
+            line-height: 43px; // ---> cpnvert to 3.1
+            font-family: "open_sanslight";
+        }
+    }
+
+    .level_2 {
+
+        .section-header {
+            padding: 0;
+            border-bottom: 8px solid @kolor-motywu-posredni;
+            background-color: @kolor-uniwersalny3;
+            text-align: left;
+            line-height: 150%;
+
+            strong {
+                font-family: @sansLight;
+                font-size: 1.333em;
+            }
+
+            @media (max-width: 479px) {
+                padding: 0;
+
+                strong {
+                    font-size: 1em;
+                }
+            }
+        }
+
+        h2.section-header,
+        h3.section-header,
+        h4.section-header {
+            margin-top: @space-D;
+            padding: 0;
+            border-bottom: none;
+            background-color: inherit;
+            line-height: 32px; // --> convert to 2.2
+            font-size: 24px;
+
+            .title {
+                font-family: "open_sanssemibold";
+            }
+        }
+    }
+
+    .section-contents {
+        //margin-bottom: 0;
+
+        &:last-child {
+            //padding-bottom: 0;
+            //margin-bottom: 0;
+        }
+
+        .womi-container {
+            //margin: 0;
+            //padding: 0;
+        }
+    }
+
+    h1.module-title {
+        em {
+            .bold {
+                font-family: @sansBold;
+
+                &.italics {
+                    font-family: @sansBoldItalic;
+                }
+            }
+            .italics {
+                font-family: @sansSemiBoldItalic;
+            }
+        }
+    }
+}

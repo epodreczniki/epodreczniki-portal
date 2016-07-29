@@ -1,0 +1,31 @@
+@import "detail";
+.reader-content {
+
+    .effect { // Nauczysz się
+        .typical-simple-block(effect, '../../../img/new-icons/ic-nauczysz-sie.svg');
+        .contents-cleaner();
+        margin-top: @space-D;
+        padding: @space-B;
+        background-color: #E8E0BB;
+
+        .effect-header {
+            padding-bottom: @space-A;
+        }
+
+        .effect-contents.foldable-contents {
+            margin: 0 @side-space;
+            
+            li {
+                margin-top: 8px;
+            }
+        }
+
+        .effect-contents {
+            margin: 0 50px;
+        }
+    }
+
+    .revisal + .effect {
+        margin-top: @space-B;
+    }
+}

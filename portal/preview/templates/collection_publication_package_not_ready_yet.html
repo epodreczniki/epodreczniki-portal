@@ -1,0 +1,17 @@
+{% extends "base_error_page.html" %}
+
+{% block error_page_title %}Przetwarzanie{% endblock %}
+
+{% block error_title %}Paczka dla kolekcji nie jest jeszcze dostępna.{% endblock %}
+
+{% block error_content %}Spróbuj ponownie za chwilę. Przygotowywanie paczki dla kolekcji: <span class='emp'>{{ collection_id }}</span> trwa od <span class='emp'>{{ minutes_awaited }}</span> minut.{% endblock %}
+
+{% block error_more %}
+{% for n in notifications %}
+    {% if n.comment %}
+        <p>{{ n.comment }}</p>
+    {% endif %}
+{% endfor %}
+{% endblock %}
+
+

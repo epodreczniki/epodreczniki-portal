@@ -1,0 +1,477 @@
+
+@full-width: none;
+@default-width: 550px;
+@lowest-width: 300px;
+@extended-width: 900px;
+@extended-shifted-width: 725px;
+
+@width-class-0: none;
+@width-class-1: 1920px;
+@width-class-2: 1640px;
+@width-class-3: 1280px;
+@width-class-4: 940px;
+@width-class-5: 720px;
+@width-class-6: 640px;
+@width-class-7: 480px;
+@width-class-8: 320px;
+@width-class-9: 300px;
+
+:not(.zebra-module) {
+
+    .reader-content {
+        padding: 16px 0 0 0;
+    }
+
+    .col-main {
+        max-width: none;
+        width: 100%;
+        padding: 0 0 0 0;
+    }
+
+    .full-width:not(.para):not(.exercise) > *:not(.full-width):not(.extended-width):not(.extended-shifted-width) {
+        max-width: @default-width;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .full-width.para > *:not(.full-width),
+    .full-width.exercise > *:not(.full-width) {
+        max-width: none;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .extended-width {
+        max-width: @extended-width;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .section.level_1,
+    .bottom-content-navigation,
+    .authors-mailto-wrapper,
+    .module-header,
+    .bibliography {
+        max-width: @default-width;
+        margin-left: auto !important;
+        margin-right: auto !important;
+
+        &.full-width {
+            max-width: @full-width;
+        }
+        &.default-width {
+            max-width: @default-width;
+        }
+        &.lowest-width {
+            max-width: @lowest-width;
+        }
+        &.extended-width {
+            max-width: @extended-width;
+        }
+        & > .section-contents.extended-shifted-width {
+            max-width: (2*@extended-shifted-width - @default-width);
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        &.width-class-0 {
+            max-width: @width-class-0;
+        }
+        &.width-class-1 {
+            max-width: @width-class-1;
+        }
+        &.width-class-2 {
+            max-width: @width-class-2;
+        }
+        &.width-class-3 {
+            max-width: @width-class-3;
+        }
+        &.width-class-4 {
+            max-width: @width-class-4;
+        }
+        &.width-class-5 {
+            max-width: @width-class-5;
+        }
+        &.width-class-6 {
+            max-width: @width-class-6;
+        }
+        &.width-class-7 {
+            max-width: @width-class-7;
+        }
+        &.width-class-8 {
+            max-width: @width-class-8;
+        }
+        &.width-class-9 {
+            max-width: @width-class-9;
+        }
+    }
+
+    .bottom-content-navigation {
+        float: none;
+        overflow: hidden;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 100px;
+        padding-bottom: 30px;
+    }
+
+    .level_1:not(:first-child) {
+        margin-top: 0px;
+    }
+
+    .para,
+    .exercise {
+
+        &.full-width,
+        &.extended-width {
+            clear: both;
+
+            img,
+            .generated-image {
+                //max-height: 100%;
+                height: auto;
+                width: 100%;
+            }
+            .thumbs-container {
+                img, .generated-image {
+                    height: auto;
+                    width: auto;
+                }
+            }
+        }
+    }
+
+    .level_1 > .section-header {
+        text-align: center;
+    }
+
+    .level_1 > .section-contents.extended-shifted-width {
+
+        & > .section:first-child {
+            margin-left: (@extended-shifted-width - @default-width) !important;
+        }
+    }
+
+    .generate-columns(@n, @i: 1) when (@i =< @n) {
+
+        [data-width="@{i}"] {
+            float: left;
+            width: (((@i/100 * @extended-shifted-width)/(2* @extended-shifted-width - @default-width))*100%);
+            //&:first-child {  // needed only if padding is used to move columns to the right
+            //  width:((((@i/100 * @extended-shifted-width)+ @extended-shifted-width - @default-width)/(2* @extended-shifted-width - @default-width))*100%);
+            //}
+        }
+
+        .generate-columns(@n, (@i + 1));
+    }
+
+    .level_1[data-columns] > .extended-shifted-width {
+        .generate-columns(100);
+    }
+
+    @media (max-width: (2*@extended-shifted-width - @default-width + 7)) { // +7 for scrollbar
+
+        .extended-shifted-width > [data-width] {
+            float: none !important;
+            width: 100% !important;
+            padding-left: 0px !important;
+            max-width: @default-width;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        .section.columns {
+            padding-left: 16px !important;
+        }
+
+        [data-columns="2"] > .section-contents.extended-shifted-width {
+
+            .section[data-width]:first-child,
+            .section[data-width]:nth-child(2) {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+        }
+
+        .level_1 > .section-contents.extended-shifted-width {
+
+            & > .section:first-child {
+                margin-left: auto !important;
+            }
+        }
+    }
+
+    .sr_JPOL_E3_E4_Dodatkowyopiszasobow {
+        margin: 1rem 0 1rem 0 !important;
+        padding: 0.5rem;
+        background-color: #eff0f0;
+    }
+}
+
+
+@media all and (max-width: 768px) {
+
+    @extended-width: 640px;
+
+    :not(.zebra-module) {
+
+        .full-width:not(.para):not(.exercise) > *:not(.full-width):not(.extended-width):not(.extended-shifted-width) {
+            max-width: @default-width;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        .extended-width {
+            max-width: @extended-width;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        .section.level_1,
+        .bottom-content-navigation,
+        .authors-mailto-wrapper,
+        .module-header,
+        .bibliography {
+            max-width: @default-width;
+            margin-left: auto !important;
+            margin-right: auto !important;
+
+            &.full-width {
+                max-width: @full-width;
+            }
+            &.default-width {
+                max-width: @default-width;
+            }
+            &.lowest-width {
+                max-width: @lowest-width;
+            }
+            &.extended-width {
+                max-width: @extended-width;
+            }
+            & > .section-contents.extended-shifted-width {
+                max-width: (2*@extended-shifted-width - @default-width);
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            &.width-class-0 {
+                max-width: @width-class-0;
+            }
+            &.width-class-1 {
+                max-width: @width-class-1;
+            }
+            &.width-class-2 {
+                max-width: @width-class-2;
+            }
+            &.width-class-3 {
+                max-width: @width-class-3;
+            }
+            &.width-class-4 {
+                max-width: @width-class-4;
+            }
+            &.width-class-5 {
+                max-width: @width-class-5;
+            }
+            &.width-class-6 {
+                max-width: @width-class-6;
+            }
+            &.width-class-7 {
+                max-width: @width-class-7;
+            }
+            &.width-class-8 {
+                max-width: @width-class-8;
+            }
+            &.width-class-9 {
+                max-width: @width-class-9;
+            }
+        }
+
+        .level_1 > .section-contents.extended-shifted-width {
+
+            & > .section:first-child {
+                margin-left: (@extended-shifted-width - @default-width) !important;
+            }
+        }
+
+        .generate-columns(@n, @i: 1) when (@i =< @n) {
+
+            [data-width="@{i}"] {
+                float: left;
+                width: (((@i/100 * @extended-shifted-width)/(2* @extended-shifted-width - @default-width))*100%);
+                //&:first-child {  // needed only if padding is used to move columns to the right
+                //  width:((((@i/100 * @extended-shifted-width)+ @extended-shifted-width - @default-width)/(2* @extended-shifted-width - @default-width))*100%);
+                //}
+            }
+
+            .generate-columns(@n, (@i + 1));
+        }
+
+        .level_1[data-columns] > .extended-shifted-width {
+            .generate-columns(100);
+        }
+
+        @media (max-width: (2*@extended-shifted-width - @default-width + 7)) { // +7 for scrollbar
+
+            .extended-shifted-width > [data-width] {
+                float: none !important;
+                width: 100% !important;
+                padding-left: 0px !important;
+                max-width: @default-width;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+
+            .section.columns {
+                padding-left: 16px !important;
+            }
+
+            [data-columns="2"] > .section-contents.extended-shifted-width {
+
+                .section[data-width]:first-child,
+                .section[data-width]:nth-child(2) {
+                    padding-left: 0px !important;
+                    padding-right: 0px !important;
+                }
+            }
+
+            .level_1 > .section-contents.extended-shifted-width {
+
+                & > .section:first-child {
+                    margin-left: auto !important;
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 479px) {
+
+    @default-width: 320px;
+
+    :not(.zebra-module) {
+
+        .full-width:not(.para):not(.exercise) > *:not(.full-width):not(.extended-width):not(.extended-shifted-width) {
+            max-width: @default-width;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        .extended-width {
+            max-width: @extended-width;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        .section.level_1,
+        .bottom-content-navigation,
+        .authors-mailto-wrapper,
+        .module-header,
+        .bibliography {
+            max-width: @default-width;
+            margin-left: auto !important;
+            margin-right: auto !important;
+
+            &.full-width {
+                max-width: @full-width;
+            }
+            &.default-width {
+                max-width: @default-width;
+            }
+            &.lowest-width {
+                max-width: @lowest-width;
+            }
+            &.extended-width {
+                max-width: @extended-width;
+            }
+            & > .section-contents.extended-shifted-width {
+                max-width: (2*@extended-shifted-width - @default-width);
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            &.width-class-0 {
+                max-width: @width-class-0;
+            }
+            &.width-class-1 {
+                max-width: @width-class-1;
+            }
+            &.width-class-2 {
+                max-width: @width-class-2;
+            }
+            &.width-class-3 {
+                max-width: @width-class-3;
+            }
+            &.width-class-4 {
+                max-width: @width-class-4;
+            }
+            &.width-class-5 {
+                max-width: @width-class-5;
+            }
+            &.width-class-6 {
+                max-width: @width-class-6;
+            }
+            &.width-class-7 {
+                max-width: @width-class-7;
+            }
+            &.width-class-8 {
+                max-width: @width-class-8;
+            }
+            &.width-class-9 {
+                max-width: @width-class-9;
+            }
+        }
+
+        .level_1 > .section-contents.extended-shifted-width {
+
+            & > .section:first-child {
+                margin-left: (@extended-shifted-width - @default-width) !important;
+            }
+        }
+
+        .generate-columns(@n, @i: 1) when (@i =< @n) {
+
+            [data-width="@{i}"] {
+                float: left;
+                width: (((@i/100 * @extended-shifted-width)/(2* @extended-shifted-width - @default-width))*100%);
+                //&:first-child {  // needed only if padding is used to move columns to the right
+                //  width:((((@i/100 * @extended-shifted-width)+ @extended-shifted-width - @default-width)/(2* @extended-shifted-width - @default-width))*100%);
+                //}
+            }
+
+            .generate-columns(@n, (@i + 1));
+        }
+
+        .level_1[data-columns] > .extended-shifted-width {
+            .generate-columns(100);
+        }
+
+        @media (max-width: (2*@extended-shifted-width - @default-width + 7)) { // +7 for scrollbar
+
+            .extended-shifted-width > [data-width] {
+                float: none !important;
+                width: 100% !important;
+                padding-left: 0px !important;
+                max-width: @default-width;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+
+            .section.columns {
+                padding-left: 16px !important;
+            }
+
+            [data-columns="2"] > .section-contents.extended-shifted-width {
+
+                .section[data-width]:first-child,
+                .section[data-width]:nth-child(2) {
+                    padding-left: 0px !important;
+                    padding-right: 0px !important;
+                }
+            }
+
+            .level_1 > .section-contents.extended-shifted-width {
+
+                & > .section:first-child {
+                    margin-left: auto !important;
+                }
+            }
+        }
+    }
+}

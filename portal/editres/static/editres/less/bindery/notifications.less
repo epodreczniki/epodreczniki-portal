@@ -1,0 +1,109 @@
+/* Rules for notifications bar */
+
+.notifications {
+    position: relative;
+    height: 75px; //100px;
+    padding-left: @dashboard-whitespace;
+
+    .notifications-inner {
+        position: relative;
+
+        height: 49px; //65px;
+        margin-top: 17px;
+
+        display: -webkit-inline-flex;
+        display: inline-flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-justify-content: flex-start;
+        justify-content: flex-start;
+
+        div {
+            position: relative;
+
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: space-around;
+            justify-content: space-around;
+
+            float: left;
+            height: 49px;
+            margin-right: 75px; //temporarily
+
+            font-size: 15px;
+            cursor: pointer;
+
+            &:last-of-type {
+                margin-right: 36px;
+            }
+
+            div {
+                display: -webkit-flex;
+                display: flex;
+                -webkit-align-items: center;
+                align-items: center;
+                -webkit-justify-content: space-around;
+                justify-content: space-around;
+
+            }
+
+            span {
+                display: -webkit-flex;
+                display: flex;
+                -webkit-align-items: center;
+                align-items: center;
+                -webkit-justify-content: flex-start;
+                justify-content: flex-start;
+            }
+
+        }
+
+        .notifications-alert-icon {
+            position: absolute;
+            top: 0;
+
+            width: 55px;
+            height: 20px;
+
+            border-radius: @dashboard-border-radius;
+
+            background-color: #d50000;
+            color: #fff;
+
+            span {
+                font-size: 12px;
+            }
+
+            .notifications-alert-icon-triangle {
+                position: absolute;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 6px 6px 0 0;
+                border-color: #d50000 transparent transparent transparent;
+                bottom: -6px;
+                left: 6px;
+            }
+        }
+
+        .notifications-round-icon {
+            position: absolute;
+            top: 0;
+
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background-color: #3388d2;
+            color: #fff;
+
+            span {
+                font-size: 12px;
+            }
+        }
+
+    }
+}

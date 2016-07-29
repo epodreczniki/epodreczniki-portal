@@ -1,0 +1,51 @@
+.reader-content {
+    .procedure-instructions { //Instrukcja postępowania
+        .common-spacing();
+        border: 1px solid #d9d9d9;
+        border-radius: 8px;
+        padding: @space-C;
+
+        .procedure-instructions-header {
+            .simple-block-header;
+            margin-bottom: @space-C;
+            border: none;
+            padding: 0 0 0 48px;
+            text-indent: -48px;
+
+            .label {
+                background-image: url('../../../img/new-icons/ic-instrukcja.svg');
+                background-repeat: no-repeat;
+                background-position: 0 50%;
+                background-size: auto 1.4em;
+                padding: 1em 0 1em 48px;
+            }
+
+            .title {
+                display: block;
+                padding: 24px 0 0;
+                text-indent: -1px;
+            }
+        }
+
+        .procedure-instructions-contents {
+            .step {
+                margin-bottom: @space-B;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                .step-header {
+                    .complex-block-header();
+                    margin-bottom: @space-B;
+                    font-family: @sansLight;
+                    font-size: 24px;
+                }
+
+                .para:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}

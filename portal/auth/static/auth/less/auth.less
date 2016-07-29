@@ -1,0 +1,415 @@
+@import "opensans";
+@topbar-common-img-path: "../../common/img/";
+@import "common/static/common/less/topbar.less";
+
+/*Icons */
+//@logo-icon-path: "../../reader/img/new/logo.png";
+//@login-icon-path: "../../reader/img/new/topbar-icons/profil.svg";
+//@library-icon-path: "../../reader/img/new/topbar-icons/biblioteka.svg";
+//@help-icon-path: "../../reader/img/new/topbar-icons/pomoc.svg";
+//@print-icon-path: "../../reader/img/new/topbar-icons/drukuj.svg";
+//@search-icon-path: "../../reader/img/new/topbar-icons/szukaj.svg";
+//@settings-icon-path: "../../reader/img/new/topbar-icons/ustawienia.svg";
+//@about-icon-path: "../../reader/img/new/topbar-icons/detale.svg";
+
+@librus-icon-path: "../../auth/img/librus-logo.png";
+
+@authTextColor: #363530;
+@authMiddleGray: #818285;
+@authDarkGray: #8e8f92;
+@authBackgroundColor: #fff;
+@authMaxWidth: 940px;
+@authContentMaxWidth: 370px;
+
+/* login button colors */
+@epoLoginNormal: #eeefef;
+@epoLoginHover: #dbdada;
+
+@librusLoginNormal: #ab5380;
+@librusLoginHover: #8d4569;
+
+@msLoginNormal: #e36626;
+@msLoginHover: #c05537;
+
+@msLiveLoginNormal: #0072c6;
+@msLiveLoginHover: #012055;
+
+@fbLoginNormal: #2c589b;
+@fbLoginHover: #214682;
+
+@googleLoginNormal: #e04a32;
+@googleLoginHover: #c54229;
+
+* {
+  font-family: open_sanslight, "Open Sans", sans-serif;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  font-family: open_sanslight, "Open Sans", sans-serif;
+}
+
+body {
+  background-color: @authBackgroundColor;
+}
+
+//Shadow under topbar
+.auth-topbar-shadow {
+  -webkit-box-shadow: 0px -2px 20px 3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px -2px 20px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px -2px 20px 3px rgba(0, 0, 0, 0.2);
+}
+
+#topbar {
+  .auth-topbar-shadow();
+
+  nav {
+    button {
+      background-color: transparent;
+      border: none;
+    }
+  }
+}
+
+.login-main, form {
+  position: relative;
+  color: @authTextColor;
+}
+
+.login-main {
+  margin: 0 auto;
+  width: 100%;
+  max-width: @authMaxWidth;
+  padding-top: @topbar-height + 65px;
+  padding-bottom: 55px;
+
+  @media all and (max-width: 400px) {
+    width: 90%;
+  }
+}
+
+.register-main {
+  .login-main();
+
+  .errorlist {
+    .login-header();
+    margin-bottom: 20px;
+    color: red;
+    list-style-type: none;
+  }
+}
+
+.wrong-data {
+  margin: 0;
+  padding-bottom: 10px;
+  color: red;
+}
+
+.centered-line {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+}
+
+.login-header,
+.wrong-data,
+.password-reminder,
+.register-container,
+.auth-terms {
+  position: relative;
+  width: 100%;
+  max-width: @authContentMaxWidth;
+  margin: 0 auto;
+}
+
+.login-header {
+  p {
+    font-size: xx-large;
+    margin-bottom: 40px;
+  }
+}
+
+.login-button {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 26px;
+  width: 100%;
+  max-width: @authContentMaxWidth;
+
+  padding-top: 7px;
+  padding-bottom: 9px;
+
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  border: dotted 1px transparent;
+
+  -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5);
+
+  &:hover {
+    background-color: #b5b5b5; // #a6a6a7;
+  }
+
+  &:last-of-type {
+    margin-bottom: 56px;
+  }
+}
+
+.login-button:not(.epo-login) {
+  font-family: open_sanssemibold;
+}
+
+.login-button-icon {
+  background-size: 46px 46px;
+  background-position: 0% center;
+  background-repeat: no-repeat;
+}
+
+.epo-login {
+  background-color: @epoLoginNormal;
+  max-width: 184px;
+  color: @authMiddleGray;
+
+  margin-top: 26px;
+
+  &:hover {
+    background-color: @epoLoginHover;
+  }
+}
+
+.librus-login {
+  position: relative;
+  background-color: @librusLoginNormal;
+
+  &:hover {
+    background-color: @librusLoginHover;
+  }
+}
+
+.msoffice-login {
+  background-color: @msLoginNormal;
+
+  &:hover {
+    background-color: @msLoginHover;
+  }
+}
+
+.mslive-login {
+  background-color: @msLiveLoginNormal;
+
+  &:hover {
+    background-color: @msLiveLoginHover;
+  }
+}
+
+.facebook-login {
+  background-color: @fbLoginNormal;
+
+  &:hover {
+    background-color: @fbLoginHover;
+  }
+}
+
+.gplus-login {
+  background-color: @googleLoginNormal;
+
+  &:hover {
+    background-color: @googleLoginHover;
+  }
+}
+
+.librus-icon {
+  position: absolute;
+  top: -3px;
+  left: -56px;
+  background-image: url(@librus-icon-path);
+  width: 46px;
+  height: 46px;
+  .login-button-icon();
+  display: inline-block;
+}
+
+table {
+  margin: 0 auto;
+}
+
+form {
+
+  background: none;
+  line-height: 20px;
+
+  input[type="text"], input[type="password"], input[type='email'] {
+    position: relative;
+    display: block;
+    width: calc(~"100% - 44px");
+    max-width: calc(@authContentMaxWidth~" - 44px");
+    padding: 0 20px;
+    margin: 0 auto;
+    margin-bottom: 18px;
+    font-size: 14px;
+    line-height: 37px;
+
+    -webkit-box-shadow: inset 0px 0px 5px 0px rgba(72, 112, 183, 0.25);
+    -moz-box-shadow: inset 0px 0px 5px 0px rgba(72, 112, 183, 0.25);
+    box-shadow: inset 0px 0px 5px 0px rgba(72, 112, 183, 0.25);
+
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      height: 37px;
+    }
+  }
+
+  .password-shortmargin {
+    margin-bottom: 9px !important;
+  }
+
+  .form-info {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: @authContentMaxWidth;
+    padding: 0;
+    margin: 0 auto;
+    margin-bottom: 0.5em;
+
+    @media all and (max-width: 400px) {
+      width: 100%;
+    }
+  }
+
+  &.agreement-form {
+    width: 100%;
+    display: block;
+    div {
+      padding: 10px;
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+  max-width: 100%;
+}
+
+input:not(.login-button) {
+  font-size: 20px;
+  margin-left: 10px;
+  color: @authTextColor;
+}
+
+.relative-form {
+  position: relative;
+  height: 100%;
+}
+
+.auth-link {
+  .epo-login();
+}
+
+.oidc-login {
+  /*position: absolute;
+  bottom: 0;
+  color: rgba(216, 216, 216, 0.1);*/
+  .epo-login();
+}
+
+.register-container {
+  cursor: pointer;
+
+  span, a {
+    font-size: 12px;
+  }
+
+  span {
+    color: @authDarkGray;
+  }
+
+  .register-link {
+    color: @authMiddleGray;
+    text-decoration: underline;
+  }
+}
+
+.password-reminder {
+  cursor: pointer;
+  span {
+    color: @authDarkGray;
+    font-size: 12px;
+    text-decoration: underline;
+  }
+}
+
+.auth-decoration {
+  position: relative;
+  width: 100%;
+  margin: 67px 0;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+
+  @media all and (max-width: 939px) {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &-line, &-text {
+    display: -webkit-flex;
+    display: flex;
+  }
+
+  &-line {
+    width: calc(~"50% - 42px");
+    background-color: #eeefef;
+    height: 2px;
+  }
+
+  &-text {
+    font-size: 12px;
+    color: @authDarkGray;
+    text-align: center;
+    width: 84px;
+    -webkit-flex-grow: 0;
+    flex-grow: 0;
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
+}
+
+.auth-terms {
+  max-width: 400px;
+  font-size: 14px;
+
+  @media all and (max-width: 399px) {
+    max-width: 90%;
+  }
+
+  p, span, a {
+    font-family: open_sansregular, sans-serif;
+    text-decoration: none;
+  }
+}
+
+.auth-highlighted {
+  color: #4576ba;
+}
+
+@media all and (max-width: 529px) {
+
+  .librus-icon {
+    top: 4px;
+    left: 5px;
+    width: 32px;
+    height: 32px;
+    background-size: 32px 32px;
+  }
+
+}

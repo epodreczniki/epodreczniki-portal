@@ -1,0 +1,64 @@
+{% extends "index_base.html" %}
+{% load staticfiles %}
+{% block title %}
+    <div>
+
+        <img style="vertical-align: baseline; padding-top: 5px; padding-right: 5px;"
+             src="{% static "front/img/epodreczniki.svg" %}"
+             data-fallback="{% static "front/img/epodreczniki.png" %}"
+             alt="Logo epodreczniki.pl"/>
+
+        <h1 style="display: inline;">{{ title }}</h1>
+    </div>
+{% endblock %}
+
+{% block main_page %}
+
+    <div class="col-md-6">
+        <h2>Welcome to the Technology Platform www.epodreczniki.pl</h2>
+
+        <p><code>www.epodreczniki.pl</code>is a modern open
+            source educational MOOC (Massive Open Online Course) platform to create and share e-books on the principle
+            of full
+            disclosure for K12 (all digital content included in e-books will be available on-line under the free
+            Creative
+            Commons BY/SA licenses).</p>
+
+        <p> E-books distributed on the platform will include text, audio, video, interactive
+            quiz and on-line educational applications and provide an optimal viewing experience thanks to modern
+            interfaces
+            following responsive web design rules. </p>
+
+        <p> Additionally, 2,500 objects of teaching resources will be created by
+            2015 to support teachers using new e-books from 13,000 primary schools, 7,000 secondary schools and 6,000
+            colleges
+            in Poland. However, we are happy to work with external users and adapting the existing platform to local
+            language
+            and culture in the target market. </p>
+
+        <p> In a nutshell, the platform will support the following key features:
+        <ul>
+            <li>Flexibility - the ability to support different user modes: online and off-line (PDF, ePub and additional
+                native
+                mobile apps);
+            </li>
+            <li>Modularity - the coexistence of different versions and functions of each e-book on different devices and
+                in
+                different cases;
+            </li>
+            <li>Security of data access to the platform with built-in diagnosis tracking and audit mechanisms;</li>
+            <li>Scalability & high availability thanks to the cloud-based hosting environment reacting to dynamic
+                changes of
+                users, resources and services available within it.
+            </li>
+        </ul>
+        </p> <h2>Documentation</h2>
+
+        <p> Learn how to develop with the www.epodreczniki.pl Platform REST API. </p>
+
+        <p><a
+                href="/source_formats/">Learn more</a> about the source formats of e-books that make the site. </p>
+    </div>
+    <div class="col-md-6"><img class="img-responsive" src="{% static "api/img/schema2.png" %}"/></div>
+
+{% endblock %}

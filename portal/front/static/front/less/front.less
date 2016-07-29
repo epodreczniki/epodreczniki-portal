@@ -1,0 +1,211 @@
+// importy
+@import "common/static/common/less/common-variables.less";
+@import "mixins";
+@import "template";
+@import "kzd";
+@import "kzd-item-details";
+@import "kzd-welcome";
+@import "kzd-lister";
+@import "profile";
+@import "profile-topbar";
+@import "profile-notes";
+@import "profile-readings";
+@import "profile-edit";
+@import "profile-edit-teachers";
+@import "profile-progress";
+@import "profile-stats";
+@import "booklist-123-specific";
+
+// zmienne konfiguracyjne
+
+@standard-padding: 8px;
+@button-size: 28px;
+@button-shape: 0;
+@button-background: rgba(0, 0, 0, 0.15);
+@button-hover-color: #00ccff;
+@smartphone-breakpoint: 640px;
+@footer-height: 20px;
+
+// ogólne
+
+//needed for IE
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  body {
+    background-color: #fff;
+  }
+}
+
+html, body, #front, #booklist, #details, #template {
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  outline: 0;
+
+  &:hover, &:focus {
+    text-decoration: underline;
+  }
+}
+
+.login {
+  margin-top: -3px;
+}
+
+:focus {
+  // firefox dotted outline
+  outline: none;
+}
+
+::-moz-focus-inner {
+  // firefox dotted outline
+  border: 0;
+}
+
+button {
+  // button reset
+  overflow: visible;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  line-height: 0;
+  font-size: 0;
+}
+
+// dropdown
+
+.btn-group {
+  width: 180px;
+  line-height: 1.2;
+  font-family: @sansLight;
+  font-size: 13px;
+
+  &.dropdown-group {
+    position: relative;
+  }
+
+  &.open {
+
+    .dropdown-menu {
+      display: block;
+    }
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    box-sizing: border-box;
+    display: none;
+    margin-top: 8px;
+    background: #fff;
+    list-style-type: none;
+    width: 180px;
+    border-radius: 4px;
+
+    &:hover {
+      display: block;
+    }
+
+    li {
+
+      &:first-child {
+        border-radius: 4px 4px 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 0 4px 4px;
+      }
+
+      &:hover {
+        background: @button-hover-color;
+      }
+
+      a {
+        box-sizing: border-box;
+        display: block;
+        width: 180px;
+        padding: 4px 2px;
+        color: #000;
+
+        &:hover {
+          color: #fff;
+          font-family: @sansRegular;
+        }
+
+        &:focus {
+          background-color: @button-hover-color;
+          color: #fff;
+          font-family: @sansRegular;
+        }
+      }
+    }
+  }
+}
+@topbar-common-img-path: "../../common/img/";
+@import "common/static/common/less/topbar";
+
+// tematy
+@import "themes.less";
+
+// topbar
+//@import "topbar.less";
+
+// stopka
+@import "footer.less";
+
+// wyszukiwanie
+@import "search.less";
+
+// spis podręczników
+#booklist {
+  @import "booklist.less";
+}
+
+@import "statistics.less";
+
+// detale
+@import "details.less";
+
+// pozostałe strony
+#template {
+  @import "template.less";
+}
+
+@import "profile.less";
+
+// Admin messages
+@import "admin-messages";
+
+@import "deploy-info";
+
+//@logo-icon-path: "../../reader/img/new/logo.png";
+
+//@login-icon-path: "../../reader/img/new/topbar-icons/profil.svg";
+//@library-icon-path: "../../reader/img/new/topbar-icons/biblioteka.svg";
+//@help-icon-path: "../../reader/img/new/topbar-icons/pomoc.svg";
+//@print-icon-path: "../../reader/img/new/topbar-icons/drukuj.svg";
+//@search-icon-path: "../../reader/img/new/topbar-icons/szukaj.svg";
+//@settings-icon-path: "../../reader/img/new/topbar-icons/ustawienia.svg";
+//@about-icon-path: "../../reader/img/new/topbar-icons/detale.svg";
+
+//@logo-icon-path-hc: "../../reader/img/new/topbar-icons/high-contrast/logo_hc.png";
+//@login-icon-path-hc: "../../reader/img/new/topbar-icons/high-contrast/profil_hc.png";
+//@library-icon-path-hc: "../../reader/img/new/topbar-icons/high-contrast/biblioteka_hc.png";
+//@help-icon-path-hc: "../../reader/img/new/topbar-icons/high-contrast/pomoc_hc.png";
+//@print-icon-path-hc: "../../reader/img/new/topbar-icons/high-contrast/drukuj_hc.png";
+//@search-icon-path-hc: "../../reader/img/new/topbar-icons/high-contrast/szukaj_hc.png";
+//@settings-icon-path-hc: "../../reader/img/new/topbar-icons/high-contrast/ustawienia_hc.png";
+//@about-icon-path-hc: "../../reader/img/new/topbar-icons/high-contrast/detale_hc.png";
+
+@import "index";

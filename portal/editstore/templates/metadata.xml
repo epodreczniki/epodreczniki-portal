@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<womi-metadata>
+<Autor>{{ metadata.author }}</Autor>
+<Tytul>{{ metadata.title }}</Tytul>
+<TekstAlternatywny>{{ metadata.alternativeText }}</TekstAlternatywny>
+<Licencja>{{ metadata.license }}</Licencja>
+    {% if metadata.keywords %}
+        {% for k in metadata.keywords %}
+            <SlowaKluczowe>{{ k }}</SlowaKluczowe>
+        {% endfor %}
+    {% endif %}
+</womi-metadata>

@@ -1,0 +1,9 @@
+<ul class="pagination-pages">
+    <% _.each(sections, function(s){
+        if (s.id) { %>
+            <li data-page-num="<%= s.number %>">
+                <a href="<%= base_url + '#' + s.id %>" data-content-status="<%= s.content_status %>" data-module-recipient="<%= s.content_recipient %>"><%= s.label %></a>
+            </li>
+        <% };
+    }) %>
+</ul>

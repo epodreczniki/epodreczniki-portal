@@ -1,0 +1,12 @@
+{% autoescape off %}
+    <div class="interactive-object-container" data-alt="tekst alternatywny" data-width="100%"
+         data-height-ratio="{{ height_ratio|stringformat:"f" }}">
+        <div class="standard-interactive-object" data-object-src="{{ data_src }}" data-object-engine="{{ engine }}"
+             data-object-engine-version="{{ engine_version }}">
+
+        </div>
+        {% if alternative %}
+            {{ alternative }}
+        {% endif %}
+    </div>
+{% endautoescape %}

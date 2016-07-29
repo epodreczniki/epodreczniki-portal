@@ -1,0 +1,61 @@
+{% load staticfiles extensions common_ext collections %}
+
+{% for section in parent_content %}
+{% with children=section.list %}
+{% if children %}
+<ul class="details123-toc-nav" {% if hide %}style="display: none;"{% endif %}
+    data-toc-path="{{ section.technical_toc_path }}">
+    {% for content in children %}
+    {% if content.is_module %}
+    {% if not content.is_title %}
+    <li class="details123-toc-nav-element-module"><a class="module-a"
+                                                     href="{% get_presentation_module_occurrence_url presentation content %}"
+                                                     data-ajax-url="{{ content.html_url|make_schemeless }}"
+                                                     data-epxml-url="{{ content.epxml_url|make_schemeless }}"
+                                                     data-dependencies-url="{{ content.dependencies_url }}"
+                                                     data-module-id="{{ content.module.md_content_id }}"
+                                                     data-module-order="{{ content.order_value }}"
+                                                     data-module-recipient="{{ content.module.ep_recipient }}"
+                                                     data-collection-order-id="{{ id_collection_counter }}"
+            >
+        <div
+                style="background-image: url({% get_womi_icon content.attributes.all presentation %})!important"></div>
+                                <span>
+                                    {% autoescape off %}
+                                        {{ content.md_title }}
+                                    {% endautoescape %}
+                                </span>
+    </a>
+    </li>
+    {% endif %}
+    {% else %}
+
+    {% with new_parent="table_of_contents_" %}
+
+    <li class="details123-toc-nav-element{% if content.is_empty %} empty-toc-nav{% endif %}{% if not hide %} not-hidden{% endif %}">
+        <a {% if resolve_first_module %}
+            href="{% get_presentation_module_occurrence_url presentation content.first_nested_module_occurrence %}"
+            {% else %}href="#"{% endif %}
+            data-is-empty="{{ content.is_empty }}"
+            data-toc-path="{{ content.technical_toc_path }}"
+                {% if content.parent %}
+            data-toc-parent-path="{{ content.parent.technical_toc_path }}"
+                {% endif %}
+                >
+            <div
+                    style="background-image: url( {% get_womi_icon content.attributes.all presentation %})"></div>
+                                    <span class="details123-season">
+                                        {% autoescape off %}
+                                            {{ content.md_title }}
+                                        {% endautoescape %}
+                                    </span>
+        </a>
+
+    </li>
+    {% endwith %}
+    {% endif %}
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+{% endfor %}

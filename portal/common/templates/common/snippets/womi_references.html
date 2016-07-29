@@ -1,0 +1,4 @@
+{% load extensions %}
+{% for nice_kind, womi_references in content|grouped_womi_references %}
+data-womi-reference-{{ nice_kind }}-kind="{% for womi_reference in womi_references %}{{ womi_reference.womi.identifier}}:{{ womi_reference.womi.version}} {% endfor %}"
+{% endfor %}

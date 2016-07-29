@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="232px" height="277px" viewBox="0 0 232 277" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>Slice 1</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Group" sketch:type="MSLayerGroup">
+            <g id="Rectangle-7-+-A-+-Z" stroke="#FFFFFF" stroke-width="4" sketch:type="MSShapeGroup">
+                <rect id="Rectangle-7" x="0" y="0" width="232" height="277"></rect>
+            </g>
+            <path d="M100.805022,169 L92.070901,144.938692 L58.6299852,144.938692 L50.0753323,169 L35,169 L67.7230428,82 L83.2769572,82 L116,169 L100.805022,169 Z M88,133 L79.9600939,109.12 C79.3732365,107.519992 78.5614293,105.000017 77.5246479,101.56 C76.4878665,98.1199828 75.7738674,95.600008 75.3826291,94 C74.3262858,98.9200246 72.7809178,104.299971 70.7464789,110.14 L63,133 L88,133 Z" id="A" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+            <path d="M201,212 L139,212 L139,202.121751 L182.684512,137.199042 L140.185468,137.199042 L140.185468,125 L199.814532,125 L199.814532,134.997264 L176.790671,169.013495 L155.952199,199.800958 L201,199.800958 L201,212 Z" id="Z" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

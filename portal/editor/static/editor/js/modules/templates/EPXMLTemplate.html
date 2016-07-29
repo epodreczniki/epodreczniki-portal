@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns:cnxml="http://cnx.rice.edu/cnxml"
+		  xmlns:md="http://cnx.rice.edu/mdml"
+		  xmlns:bib="http://bibtexml.sf.net/"
+		  xmlns:mml="http://www.w3.org/1998/Math/MathML"
+		  xmlns:q="http://cnx.rice.edu/qml/1.0"
+		  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+          xmlns:ep="http://epodreczniki.pl/"
+          xmlns="http://cnx.rice.edu/cnxml"
+          id="<%= document[0].id %>"
+          module-id="<%= document[0]['module-id'] %>"
+          cnxml-version="<%= document[0]['cnxml-version'] %>">
+    <title><%= document[0].title[0] %></title>
+    <metadata mdml-version="<%= document[0].metadata[0]['mdml-version'] %>">
+        <md:content-id><%= document[0].metadata[0]['content-id'][0] %></md:content-id>
+        <md:repository><%= document[0].metadata[0].repository[0] %></md:repository>
+        <md:version><%= document[0].metadata[0].version[0] %></md:version>
+        <md:created><%= document[0].metadata[0].created[0] %></md:created>
+        <md:revised><%= document[0].metadata[0].revised[0] %></md:revised>
+        <md:title><%= document[0].metadata[0].title[0] %></md:title>
+        <md:language><%= document[0].metadata[0].language[0] %></md:language>
+        <md:license url="<%= document[0].metadata[0].license[0].url %>"/>
+        <md:actors>
+            <% _.each(document[0].metadata[0].actors[0].person, function(actor) { %>
+            <md:person userid="<%= actor.userid %>">
+                <md:firstname><%= actor.firstname[0] %></md:firstname>
+                <md:surname><%= actor.surname[0] %></md:surname>
+                <md:fullname><%= actor.fullname[0] %></md:fullname>
+                <md:email><%= actor.email[0] %></md:email>
+            </md:person>
+            <% }); %>
+        </md:actors>
+        <md:roles>
+            <% _.each(document[0].metadata[0].actors[0].person, function(actor) { %>
+            <md:role type="author"><%= actor.userid %></md:role>
+            <% }); %>
+        </md:roles>
+        
+        <ep:e-textbook-module ep:version="1.5" ep:recipient="student" ep:content-status="canon"> 
+							  			
+			<ep:presentation>
+				<ep:type></ep:type>
+				<ep:template>tiled</ep:template>
+				<ep:width><%= properties.width %></ep:width>
+				<ep:height><%= properties.height %></ep:height>
+				<ep:fixed-tile-layout>false</ep:fixed-tile-layout>
+			</ep:presentation>
+
+        <ep:core-curriculum-entries>
+
+        <% if (educations.length > 0 ) { %>
+        <% _.each(educations, function(education, index){ %>
+            <ep:core-curriculum-entry>
+                <ep:core-curriculum-stage ep:key="<%= education['core-curriculum-stage'][0]['ep:key'] %>"><%= education['core-curriculum-stage'][0].value %></ep:core-curriculum-stage>
+                <ep:core-curriculum-school ep:key="<%= education['core-curriculum-school'][0]['ep:key'] %>"><%= education['core-curriculum-school'][0].value %></ep:core-curriculum-school>
+                <ep:core-curriculum-subject ep:key="<%= education['core-curriculum-subject'][0]['ep:key'] %>"><%= education['core-curriculum-subject'][0].value %></ep:core-curriculum-subject>
+                <ep:authors-comment><%= education['authors-comment'][0] %></ep:authors-comment>
+            </ep:core-curriculum-entry>
+        <% }); %>
+        <% } %>
+        <% if (ccs.length > 0 ) { %>
+        <% _.each(ccs, function(cc, index){ %>
+            <ep:core-curriculum-entry>
+                <ep:core-curriculum-stage ep:key="<%= cc['core-curriculum-stage'][0]['ep:key'] %>"><%= cc['core-curriculum-stage'][0].value %></ep:core-curriculum-stage>
+                <ep:core-curriculum-school ep:key="<%= cc['core-curriculum-school'][0]['ep:key'] %>"><%= cc['core-curriculum-school'][0].value %></ep:core-curriculum-school>
+                <ep:core-curriculum-subject ep:key="<%= cc['core-curriculum-subject'][0]['ep:key'] %>"><%= cc['core-curriculum-subject'][0].value %></ep:core-curriculum-subject>
+                <ep:core-curriculum-version ep:key="<%= cc['core-curriculum-version'][0]['ep:key'] %>"><%= cc['core-curriculum-version'][0].value %></ep:core-curriculum-version>
+                <ep:core-curriculum-ability ep:key="<%= cc['core-curriculum-ability'][0]['ep:key'] %>"><%= cc['core-curriculum-ability'][0].value %></ep:core-curriculum-ability>
+                <ep:authors-comment><%= cc['authors-comment'][0] %></ep:authors-comment>
+            </ep:core-curriculum-entry>
+        <% }); %>
+        <% } %>
+        </ep:core-curriculum-entries>	
+        </ep:e-textbook-module>
+    </metadata>
+
+    <content>
+    
+    	<% if(ccommands.length > 0) { %>
+    		<section id="section_<%= document[0].id %>_<%= (new IdGenerator('ccommand_section', 'simple')).getId() %>">
+ 				<ep:parameters>
+  					<ep:role>polecenie-uzupelniajace</ep:role>
+ 				</ep:parameters>
+    			<para id="ccpara_<%= document[0].id %>_<%= (new IdGenerator('ccommand_para', 'simple')).getId() %>">
+      				<% if(ccommands.length > 0) { %>
+            		<list id="cclist_<%= document[0].id %>_<%= (new IdGenerator('ccommand_list', 'simple')).getId() %>" list-type="bulleted">
+            			<% _.each(ccommands, function(ccommand) { %>
+            				<item><%= ccommand %></item>
+            			<% }); %>
+            		</list>
+            	<% } %>
+    			</para>
+			</section>
+    	<% } %>
+    
+        <% _.each(blocks, function(block, index){ %>
+        <section
+                id="<%= document[0].id %>_<%= (new IdGenerator('' + block.x + block.y + block.width + block.height + index, 'simple')).getId() %>">
+            <ep:parameters>
+                <ep:tile><%= block.attrName %></ep:tile>
+                <ep:role></ep:role>
+                <ep:left><%= block.x %></ep:left>
+                <ep:top><%= block.y %></ep:top>
+                <ep:width><%= block.width %></ep:width>
+                <ep:height><%= block.height %></ep:height>
+                <ep:margin-left><%= block.attrMarginLeft %></ep:margin-left>
+                <ep:margin-right><%= block.attrMarginRight %></ep:margin-right>
+                <ep:margin-top><%= block.attrMarginTop %></ep:margin-top>
+                <ep:margin-bottom><%= block.attrMarginBottom %></ep:margin-bottom>
+            </ep:parameters>
+
+            <% if(block.transcript != ''){ %>
+                <cnxml:para id="<%= (new IdGenerator('' + block.x + block.y + block.width + block.height, 'moduleid')).getId() %>_transcript" ep:role="transcript"><%= block.womitranscript %></cnxml:para>
+            <% } %>
+            
+
+            <para id="<%= (new IdGenerator('' + block.x + block.y + block.width + block.height, 'moduleid')).getId() %>">
+                <% if(block.attrType == 'gallery') { %>
+                    <% if(block.gallery.props.type == 'A') { %>
+                    <ep:gallery ep:start-on="<%= block.gallery.props.paramStartOn %>" ep:thumbnails="<%= block.gallery.props.paramThumbnails %>" ep:format-contents="<%= block.gallery.props.paramFormatContents %>" ep:titles="<%= block.gallery.props.paramTitles %>" ep:miniatures-only="false" ep:id="<%= document[0].id %>_<%= (new IdGenerator('' + block.x + block.y + block.width + block.height + index, 'moduleid')).getId() %>_gallery" >
+                    <% } else if(block.gallery.props.type == 'B') { %>  
+                    <ep:gallery ep:miniatures-only="true" ep:view-width="<%= block.gallery.props.viewWidth %>" ep:view-height="<%= block.gallery.props.viewHeight %>" ep:id="<%= document[0].id %>_<%= (new IdGenerator('' + block.x + block.y + block.width + block.height + index, 'moduleid')).getId() %>_gallery" >
+                    <% } else if(block.gallery.props.type == 'C') { %>  
+                    <ep:gallery ep:miniatures-only="true" ep:id="<%= document[0].id %>_<%= (new IdGenerator('' + block.x + block.y + block.width + block.height + index, 'moduleid')).getId() %>_gallery" >
+                    <% } %>                     
+                        <title><%= block.gallery.props.paramTitle %></title>
+                        <% _.each(block.gallery.items, function(item) { %>                        
+                        <ep:reference ep:id="<%= item.attrWomi %>" ep:instance-id="<%= document[0].id %>_<%= (new IdGenerator('' + document[0].id + block.x + block.y + block.width + block.height + block.attrWomi + index, 'moduleid')).getId() %>">
+                            <ep:zoomable><%= item.attrZoomable %></ep:zoomable>
+                            <ep:magnifier><%= item.attrMagnifier %></ep:magnifier>
+                            <ep:content ep:id="<%= document[0].id %>_<%= (new IdGenerator('' + document[0].id + block.x + block.y + block.width + block.height + block.attrWomi + index, 'modulecontent')).getId() %>" ep:format="classic"><%= item.attrContent %></ep:content>
+                            <% if(item.attrRelatedWomi != null){ %>
+                            <ep:related>
+                                <ep:reference ep:id="<%= item.attrRelatedWomi.id %>" ep:instance-id="<%= item.attrRelatedWomi.id %>"/>
+                            </ep:related>
+                            <% } %>
+                        </ep:reference>
+                        <% }); %>
+                    </ep:gallery>
+                <% } else { %>
+                <ep:reference ep:id="<%= block.attrWomi %>" ep:instance-id="<%= document[0].id %>_<%= (new IdGenerator('' + document[0].id + block.x + block.y + block.width + block.height + block.attrWomi + index, 'moduleid')).getId() %>">
+                    <ep:width><%= block.womiwidth %></ep:width>
+                    <ep:type><%= block.womitype %></ep:type>
+                    <ep:context><%= block.womicontext %></ep:context>
+                    <ep:reading-room><%= block.womireadingRoom %></ep:reading-room>
+                    <ep:hide-caption><%= block.womihideCaption %></ep:hide-caption>
+                    <ep:zoomable><%= block.womizoomable %></ep:zoomable>
+                    <ep:embedded><%= block.womiembedded %></ep:embedded>
+                    <ep:autoplay><%= block.womiautoplay %></ep:autoplay>
+                    <ep:transparent><%= block.womitransparent %></ep:transparent>
+                    <ep:avatar><%= block.womiavatar %></ep:avatar>
+                    <ep:content ep:id="<%= (new IdGenerator('' + document[0].id + block.x + block.y + block.width + block.height + block.attrWomi + index + 'content', 'moduleid')).getId() %>"  ep:format="<%= block.womicontentFormat %>" ><%= block.womicontent %></ep:content>
+                </ep:reference>
+                <% } %>
+            </para>
+        </section>
+        <% }); %>
+        <% _.each(pins, function(pin, index){ %>
+            <section id="<%= document[0].id %>_<%= (new IdGenerator('' + pin + index, 'simple')).getId() %>">
+                <para id="<%= (new IdGenerator('' + pin + index, 'moduleid')).getId() %>">
+                    <ep:reference ep:id="<%= pin %>">
+                        <ep:context>true</ep:context>
+                    </ep:reference>
+                </para>
+            </section>
+        <% }); %>
+    </content>
+    <% if(background) { %>
+    <!-- background_file:<%= background %> -->
+    <% } %>
+</document>

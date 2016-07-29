@@ -1,0 +1,6 @@
+{% load editres_general %}
+<div class="row" id="editres-listing-{{ category }}">
+    {% for driver in drivers %}
+        {% object_tile driver=driver %}
+    {% endfor %}
+</div>

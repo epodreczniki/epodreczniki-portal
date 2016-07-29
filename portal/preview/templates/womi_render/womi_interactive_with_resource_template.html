@@ -1,0 +1,11 @@
+{% autoescape off %}
+    <div class="interactive-object-container" data-alt="tekst alternatywny" data-width="100%">
+        <div class="resource-included-interactive-object" data-object-engine="{{ engine }}"
+             data-object-engine-version="{{ engine_version }}">
+            {{ data_src }}
+        </div>
+        {% if alternative %}
+            {{ alternative }}
+        {% endif %}
+    </div>
+{% endautoescape %}

@@ -1,0 +1,183 @@
+.item-context-workarea-description {
+    position: relative;
+    height: 100%;
+    float: left;
+
+    width: calc(~"100% - "@itemContextWorkareaLastActivityWidth);
+
+    @media all and (max-width: @itemContextTwoColumnsMinWidth) {
+        width: 100%;
+    }
+
+    section {
+        margin: 0 0 @itemContextStandardMargin @itemContextStandardMargin;
+    }
+
+    .item-context-workarea-description-content {
+        display: -webkit-flex;
+        display: flex;
+        position: relative;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+
+        width: calc(~"100% - 15px");
+        float: left;
+
+        @media all and (max-width: @itemContextTwoColumnsMinWidth) {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .item-context-workarea-description-header {
+            height: 55px;
+            background-color: #fff;
+
+            position: relative;
+            background-color: transparent;
+
+            @media all and (max-width: @itemContextTwoColumnsMinWidth) {
+                display: -webkit-flex;
+                display: flex;
+                -webkit-flex-direction: row!important;
+                flex-direction: row!important;
+            }
+
+            div {
+                position: relative;
+                display: inline;
+                height: 100%;
+            }
+
+            .item-context-workarea-description-header-privacy {
+                width: 93px;
+                height: 55px;
+                float: left;
+
+                background-color: #fff;
+                background-size: 30px 30px;
+
+                border-top-left-radius: @dashboard-border-radius;
+                border-bottom-left-radius: @dashboard-border-radius;
+            }
+
+            .private {
+                background-image: url('../../img/icons/private.svg');
+            }
+
+            .shared {
+                background-image: url('../../img/icons/shared.svg');
+            }
+
+            .item-context-workarea-description-header-name {
+                display: -webkit-inline-flex;
+                display: inline-flex;
+                -webkit-flex-direction: row;
+                flex-direction: row;
+                width: calc(~"100% - 108px");
+                margin-left: @itemContextStandardMargin;
+
+                @media all and (max-width: @itemContextTwoColumnsMinWidth) {
+
+                    display: -webkit-inline-flex;
+                    display: inline-flex;
+                }
+
+                div {
+                    position: relative;
+                    display: inline;
+                    float: left;
+                    height: 100%;
+                    background-color: #fff;
+                }
+
+                .item-context-workarea-description-header-name-label {
+                    border-right: 1px solid @itemContextBorderColor;
+                    border-top-left-radius: @dashboard-border-radius;
+                    border-bottom-left-radius: @dashboard-border-radius;
+
+                    //margin-left: @itemContextStandardMargin;
+                    padding: 0 @itemContextStandardMargin;
+                    width: 180px;
+
+                }
+
+                .item-context-workarea-description-header-name-value {
+                    width: calc(~"100% - 241px");
+                    padding: 0 @itemContextStandardMargin;
+
+                    border-top-right-radius: @dashboard-border-radius;
+                    border-bottom-right-radius: @dashboard-border-radius;
+
+                    p {
+                        max-height: 40px;
+                        overflow: hidden;
+                    }
+                }
+            }
+        }
+
+        .item-context-workarea-description-tags, .item-context-workarea-description-authors {
+
+            section {
+                @media all and (max-width: @itemContextTwoColumnsMinWidth) {
+                    display: -webkit-flex;
+                    display: flex;
+                    -webkit-flex-direction: row!important; //to override workarea section styling
+                    flex-direction: row!important;
+                    -webkit-flex-wrap: wrap;
+                    flex-wrap: wrap;
+                }
+            }
+
+            .tag-item, .author-name {
+                display: -webkit-inline-flex;
+                display: inline-flex;
+                -webkit-flex-direction: column;
+                flex-direction: column;
+                -webkit-justify-content: center;
+                justify-content: center;
+                -webkit-flex-grow: 0;
+                flex-grow: 0;
+                -webkit-flex-shrink: 0;
+                flex-shrink: 0;
+
+                background-color: #c3dea7;
+                color: #4b850f;
+                border-radius: @dashboard-border-radius;
+
+                height: 37px;
+                margin: 0 10px 10px 0;
+
+                span {
+                    margin: 0 @itemContextStandardMargin;
+                }
+            }
+
+            .author-name {
+                background-color: #fee8b9;
+                color: #a37035;
+            }
+        }
+
+        .item-context-workarea-description-header,
+        .item-context-workarea-description-text,
+        .item-context-workarea-description-tags {
+            @media all and (max-width: @itemContextTwoColumnsMinWidth) {
+                width: calc(~"100% - "@itemContextStandardMargin);
+            }
+
+        }
+
+    }
+}
+
+//Fix for IE
+@media all and (max-width: @itemContextTwoColumnsMinWidth) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .item-context-workarea-description {
+            height: auto;
+            float: none;
+    }
+}

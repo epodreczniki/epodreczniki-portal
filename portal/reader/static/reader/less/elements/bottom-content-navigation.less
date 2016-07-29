@@ -1,0 +1,90 @@
+.bottom-content-navigation {
+    float: left;
+    width: 100%;
+    margin-top: 96px;
+    color: #ffffff;
+    padding-bottom: 30px;
+
+    > div {
+        border-top: 1px solid #d9d9d9;
+        padding-top: @space-B;
+    }
+
+    .bottom-content-base {
+        vertical-align: top;
+        color: #ffffff;
+        text-transform: uppercase;
+        font-family: "open_sanslight";
+    }
+
+    .bottom-content-back {
+        background-color: #6a6a6a;
+        border: 1px solid #fff;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 17px;
+        height: 43px;
+        width: 125px;
+
+        &:hover,
+        &:focus {
+            background-color: #fff;
+            color: #6a6a6a;
+            border: 1px solid #6a6a6a;
+            outline: none;
+        }
+    }
+
+    .bottom-content-forward {
+        background-color: #3d71b8;
+        border: 1px solid #fff;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 24px;
+        float: right;
+        height: 59px;
+        width: 175px;
+
+        &:hover,
+        &:focus {
+            background: #fff;
+            color: #3d71b8;
+            border: 1px solid #3d71b8;
+            text-decoration: none;
+        }
+    }
+}
+
+.authors-mailto {
+    float: right;
+    margin-top: @space-B;
+    margin-left: @space-B;
+    padding: @space-B 0;
+    border-top: 1px solid #d9d9d9;
+    color: #707070;
+    font-size: 12px;
+    cursor: pointer;
+    display: none;
+
+    .mailto-icon,
+    span {
+        display: inline-block;
+        float: left;
+        vertical-align: middle;
+    }
+
+    .mailto-icon {
+        background-image: url("../../../img/contact-dark.svg");
+        width: 20px;
+        height: 20px;
+        background-size: 20px 20px;
+        margin-right: 5px;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            background-color: rgba(0, 0, 0, 0.2);
+            outline: none;
+        }
+    }
+}

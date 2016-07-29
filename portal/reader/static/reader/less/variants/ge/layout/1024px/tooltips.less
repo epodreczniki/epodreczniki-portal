@@ -1,0 +1,21 @@
+@tooltipBaseMargin: 6px;
+@tooltipIconSize: 45px;
+@tooltipPaddingTop: 18px;
+@tooltipPaddingLeft: @tooltipIconSize + 3px + @tooltipBaseMargin;
+@tooltipPaddingRight: 6px;
+@tooltipHeight: @tooltipIconSize + 6px;
+@iconMargin: 17px;
+@tooltipMarginTop: @tooltipIconSize + @iconMargin + 3px;
+
+.GE-Tip {
+    position: absolute;
+    margin-top: -@tooltipMarginTop;
+    margin-left: -3px;
+    padding: @tooltipPaddingTop;
+    padding-left: @tooltipPaddingLeft;
+    padding-right: @tooltipPaddingRight;
+    height: @tooltipHeight;
+    width: auto;
+    border-radius: 28px;
+    font-size: 14px;
+}

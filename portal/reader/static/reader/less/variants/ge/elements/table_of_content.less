@@ -1,0 +1,213 @@
+@sidebarPanelWidth: 119px;
+@sidebarBorderWidth: 5px;
+
+*:focus {
+    outline: 0;
+}
+
+.toc-ge-ie-wrapper {
+    background: @green4;
+    height: 100%;
+    width: 0;
+}
+
+.toc-ge-ie-wrapper-expanded {
+    width: calc(2 * @sidebarPanelWidth);
+}
+
+.toc-ie-expanded {
+    width: calc( (2 * @sidebarPanelWidth) + 76 ) !important;;
+}
+
+.table-of-contents-ge {
+    -ms-overflow-style: none;
+
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 28px;
+    padding-right: 29px;
+    padding-top: 47px;
+    margin: 0;
+    background: @green4;
+    width: @sidebarPanelWidth;
+    height: 100%;
+    z-index: 2180;
+    text-align: center;
+
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    ul.accordion-body {
+        background: transparent; //@green1;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .home-btn-ie {
+        top: 25px !important;
+        position: absolute !important;
+        left: 25px !important;
+    }
+
+    .home-btn {
+        position: relative;
+        top: -22px;
+        left: -5px;
+
+        width: 71px;
+        height: 71px;
+        background-image: url("../../../img/GE/home_ikona.svg");
+        background-size: cover;
+        background-color: @white;
+        border-radius: 50%;
+        border: none;
+        //.rounded(50px, @white, 5px);
+
+        &:hover, &:focus {
+            background-position: 50%;
+        }
+
+        &:active, &.active {
+            background-position: 100%;
+        }
+    }
+
+    a.accordion-toggle {
+        font-size: 1px;
+        margin: 24px 0;
+        background-position: 0%;
+        background-size: 300% 100%;
+
+        &:hover {
+            background-position: 50%;
+        }
+
+        &:active, &.active {
+            background-position: 100% !important;
+        }
+
+        &.selected-anchor {
+            background-position: 100%;
+        }
+    }
+
+    .disabled-subcoll {
+        pointer-events: none;
+        cursor: default;
+        opacity: 0.3;
+    }
+
+    .half-disabled-subcoll {
+        opacity: 0.5;
+    }
+
+    .enabled-subcoll {
+        opacity: 1;
+    }
+
+    .index-menu-ie {
+        padding-top: 75px !important;
+    }
+
+    ul#index-menu {
+        li.accordion-group {
+            width: 100%;
+
+            ul.accordion-body {
+                width: calc(@sidebarPanelWidth~" + 5px");
+                position: absolute;
+                top: 0;
+                left: @sidebarPanelWidth;
+                background: @green2;
+                padding: 28px;
+                padding-left: 29px;
+                padding-top: 123px;
+                border-right: 5px solid #fff;
+                z-index: 6;//-10;
+            }
+        }
+    }
+
+    .table-of-content-ge-toggle {
+        background-image: url("../../../img/GE/menu_ikona.svg");
+        background-size: 300% 100%;
+        background-repeat: no-repeat;
+        opacity: 1.0 !important;
+        width: 74px;
+        height: 74px;
+        display: block;
+        cursor: pointer;
+        z-index: 4;
+
+        &:hover, &:focus {
+            background-position: 50% 0%;
+        }
+
+        &:active, &.active {
+            background-position: 100% 0% !important;
+        }
+
+        position: absolute;
+        top: 145px;
+        left: 2*@sidebarPanelWidth;
+    }
+
+    .temp-icons {
+        background-position: 50%;
+        width: 61px;
+        height: 61px;
+        display: block;
+        color: transparent;
+        background-size: 300% 100%;
+        cursor: pointer;
+
+        &:hover {
+            background-position: 0%;
+        }
+
+        &:active {
+            background-position: 100%;
+        }
+    }
+
+    [data-module-id="title"] {
+        display: none;
+    }
+
+    [data-target*="#table_of_contents"] {
+        .temp-icons();
+        background-image: url('../../../img/GE/not_jablko.svg');
+    }
+
+    &.ge-toc-scrollable {
+        overflow-y: auto;
+        position: initial;
+    }
+}
+
+.hidden-ge-toc {
+    position: absolute;
+    left: calc(-2*@sidebarPanelWidth~" - "@sidebarBorderWidth);
+}
+
+@-moz-document url-prefix() {
+    .table-of-contents-ge {
+        padding-top: 51px;
+    }
+
+    .home-btn {
+        top: -27px !important;
+    }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .home-btn {
+        top: -22px !important;
+    }
+}

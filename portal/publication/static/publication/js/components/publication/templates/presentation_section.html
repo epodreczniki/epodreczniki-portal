@@ -1,0 +1,21 @@
+<div id="<%= presentation.id %>" style='display: none'>
+<div class="row presentation-subsection">
+    <div class="col-sm-1">
+        <span class="object-status label"></span>
+    </div>
+    <div class="col-sm-1">
+        <span class="publication-status label"></span>
+    </div>
+    <div class="col-sm-<% print(presentation.depth + 1) %>">
+        <span class="glyphicon glyphicon-refresh publication-refreshing" style='display: none;'></span>
+    </div>
+    <div class="col-sm-<% print(9 - presentation.depth) %>">
+        <a class='publication-name' <% if (presentation.isLink) { %> href="#<%= presentation.originalPresentation.id %>" <% } else { %> target="_blank" href="/edit/publication/view/<%= presentation.identification.category %>/<%= presentation.identification.identifier %>/<%= presentation.identification.version %>/<%= presentation.identification.aspect %>" <% } %>>
+            <span><%= presentation.identification.aspect_title %> - <%= presentation.identification.category %>:<%= presentation.identification.identifier %>:<%= presentation.identification.version %></span> - <span class='publication-title' style='display: none'></span>
+        </a>
+
+        <div class='publication-progress-placeholder'>
+        </div>
+    </div>
+</div>
+</div>

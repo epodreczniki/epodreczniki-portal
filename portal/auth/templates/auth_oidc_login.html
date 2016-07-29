@@ -1,0 +1,24 @@
+{% extends 'auth_base.html' %}
+
+
+{% block content %}
+    <div class="center">
+        <span class="header">epodręczniki - zunifikowana autentykacja OIDC</span>
+
+        <div class="login-main">
+            <div class="relative-form">
+                {% if form.errors %}
+                    <p>Niepoprawne dane, spróbuj ponownie.</p>
+                {% endif %}
+
+                <form method="get" action="{% url 'auth.views.rp' %}">
+                    {% csrf_token %}
+                    <input type="hidden" value="EPO_OIDC_STATIC" name="op"/>
+
+                    <input class="login-button" type="submit" value="Zaloguj przez OIDC"/>
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

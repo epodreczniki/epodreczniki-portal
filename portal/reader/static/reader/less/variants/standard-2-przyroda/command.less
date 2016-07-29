@@ -1,0 +1,54 @@
+@kolor-tlo-wskazowka-w-poleceniu: #e7f9bd;
+
+.reader-content {
+    .command {
+        .frame();
+        .contents-cleaner();
+        margin-top: @space-D;
+        margin-bottom: 22px;
+        padding: 42px;
+
+        .command-contents {
+            margin: 0;
+            padding: 0;
+
+            .note-tip {
+                margin: 32px 0;
+                border: transparent;
+                border-radius: 7px;
+                padding: 32px 42px 42px;
+                background-color: @kolor-tlo-wskazowka-w-poleceniu;
+
+                .note-header {
+                    margin-bottom: 22px;
+
+                    .label {
+                        background-image: url('../../../img/new-icons/variants/przyroda/wskazowka-do-ramki.svg');
+                    }
+                }
+
+                .note-contents {
+                    margin: 0;
+                    padding: 0;
+                    font-family: @sansSemiBold;
+                }
+            }
+
+            .para {
+                font-family: @sansSemiBold;
+                font-size: 14px;
+                line-height: 21px; // ---> convert to 1.5
+            }
+        }
+
+        &.exposed {
+            background-color: #edf4f9;
+
+            .command-header {
+                .label {
+                    background-image: url('../../../img/new-icons/variants/przyroda/polecenie-do-ramki.svg');
+                }
+            }
+        }
+    }
+}

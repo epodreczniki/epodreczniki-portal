@@ -1,0 +1,104 @@
+{% extends "front/base_front_with_navbar.html" %}
+{% load staticfiles collection_cover compress collections extensions common_ext url_process front_utils %}
+
+{% block title %}{{ collection.md_title }} • epodreczniki.pl{% endblock %}
+
+{% block head %}
+    {{ block.super }}
+    {% collection_header presentation.collection_header_womi %}
+{% endblock %}
+
+
+{% block stylesheets %}
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}front/less/front.less">
+    {% endcompress %}
+{% endblock %}
+
+{% block first_in_body %}
+{% endblock %}
+
+{% block content %}
+    {% include "common/snippets/content_metadata.html" with content=presentation.content %}
+
+    {% block topbar_include %}
+        {% include 'topbars/topbar_details.html' %}
+    {% endblock %}
+
+    <div class="tools header-image">
+        <div class="header-image-container">
+            <ul class="nav-second list-inline firstpages">
+                {% block topbar_bottom_buttons %}
+                    <li>
+                        <div class="qrcode title_qr_code_link" data-target="{{ presentation.detail_url }}" tabindex="0">
+                            <img src="{% static "front/img/gfx/qr.png" %}" class="position" alt="Kod QR"/>
+                            Kod QR
+                        </div>
+                    </li>
+
+                    {% if presentation.config.is_preview %}
+                        <li>
+                            <div class="read_links" onclick="location.href='{% url 'publication.views.redirect_published_or_publish' presentation.category presentation.identifier presentation.version %}'" tabindex="0">
+                                <img src="{% static "front/img/gfx/ustawienia.png" %}" class="position" alt="Publikacja"/>
+                                Publikacja
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endblock topbar_bottom_buttons %}
+            </ul>
+        </div>
+    </div>
+
+
+    {% comment %} Main page content {% endcomment %}
+    <div class="details-container" data-stylesheet="{{ collection.normalized_ep_stylesheet }}">
+        <div class="sidebar">
+            {% block sidebar_content %}
+
+            {% endblock sidebar_content %}
+        </div>
+
+        <div class="main-content">
+            {% block main_content %}
+                <h1>{{ presentation.content.md_title }}</h1>
+            {% endblock main_content %}
+
+        </div>
+
+        {% if presentation.read_url %}
+            {% block ultra_uncommon_behaviour %}
+            {% endblock %}
+        {% endif %}
+
+        <div class="footer">
+            <div class="footer-container">
+                <div class="separate">
+                </div>
+
+                {% include "front/universal_authors.html" with authored_content=presentation.content %}
+
+                <div class="clearfix">
+
+                {% if presentation.content.ep_signature %}
+                    {% autoescape off %}
+                        {% reprocess_cn_tags presentation.content.ep_signature %}
+                    {% endautoescape %}
+                {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--.container -->
+{% endblock %}
+
+{% block scripts_bottom %}
+    {{ block.super }}
+    {% compress js %}
+        <script src="{{ STATIC_URL }}common/js/libs/qrcode.js"></script>
+    {% endcompress %}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}front/js/build/details.js"></script>
+    {% endcompress %}
+
+{% endblock %}

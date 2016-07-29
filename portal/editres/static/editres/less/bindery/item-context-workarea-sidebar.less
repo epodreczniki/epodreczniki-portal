@@ -1,0 +1,63 @@
+.item-context-sidebar {
+    position: relative;
+    width: @itemContextWorkareaLastActivityWidth;
+    float: right;
+
+    @media all and (max-width: @itemContextTwoColumnsMinWidth) {
+        width: calc(~"100% - "@itemContextStandardMargin);
+        margin-left: 0;
+    }
+
+    section {
+        position: relative;
+        width: 100%;
+        margin-bottom: @itemContextStandardMargin;
+
+        @media all and (min-width: @itemContextTwoColumnsMinWidth) {
+            .item-context-workarea-section {
+                article:last-of-type {
+                    padding-bottom: @itemContextStandardMargin;
+                }
+            }
+        }
+    }
+
+    .last-activity-item, .annotation-item {
+        position: relative;
+        margin-bottom: @itemContextStandardMargin;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+
+        div {
+            height: 100%;
+            display: -webkit-flex;
+            display: flex;
+            padding: 0;
+        }
+
+        .last-activity-item-date, .annotation-item-date {
+            color: #a37035;
+            font-weight: bold;
+            width: 80px;
+            margin-right: @itemContextStandardMargin;
+
+            -webkit-flex-grow: 0;
+            flex-grow: 0;
+            -webkit-flex-shrink: 0;
+            flex-shrink: 0;
+            -webkit-justify-content: flex-start;
+            justify-content: flex-start;
+        }
+
+        .last-activity-item-description, .annotation-item-description {
+            width: calc(~"100% - 95px");
+
+            p {
+                display: inline;
+                margin: 0;
+            }
+        }
+    }
+}

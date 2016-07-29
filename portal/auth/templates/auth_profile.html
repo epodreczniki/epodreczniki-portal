@@ -1,0 +1,19 @@
+{% extends 'auth_base.html' %}
+
+{% block content %}
+    <div class="login-main">
+        <div class="login-header">
+            <p class="centered-line">epodręczniki - zunifikowana&nbsp;autentykacja</p>
+        </div>
+        <span class="centered-line">zalogowano jako: {{ request.user }}</span>
+
+        <span class="centered-line">
+            <a class="login-button auth-link" href="{% url 'auth.views.epo_logout' %}">Wyloguj</a>
+        </span>
+
+        <span class="centered-line">Dostępne aplikacje:</span>
+        <span class="centered-line">
+        <a class="login-button auth-link" href="{% url 'editres.views.landing_page' %}">Edytor zasobów</a>
+        </span>
+    </div>
+{% endblock %}

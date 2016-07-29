@@ -1,0 +1,75 @@
+/* zebra styles specific to UP variant start */
+
+.reader-content {
+    .zebra {
+        &.command {
+            .command-contents {
+                padding: 0 42px;
+            }
+        }
+
+        &.note-tip,
+        &.note-curiosity,
+        &.note-remember,
+        &.note-important,
+        &.note-warning,
+        &.note-see-also,
+        &.note-consider {
+            .note-contents,
+            .section-without-header {
+                padding: 0 42px;
+            }
+        }
+
+        &.experiment,
+        &.observation {
+            border-left: none;
+
+            .experiment-contents,
+            .observation-contents {
+                margin: 0;
+                border-left: 2px solid #FFDE40;
+                padding: 16px 0 0 72px;
+
+                .foldable {
+                    margin-right: 8px;
+                }
+            }
+
+            .experiment-header,
+            .observation-header {
+                border-left: 2px solid #FFDE40;
+                padding-left: 72px;
+
+                &.warning {
+                    padding-left: 76px;
+
+                    .warning-message {
+                        right: 20px;
+                        left: auto;
+                    }
+                }
+            }
+        }
+    }
+
+    .zebra-module .section.level_2 {
+        .observation, .experiment {
+            border-left: none;
+            padding-left: 0;
+
+            .observation-header, .experiment-header {
+                border-left: 2px solid #FFDE40;
+                padding-left: 90px !important;
+            }
+
+            .observation-contents, .experiment-contents {
+                margin: 0;
+                padding: 16px 16px 0 90px;
+                border-left: 2px solid #FFDE40;
+            }
+        }
+    }
+}
+
+/* zebra styles specific to UP variant end */

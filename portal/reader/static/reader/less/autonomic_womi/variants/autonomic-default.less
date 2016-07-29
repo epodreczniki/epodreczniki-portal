@@ -1,0 +1,116 @@
+@import "../../variables.less";
+
+@topbar-common-img-path: "../../../../common/img/";
+@logo-icon: "@{topbar-common-img-path}logo.png";
+@about-icon: "@{topbar-common-img-path}topbar-icons/detale.svg";
+@login-icon: "@{topbar-common-img-path}topbar-icons/profil.svg";
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: @baseFontFamily;
+}
+
+#toolbar {
+    height: 41px;
+    background-color: #3d71b8;
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+#centered {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.logo-img {
+    width: 17px;
+    float: left;
+    margin: 0 7px 0 0;
+    padding: 10px 0;
+}
+
+.txt {
+    padding: 12px 30px;
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+#read-btn {
+    float: right;
+    height: 41px;
+
+    text-decoration: none;
+
+    span {
+        display: block;
+        padding: 10px 10px 10px 10px;
+        color: #ffffff;
+    }
+
+    &:hover {
+        background-color: #337ab7;
+    }
+}
+
+@kolor-motywu-ciemny: #3d71b8;
+
+@import "common/static/common/less/topbar.less";
+
+@import "../../elements/contentbar.less";
+
+@import "../../elements/search.less";
+
+#content-frame {
+    position: fixed;
+    width: 100%;
+    display: block;
+    top: 2 * @topbar-height;
+    //height: ~"calc(100vh - 41px)";
+}
+
+#contentbar {
+    top: @topbar-height;
+}
+
+#contentbar.underTopbar {
+    //position: static;
+    z-index: @highestZIndex - 210;
+    .back-off-play-and-learn span.icon-20 { background-image: url('../../../img/new/topbar-icons/bsiu-czytaj.svg') };
+    .toc-map-toggle span.icon-20 { background-image: url('../../../img/new/topbar-icons/bsiu-mapa.svg') };
+}
+
+#topbar .profile {
+    list-style: none;
+}
+
+.hidden-div {
+    display: none;
+}
+
+.toc-womi-iframe {
+    width: 100%;
+    height: 100%;
+}
+
+#topbar {
+
+    .topbar-inner {
+
+        .logo {
+            background-image: url(@logo-icon) !important;
+        }
+
+        .about span.icon-20 {
+            background-image: url(@about-icon) !important;
+        }
+
+        .profile span.icon-20, .login span.icon-20 {
+            background-image: url(@login-icon) !important;
+        }
+    }
+}

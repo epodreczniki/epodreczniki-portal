@@ -1,0 +1,29 @@
+{% load begin_tags wagtailcore_tags %}
+{% get_site_root as site_root %}
+
+{# Implementation of bootstrap theme dropdown menu - shows top level links and their children #}
+<div id="main-menu-wrapper" class="clearfix">
+
+    <ul id="main-menu">
+    <li class="menu-item menu-item-type-post_type menu-item-object-page{% if site_root == self %} current-menu-item current_page_item{% endif %}">
+        <a href="{% pageurl site_root %}">{{ site_root.title }} </a>
+    </li>
+        {% for menuitem in menuitems %}
+            <li class="menu-item menu-item-type-post_type menu-item-object-page  page_item {% if menuitem.show_dropdown %}menu-item-has-children {% endif %}{% if menuitem.active %} current-menu-item current_page_item{% endif %}">
+                {% if menuitem.show_dropdown %}
+                    <a href="{% pageurl menuitem %}">{{ menuitem.title }} </a>
+                    {% top_menu_children parent=menuitem %}
+                {% else %}
+                    <a href="{% pageurl menuitem %}">{{ menuitem.title }} </a>
+                {% endif %}
+            </li>
+        {% endfor %}
+        <li class="menu-item menu-item-type-post_type menu-item-object-page{% if site_root == self %} current-menu-item current_page_item{% endif %}">
+            <a href="{% url 'front.views.new_index' education_level=2 %}">Biblioteka</a>
+        </li>
+        <li class="menu-item menu-item-type-post_type menu-item-object-page{% if site_root == self %} current-menu-item current_page_item{% endif %}">
+            <a href="#">Zasoby</a>
+        </li>
+    </ul>
+
+</div>

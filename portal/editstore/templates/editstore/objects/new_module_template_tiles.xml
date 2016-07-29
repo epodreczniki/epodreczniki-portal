@@ -1,0 +1,11 @@
+{% extends 'editstore/objects/new_module.xml' %}
+
+{% block presentation %}
+    <ep:presentation>
+        <ep:type></ep:type>
+        <ep:template>tiled</ep:template>
+        <ep:width>16</ep:width>
+        <ep:height>10</ep:height>
+        <ep:fixed-tile-layout>false</ep:fixed-tile-layout>
+    </ep:presentation>
+{% endblock %}

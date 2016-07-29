@@ -1,0 +1,66 @@
+{% extends "bindery/item_context.html" %}
+
+
+
+{% block item_context_workarea_container %}
+    <div class="item-context-workarea-description">
+
+        <div class="item-context-workarea-description-content">
+
+            <section class="item-context-workarea-description-header">
+                <div class="item-context-workarea-description-header-privacy icon private"></div>
+                {% block item-context-workarea-description-header-name %}
+                    <div class="item-context-workarea-description-header-name">
+                        <div class="item-context-workarea-description-header-name-label">
+                            <p>{{ driver.title }}</p>
+                        </div>
+                        <div class="item-context-workarea-description-header-name-value">
+                            <p>?</p>
+                        </div>
+                    </div>
+                {% endblock %}
+            </section>
+
+            <section class="item-context-workarea-description-authors foldable">
+                <div class="item-context-workarea-section-header">
+                    <span>Autorzy</span>
+                    <a>więcej</a>
+                </div>
+                <section class="item-context-workarea-section">
+                    {% for authorship in parsed.authorships.all %}
+                    <div class="author-name"><span>{{ authorship.author.fullname }}</span></div>
+                    {% endfor %}
+                </section>
+            </section>
+
+            <section class="item-context-workarea-description-text foldable">
+                <div class="item-context-workarea-section-header">
+                    <span>Opis</span>
+                    <a>więcej</a>
+                </div>
+                <section class="item-context-workarea-section">
+                    {% autoescape off %}
+                        {{ parsed.md_abstract }}
+                    {% endautoescape %}
+                </section>
+            </section>
+
+            <section class="item-context-workarea-description-tags foldable">
+                <div class="item-context-workarea-section-header">
+                    <span>Tagi</span>
+                    <a>więcej</a>
+                </div>
+                <section class="item-context-workarea-section">
+                    <div class="tag-item"><span>Lorem ipsum</span></div>
+                    <div class="tag-item"><span>dolor sit amet</span></div>
+                    <div class="tag-item"><span>consectetur</span></div>
+                    <div class="tag-item"><span>adipiscing elit</span></div>
+                    <div class="tag-item"><span>Quisque eros est</span></div>
+                    <div class="tag-item"><span>accumsan vitae luctus quis</span></div>
+                </section>
+            </section>
+
+        </div>
+    </div>
+
+{% endblock %}

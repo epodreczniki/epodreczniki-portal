@@ -1,0 +1,31 @@
+<div class="attr-edit" style="">
+    <p class="text-center"><%= header %></p>
+
+    <form action="#">
+        <ul class="no-ul">
+            <% _.each(attrs, function(attr) { %>
+            <li class="">
+                <label class="input-label text-center" for="<%= attr.id %>"><%= attr.prettyName %></label>
+                <input class="full-input" id="<%= attr.id %>" name="<%= attr.id %>" data-attr="<%= attr.name %>" value="<%= attr.value %>"
+                <% if(attr.type == 'readonly') { %>
+                <%= attr.type %>
+                <% } %>
+                <% if(attr.type != 'readonly') { %>
+                type="<%= attr.type %>"
+                <% } %>
+                <% if(attr.pattern) { %>
+                pattern="<%= attr.pattern %>"
+                <% } %>
+                <% if(attr.min) { %>
+                min="<%= attr.min %>"
+                <% } %>
+                <% if(attr.max) { %>
+                max="<%= attr.max %>"
+                <% } %>
+                >
+            </li>
+            <% }); %>
+        </ul>
+        <button class="saveButton full-button">Zapisz</button>
+    </form>
+</div>

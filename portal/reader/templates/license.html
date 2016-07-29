@@ -1,0 +1,22 @@
+{% extends 'info_base.html' %}
+
+{% load compress staticfiles extensions %}
+
+{% block content %}
+    <div class="meta-reader-info">
+        {{ block.super }}
+
+        {% if module.md_content_id != 'title' %}
+            {% with lic=module.md_license|resolve_license:'link' %}
+                <h3>Licencja modułu: <em>{{ module.md_title }}</em></h3>
+                <h3>{{ lic.name }}</h3><a class="cc" href="{{ lic.link }}" target="_blank">{{ lic.link }}</a>
+            {% endwith %}
+        {% endif %}
+        {% with lic=collection.md_license|resolve_license:'link' %}
+            <h3>Licencja podręcznika: <em>{{ collection.md_title }}</em></h3>
+            <h3>{{ lic.name }}</h3><a class="cc" href="{{ lic.link }}" target="_blank">{{ lic.link }}</a>
+        {% endwith %}
+
+        {% include "front/universal_authors.html" with authored_content=module %}
+    </div>
+{% endblock %}

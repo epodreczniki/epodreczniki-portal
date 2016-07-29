@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 sp2 (x64) (http://www.altova.com) by Tomasz Kuczynski (Instytut Chemii Bioorganicznej PAN - Poznanskie Centrum Superkomputerowe) -->
+<xs:schema xmlns:ep="http://epodreczniki.pl/" xmlns:cnxml="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/1998/Math/MathML" schemaLocation="mathml3/mathml3.xsd"/>
+	<xs:simpleType name="titleType">
+		<xs:annotation>
+			<xs:documentation>Tytuł modułu, sekcji, kodu etc.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="140"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="idType">
+		<xs:annotation>
+			<xs:documentation>Identyfikator</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="i[a-zA-Z0-9]{9}(_[_a-zA-Z0-9]+)?">
+				<xs:annotation>
+					<xs:documentation>Wyrażenie regularne pasujące do identyfikatora wytworzonego przez konwerter.</xs:documentation>
+				</xs:annotation>
+			</xs:pattern>
+			<xs:pattern value="[a-zA-Z0-9_]+">
+				<xs:annotation>
+					<xs:documentation>Wyrażenie regularne na potrzeby identyfikatorów nie wytworzonych przez konwerter.</xs:documentation>
+				</xs:annotation>
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WOMIidType">
+		<xs:annotation>
+			<xs:documentation>Identyfikator WOMI</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]+">
+				<xs:annotation>
+					<xs:documentation>Wyrażenie regularne pasujące do identyfikatora WOMI z RT.</xs:documentation>
+				</xs:annotation>
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

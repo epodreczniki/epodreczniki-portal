@@ -1,0 +1,69 @@
+{% extends "reader.html" %}
+
+{% load compress staticfiles extensions common_ext endpoints %}
+
+{% block title %}Podgląd • epodreczniki.pl{% endblock %}
+{% block title_pattern %}Podgląd - {0} • epodreczniki.pl{% endblock %}
+
+{% block head %}
+    <base id="module-base"
+          href="{{ base_url }}"
+          data-base="{{ base_url }}"
+          {% endpoints_data_attrs endpoints %}
+            data-womi-embed-pattern="{% womi_embed_pattern config %}"
+            >
+
+{% endblock %}
+
+
+{% block stylesheets %}
+    {{ block.super }}
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}preview/less/preview.less">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <div class="info-container">
+        <div id="top-info">
+        <span class="nl">***************************</span>
+        <span class="nl">&nbsp;epodreczniki WOMI preview</span>
+        <span class="nl">***************************</span>
+        <span class="nl">#&gt; womi_info</span>
+        <span class="nl">&nbsp;* id: {{ womi_id }}</span>
+        <span class="nl" id="engine-info">&nbsp;* engine: {{ data.engine }}</span>
+        <span class="nl">&nbsp;* from: {{ data.base_url }}{{ data.womi_url }}</span>
+        </div>
+        <span id="sh-info">info</span>
+    </div>
+
+    <div id="womi-placeholder">
+        {{ womi_content }}
+    </div>
+    <div id="other-placeholder">
+
+    </div>
+
+{% endblock %}
+
+{% block topbar_search %}
+{% endblock %}
+
+{% block topbar_settings %}
+{% endblock %}
+
+{% block scripts_bottom %}
+    {% compress js %}
+
+        <script src="{{ STATIC_URL }}reader/js/libs/matchmedia.js"></script>
+
+    {% endcompress %}
+
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}reader/js/build/common.js"></script>
+    {% endcompress %}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}reader/js/build/reader_womi_preview.js"></script>
+
+    {% endcompress %}
+{% endblock %}

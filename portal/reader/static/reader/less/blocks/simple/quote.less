@@ -1,0 +1,102 @@
+.reader-content {
+    .quote { //Cytat
+        .common-spacing();
+
+        .quote-header {
+            .simple-block-header;
+            margin-bottom: 8px;
+            padding-bottom: 26px;
+            padding: 10px;
+            padding-left: 0;
+
+            .label {
+                background-image: none;
+                font-family: @sansLightItalic;
+                font-size: 14px;
+                position: relative;
+                bottom: 20px;
+                left: 19px;
+            }
+
+            .colon {
+                opacity: 0;
+            }
+
+            .author {
+                background-image: url('../../../img/new-icons/ic-cytat.svg');
+                background-position: 0 5%;
+                background-repeat: no-repeat;
+                margin-left: -140px;
+                padding: 15px 0 10px 50px;
+                font-family: @sansSemiBold;
+                font-size: 18px;
+            }
+
+            .title {
+                margin-bottom: -20px;
+                font-family: @sansSemiBold;
+                font-size: 18px;
+            }
+        }
+
+        .quote-contents {
+            margin: 0;
+
+            .para {
+                font-family: @sansItalic;
+
+                .quote-line {
+                    position: relative;
+                    margin: 0 54px;
+
+                    .numbering {
+                        position: absolute;
+                        right: 100%;
+                        margin-right: 8px;
+                    }
+                }
+            }
+
+            .author {
+                margin: 0 32px 0 32px;
+                text-align: right;
+
+                .author-header {
+                    display: none;
+                }
+
+                .author-contents {
+                    font-family: @sansRegular;
+                }
+            }
+
+            .comment {
+                margin-top: 32px;
+
+                .comment-header {
+                    .complex-block-header();
+                }
+
+                .comment-contents {
+                }
+            }
+        }
+
+        ._readability_level(@level, @stars) {
+            &.readability-@{level} {
+                .quote-header {
+                    &:after {
+                        float: right;
+                        font-size: 1.5em;
+                        color: @kolor-motywu-ciemny;
+                        content: @stars;
+                    }
+                }
+            }
+        }
+
+        ._readability_level(easy, "*");
+        ._readability_level(medium, "**");
+        ._readability_level(hard, "***");
+    }
+}

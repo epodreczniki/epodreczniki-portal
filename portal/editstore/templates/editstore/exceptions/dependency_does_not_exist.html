@@ -1,0 +1,5 @@
+{% extends "exception_error.html" %}
+
+{% block exception_elaborate %}
+Obiekt {{ exception.nice_extra.dependency }} nie istnieje. Należy poprawić lub usunąć odwołanie do tego obiektu przed ponowną próbą pieczętowania.
+{% endblock exception_elaborate %}

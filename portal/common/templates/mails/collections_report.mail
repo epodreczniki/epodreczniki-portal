@@ -1,0 +1,10 @@
+{% load collections %}Dzień dobry,
+
+poniżej lista linków na dzień {% now "d.m.Y" %}:
+{% for collection in collections %}
+{{ collection.md_title }}
+http:{{ collection.bind_default_presentation.detail_url }}
+{% endfor %}
+
+z poważaniem,
+Daemon Celery instancji Beta

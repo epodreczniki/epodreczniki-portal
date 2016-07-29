@@ -1,0 +1,5 @@
+{% if links %}
+    <div class="widget content-block"><h3 class="block-title">{{ links.name }}</h3>
+        {% include "begin/includes/related_links.html" with related_links=links.link_items.all only %}
+    </div>
+{% endif %}

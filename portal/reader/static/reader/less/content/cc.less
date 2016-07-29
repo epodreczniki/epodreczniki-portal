@@ -1,0 +1,48 @@
+@white: #FFFFFF;
+@cc-blue: #3F71B8;
+@left-margin: 20px;
+
+.cc-box {
+
+    .cc-title-container {
+          position: relative;
+          top: 0px;
+          background: @cc-blue;
+          color: @white;
+          height: 40px;
+
+          .cc-main-title {
+              margin-left: @left-margin;
+              margin-top: 10px;
+              position: absolute;
+          }
+    }
+
+    .cc-title {
+        color: @cc-blue;
+        font-size: 20px;
+        margin-left: @left-margin;
+    }
+
+    .cc-section {
+        margin-left: @left-margin;
+        border-left: solid @cc-blue;
+
+        ul {
+            list-style: none;
+            padding:0;
+            margin:0;
+        }
+
+        li:before {
+            content: "• ";
+            color: @cc-blue;
+        }
+    }
+
+    .cc-section-info {
+        margin-left: 10px;
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+}

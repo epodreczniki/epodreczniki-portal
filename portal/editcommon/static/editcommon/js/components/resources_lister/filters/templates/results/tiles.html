@@ -1,0 +1,15 @@
+<div class="search-result" style="background: skyblue" data-cid="<%= cid %>">
+    <span class="title">
+        <%= attributes.title %>
+    </span>
+    <button class="choose-result">
+        Wybierz
+    </button>
+    <a class="like-result" style="display: none">
+        <% if (!liked) { %>
+            Nie lubię!
+        <% } else { %>
+            Lubię!
+        <% } %>
+    </a>
+</div>

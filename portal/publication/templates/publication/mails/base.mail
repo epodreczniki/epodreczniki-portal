@@ -1,0 +1,8 @@
+{% load common_ext %}{% block lead %}Publikacje{% endblock %}
+
+{% block content %}
+{% endblock content %}
+
+-----
+
+Serwis publikacji platformy {{ TOP_DOMAIN }}

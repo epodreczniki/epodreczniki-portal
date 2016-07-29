@@ -1,0 +1,123 @@
+#top-info {
+    display: none;
+    font-family: Courier;
+    font-size: 9pt;
+    color: #ffffff;
+    background: #000000;
+    border: 1px solid #000000;
+    padding: 2px;
+}
+
+#womi-placeholder {
+    width: 100%;
+}
+
+#dynamic-womi > .womi-container {
+    > .interactive-object-container {
+        max-width: 920px;
+        margin: 0 auto;
+    }
+
+    > .title {
+        //margin-top: 40px;
+        padding-top: 48px;
+        margin-bottom: 44px;
+        font-size: 24px;
+        font-family: 'open_sansbold';
+    }
+}
+
+.aggregate-item-placeholder {
+    background-color: #FAF9FC;
+    position: relative;
+    //max-width: 600px;
+    margin: 0 auto;
+    padding: 5px;
+
+    .prev {
+        left: 0;
+        opacity: 0;
+    }
+
+    .next {
+        right: 0;
+        opacity: 0;
+    }
+
+    .prev-btn {
+        display: block;
+        width: 50px !important;
+        height: 50px !important;
+        background: url('../../img/nav-arrows_gal_main.svg') 0 0;
+        top: 50%;
+        left: 0;
+    }
+
+    .next-btn {
+        display: block;
+        width: 50px !important;
+        height: 50px !important;
+        background: url('../../img/nav-arrows_gal_main.svg') 100% 0;
+        right: 0;
+    }
+
+    .prev, .next, .next-btn, .prev-btn {
+        display: block;
+        position: absolute;
+        width: 35%;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        z-index: 1000;
+        cursor: pointer;
+    }
+
+    .womi-menu .license {
+        display: none !important;
+    }
+
+}
+
+.other-placeholder {
+    background-color: #FAF9FC;
+    display: inline-block;
+    width: 100%;
+}
+
+.kzd-middle {
+    padding-top: 10px;
+    > h3 {
+        font-size: 21px;
+        padding-top: 40px;
+        font-family: 'open_sansbold';
+    }
+
+    p, pre {
+        margin: 1em 0;
+        font-size: 14px;
+    }
+}
+
+.kzd-title {
+    font-size: 11px;
+    font-family: 'open_sansbold';
+}
+
+.kzd-tags {
+    .kzd-tag {
+        display: inline-block;
+        padding: 5px;
+        background: #FFFEF1;
+        border: 1px solid #DBDBDC;
+        margin: 5px 5px 0 0;
+        font-size: 12px;
+    }
+}
+
+.extended-kzd-description-inner {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+    padding-bottom: 80px;
+}

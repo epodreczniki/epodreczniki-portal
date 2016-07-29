@@ -1,0 +1,116 @@
+{% extends "begin/base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+    {% include "begin/includes/page_header.html" with page=self request=request only %}
+
+    {#    {% include "begin/includes/intro.html" with intro=self.intro only %}#}
+
+    {#    {% if request.GET.tag|length %}#}
+    {#        <h4>Showing posts tagged as {{ request.GET.tag|safe }} <a href=" {% pageurl self %} ">Show all</a></h4>#}
+    {#    {% endif %}#}
+    {##}
+    {#    <div class="list-group">#}
+    {# Uses serve method defined in models.py - allows for paging if required #}
+    {# See also standard index for creating a listing with a tag #}
+    {#        {% for blog in blogs %}#}
+    {#            {% include "begin/includes/blog_list_item.html" %}#}
+    {#        {% empty %}#}
+    {#            No blogs found#}
+    {#        {% endfor %}#}
+    {#    </div>#}
+    {##}
+    {# Pagination - uses django.core.paginator #}
+    {# Append any other url query string variables to the next and previous links - allows tag to be passed through #}
+    {#    <div class="row">#}
+    {#        <div class="col-sm-4 previous">#}
+    {#            {% if blogs.has_previous %}#}
+    {#                <a href="?page=#}
+    {##}
+    {##}
+    {#                        {{ blogs.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Previous</a>#}
+    {#            {% endif %}#}
+    {#        </div>#}
+    {#        <div class="col-sm-4 pages">#}
+    {#            Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}#}
+    {#        </div>#}
+    {#        <div class="col-sm-4 next">#}
+    {#            {% if blogs.has_next %}#}
+    {#                <a href="?page=#}
+    {##}
+    {##}
+    {#                        {{ blogs.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Next</a>#}
+    {#            {% endif %}#}
+    {#        </div>#}
+    {#    </div>#}
+
+    <div class="content-wrapper page-content-wrapper clearfix">
+
+        <!-- BEGIN .main-content -->
+        <div class="main-content page-content">
+
+            <!-- BEGIN .inner-content-wrapper -->
+            <div class="inner-content-wrapper">
+                {% for blog in blogs %}
+                    <!-- BEGIN .blog-entry -->
+                    <div class="post type-post status-publish format-standard has-post-thumbnail hentry category-learning tag-college tag-education blog-entry clearfix">
+
+                        <div class="blog-info">
+                            <div class="blog-date">
+                                <h3><span
+                                        class="date-big">{{ blog.date|date:"d" }} </span><span>{{ blog.date|date:"N" }}</span>
+                                </h3>
+                            </div>
+                            {% comment %}
+                                <ul class="blog-meta">
+                                    <li><strong>przez</strong> {{ blog.owner }}</li>
+                                </ul>{% endcomment %}
+                        </div>
+
+                        <div class="blog-content">
+                            {% if blog.feed_image %}
+                                <a href="{% pageurl blog %}" title="">
+                                    {% image blog.feed_image width-650 as feed_img %}
+                                    <img src="{{ feed_img.url }}" alt="{{ feed_img.title }}" class="blog-image"></a>
+                            {% endif %}
+                            <h3><a href="{% pageurl blog %}" rel="bookmark">{{ blog.title }} »</a></h3>
+
+                            {% include "begin/includes/body.html" with body=blog.intro only %}
+
+                        </div>
+
+                        <!-- END .blog-entry -->
+                    </div>
+                {% endfor %}
+
+
+                <div class="clearboth"></div>
+
+                <div class="wp-pagenavi">
+
+
+                    {% if blogs.has_previous %}
+                        <a class="previouspostslink" href="?page={{ blogs.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Poprzednia</a>
+                    {% endif %}
+
+                    <span class="current">
+                            Strona {{ blogs.number }} z {{ blogs.paginator.num_pages }}
+                        </span>
+                    {% if blogs.has_next %}
+                        <a class="nextpostslink" href="?page={{ blogs.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Następna</a>
+                    {% endif %}
+
+                </div>
+                <div class="clearboth"></div>
+
+                <!-- END .inner-content-wrapper -->
+            </div>
+
+            <!-- END .main-content -->
+        </div>
+
+        {% include "begin/includes/sidebar.html" with page=self side="right" %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+// TODO: EPP-2134 shouldn't be the same as other simple blocks
+
+._literary-mixin(@name, @glyph, @svg) {
+    .common-spacing();
+
+    .@{name}-header {
+        .simple-block-header();
+        padding-left: 0;
+
+        .label {
+            background-image: url(@svg);
+            background-repeat: no-repeat;
+            background-position: 0px 50%;
+            background-size: auto 1.5em; /* em'y zamierzone */
+            padding: 1em 0 1em 2em;
+            height: 1em;
+            width: 1em;
+        }
+    }
+
+    .bottom-cleaner();
+}
+
+.literary-work-description {
+    //O dziele
+    ._literary-mixin(literary-work-description, "\f06c", '../../../img/awesome-icons/leaf.svg');
+}
+
+.literary-work-summary {
+    //Streszczenie
+    ._literary-mixin(literary-work-summary, "\f084", '../../../img/awesome-icons/key.svg');
+}

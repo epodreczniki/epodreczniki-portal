@@ -1,0 +1,29 @@
+<div>
+    <div class="dialog-menu-items">
+    <ul class="attributes-list">
+        <% if(typeof attributes != 'undefined') { _.each(attributes, function(attr) { %>
+        <li class="ui-state-default attr-li">
+         	<% if(attr.value == 'bool') { %>
+            	<%= attr.name %>: <select data-param="<%= attr.name %>"><option value="true">True</option><option value="false">False</option></select>
+            <% }else if(attr.name == 'hideCaption'){ %>
+              	<%= attr.name %>: <select data-param="<%= attr.name %>"><option value="none">None</option><option value="all">All</option><option value="title">Title</option></select>
+            <% }else if(attr.name == 'width'){ %>
+              	<%= attr.name %>: <input data-param="<%= attr.name %>" type="number" min="1" max="100">
+            <% }else if(attr.name == 'contentFormat'){ %>
+            	<%= attr.name %> : <select data-param="<%= attr.name %>">
+              		<% _.each(attr.value, function(opt){ %>
+                    <option value="<%= opt %>"><%= opt %></option>
+	                <% }); %>
+              	</select>
+            <% }else if(attr.name == 'content'){ %>
+              	<%= attr.name %>: <textarea data-param="<%= attr.name %>" ></textarea>
+            <% }else if(attr.name == 'transcript'){ %>
+              	<%= attr.name %>: <textarea data-param="<%= attr.name %>" ></textarea>
+            <% }else{ %>
+              	<%= attr.name %>: <input data-param="<%= attr.name %>">
+            <% } %>
+        </li>
+        <% }); } %>
+    </ul>
+    </div>
+</div>

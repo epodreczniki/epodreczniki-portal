@@ -1,0 +1,24 @@
+{% load wagtailcore_tags %}
+
+
+<div class="widget content-block"><h3 class="block-title">
+    {% if index_page %}
+        <a href="{% pageurl index_page %}">Wydarzenia</a>
+    {% else %}
+        Wydarzenia
+    {% endif %}
+    </h3>
+{% if events %}
+
+
+        <ul class="event-list">
+
+            {% for event in events %}
+                {% include "begin/includes/event_list_item.html"  with event_place='' %}
+            {% endfor %}
+        </ul>
+
+{% endif %}
+</div>
+
+

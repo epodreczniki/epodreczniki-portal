@@ -1,0 +1,5 @@
+<ul>
+  <% _.each(todos, function(todo){ %>
+   <li><a href='<%= todo.get("url") %>'><%= todo.get("title") %></a></li>
+  <% }); %>
+</ul>

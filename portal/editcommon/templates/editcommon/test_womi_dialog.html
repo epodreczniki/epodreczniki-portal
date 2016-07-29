@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load compress staticfiles %}
+<html class="ie-zoom" lang="pl">
+<head>
+
+    {% block head %}
+    {% endblock %}
+
+
+    {% block stylesheets %}
+    {% compress css %}
+{#        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}editor/css/jquery-ui-1.10.4.custom.css">#}
+{#        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}editor/css/font-awesome.css">#}
+{#        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editor/less/new_layout.less">#}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editcommon/less/womi_dialog/womi_dialog.less">
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editcommon/less/jstree/default/style.less">
+
+    {% endcompress %}
+{% endblock %}
+
+
+    {% compress js %}
+        <script src="{{ STATIC_URL }}common/js/libs/require.js"></script>
+    {% endcompress %}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}editcommon/js/build/womi_dialog.js"></script>
+    {% endcompress %}
+
+    {% block scripts_top %}
+    {% endblock %}
+
+</head>
+
+<body>
+
+{% block content %}
+{% endblock %}
+
+{% block scripts_bottom %}
+{% endblock %}
+
+</body>
+
+</html>

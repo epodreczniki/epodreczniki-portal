@@ -1,0 +1,35 @@
+// layout
+
+.authors-mailto {
+    float: none;
+    width: @default-width;
+    margin: 0 auto @space-B;
+}
+
+.bottom-content-navigation  {
+    padding-bottom: @space-B !important; // !important because of "zebra"
+
+    .bottom-content-forward {
+        width: 125px;
+        height: 43px;
+        font-size: 17px;
+    }
+}
+
+.go-to-glossary,
+.go-back-from-glossary {
+    margin-top: @space-A;
+}
+
+// typography
+
+.reader-content { // values from Content Plus mock-up
+    color: #000;
+    line-height: 1.62;
+    font-size: 16px;
+
+    em.italics {
+        font-family: inherit;
+        font-style: italic;
+    }
+}

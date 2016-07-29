@@ -1,0 +1,29 @@
+{% extends "editres/base.html" %}
+{% load compress staticfiles %}
+
+{% block title_block %}Edycja zasobu KZD{% endblock title_block %}
+
+{% block main_content %}
+    {% load addcss %}
+
+    <div class="container">
+
+    <h2>Edycja zasobu &ndash; {{ resource.custom_id }}</h2>
+
+    <p class="bg-success">Zmiany zostały zapisane.</p>
+
+    <p>
+        Zmiany będą widoczne na platformie (beta.)epodreczniki.pl za pewien czas.<br>
+        Możesz teraz zamknąć tę zakładkę. 
+    </p>
+
+    <div>
+        <a href="{% url 'edit_resource' womi_id=resource.womi_id womi_version=resource.womi_version %}" class="btn btn-default btn-xs">
+            Powrót do edycji
+        </a>
+    </div>
+
+    </div>
+
+{% endblock main_content %}
+

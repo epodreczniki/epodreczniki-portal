@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-sm-2 col-xs-3">
+        {% if driver.is_parsed_object_valid %}
+            <div class='media-middle'>
+                <a href="{{ driver.editor_url }}">
+                    <img src="{{ driver.effective_cover_url }}" class="img-responsive media-object" alt="">
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="col-sm-10 col-xs-9">
+
+        <div class="row">
+            <div class="col-xs-4">
+                <h5 class="">Tytuł: {{ driver.title }}</h5>
+            </div>
+            <div class="col-xs-4">
+                <h5 class="">Identyfikator: {{ driver.identifier }}</h5>
+            </div>
+            <div class="col-xs-4">
+                {% if driver.does_support_versioning %}
+                <h5 class="">Wersja: {{ driver.version }}</h5>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                {% if driver.repository %}
+                <h5 class="">Repozytorium: {{ driver.repository.config.info.description }}</h5>
+                {% else %}
+                <h5 class="">Brak skojarzonego repozytorium!</h5>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</div>

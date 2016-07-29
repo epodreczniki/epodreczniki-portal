@@ -1,0 +1,33 @@
+.reader-content { //Style znakowe
+    em.italics {
+        font-family: @sansItalic;
+    }
+
+    em.bold { //Emfaza – pogrubienie
+        font-family: @sansSemiBold;
+        font-style: normal;
+
+        &.italics { //Emfaza - kursywa + pogrubienie
+            font-style: italic;
+        }
+    }
+
+    dfn.term {}
+
+    span.foreign {
+        //font-family: @sansLightItalic;
+        //for now, as we don't have Open Sans italic with extended latin, greek and cyrillic glyphs
+        //this can be changed when a new font with those glyphs is provided
+        font-family: Arial, Helvetica, sans-serif;
+        font-style: italic;
+        font-weight: normal;
+    }
+
+    .person { //Autor w treści
+        font-family: @sansRegular;
+    }
+
+    .writing { //Tytuł utworu literackiego
+        font-family: @sansLightItalic;
+    }
+}

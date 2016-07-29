@@ -1,0 +1,52 @@
+{% extends "begin/base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+{% if self.date %}
+    {% block heading %}
+        <div class="page-header">
+            <h2>{{ self.title }} {{ self.date }}</h2>
+        </div>
+    {% endblock %}
+{% endif %}
+
+{% block content %}
+    {% include "begin/includes/page_header.html" with page=self request=request only %}
+
+    <div class="content-wrapper page-content-wrapper clearfix">
+
+        <!-- BEGIN .main-content -->
+        <div class="main-content page-content">
+
+            <!-- BEGIN .inner-content-wrapper -->
+            <div class="inner-content-wrapper">
+                <div class="gallery">
+
+                    {% if self.gallery %}
+                        {% for item in self.gallery.gallery_items.all %}
+                            <dl class="gallery-item">
+                                <dt class="gallery-icon">
+                                    {% image item.image original as gallery_img_full %}
+                                    <a href="{{ gallery_img_full.url }}"
+                                       rel="prettyPhoto[gallery-]" title="{{ item.caption }}">
+                                        {% image item.image fill-450x300 as gallery_img %}
+                                        <img src="{{ gallery_img.url }}"
+                                             alt="{{ item.caption }}">
+                                    </a>
+                                </dt>
+                            </dl>
+                        {% endfor %}
+                    {% endif %}
+                    <br style="clear: both;">
+                </div>
+
+
+            </div>
+
+            <!-- END .main-content -->
+        </div>
+
+        {% include "begin/includes/sidebar.html" with page=self side="right" %}
+        <!-- END .content-wrapper -->
+    </div>
+{% endblock %}

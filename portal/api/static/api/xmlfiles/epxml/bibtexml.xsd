@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 sp2 (x64) (http://www.altova.com) by Tomasz Kuczynski (Instytut Chemii Bioorganicznej PAN - Poznanskie Centrum Superkomputerowe) -->
+<xs:schema xmlns:ep="http://epodreczniki.pl/" xmlns:cnxml="http://cnx.rice.edu/cnxml" xmlns:bib="http://bibtexml.sf.net/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" targetNamespace="http://bibtexml.sf.net/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://epodreczniki.pl/" schemaLocation="epXML.xsd"/>
+	<xs:include schemaLocation="common_epeditor.xsd"/>
+	<xs:simpleType name="nonEmptyString">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="unpublishedType">
+		<xs:annotation>
+			<xs:documentation>Typ dla zapisu bibliograficznego typu sprawozdanie.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="bib:author"/>
+			<xs:element ref="bib:title"/>
+			<xs:element name="note">
+				<xs:annotation>
+					<xs:documentation>UWAGA: element występuje ze względu na kompatybilność z bibTexXML, ale jest pusty i nie ma znaczenia w tym typie zapisu.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="bib:year" minOccurs="0"/>
+			<xs:element ref="ep:bibliographyPattern" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="unpublished" type="bib:unpublishedType">
+		<xs:annotation>
+			<xs:documentation>Element dla zapisu bibliograficznego typu sprawozdanie.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="key" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Element dla adresu publikacyjnego ustawy np. Dz.U. 2011 nr 21 poz. 112</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="edition" type="bib:dateType">
+		<xs:annotation>
+			<xs:documentation>Element dla daty zapisu bibliograficznego typu ustawa</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="organization" type="bib:nonEmptyString">
+		<xs:annotation>
+			<xs:documentation>Element dla typu aktu prawnego w zapisie typu ustawa.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="manualType">
+		<xs:annotation>
+			<xs:documentation>Typ dla zapisu bibliograficznego typu ustawa.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="bib:title"/>
+			<xs:element ref="bib:organization"/>
+			<xs:element ref="bib:edition"/>
+			<xs:element ref="bib:key"/>
+			<xs:element ref="ep:bibliographyPattern" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="manual" type="bib:manualType">
+		<xs:annotation>
+			<xs:documentation>Element dla zapisu bibliograficznego typu ustawa.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="address" type="bib:nonEmptyString">
+		<xs:annotation>
+			<xs:documentation>Element miejsce wydania dla zapisu typu książka, fragment książki</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="series" type="bib:nonEmptyString">
+		<xs:annotation>
+			<xs:documentation>Element dla serii wydawniczej w zapisie bibliograficznym typu książka oraz fragment książki.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="pages">
+		<xs:annotation>
+			<xs:documentation>Element dla numerów stron w zapisie typu fragment książki. UWAGA: należy zwrócić uwagę, czy początek zakresu jest mniejszy lub równy końcowi. UWAGA: jeżeli występuje bib:title (tytuł fragmentu książki), wtedy ten element jest wymagany.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:pattern value="[1-9]\d* ?- ?[1-9]\d*"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="editor" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Element tłumacz w zapisie typu książka, fragment książki. Uwaga: podobnie jak w przypadku autora, kolejnych tłumaczy oddzielamy przecinkami.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="publisher" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Element wydawca książki.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="booktitle" type="bib:nonEmptyString">
+		<xs:annotation>
+			<xs:documentation>Element tytuł książki.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="incollectionFreeType">
+		<xs:annotation>
+			<xs:documentation>Typ dla zapisu bibliograficznego bez ograniczeń</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="bib:author"/>
+			<xs:element name="title" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Tytuł fragmentu książki. UWAGA: W tym miejscu nie ma referencji do title, ponieważ ten element może być pusty.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="edition" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Redakcja książki</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="booktitle" type="xs:string"/>
+			<xs:element ref="bib:publisher"/>
+			<xs:element ref="bib:year" minOccurs="0"/>
+			<xs:element ref="bib:editor" minOccurs="0"/>
+			<xs:element ref="bib:series" minOccurs="0"/>
+			<xs:element ref="bib:pages" minOccurs="0"/>
+			<xs:element name="address" type="xs:string"/>
+			<xs:element ref="ep:bibliographyPattern" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="incollectionFree" type="bib:incollectionFreeType">
+		<xs:annotation>
+			<xs:documentation>Element dla zapisu bibliograficznego bez ograniczeń</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="incollectionType">
+		<xs:annotation>
+			<xs:documentation>Typ dla zapisu bibliograficznego książka oraz fragment książki.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="bib:author"/>
+			<xs:element name="title" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Tytuł fragmentu książki. UWAGA: W tym miejscu nie ma referencji do title, ponieważ ten element może być pusty.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="edition" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Redakcja książki</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="bib:booktitle"/>
+			<xs:element ref="bib:publisher"/>
+			<xs:element ref="bib:year"/>
+			<xs:element ref="bib:editor" minOccurs="0"/>
+			<xs:element ref="bib:series" minOccurs="0"/>
+			<xs:element ref="bib:pages" minOccurs="0"/>
+			<xs:element ref="bib:address"/>
+			<xs:element ref="ep:bibliographyPattern" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="incollection" type="bib:incollectionType">
+		<xs:annotation>
+			<xs:documentation>Element dla zapisu bibliograficznego książka oraz fragment książki.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="number" type="xs:positiveInteger">
+		<xs:annotation>
+			<xs:documentation>Element numer wydania w zapisie bibliograficznym typu artykuł.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="year">
+		<xs:annotation>
+			<xs:documentation>Element rok wydania w zapisie bibliograficznym typu artykuł, książka, fragment książki.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:pattern value="[12]\d\d\d"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="journal" type="bib:nonEmptyString">
+		<xs:annotation>
+			<xs:documentation>Element dla tytułu czasopisma w zapisie bibliograficznym typu artykuł.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="articleType">
+		<xs:annotation>
+			<xs:documentation>Typ dla zapisu bibliograficznego typu artykuł.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="bib:author"/>
+			<xs:element ref="bib:title"/>
+			<xs:element ref="bib:journal"/>
+			<xs:element ref="bib:year"/>
+			<xs:element ref="bib:number" minOccurs="0"/>
+			<xs:element ref="ep:bibliographyPattern" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="article" type="bib:articleType">
+		<xs:annotation>
+			<xs:documentation>Element dla zapisu bibliograficznego typu artykuł.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="dateType">
+		<xs:annotation>
+			<xs:documentation>Typ prosty dla daty wykorzystywanej w ostatnim dostępie do źródła internetowego, czy też dacie ustawy.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-2]?\d|3[01])/(0?\d|1[0-2])/[12]\d\d\d"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="note" type="bib:dateType">
+		<xs:annotation>
+			<xs:documentation>Element dla daty sprawdzenia ostatniego dostępu dla zapisu typu źródło internetowe.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="howpublished">
+		<xs:annotation>
+			<xs:documentation>Element url dla zapisu typu źródło internetowe.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:pattern value="https?://[-a-zA-Z0-9.]+\.[a-zA-Z][a-zA-Z][a-zA-Z]?[a-zA-Z]?(/\S*)?"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="title" type="bib:nonEmptyString">
+		<xs:annotation>
+			<xs:documentation>Element tytuł.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="author" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Element autor. UWAGA: należy wstawić autorów oddzielonych od siebie przecinkami.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="miscType">
+		<xs:annotation>
+			<xs:documentation>Typ misc dla zapisu bibliograficznego typu zasób internetowy.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="bib:author" minOccurs="0"/>
+			<xs:element ref="bib:title"/>
+			<xs:element ref="bib:howpublished"/>
+			<xs:element ref="bib:note"/>
+			<xs:element ref="ep:bibliographyPattern" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="misc" type="bib:miscType">
+		<xs:annotation>
+			<xs:documentation>Element misc dla zapisu bibliograficznego typu zasób internetowy.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="entryType">
+		<xs:annotation>
+			<xs:documentation>Typ entry odpowiadający pojedynczemu zapisowi bibliograficznemu</xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0">
+			<xs:element ref="bib:misc"/>
+			<xs:element ref="bib:article"/>
+			<xs:element ref="bib:incollection"/>
+			<xs:element ref="bib:incollectionFree"/>
+			<xs:element ref="bib:manual"/>
+			<xs:element ref="bib:unpublished"/>
+		</xs:choice>
+		<xs:attribute name="id" type="bib:idType" use="required"/>
+		<xs:attributeGroup ref="ep:bibtexmlEntryAttributesGroup"/>
+	</xs:complexType>
+	<xs:element name="entry" type="bib:entryType">
+		<xs:annotation>
+			<xs:documentation>Element entry odpowiadający pojedynczemu zapisowi bibliograficznemu</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="fileType">
+		<xs:annotation>
+			<xs:documentation>Typ file zawierający wszystkie zapisy bibliograficzne z modułu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="bib:entry" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="file" type="bib:fileType">
+		<xs:annotation>
+			<xs:documentation>Element file zawierający wszystkie zapisy bibliograficzne z modułu</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

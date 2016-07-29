@@ -1,0 +1,184 @@
+@import "detail";
+// TODO przerobić mixin
+.experiment { // Doświadczenie
+    .experiment_and_observation_common(experiment, '../../../img/new-icons/ic-doswiadczenie.svg');
+
+    .experiment-contents {
+        .experiment-problem {
+            .experiment-problem-header {
+                .complex-block-header();
+            }
+        }
+
+    }
+}
+
+.reader-content {
+    .experiment {
+        .common-spacing();
+
+        .experiment-header {
+            border: none;
+            padding: 10px 10px 5px 0;
+
+            .label {
+                background-image: none;
+                position: relative;
+                bottom: 26px;
+                left: 22px;
+                font-size: 11px;
+            }
+
+            .title {
+                margin-left: -123px;
+                padding: 10px 10px 10px 50px;
+                background-image: url('../../../img/new-icons/ic-doswiadczenie.svg');
+                background-position: 0 5%;
+                background-repeat: no-repeat;
+                position: relative;
+                top: 2px;
+            }
+        }
+
+        .warning {
+            .label {
+                font-family: @sansRegular;
+                color: #bf4f4f;
+                left: 28px;
+            }
+
+            .title {
+                margin-left: -396px;
+                background-image: url('../../../img/new-icons/ic-doswiadczenie-opieka.svg');
+            }
+        }
+
+        .experiment-contents {
+            margin: 16px @side-space 0;
+
+            & > div:last-child {
+                border-bottom: 3px solid #d9d9d9;
+            }
+
+            .foldable {
+                margin: 22px 8px 22px 0;
+                border-bottom: 1px solid #d9d9d9;
+                padding: 0;
+
+                .foldable-header {
+                    margin-bottom: 0;
+                }
+
+                .list {
+                    margin: 0;
+                }
+            }
+
+            .experiment-problem {
+                margin-bottom: 36px;
+                border-radius: 7px;
+                padding: 27px;
+                background-color: #a8dff4;
+
+                .experiment-problem-header {
+                    margin-bottom: 16px;
+                }
+
+                .para:last-child {
+                    margin-bottom: 0;
+                    padding-bottom: 0;
+                }
+            }
+
+            .objective {
+                margin-bottom: 36px;
+                border-radius: 7px;
+                padding: 27px;
+                background-color: #a8dff4;
+
+                .objective-header {
+                    margin-bottom: 16px;
+                }
+
+                .para:last-child {
+                    margin-bottom: 0;
+                    padding-bottom: 0;
+                }
+            }
+
+            .hypothesis {
+            }
+
+            .instruments {
+            }
+
+            .instructions {
+            }
+
+            .conclusions {
+            }
+
+            .note-header {
+                .label {
+                    padding: 0;
+                    background-image: none;
+                }
+            }
+
+            .objective-header,
+            .instruments-header,
+            .instructions-header,
+            .hypothesis-header,
+            .experiment-problem-header,
+            .conclusions-header,
+            .note-header {
+                font-family: @sansRegular;
+                font-size: 18px;
+            }
+        }
+
+        &.no-title {
+            .experiment-header {
+                padding-left: 5px;
+
+                .label {
+                    padding: 10px 10px 10px 50px;
+                    background-image: url('../../../img/new-icons/ic-doswiadczenie.svg');
+                    background-size: 42px auto;
+                    bottom: 8px;
+                    left: 0;
+                    font-size: 24px;
+                }
+
+                .title {
+                    padding: 0;
+                    margin: 0;
+                    background-image: none;
+                }
+
+                &.warning {
+                    padding-left: 65px;
+
+                    .warning-message {
+                        float: right;
+                        position: relative;
+                        bottom: 10px;
+                        left: 10px;
+                    }
+
+                    .label {
+                        background-image: url('../../../img/new-icons/ic-doswiadczenie-opieka.svg');
+                        position: relative;
+                        left: -18px;
+                    }
+                }
+            }
+        }
+
+        .para {
+            margin: 0;
+            padding: 0 0 8px;
+            font-size: 14px;
+        }
+    }
+}

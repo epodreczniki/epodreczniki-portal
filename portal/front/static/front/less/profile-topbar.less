@@ -1,0 +1,228 @@
+/* Profile topbar styles */
+@import "mixins";
+@import "profile-variables";
+
+@profileTopbarSmallSize: 680px;
+
+//Shadow under topbar
+.profile-topbar-shadow {
+  -webkit-box-shadow: 0px 9px 11px -4px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 9px 11px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 9px 11px -4px rgba(0, 0, 0, 0.1);
+
+}
+
+.user-bar {
+  padding: 5px 5px 0px 5px;
+  background-color: #fff;
+
+  @media all and (min-width: @profileMediumSize) {
+    .profile-topbar-shadow();
+  }
+
+  @media all and (max-width: @profileMediumSize) {
+    padding: 5px 2px 0 10px;
+  }
+
+  @media all and (max-width: @profileTopbarSmallSize) {
+    padding: 2px 2px 0 2px;
+  }
+
+  .user-bar-inner {
+    position: relative;
+    width: 100%;
+    max-width: @profileTopbarMaxWidth;
+    margin: 0 auto;
+    .flex-display();
+  }
+}
+
+.user-info-container {
+  @media all and (max-width: @profileTopbarSmallSize) {
+    .flex-display();
+    .flex-wrap(row, nowrap);
+  }
+}
+
+.user-photo {
+  .flex-display();
+  -webkit-flex-grow: 0;
+  flex-grow: 0;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+  position: relative;
+  width: 112px;
+  height: 112px;
+  padding: 0 0 7px 0;
+  background-color: #fff;
+  margin-right: 18px;
+  cursor: pointer;
+
+  @media all and (max-width: @profileMediumSize) {
+    padding: 0px 0 4px 0;
+  }
+
+  @media all and (max-width: @profileTopbarSmallSize) {
+    width: 76px;
+    height: 73px;
+    padding: 0;
+  }
+
+  img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.user-bar-rows {
+  position: relative;
+  width: calc(~"100% - 122px");
+  max-width: @profileTopbarMaxWidth;
+  .flex-display();
+  -ms-flex-align: stretch;
+  .flex-align(stretch);
+  .flex-wrap(row, wrap);
+  min-height: 118px;
+
+  @media all and (max-width: @profileTopbarSmallSize) {
+    width: 100%;
+  }
+}
+
+.user-info {
+  position: relative;
+  padding-bottom: 6px;
+  width: 100%;
+  .flex-keep-size();
+
+  .user-name, .user-email {
+    cursor: pointer;
+  }
+
+  .user-name {
+    margin-top: 3px;
+    font-family: open_sansbold, sans-serif;
+    font-size: @bigFontSize;
+  }
+
+  .user-email {
+    font-family: open_sansregular, sans-serif;
+    font-size: 16px;
+    margin-top: -1px;
+  }
+
+  .user-school {
+    p {
+      margin-top: 4px;
+      margin-bottom: 2px;
+      font-family: open_sanssemibold, sans-serif;
+      font-size: 12px;
+      max-height: 18px;
+      overflow: hidden;
+    }
+  }
+}
+
+.profile-nav {
+  .flex-display();
+  -ms-flex-align: end;
+  .flex-align(flex-end);
+  .flex-wrap(row, nowrap);
+  -ms-flex-pack: end;
+  .flex-justify(flex-end);
+  .flex-keep-size();
+  width: 100%;
+}
+
+/* add-user-photo has been moved from user-info deliberately */
+.add-user-photo {
+  .flex-display();
+  .flex-keep-size();
+  -ms-flex-align: start;
+  .flex-align(flex-start);
+  width: 70px;
+  height: 34px;
+  cursor: pointer;
+
+  span {
+    font-family: open_sansregular, sans-serif;
+    font-size: 10px;
+    text-decoration: underline;
+  }
+}
+
+.edit-user-info {
+  .flex-display();
+  margin-top: 6px;
+  border: 1px solid #818385;
+  padding: 0 15px;
+  color: #818385;
+  font-size: @mediumFontSize;
+  height: 26px;
+  cursor: pointer;
+}
+
+.profile-main-tabs {
+  cursor: pointer;
+  list-style-type: none;
+  .flex-display();
+  -ms-flex-align: end;
+  .flex-align(flex-end);
+  margin-right: 5px;
+  height: 34px;
+
+  @media all and (max-width: @profileTopbarSmallSize) {
+    height: auto;
+    margin-right: 0;
+    margin-top: 9px;
+  }
+
+  @media all and (max-width: 520px) {
+    margin-top: 0;
+  }
+
+  li {
+    padding: 5px 17px;
+    border-bottom: 4px solid #fff;
+    text-align: center;
+    .flex-display();
+
+    &:hover {
+      border-bottom: 4px solid #7b7b7b;
+    }
+
+    &:active, &.active, &:focus {
+      border-bottom: 4px solid @profile-blue;
+    }
+
+    span {
+      font-family: open_sansbold, sans-serif;
+      font-size: 14px;
+      color: #000;
+    }
+
+    @media all and (max-width: @profileSmallSize) {
+      -ms-flex-align: center;
+      .flex-align(center);
+      span {
+        font-family: open_sanssemibold, sans-serif;
+        line-height: 17px;
+      }
+    }
+
+    @media all and (max-width: 385px) {
+      span {
+        font-size: 12px;
+      }
+    }
+
+    @media all and (max-width: 350px) {
+      span {
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+

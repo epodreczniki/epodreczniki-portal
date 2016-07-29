@@ -1,0 +1,129 @@
+GET eos_dev-spychala/_search
+{
+  "query": {
+    "match_all": {}
+  },
+  "partial_fields": {
+    "_source": {
+      "exclude": "source", 
+      "include": ["identifier", "category", "version", "attributes"]
+    }
+  } 
+}
+
+GET eos_dev-spychala/_search
+{
+  "query": {
+    "filtered": {
+      "filter": {
+        "and": [
+          {
+            "match_all": {}
+          }, 
+          {
+            "query": {
+              "terms":{ 
+                "identifier": ["i0ScZ53UF1"]
+              }
+            }
+          }
+        ]
+      },
+      "query": {
+        "match_all": {}
+      }
+    }
+  }, 
+  "partial_fields": {
+    "_source": {
+      "exclude": "source", 
+      "include": ["identifier", "category", "version", "attributes"]
+    }
+  }, 
+  "size": 10
+}
+
+GET eos_dev-spychala/_search
+{
+  "filter": {
+    "terms":{ 
+      "_id": ["i0ScZ53UF1","671"],
+      "execution": "plain"
+    }
+  },
+  "partial_fields": {
+    "_source": {
+      "exclude": "source", 
+      "include": ["identifier", "category", "version", "attributes"]
+    }
+  }, 
+  "size": 10
+}
+
+GET eos_dev-spychala/_search
+{
+  "filter": {
+    "term":{ 
+      "_id": "i0ScZ53UF1"
+    }
+  },
+  "partial_fields": {
+    "_source": {
+      "exclude": "source", 
+      "include": ["identifier", "category", "version", "attributes"]
+    }
+  }, 
+  "size": 10
+}
+
+GET eos_dev-spychala/_mapping/field/identifier
+
+GET eos_dev-spychala/_search?pretty=true
+{
+    "query": {
+        "function_score": {
+          "filter": {
+            "match_all": {}
+          },
+          "query": {
+              "match_all": {}
+          },
+          "functions": [
+              {
+                "filter": {
+                  "terms": {
+                    "identifier": ["i0ScZ53UF1","309"]
+                  }
+                },
+                "boost_factor": 2
+              }
+          ]
+        }
+    },
+    "partial_fields": {
+        "_source": {
+            "exclude": "source",
+            "include": ["identifier", "category", "version", "attributes"]
+        }
+    }
+}
+
+GET eos_dev-spychala/_search?pretty=true
+{
+    "query": {
+        "function_score": {
+          "filter": {
+            "match_all": {}
+          },
+          "query": {
+              "match_all": {}
+          }
+        }
+    },
+    "partial_fields": {
+        "_source": {
+            "exclude": "source",
+            "include": ["identifier", "category", "version", "attributes"]
+        }
+    }
+}

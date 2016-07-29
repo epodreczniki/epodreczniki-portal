@@ -1,0 +1,37 @@
+{% load wagtailcore_tags begin_tags wagtailimages_tags %}
+
+<dl class="gallery-item">
+    <dt class="gallery-icon">
+        {% if item.image %}
+            {% if item.extra %}
+                <a href="{{ item.extra.url }}" title="{{ item.caption }}">
+            {% elif item.link_external %}
+                <a href="{{ item.link_external }}" title="{{ item.caption }}" rel="prettyPhoto">
+            {% else %}
+                {% image item.image original as orig_img %}
+                <a href="{{ orig_img.url }}" title="{{ item.caption }}" rel="prettyPhoto[gallery-]">
+            {% endif %}
+            {% image item.image fill-204x204 as img %}
+            <style> #extra-file-icon-thumb-{{ img.id }}:before { content: url({{ img.url }})} </style>
+            <div class="extra-file-icon-thumb" id="extra-file-icon-thumb-{{ img.id }}" style="background-image: url({{ img.url }})"></div>
+        {% else %}
+            {% if item.extra %}
+                <a href="{{ item.extra.url }}" title="{{ item.caption }}">
+
+                <div class="{% file_class item.extra.url %}"></div>
+            {% else %}
+                <a href="{{ item.link_external }}" title="{{ item.caption }}" rel="prettyPhoto">
+                <div class="file-type-video"></div>
+            {% endif %}
+        {% endif %}
+        {% if item.caption %}
+            <div class="extra-caption-container">
+                <div class="absolute-container">
+                    <p class="extra-caption">{{ item.caption }}</p>
+                </div>
+
+            </div>
+        {% endif %}
+        </a>
+    </dt>
+</dl>

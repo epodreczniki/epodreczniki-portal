@@ -1,0 +1,90 @@
+{% extends "begin/base.html" %}
+
+{% load static begin_tags wagtailimages_tags wagtailembeds_tags wagtailcore_tags %}
+{% get_site_root as site_root %}
+{% block menu %}
+{% endblock %}
+
+{% block body_class %}template-{{ self.get_verbose_name|slugify }} home page page-id-8 page-template
+    page-template-page-templatestemplate-homepage-php loading{% endblock %}
+
+
+{% block content %}
+    {% comment %}{% include "begin/includes/page_header.html" with page=self request=request only %}{% endcomment %}
+    <div class="page-header clearfix"
+         style="background:url({% static 'begin/images/epo/library_.jpg' %}); background-size: cover;">
+
+        <div class="page-header-inner clearfix">
+            <div class="page-title">
+                <h2>Ochrona wizerunku, prywatności, autorskie prawa osobiste</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-wrapper page-content-wrapper clearfix">
+
+        <!-- BEGIN .main-content -->
+        <div class="main-content page-content">
+
+            <!-- BEGIN .inner-content-wrapper -->
+            <div class="inner-content-wrapper justified-content">
+                <p>Wizerunek stanowi dobro osobiste podlegające ochronie prawnej. Dobra osobiste, takie jak&nbsp;m.in.&nbsp;wizerunek, podlegają ochronie cywilnoprawnej, niezależnie od&nbsp;innych uregulowań prawnych.
+                    Stanowi o&nbsp;tym przede wszystkim art.&nbsp;23&nbsp;kodeksu cywilnego. Ochronę taką przewiduje
+                    także ustawa o&nbsp;prawie
+                    autorskim i&nbsp;prawach pokrewnych, a&nbsp;rozpowszechnianie wizerunku wymaga zgody osoby na&nim&nbsp;przedstawionej.
+                    Nie&nbsp;dotyczy to&nbsp;sytuacji, gdy&nbsp;osoba taka otrzymała opłatę za&nbsp;pozowanie. Ustawa o&nbsp;prawie
+                    autorskim i&nbsp;prawach pokrewnych przewiduje również kilka wyjątków dotyczących
+                    rozpowszechniania wizerunku. Zgoda nie&nbsp;jest wymagana, jeżeli:
+                <ul>
+                    <li>wizerunek osoby powszechnie znanej wykonano w związku z&nbsp;pełnieniem przez nią&nbsp;funkcji
+                        publicznych, w&nbsp;szczególności politycznych, społecznych, zawodowych,
+                    </li>
+                    <li>osoba stanowi jedynie szczegół całości takiej jak&nbsp;zgromadzenie, krajobraz, impreza
+                        publiczna.
+                    </li>
+                </ul>
+                </p>
+                <p>
+                    Prawo do&nbsp;prywatności jest pojęciem bardzo złożonym i&nbsp;obejmującym m.in.:&nbsp;życie
+                    rodzinne, mir&nbsp;domowy,
+                    dobra osobiste człowieka, integralność człowieka, ochronę danych osobowych, tajemnicę korespondencji
+                    i&nbsp;treści komunikatów, sferę intymną. Najkrócej prawo do&nbsp;prywatności można zdefiniować jako
+                    uprawnienie i&nbsp;prawo do&nbsp;życia w&nbsp;sposób zgodny z&nbsp;wolą danej jednostki i&nbsp;bez&nbsp;rozgłosu.
+                    Poszanowanie
+                    życia prywatnego zawiera także prawo do&nbsp;nawiązywania i&nbsp;rozwijania kontaktów z&nbsp;innymi
+                    ludźmi.
+                </p>
+
+                <p>
+                    Autorskie prawa osobiste uregulowane są&nbsp;w&nbsp;art.&nbsp;16&nbsp;Ustawy o&nbsp;prawie autorskim
+                    i&nbsp;prawach pokrewnych i&nbsp;chronią nieograniczoną w&nbsp;czasie i&nbsp;niepodlegającą
+                    zrzeczeniu się&nbsp;lub&nbsp;zbyciu więź twórcy z&nbsp;utworem, a&nbsp;w&nbsp;szczególności prawo&nbsp;do:
+
+                <ul>
+                    <li>autorstwa utworu,</li>
+                    <li>oznaczenia utworu swoim nazwiskiem lub&nbsp;pseudonimem albo do&nbsp;udostępniania go&nbsp;anonimowo,</li>
+                    <li>nienaruszalności treści i&nbsp;formy utworu oraz jego rzetelnego wykorzystania,</li>
+                    <li>decydowania o&nbsp;pierwszym udostępnieniu utworu publiczności,</li>
+                    <li>nadzoru nad&nbsp;sposobem korzystania z&nbsp;utworu.</li>
+                </ul>
+                </p>
+
+                <p class="attention left-aligned">
+                    UWAGA!
+                </p>
+
+
+                <p>
+                    Powyższy opis nie&nbsp;wyczerpuje wszystkich przypadków i&nbsp;ma&nbsp;charakter przykładowy.
+                    Dlatego zawsze upewnij się,&nbsp;czy&nbsp;Twoje działanie nie&nbsp;narusza opisanych wyżej praw.
+                </p>
+
+            </div>
+
+            <!-- END .main-content -->
+        </div>
+
+        {% include "begin/includes/sidebar.html" with page=self side="right" %}
+        <!-- END .content-wrapper -->
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+<div id="metadata-tabs">
+
+    <div class="panel panel-default">
+        <div class='panel-heading'>
+            <div class='row'>
+                <div class='col-xs-2'>
+                    <h6>Rozdział</h6>
+                </div>
+
+                <div class='col-xs-10'>
+                    <ul class="nav nav-pills" role="tablist">
+                        <li class='active'><a href="#editcoll-basic-tab" role="tab" data-toggle="tab">Podstawowe</a></li>
+                        <li class='pull-right'><a href="#editcoll-xml-tab" role="tab" data-toggle="tab"><span class='glyphicon glyphicon-wrench'></span> XML</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class='panel-body'>
+            <div class="tab-content editcoll-write-only">
+
+<div class="tab-pane active" id="editcoll-basic-tab">
+
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="editcoll-subcollTitle-input" class="col-sm-2 control-label">Tytuł</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="editcoll-subcollTitle-input" placeholder="Tytuł">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="editcoll-subcollAttrs-list" class="col-sm-2 control-label">Atrybuty widoku</label>
+            <div class="col-sm-6">
+              <select class="form-control" id="editcoll-subcollAttrs-list" multiple >
+              </select>
+           </div>
+           <div class="col-sm-1">
+              <button type="button" class="btn btn-default" id="metadataSubcollectionEditButton" >Edytuj</button>
+           </div>
+        </div>
+    </form>
+</div>
+
+<div class="tab-pane" id="editcoll-xml-tab">
+    <textarea class="editcoll-metadata form-control" id="editcoll-xml" rows="13" placeholder="xml" readonly></textarea>
+</div>
+            </div>
+        </div>
+    </div>
+</div>

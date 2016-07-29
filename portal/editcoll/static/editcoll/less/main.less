@@ -1,0 +1,168 @@
+.editcoll-tree-container{
+	width: 40%;
+    float: left;
+    padding-top: 70px;
+}
+
+.panel-body{
+    /*background-color: grey;*/
+}
+.editcoll-tabs-container{
+    width: 50%;
+    float: left;
+    padding-top: 70px;
+}
+
+.editcoll-left-side{
+    width: 30%;
+    float: left;
+}
+
+.editcoll-right-side{
+    width: 60%;
+    float: left;
+}
+
+#editcoll-signature-input {
+    font-size: 12px;
+}
+
+.editcoll-log{
+    position: absolute;
+    bottom: 5px;
+}
+.ui-dialog{
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+}
+
+.ui-dialog-title{
+	color: black;
+	font-weight: bold;
+}
+
+.ui-dialog-titlebar{
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+}
+
+.loading-folders{
+    color: black;
+}
+
+.ui-dialog-titlebar-close{
+	color: black;
+}
+
+.womi-item{
+    color: black;
+}
+
+.ui-dialog-buttonpane{
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+.ui-dialog-buttonset{
+	color: black;
+}
+.jstree{
+	color: black;
+}
+
+.items-background {
+    background-color: grey;
+}
+
+.disabled-ahref {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.5;
+}
+
+#lock-info {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    display: block;
+    background-color: #f5f5f5;
+    border: 1px solid black;
+    padding: 5px;
+    .info.positive {
+        color: #008000;
+    }
+    .info.negative {
+        color: #cc2b21;
+    }
+}
+
+.cannot-edit {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000000;
+    background-color: rgba(24,24,24,0.24);
+}
+
+.readonly-row {
+    display: -webkit-flex;
+    display: flex;
+    position: relative;
+    width: 100%;
+    -webkit-align-items: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.readonly-attrname {
+    display: inline-block;
+    display: -webkit-flex;
+    display: flex;
+    background-color: rgb(51, 129, 191);
+    color: rgb(255, 255, 255);
+    padding: 0 6px 0 6px;
+    //text-align: center;
+    width: 130px!important;
+    line-height: 29px;
+}
+
+.readonly-attrvalue {
+    position: relative;
+    display: -webkit-flex;
+    display: flex;
+    //left: -4px;
+    background-color: rgb(33, 150, 243);
+    color: #fff;
+    //padding: 5px;
+    border-bottom: none !important;
+    padding-left: 5px !important;
+    height: 29px;
+    line-height: 29px;
+
+    //override of Safari's default styling
+    &:disabled {
+        -webkit-text-fill-color: #fff;
+        -webkit-opacity: 1;
+    }
+}
+
+.first-section {
+    border-bottom: 1px solid rgb(114, 192, 117) !important;
+}
+
+.second-section {
+    border-bottom: 1px solid rgb(57, 187, 246) !important;
+}
+
+.third-section {
+    border-bottom: 1px solid rgb(138, 104, 200) !important;
+}
+
+.actors-roles {
+    border: 1px solid rgb(138, 104, 200) !important;
+}

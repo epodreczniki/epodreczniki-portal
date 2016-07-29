@@ -1,0 +1,15 @@
+{
+  "name": "fajny filtr",
+  "filter": {
+    "operator": "and",
+    "operands": [
+      {
+        "field": "category",
+        "value": ["collection"],
+        "mode": "exact",
+        "fixed": true
+      }
+    ]
+  },
+  "fields": ["identifier"]
+}

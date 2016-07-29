@@ -1,0 +1,11 @@
+{% load begin_tags wagtailcore_tags %}
+
+ <ul class="sub-menu">
+    {% for child in menuitems_children %}
+        <li class="menu-item menu-item-type-post_type menu-item-object-course"><a href="{% pageurl child %}">{{ child.title }}</a>
+        {% if child.show_dropdown %}
+            {% top_menu_children parent=child %}
+        {% endif %}
+        </li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,48 @@
+a.navbar-logo {
+    display: inline-block;
+    margin: 0;
+    padding: 16px 0;
+
+    &:hover, &:active, &:focus {
+        text-decoration: none;
+    }
+
+    @media (max-width: 979px) {
+        padding: 16px 0 16px 20px;
+    }
+
+}
+
+.navbar-logo {
+    color: #7f7f7f;
+    font-size: 24px;
+    font-weight: 300;
+    text-shadow: none;
+
+    img {
+        height: 42px;
+        width: 36px; // podaję szerokość ze wzg. na bug(?) zw. z renderowaniem svg w safari
+        margin-right: 8px;
+        opacity: 0.4;
+    }
+
+    @media (max-width: 479px) {
+        padding: 24px 0;
+        font-size: 16px;
+    }
+
+    /*.nothing {
+
+    }*/
+
+}
+
+.contact-meta {
+    label {
+        display: block;
+    }
+
+    input, textarea, select {
+        margin-bottom: 20px;
+    }
+}

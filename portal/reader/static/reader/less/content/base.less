@@ -1,0 +1,96 @@
+@import "../elements/common-variables";
+
+// Set body to height 100% (needed by sidebar in some browsers)
+html, body {
+    height: 100%;
+}
+
+// Some basic setup
+body {
+    font-family: @baseFontFamily;
+    font-size: @baseFontSize;
+    overflow-y: auto;
+    //-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.with-header-image ~ .grid > .col-main > .reader-content {
+    margin-top: 20px;
+}
+
+.no-header-image ~ .grid > .col-main > .reader-content {
+   margin-top: 70px;
+}
+
+.reader-content {
+    padding: 16px;
+    line-height: 1.5em; // ---> convert to 1.5
+    font-family: @sansRegular;
+    font-size: 14px;
+
+    a {
+        border-bottom: none;
+        color: #3d71b8;
+        text-decoration: none;
+
+        &:visited {
+            color: #6600AF;
+        }
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+
+    p {
+        margin: 0;
+        margin-bottom: @space-B;
+        padding: 0;
+        line-height: inherit;
+    }
+
+    .para {
+        margin-top: @space-D;
+
+        & + .para {
+            margin-top: @space-B;
+        }
+    }
+}
+
+#loading-indicator {
+    position: absolute;
+    top: 0;
+    pointer-events: none;
+}
+
+.loading-indicator-background {
+    background: rgba(216, 216, 216, 0.33);
+}
+
+// image wrapper - using js/script.js - imgScale
+.img-wrapper {
+    width: 90%;
+    height: 90%;
+    text-align: center;
+    padding: 5%;
+}
+
+// base image scaling 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    border: none;
+}
+
+input::-moz-focus-inner {}
+
+.mod_contact {
+    white-space: nowrap;
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+}

@@ -1,0 +1,6 @@
+<formats>
+    {% for name, filename in formats.items %}
+    <format id="{{ name }}" mainFile="{{ filename }}"/>
+    {% endfor %}
+    <alternatives exist="false"/>
+</formats>

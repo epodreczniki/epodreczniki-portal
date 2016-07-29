@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="../../jquery/2.1.0/jquery.min.js"></script>
+    <style type="text/css">
+        .reset {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="reset">
+<iframe id="ifr" class="reset"></iframe>
+<script>
+    function getSearchParameters() {
+        var prmstr = window.location.search.substr(1);
+        return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+    }
+
+    function transformToAssocArray(prmstr) {
+        var params = {};
+        var prmarr = prmstr.split("&");
+        for (var i = 0; i < prmarr.length; i++) {
+            var tmparr = prmarr[i].split("=");
+            params[tmparr[0]] = tmparr[1];
+        }
+        return params;
+    }
+
+    var params = getSearchParameters();
+
+    $(document).ready(function () {
+        var fr = $('#ifr');
+        $(window).on('message', function (e) {
+            if (e.originalEvent.data.msg == 'svgIframeSize') {
+                var svg = $(fr[0].contentWindow.document).find('svg');
+                if(e.originalEvent.data.haveSize) {
+                    fr.width(e.originalEvent.data.width).height(e.originalEvent.data.height);
+                } else {
+                    reInit(svg);
+                }
+                if(e.originalEvent.data.alt) {
+                    svg.attr('title', e.originalEvent.data.alt);
+                }
+            }
+        });
+
+
+        function reInit(svg) {
+            function timeoutFunc() {
+                var rect ;
+                try {
+                    rect = svg[0].getBBox();//getBoundingClientRect();
+                } catch (err) {
+                    return;
+                }
+                if (rect.width > 0 && rect.height > 0) {
+                    window.parent.postMessage({msg: 'svgSize', width: rect.width, height: rect.height,
+                        /* x: rect.x, y: rect.y,*/
+                        viewBox: $(svg[0]).attr('viewBox')}, '*');
+                    return;
+                }
+                setTimeout(timeoutFunc, 100);
+            }
+            setTimeout(timeoutFunc, 100);
+        }
+
+        fr[0].onload = function () {
+            var svg = $(fr[0].contentWindow.document).find('svg');
+            reInit(svg);
+
+        };
+        if (params.url) {
+            fr[0].src = params.url;
+        }
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+#module-content {
+    //default styling
+    .extension-icon() {
+        background-color: none !important;
+        background-size: 24px 24px !important;
+        background-position: top right !important;
+        background-repeat: no-repeat !important;
+    }
+
+    span.recipient-teacher,
+    span.content-status-expanding,
+    span.content-status-supplemental {
+        height: 24px;
+        width: 24px;
+        float: right;
+        .extension-icon();
+        margin-right: 5px;
+    }
+
+    span.recipient-teacher {
+        background-image: url("../../../img/awesome-icons/university.svg") !important;
+    }
+
+    span.content-status-expanding {
+        background-image: url("../../../img/awesome-icons/star.svg") !important;
+    }
+
+    span.content-status-supplemental {
+        background-image: url("../../../img/awesome-icons/star.svg") !important;
+    }
+
+    .module-header {
+        //this is the one in header, not the little ones on the title page
+        .extension-icon() {
+            width: 48px;
+            height: 48px;
+            padding-right: 32px !important;
+            background-color: none !important;
+            background-size: 24px 24px !important;
+            background-position: top right !important;
+            background-repeat: no-repeat !important;
+        }
+
+        span.recipient-teacher,
+        span.content-status-expanding,
+        span.content-status-supplemental {
+            .extension-icon();
+        }
+    }
+}
+
+

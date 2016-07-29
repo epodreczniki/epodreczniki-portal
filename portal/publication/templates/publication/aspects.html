@@ -1,0 +1,16 @@
+{% extends "publication/base.html" %}
+
+{% load common_ext %}
+
+{% block topbar %}
+    {% include "publication/topbars/aspects.html" %}
+{% endblock %}
+
+{% block inner_content_header %}
+    {{ block.super }}
+
+    {% include "editres/object_info_bar.html" with driver=publication.driver.repo_driver %}
+
+{% endblock inner_content_header %}
+
+

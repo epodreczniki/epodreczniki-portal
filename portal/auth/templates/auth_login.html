@@ -1,0 +1,77 @@
+{% extends 'auth_base.html' %}
+
+{% load common_ext %}
+
+
+{% block content %}
+
+    <div class="login-main">
+        <div class="relative-form">
+            <div class="login-header">
+                <p class="centered-line">Zaloguj się do swojego konta</p>
+            </div>
+
+            {% if form.field_errors %}
+                <p class="wrong-data">{{ form.field_errors.as_text }}</p>
+            {% endif %}
+            {% if form.non_field_errors %}
+                <p class="wrong-data">{{ form.non_field_errors.as_text }}</p>
+            {% endif %}
+
+            <form method="post" action="{% host_url 'user' 'auth.views.epo_login' %}">
+                {% csrf_token %}
+                <input id="id_username" maxlength="254" name="username" type="text"
+                       placeholder="Nazwa użytkownika lub adres e-mail">
+                <input id="id_password" name="password" type="password" class="password-shortmargin"
+                       placeholder="Hasło">
+
+                <div class="password-reminder" style="display: none">
+                    <span>Przypomnienie hasła</span>
+                </div>
+
+                <input class="login-button epo-login" type="submit" value="Logowanie"/>
+                <input type="hidden" name="next" value="{{ next }}"/>
+
+                <p class="centered-line register-container">
+                    <span>Nie posiadasz jeszcze konta? </span><a class="register-link"
+                                                                    href="{% url 'auth-register-user' %}">Zarejestruj
+                    się</a>
+                </p>
+                <p class="centered-line register-container">
+                    <span>Zapomniałeś hasła? </span><a class="register-link"
+                                                                    href="{% url 'auth-user-password-reset' %}">Ustaw nowe</a>
+                </p>
+                <br>
+                <p class="centered-line register-container">
+                    <span>Nie dostałes e-maila aktywacyjnego? </span><a class="register-link"
+                                                                    href="{% url 'auth-resend-activation-email' %}">Wyślij ponownie</a>
+                </p>
+
+                <section class="auth-decoration">
+                    <div class="auth-decoration-line"></div>
+                    <div class="auth-decoration-text"><span>LUB</span></div>
+                    <div class="auth-decoration-line"></div>
+                </section>
+
+                {% for provider in providers %}
+                    <button type="button" class="login-button {{ provider.client }}-login "
+                            onclick="window.location='{{ provider.login_url }}'">
+                        {% if provider.client == 'librus' %}
+                            <div class="librus-icon"></div>
+                        {% endif %}
+                        {{ provider.label }}
+                    </button>
+
+                {% endfor %}
+
+                <section class="auth-terms">
+                    <p class="centered-line">
+                        Przyłączenie się do portalu jest równoznaczne z zapoznaniem się i zgodą na <a
+                        href="{% host_url 'www' 'front.views.terms' %}"><span
+                        class="auth-highlighted">Warunki użytkowania portalu</span></a>
+                    </p>
+                </section>
+            </form>
+        </div>
+    </div>
+{% endblock %}

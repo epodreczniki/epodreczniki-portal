@@ -1,0 +1,9 @@
+{% extends "base_error_page.html" %}
+
+{% block error_title %}{{ exception.lead }}: <span id='exception-title'>{{ exception.title }}</span>{% endblock %}
+
+{% block error_content %}
+<span id='exception-elaborate'>
+{% block exception_elaborate %}{% endblock %}
+</span>
+{% endblock %}

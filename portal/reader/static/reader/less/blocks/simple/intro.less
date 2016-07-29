@@ -1,0 +1,24 @@
+@import "detail";
+
+.reader-content {
+    .intro { // Przedmiot lekcji
+        .typical-simple-block(intro, '../../../img/new-icons/ic-przedmiot-lekcji.svg');
+        margin-top: @space-D;
+        padding: @space-B;
+        background-color: #E8E0BB;
+
+        .intro-header {
+            padding-bottom: @space-A;
+        }
+
+        .intro-contents {
+            margin: 0 @side-space;
+            padding-bottom: 8px;
+
+            li {
+                line-height: 20px; // ---> convert to 1.45
+                margin-bottom: 8px;
+            }
+        }
+    }
+}

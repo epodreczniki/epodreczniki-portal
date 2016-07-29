@@ -1,0 +1,26 @@
+{% load wagtailcore_tags %}
+
+{% if blogs %}
+    <div class="widget content-block"><h3 class="block-title"><a href="{% pageurl blogs.0.blog_index %}">Aktualności</a></h3>
+        <!-- BEGIN .slider-blocks -->
+        <div class="slider-blocks slider-news clearfix">
+
+            <!-- BEGIN .slides -->
+            <ul class="slides slide-loader2">
+                {% for blog in blogs %}
+                    {% cycle '<li><ul class="news-items">' '' ''%}
+
+                    {% include "begin/includes/blog_list_item.html" %}
+
+                    {% cycle '' ''  '</ul></li>' as cyclast silent %}
+
+                    {% if cyclast == '' and forloop.last %}
+                        </ul></li>
+                    {% else %}
+                        {{ cyclast }}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endif %}

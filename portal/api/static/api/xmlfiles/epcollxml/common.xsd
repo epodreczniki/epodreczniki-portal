@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    elementFormDefault="qualified"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" vc:minVersion="1.1">
+    
+    <xs:simpleType name="type-not-empty-positive-integer">
+        <xs:restriction base="xs:positiveInteger">
+            <xs:pattern value="[0-9]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="type-not-empty-string">
+        <xs:restriction base="xs:string">
+            <xs:pattern value=".+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="type-string-min-lenght-one">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="type-string-skip-include">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="skip"/>
+            <xs:enumeration value="include"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="type-elem-string-attr-key">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="key" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>A coded representation of an element of the object.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    
+    <xs:complexType name="type-elem-string-attr-key-qualified">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="key" type="xs:string" form="qualified">
+                    <xs:annotation>
+                        <xs:documentation>A coded representation of an element of the object.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    
+</xs:schema>

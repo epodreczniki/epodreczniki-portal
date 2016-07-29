@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="23"
+   height="18.879999"
+   id="svg4527"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="solution.svg"
+   inkscape:export-filename="C:\Users\Witold\Documents\IT\e-books\geogebra\grafiki_szablony\pcss\againNew.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4529" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.6568542"
+     inkscape:cx="11.035543"
+     inkscape:cy="-0.77704527"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:showpageshadow="false"
+     showborder="true"
+     inkscape:window-width="1366"
+     inkscape:window-height="746"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4532">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-160.21875,-149.02625)">
+    <path
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       id="path7415"
+       d="m 168.63099,166.90967 -7.37904,0 0,-16.88184 11.38182,0 0,5.43256"
+       style="fill:none;stroke:#0069b2;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       inkscape:export-filename="C:\Users\Witold\Documents\IT\e-books\geogebra\grafiki_szablony\pcss\solution.png"
+       inkscape:export-xdpi="127.34694"
+       inkscape:export-ydpi="127.34694" />
+    <path
+       style="fill:#0096ff;fill-opacity:1;stroke:#0069b2;stroke-width:0.84580421px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 164.40009,159.78922 8.79676,6.04146 8.94021,-11.04398 -4.02615,-3.62488 -5.54949,9.82274 -4.91405,-4.41671 z"
+       id="path3793-1-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:export-filename="C:\Users\Witold\Documents\IT\e-books\geogebra\grafiki_szablony\pcss\solution.png"
+       inkscape:export-xdpi="127.34694"
+       inkscape:export-ydpi="127.34694" />
+  </g>
+</svg>

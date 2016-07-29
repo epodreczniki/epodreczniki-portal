@@ -1,0 +1,19 @@
+.reader-content {
+    .list {
+        &.before-text {
+            margin-bottom: @space-A !important; //this importants overwrite more specific block styles - this is correct
+        }
+
+        &.after-text {
+            margin-top: @space-A !important; //this important overwrite more specific block styles - this is correct
+        }
+
+        .enumerated,
+        .lower-alpha,
+        .lower-alpha.has-mathml {
+            .item {
+                padding-bottom: @space-A;
+            }
+        }
+    }
+}

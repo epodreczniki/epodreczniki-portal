@@ -1,0 +1,53 @@
+{
+    "name": "fajny filtr",
+    "filter": {
+        "operator": "and",
+        "operands": [
+            {
+                "field": "category",
+                "value": ["womi"],
+                "mode": "exact",
+                "fixed": true
+            },
+            {
+                "field": "title",
+                "value": ["wyraz", "inny"],
+                "mode": "fuzzy"
+            },
+            {
+                "field": "author",
+                "value": ["psnieg"],
+                "mode": "exact",
+                "enabled": false
+            },
+            {
+                "operator": "or",
+                "operands": [
+                    {
+                        "field": "name",
+                        "value": ["Cos"],
+                        "mode": "exact",
+                        "fixed": true
+                    },
+                    {
+                        "field": "color",
+                        "value": ["blue"],
+                        "mode": "exact",
+                        "fixed": true
+                    }
+                ]
+            }
+        ]
+    },
+    "ordering": [
+        {
+            "field": "version",
+            "mode": "ascending",
+            "enabled": false
+        },
+        {
+            "field": "creation-date",
+            "mode": "descending"
+        }
+    ]
+}

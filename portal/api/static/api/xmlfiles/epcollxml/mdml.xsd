@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    targetNamespace="http://cnx.rice.edu/mdml"
+    xmlns="http://cnx.rice.edu/mdml"
+    elementFormDefault="qualified"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" vc:minVersion="1.1">
+    
+    <xs:include schemaLocation="common.xsd"/>
+    
+    <xs:element name="content-id" type="xs:NMTOKEN">
+        <xs:annotation>
+            <xs:documentation>An element that represent content id.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="content-url" type="xs:anyURI">
+        <xs:annotation>
+            <xs:documentation>An element that represent content url.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="repository" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>An element that specifies repository location.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="version" type="xs:positiveInteger">
+        <xs:annotation>
+            <xs:documentation>An element that specifies version of metadata.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="created" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>An element that specifies module created date.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="revised" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>An element that specifies module revised date.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="language" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>An element that specifies module content language.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="title" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>An element that specifies module title.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="subtitle" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>An element that specifies module subtitle.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="abstract" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>An element that specifies short module content description.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:element name="license">
+        <xs:annotation>
+            <xs:documentation>An element that specifies single license definition.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="url" type="xs:anyURI">
+                        <xs:annotation>
+                            <xs:documentation>An attribute that contains url with license.</xs:documentation>
+                        </xs:annotation>                
+                    </xs:attribute>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="keywordlist">
+        <xs:annotation>
+            <xs:documentation>An element that specifies list of keyword related with collection.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="keyword" minOccurs="1" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>An element that determines single keyword.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="education-levellist">
+        <xs:annotation>
+            <xs:documentation>An element that specifies list of education level.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="education-level" minOccurs="1" maxOccurs="unbounded" type="type-elem-string-attr-key">
+                    <xs:annotation>
+                        <xs:documentation>An element that represents single education level.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="subjectlist">
+        <xs:annotation>
+            <xs:documentation>An element that specifies list of subject associated with collection.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="subject" minOccurs="1" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>An element that represents single subject from restriction list of possible values.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="matematyka"/>
+                            <xs:enumeration value="język polski"/> 
+                            <xs:enumeration value="fizyka"/> 
+                            <xs:enumeration value="chemia"/> 
+                            <xs:enumeration value="biologia"/> 
+                            <xs:enumeration value="geografia"/> 
+                            <xs:enumeration value="przyroda"/> 
+                            <xs:enumeration value="edukacja wczesnoszkolna"/> 
+                            <xs:enumeration value="historia i społeczeństwo"/> 
+                            <xs:enumeration value="historia"/> 
+                            <xs:enumeration value="informatyka"/> 
+                            <xs:enumeration value="zajęcia komputerowe"/> 
+                            <xs:enumeration value="wiedza o społeczeństwie"/> 
+                            <xs:enumeration value="edukacja dla bezpieczeństwa"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+        
+    <xs:element name="person">
+        <xs:annotation>
+            <xs:documentation>An element that represents single person.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="firstname" type="xs:string"/>
+                <xs:element name="surname" type="xs:string"/>
+                <xs:element name="fullname" type="xs:string"/>
+                <xs:element name="email" type="xs:string" minOccurs="0"/>
+            </xs:all>
+            <xs:attribute name="userid" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="organization">
+        <xs:annotation>
+            <xs:documentation>An element that represents single organization.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="fullname" type="xs:string"/>
+                <xs:element name="shortname" type="xs:string"/>
+                <xs:element name="email" type="xs:string" minOccurs="0"/>
+            </xs:all>
+            <xs:attribute name="userid" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="actors">
+        <xs:annotation>
+            <xs:documentation>An element that represents list of persons object.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice minOccurs="1" maxOccurs="unbounded">
+                <xs:element ref="person" maxOccurs="unbounded"/>
+                <xs:element ref="organization" maxOccurs="unbounded"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="role">
+        <xs:annotation>
+            <xs:documentation>An element that represents single role.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="type" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="roles">
+        <xs:annotation>
+            <xs:documentation>An element that represents list of roles object.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="role" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+</xs:schema>

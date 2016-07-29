@@ -1,0 +1,70 @@
+{% load extensions common_ext collections %}
+{% if parent_content.is_root %}
+    {% counter "id_collection_counter" %}
+{% endif %}
+{% with children=parent_content.get_all_children_ordered %}
+    {% if children %}
+        <ul id="{{ parent }}" aria-label="Spis treści"
+            class="nav nav-list accordion-body collapse-x{% if parent == 'index-menu' %} in-x{% endif %}">
+            {% for content in children %}
+                {% if content.is_module %}
+                    {% if parent_level >= config.level_cutoff_on %}
+                            <li><a class="module-a"
+                                   href="{% get_presentation_module_occurrence_url presentation content %}"
+                                   data-ajax-url="{{ content.html_url|make_schemeless }}"
+                                   data-epxml-url="{{ content.epxml_url|make_schemeless }}"
+                                   data-module-curriculum-url="{{ content|reader_resource:'curriculum' }}"
+                                   data-module-license-url="{{ content|reader_resource:'license' }}"
+                                   data-dependencies-url="{{ content.dependencies_url }}"
+                                   data-module-id="{{ content.module.md_content_id }}"
+                                   data-module-order="{{ content.order_value }}"
+                                   data-module-recipient="{{ content.module.ep_recipient }}"
+                                   data-module-presentation-type="{{ content.module.ep_presentation_type }}"
+                                   data-content-status="{{ content.module.ep_content_status }}"
+                                   data-collection-order-id="{{ id_collection_counter }}"
+                                   data-raw-title="{{ content.md_title }}"
+
+                                   {% if not content.is_title %}
+                                        {% include "common/snippets/womi_references.html" with content=content only %}
+                                   {% endif %}
+                                   {% if config.generate_titles %}
+                                   title="{% if config.include_dotted_toc_path %}{{ content.title_toc_path }}{% endif %} {{ content.md_title }}"
+                                   {% endif %}
+                                    {% include "toc_attributes.html" with content=content %}
+                                    ><span class="wcag-hidden-inside">Spis treści - moduł</span>
+                                {% if config.include_dotted_toc_path %}{{ content.title_toc_path }}{% endif %} {{ content.md_title }}</a>
+                            </li>
+                    {% endif %}
+                {% else %}
+                    {{ id_collection_counter.increment }}
+
+                    {% with new_parent="table_of_contents_"|add:id_collection_counter.value %}
+                        {% if parent_level >= config.level_cutoff_on %}
+                            <li data-coll-id="{{ "coll"|add:id_collection_counter.value }}" class="accordion-group">
+                                <a class="accordion-toggle collapsed"
+                                   href="javascript:;"
+                                   {% if config.use_collapse_x %}data-toggle="collapse-x"{% endif %}
+                                   data-parent="{{ parent }}"
+                                   data-target="#{{ new_parent }}"
+                                   data-is-empty="{{ content.is_empty }}"
+                                   {% if config.generate_titles %}
+                                   title="{% if config.include_dotted_toc_path %}{{ content.title_toc_path }}{% endif %} {{ content.md_title }}"
+                                   {% endif %}
+                                        {% include "toc_attributes.html" with content=content %}
+                                         tabindex="0" ><span class="wcag-hidden-inside">Spis treści - rozdział</span>
+                                    {% if config.include_dotted_toc_path %}{{ content.title_toc_path }}{% endif %} {{ content.md_title }}</a>
+                                {% table_of_contents_recursive presentation content new_parent parent_level|add:"1" %}
+                            </li>
+
+                        {% else %}
+                            {% table_of_contents_recursive presentation content new_parent parent_level|add:"1" %}
+                        {% endif %}
+                    {% endwith %}
+
+
+                {% endif %}
+
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}

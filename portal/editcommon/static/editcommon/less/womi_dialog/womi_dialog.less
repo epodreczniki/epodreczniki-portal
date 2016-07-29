@@ -1,0 +1,205 @@
+@import '../dialog/dialog';
+
+
+@dialogMenuCategoriesWidth: 200px;
+@galleryCreatorPadding: 5px;
+@galleryCreatorBorderWidth: 1px;
+
+@womiItemIconSize: 28px;
+
+@womiItemWidth: 99%;//398px; //400px - 2px border
+@womiItemHeight: 203px; //205px - 2px border
+
+// Reset
+
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+
+.catalogue-tree {
+    max-height: 70%;
+}
+
+.tree-handle {
+  float: left;
+  overflow: auto;
+  width: 39%;
+  height: inherit;
+}
+
+.womi-list-handle {
+  float: left;
+  overflow: auto;
+  width: 59%;
+  height: inherit;
+}
+
+.womi-item-image-container{
+    position: relative;
+    height: calc(~"100% - 55px - "@womiItemIconSize);
+    padding: 0px!important;
+    overflow: hidden;
+}
+
+.womi-item-image {
+    position: relative;
+    max-width: 100%;
+    //height: calc(~"100% - 52px - "@womiItemIconSize)!important;
+    max-height: 145px;
+    margin: 0px!important;
+    padding: 0px;
+    overflow: hidden;
+    border: none;
+    outline: none;
+}
+
+@-moz-document url-prefix() {
+    .womi-item-image{
+        max-height: 125px; //to be verified - Firefox has an issue with image scaling
+
+    }
+    }
+
+
+.womi-item {
+  font-weight: normal;
+  display: inline-block;
+  margin-bottom: 1px;
+  border: 1px solid black;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  width: @womiItemWidth;
+  max-width: @womiItemWidth;
+  max-height: @womiItemHeight;
+}
+
+.womi-item.active {
+  border: 3px solid #828282;
+}
+
+.womi-item ul {
+  padding: 0px;
+}
+
+.womi-item-header{
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #000000;
+
+    *{
+        position: relative;
+        display: inline;
+        float: left;
+    }
+
+
+
+    .womi-item-description{
+        display: inline;
+        height: @womiItemIconSize;
+        padding-left: 10px;
+        line-height: @womiItemIconSize;
+
+        span:first-of-type{
+            margin-right: 8px;
+        }
+    }
+
+    .womi-item-title{
+        height: 25px;
+        width: 100%;
+        border-top: 1px solid #000000;
+        padding-left: 10px;
+        line-height: 25px;
+    }
+}
+
+.womi-item-author{
+        height: 24px;
+        width: calc(~"100% - 10px");
+        border-top: 1px solid #000000;
+        line-height: 24px;
+        padding-left: 10px;
+        overflow: hidden;
+    }
+
+.womi-item-border{
+    border: 1px solid black;
+}
+.metadata-tree {
+  background-color: white;
+  border: 1px solid black;
+  float: left;
+  min-height: 100px;
+  min-width: 100px;
+}
+
+.metadata-edit-area {
+  background-color: white;
+  border: 1px solid black;
+  float: left;
+}
+
+.xml-prop {
+  padding: 5px;
+}
+
+
+.dialog-menu-categories {
+  // .tree-handle;
+  //float: left;
+  overflow: auto;
+  overflow-x: hidden;
+  width: 200px;
+  height: 300px;
+  max-height: 300px;
+  border-right: 1px solid black;
+  display: inline-block;
+  float: none;
+  padding-right: @galleryCreatorPadding;
+}
+
+.dialog-menu-items {
+  //.womi-list-handle;
+  position: absolute;
+  padding-left: @galleryCreatorPadding;
+  //float: left;
+  overflow: auto;
+  height: 100%!important;
+  width: calc(~"100% - "@dialogMenuCategoriesWidth~" - "@galleryCreatorPadding~" - "@galleryCreatorBorderWidth);
+  display: inline-block;
+
+  //background-color: lightblue;
+}
+
+.dialog-menu-category {
+  display: block;
+  padding: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: #bfbfbf;
+  }
+}
+
+.dialog-menu-category-selected {
+  color: #007fff;
+}
+
+.dialog-menu-item {
+  position: relative;
+  //max-width: 400px;
+  width: calc(~"100% - "2*@galleryCreatorBorderWidth~" - "@galleryCreatorPadding);
+  .womi-item;
+  display: block;
+  border: 1px solid black;
+  //padding: 5px;
+  //margin: 5px;
+
+}

@@ -1,0 +1,447 @@
+/* zebra styles start */
+
+@zebra-color-1: #F8F8F8;
+@zebra-height: 48px;
+@zebra-max-width: none;
+
+@full-width: none;
+@default-width: 940px;
+@lowest-width: 300px;
+
+@width-class-0: none;
+@width-class-1: 1920px;
+@width-class-2: 1640px;
+@width-class-3: 1280px;
+@width-class-4: 940px;
+@width-class-5: 720px;
+@width-class-6: 640px;
+@width-class-7: 480px;
+@width-class-8: 320px;
+@width-class-9: 300px;
+
+#content-wrap.zebra {
+  background: @zebra-color-1;
+  .grid {
+    background: #ffffff;
+  }
+}
+
+.zebra-module {
+  .reader-content {
+    //padding: 16px; //left and right moved to lower layers to enable zebra, bootom moved to bottom-content-navigation
+    padding: 16px 0 0 0;
+    .level_1:not(.columns) {
+      .section-contents .para {
+        //margin: 0; // top and bottom as padding to enable zebra
+        // padding-top: 8px;
+        // padding-bottom: 8px;
+      }
+
+    }
+    .section-contents {
+      margin-bottom: 0; // changed to padding for zebra
+      padding-bottom: 0;
+      > *:last-child {
+        //padding-bottom: 2em;
+      }
+    }
+    .level_1.columns > .section-contents {
+
+      > *:last-child {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .col-main {
+    max-width: @zebra-max-width; // for zebra
+    width: 100%;
+    //padding: 0 0 50px 0;  //for zebra
+    padding: 0 0 0 0;
+  }
+
+  .section.level_1.zebra .section-contents {
+    overflow: hidden; // needed for auto height calc for zebra
+  }
+
+  .section.level_1[data-columns='2'],
+  .section.level_1[data-columns='3'],
+  .section.level_1[data-columns='4'],
+  .section.level_1[data-columns='5'],
+  .section.level_1[data-columns='6'] {
+    &.zebra {
+      background: @zebra-color-1;
+      max-width: @zebra-max-width;
+      margin: 0;
+      &.full-width {
+        max-width: @full-width;
+      }
+      &.default-width {
+        max-width: @default-width;
+      }
+      &.lowest-width {
+        max-width: @lowest-width;
+      }
+      &.width-class-0 {
+        max-width: @width-class-0;
+      }
+      &.width-class-1 {
+        max-width: @width-class-1;
+      }
+      &.width-class-2 {
+        max-width: @width-class-2;
+      }
+      &.width-class-3 {
+        max-width: @width-class-3;
+      }
+      &.width-class-4 {
+        max-width: @width-class-4;
+      }
+      &.width-class-5 {
+        max-width: @width-class-5;
+      }
+      &.width-class-6 {
+        max-width: @width-class-6;
+      }
+      &.width-class-7 {
+        max-width: @width-class-7;
+      }
+      &.width-class-8 {
+        max-width: @width-class-8;
+      }
+      &.width-class-9 {
+        max-width: @width-class-9;
+      }
+    }
+  }
+
+  .section.level_1 > .section-header,
+  .section.level_1 > .section-contents > *,
+  .section.level_1[data-columns='2'] > .section-contents,
+  .section.level_1[data-columns='3'] > .section-contents,
+  .section.level_1[data-columns='4'] > .section-contents,
+  .section.level_1[data-columns='5'] > .section-contents,
+  .section.level_1[data-columns='6'] > .section-contents,
+  .bottom-content-navigation,
+  .authors-mailto-wrapper,
+  .module-header,
+  .bibliography,
+  .strip-start,
+  .strip-end,
+  .zebra > * {
+
+    max-width: 940px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    @media (max-width: 1020px) {
+      padding-left:36px;
+      padding-right:36px;
+      margin-left: 0px !important;
+      margin-right: 0px !important;
+    }
+    @media (max-width: 480px) {
+      padding-left:16px;
+      padding-right:16px;
+    }
+
+
+    &.full-width {
+      max-width: @full-width;
+      padding-left:0px;
+      padding-right:0px;
+    }
+    &.default-width {
+      max-width: @default-width;
+    }
+    &.lowest-width {
+      max-width: @lowest-width;
+    }
+    &.width-class-0 {
+      max-width: @width-class-0;
+    }
+    &.width-class-1 {
+      max-width: @width-class-1;
+    }
+    &.width-class-2 {
+      max-width: @width-class-2;
+    }
+    &.width-class-3 {
+      max-width: @width-class-3;
+    }
+    &.width-class-4 {
+      max-width: @width-class-4;
+    }
+    &.width-class-5 {
+      max-width: @width-class-5;
+    }
+    &.width-class-6 {
+      max-width: @width-class-6;
+    }
+    &.width-class-7 {
+      max-width: @width-class-7;
+    }
+    &.width-class-8 {
+      max-width: @width-class-8;
+    }
+    &.width-class-9 {
+      max-width: @width-class-9;
+    }
+    &.zebra {
+      background: @zebra-color-1;
+      max-width: @zebra-max-width;
+      margin: 0;
+    }
+  }
+
+  .authors-mailto-wrapper {
+    overflow: hidden;
+  }
+
+  .bottom-content-navigation {
+    //margin to padding for zebra
+    overflow: hidden;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 100px;
+    padding-bottom: 30px; //enlarged with col-main and reader-content paddings
+    // for zebra
+    float: none;
+  }
+
+  .strip-start {
+    padding-top: (@zebra-height - @space-D);
+
+    &.level_1 {
+      padding-top: (@zebra-height - @space-D);
+    }
+  }
+  .strip-end {
+    padding-top: @zebra-height;
+
+    &.level_1 {
+      padding-top: @zebra-height;
+    }
+  }
+
+  //.note-consider.exposed.zebra span,
+  .section.level_1 > .section-header.zebra > .title {
+    display: block;
+  }
+
+  .section.level_1 > .section-header {
+    padding-left: 36px;
+    @media (max-width: 1020px) {
+      padding-left: 72px;
+
+    }
+    @media (max-width: 480px) {
+      padding-left: 50px;
+
+    }
+  }
+
+  /*.note-consider.exposed.zebra > div {
+
+
+    background-color: #E8E0BB;
+
+  }*/
+
+  h2.section-header.zebra {
+    border-bottom: 0px;
+    padding-bottom: 0px;
+    .title {
+      padding-bottom: 12px;
+      border-bottom: 1px solid #d9d9d9;
+    }
+  }
+
+  .level_1:not(:first-child) {
+    margin-top: 0px; // 50 px moved to LABEL_1
+    /*.section-contents > *:first-child {
+      padding-top:50px;
+    }*/
+  }
+
+  .level_1 > .section-contents > *:last-child {
+    padding-bottom: 1px; //@space-D;
+
+  }
+
+  .zebra > .exposed {
+    margin: 0 0 0 0;
+  }
+
+  .exposed-wrapper {
+    padding-top: @space-D;
+  }
+
+  .reader-content {
+    .zebra .note, .zebra.note {
+      &-tip:not(.exposed), &-curiosity:not(.exposed), &-remember:not(.exposed), &-important:not(.exposed),
+      &-warning:not(.exposed), &-see-also:not(.exposed), &-consider:not(.exposed) {
+        margin: 0 0 0 0;
+        padding-top: @space-D;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .observation {
+    margin: 0 0 0 0;
+    padding-top: @space-D;
+    padding-bottom: 0;
+  }
+
+  .level_1 .section-contents {
+    .revisal, .effect {
+      .para {
+        padding-bottom: 1em;
+        padding-top: 0;
+      }
+    }
+  }
+
+  .student-work.zebra, .experiment.zebra, .command.zebra {
+    padding-top: @space-D;
+    padding-bottom: 0;
+  }
+
+  .zebra .crossword-exercise .crossword-table td {
+    &.cap, &.index, &.letter {
+      background-color: @zebra-color-1 !important;
+    }
+  }
+  .zebra .crossword-exercise .crossword-table tr.wrong td {
+    &.letter {
+      background-color: rgb(234, 184, 184) !important;
+    }
+  }
+
+
+  //.level_1 .section-without-header {
+  //  padding-bottom: 30px;
+  //}
+
+  [data-columns="1"] [data-width] {
+    //EPP-5799
+    float: none;
+  }
+
+  .command .note-tip .note-header {
+    padding-top: 16px;
+  }
+
+  .command, .student-work, .exercise  {
+    &.zebra {
+      padding-top: @space-D;
+    }
+
+  }
+
+  .zebra .vjs-poster {
+    background-color: @zebra-color-1;
+  }
+
+  .zebra.para-wrapper, .zebra.command-wrapper {
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+
+  .reader-content .foldable .foldable-header.section-without-header {
+    margin-bottom: 0px;
+  }
+
+  .exercise, .command, .student-work {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    & + * {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    & + & {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+  }
+
+  .exercise-wrapper, .command-wrapper, .student-work-wrapper {
+    padding-top: @space-D;
+    &.zebra {
+        padding-top: @space-D;
+    }
+  }
+
+  .exercise-wrapper + .exercise-wrapper, .command-wrapper + .command-wrapper, .student-work-wrapper + .student-work-wrapper {
+    padding-top: @space-B;
+  }
+
+  .strip-start {
+    & + .exercise-wrapper, & + .command-wrapper, & + .student-work-wrapper {
+      padding-top: @space-D;
+    }
+  }
+
+  .observation.zebra + .command-wrapper.zebra, .para-wrapper.zebra + .command-wrapper.zebra {
+    padding-top: @space-D;
+  }
+
+  .strip-start + .command-wrapper > .command {
+    margin-top: 0;
+  }
+
+  .reader-content .section-contents {
+      .womi-container, .womi-gallery, .table, .list {
+          margin-bottom: 0;
+      }
+
+      .list:last-child {
+          margin-bottom: 0 !important;
+      }
+  }
+
+  .reader-content .section-contents .womi-container.before-text,
+  .reader-content .section-contents .womi-gallery.before-text,
+  .reader-content .section-contents .table.before-text,
+  {
+      margin-bottom: @space-D;
+  }
+
+  .level_2 > .section-contents > .command > .command-contents > .note-tip,
+  .section-contents > .command-wrapper > .command > .command-contents > .note-tip {
+      margin: 32px 0;
+      padding: 32px 42px 42px;
+  }
+
+  .command-wrapper .command, .exercise-wrapper .exercise,  .student-work-wrapper .student-work {
+      margin-bottom: 0;
+      margin-top: 0;
+  }
+
+  .zebra .observation-contents, .zebra .experiment-contents {
+    div:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .section.foldable {
+    padding: 0;
+
+    .section-header {
+      padding-top: @space-B;
+    }
+  }
+
+  .note-curiosity.foldable + .command-wrapper {
+    padding-top: 0;
+  }
+
+  .reader-content .zebra h2.section-header {
+    margin-left: 40px;
+    text-indent: 0px;
+  }
+}
+
+/* zebra styles end */

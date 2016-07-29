@@ -1,0 +1,242 @@
+@distribution-font-size: 16px;
+@_title-page-user-type-color-bg: #ffffff;
+@_title-page-user-type-color: @kolor-motywu-ciemny;
+@_title-elements-color: @kolor-motywu-ciemny;
+
+#title-page {
+
+    .awesome-icon {
+        margin-bottom: -7px;
+        //        vertical-align: middle;
+    }
+
+    .awesome-icon-color {
+        fill: @kolor-motywu-ciemny;
+    }
+
+    h3 {
+        margin: 0;
+        color: @_title-elements-color;
+        font-family: @sansLight;
+    }
+
+    p {
+        margin: 10px 0;
+    }
+
+    .title-page-element {
+        margin-bottom: 5px;
+    }
+
+    .title-page-toggle-button {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 10px;
+        //background: @_title-elements-color;
+    }
+
+    .content {
+        margin: 0;
+        background: #fff;
+        display: block;
+        padding: 5px 0;
+        //border: 1px solid @_title-elements-color;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    .title-nav {
+        width: 100%;
+    }
+
+    .title-button {
+        border: 1px solid @_title-elements-color;
+        padding: 10px;
+        font-family: @sansLight;
+        color: @_title-elements-color;
+        margin: 16px 10px 30px 0;
+    }
+
+    .title-button:hover {
+        background: @_title-elements-color;
+        color: #fff;
+
+       .title-button-icon{
+           background-position: 0% 100%;
+       }
+    }
+
+    .title-button.blue {
+        background: @_title-elements-color;
+        color: #fff;
+        margin: 10px 0 0 0;
+
+        /*.awesome-icon-color {
+            fill: #fff;
+        }*/
+        .title-button-icon{
+           background-position: 0% 100%;
+       }
+
+    }
+
+    .title-button.blue:hover {
+        background: #fff;
+        color: @_title-elements-color;
+
+        /*.awesome-icon-color {
+            fill: @kolor-motywu-ciemny;
+        }*/
+        .title-button-icon{
+           background-position: 0% 0%;
+       }
+    }
+
+    .read-class {
+        float: right;
+
+        .title-button {
+        }
+
+        .blue {
+        }
+    }
+
+    .effect-of-education-list {
+        ul {
+            list-style: none;
+        }
+
+        li {
+            padding: 0;
+            margin: 0 0 10px 0;
+            font-size: 90%;
+
+            div {
+                margin: 0 5px 0 0;
+            }
+        }
+    }
+}
+
+@media (max-width: @mobileBreakpoint) {
+    .classic-version {
+        display: none;
+    }
+
+    #toggle-legend {
+        width: 100%;
+    }
+}
+
+// When javascript is enabled, don't show author list cause user can click on button to expend It
+.js .title-page .authors-list div.content {
+    //display: none;
+}
+
+.title-page-user-type {
+    float: left;
+    padding-left: 0px;
+    margin-left: 0px;
+
+    ul {
+        list-style: none;
+        margin-left: 0px;
+        padding: 10px;
+        padding-left: 0px;
+    }
+
+    li {
+        text-transform: uppercase;
+        font-size: @distribution-font-size;
+        margin-left: 0px !important;
+        display: inline-block;
+    }
+
+    a, span {
+        border: 1px solid @_title-page-user-type-color;
+        background-color: @_title-page-user-type-color-bg;
+        text-decoration: none;
+        color: @_title-page-user-type-color;
+        padding: 10px;
+        margin-right: 10px;
+        line-height: 300%;
+    }
+
+    span {
+        cursor: default;
+        .color-change;
+    }
+
+    .color-change {
+        color: @_title-page-user-type-color-bg !important;
+        background-color: @_title-page-user-type-color;
+        text-decoration: none;
+    }
+
+    a:link, a:visited {
+        color: @_title-page-user-type-color !important;
+        background-color: @_title-page-user-type-color-bg;
+        text-decoration: none;
+    }
+
+    a:hover, a:active {
+        .color-change;
+    }
+
+}
+
+@media all and (max-width: 600px) {
+    .title-page-user-type {
+        li {
+            // margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.title-page-element {
+
+    ul {
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    li {
+        margin: 0px;
+        margin-left: 0 !important;
+        padding: 0px;
+        line-height: 24px;
+
+        li {
+            margin-left: 28px !important;
+        }
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .title {
+        color: @_title-page-user-type-color !important;
+        font-size: 110%;
+    }
+
+    .chapter-link {
+        color: #34383c !important;
+        font-family: @sansRegular;
+        font-size: 115%;
+        line-height: 30px;
+    }
+}
+
+.title-page-toggle-button {
+    h3 {
+        span {
+            margin-left: 5px;
+        }
+    }
+}

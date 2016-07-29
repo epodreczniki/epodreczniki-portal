@@ -1,0 +1,12 @@
+{
+	"name": "fajny filtr",
+	"filter": {
+		"operator": "and",
+		"operands": [ {
+			"field": "created",
+			"value": ["2014-05-12T00:00:00+00:00","2015-05-12T00:00:00+00:00"],
+			"mode": "range",
+			"fixed": true
+		}]
+	}
+}

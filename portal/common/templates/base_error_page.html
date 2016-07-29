@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load compress staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <title>{% block error_page_title %}Błąd{% endblock %} • epodreczniki.pl</title>
+    <link rel="shortcut icon" href="{% static "basics/root/favicon.ico" %}">
+
+    <link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300&subset=latin-ext">
+
+    {% compress css inline %}
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                font-family: Open Sans, sans-serif;
+            }
+
+            body {
+                background-color: #fff;
+            }
+
+            h1 {
+                color: #666;
+                font-size: 64px;
+                font-weight: 300;
+                line-height: 125%;
+                word-wrap: break-word;
+            }
+
+            p {
+                color: #777;
+                line-height: 125%;
+            }
+
+            span.emp {
+                font-weight: bold;
+            }
+
+            .error {
+                padding: 48px 64px 64px 64px;
+                background-color: #efefef;
+            }
+
+            @media (max-width: 480px) {
+                h1 {
+                    font-size: 28px;
+                }
+
+                p {
+                    font-size: 12px;
+                }
+            }
+        </style>
+    {% endcompress %}
+</head>
+<body>
+<div class="error">
+    <h1>{% block error_title %}{% endblock %}</h1>
+
+    <p>{% block error_content %}{% endblock %}</p>
+    {% block error_more %}{% endblock %}
+</div>
+</body>
+</html>

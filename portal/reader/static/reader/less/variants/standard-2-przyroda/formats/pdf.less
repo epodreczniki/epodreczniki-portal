@@ -1,0 +1,380 @@
+@import "../../common-portal";
+@import "../biography-and-event";
+@import "../command";
+@import "../concept-and-definition";
+@import "../effect-and-revisal";
+@import "../experiment";
+// @import "../foldable";
+@import "../gallery";
+@import "../headers";
+@import "../icons";
+@import "../lists";
+@import "../notes";
+@import "../observation";
+@import "../tables";
+@import "../womi-container";
+@import "../student-work";
+//@import "../../../elements/stripes"; //ignore zebra
+//@import "../stripes";
+
+//TODO move it to common pdf less file: portal/reader/static/reader/less/formats/pdf/pdf.less?
+/* Headers margin fixed */
+.reader-content .biography .biography-header,
+.reader-content .command .command-header,
+.reader-content .definition .definition-header,
+.reader-content .effect .effect-header,
+.reader-content .exercise .exercise-header,
+.reader-content .exercise.on-paper .exercise-header,
+.reader-content .prerequisite .prerequisite-header,
+.reader-content .revisal .revisal-header,
+.reader-content .rule .rule-header,
+.reader-content .experiment .experiment-header .title,
+.reader-content .concept .concept-header .title,
+.reader-content .observation .observation-header .title,
+.reader-content .quote .quote-header .author,
+.reader-content .student-work .student-work-header,
+.reader-content .student-work.exercise-set .student-work-header,
+.reader-content .note-tip .note-header,
+.reader-content .note-curiosity .note-header,
+.reader-content .note-remember .note-header,
+.reader-content .note-important .note-header,
+.reader-content .note-warning .note-headerl,
+.reader-content .note-see-also .note-header,
+.reader-content .command .command-contents .note-tip .note-header {
+  padding-bottom: 0;
+  margin-bottom: 6px;
+}
+
+.reader-content {
+
+  .command,
+  .exercise,
+  .note-tip,
+  .command .command-contents .note-tip {
+    padding: 22px;
+  }
+  .command .command-contents .note-tip {
+    margin-bottom: 0;
+  }
+
+  .section .section-header + .section-contents .definition:first-child,
+  .section .section-header + .section-contents .para:first-child + .definition {
+    padding-top: 0;
+  }
+}
+
+.exercise-contents .qr-code img {
+	margin-right: 100px;
+	margin-top: 34px;
+	width: 66px !important;
+    height: 66px !important;
+}
+
+.student-work,
+.student-work.homework,
+.reader-content .command,
+.reader-content .exercise {
+  padding: 10px !important;
+  border-radius: 8px !important;
+}
+
+.reader-content .exercise-set .exercise {
+  padding-right: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.reader-content .para > .womi-movie,
+.reader-content .para > .womi-interactive,
+.reader-content .para > .womi-audio,
+.reader-content .section-contents > .womi-movie,
+.reader-content .section-contents > .womi-interactive,
+.reader-content .section-contents > .womi-audio {
+  padding: 10px 10px 60px 10px !important;
+  border: 1px solid #D9D9D9 !important;
+  border-radius: 8px !important;
+}
+
+.reader-content .experiment .para > .womi-movie,
+.reader-content .experiment .para > .womi-interactive,
+.reader-content .experiment .para > .womi-audio {
+  border: none !important;
+}
+
+.reader-content .womi-container .womi-caption .womi-full-title {
+  display: none;
+}
+
+/* Womi gallery legend - formating */
+.gallery-legend .womi-caption,
+.gallery-legend .womi-associated-text {
+  display: inline;
+  font-size: 14px;
+  color: #353535;// EPP-7448  #575757;
+}
+
+.reader-content .womi-gallery .womi-gallery-contents {
+  font-family: "open_sansregular";
+  color: #353535;// EPP-7448  #575757;
+}
+
+/* Womi out of gallery */
+.womi-associated-text {
+    font-size: 14px;
+    color: #353535;// EPP-7448  #575757;
+}
+
+.pdf > .womi-caption,
+.pdf > .womi-caption .womi-associated-text {
+  text-align: center !important;
+  max-width: none;
+}
+
+.pdf > .womi-caption .womi-link {
+  text-align: left !important;
+}
+
+/* Icons for expanding content and content for teachers */
+.section-header .title .content-status-expanding {
+  background-image: url('../../../img/awesome-icons/star.svg');
+  background-repeat: no-repeat;
+  width: 19px;
+  height: 19px;
+  display: inline-block;
+  float: right;
+  margin-top: 14px;
+  margin-right: 10px;
+}
+
+.label-status-content-R,
+.label-status-content-N {
+  background-image: url('../../../img/awesome-icons/star.svg');
+  background-repeat: no-repeat;
+  width: 19px;
+  height: 19px;
+  display: inline-block;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.label-status-content-N {
+  background-image: url('../../../img/awesome-icons/university-pdf.svg');
+}
+
+.reader-content h1 {
+    font-size: 30px;
+}
+
+.reader-content h2 {
+    font-size: 26px;
+}
+
+.reader-content h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.reader-content h4 .title {
+  font-size: 22px;
+}
+
+.reader-content .subcollection-title + .module-header {
+    margin-top: 30px !important;
+    margin-bottom: 0px !important;
+}
+
+.lead {
+    margin-top: 20px;
+}
+
+.reader-content .section-contents .exercise .womi-container,
+.reader-content .section-contents .command .womi-container {
+    margin-bottom: 0px !important;
+}
+
+.reader-content .exercise .womi-container,
+.reader-content .command .womi-container {
+    border: 0 !important;
+}
+
+.reader-content .section-contents .exercise.combined-numbering .qr-code {
+/*.reader-content .section-contents .command .qr-code {*/
+  margin-top: -100px;
+}
+
+.exercise-contents .problem .qr-code img {
+  margin-top: 14px;
+}
+
+.exercise-contents .problem .womi-container + .qr-code {
+  margin-top: -53px;
+}
+
+.reader-content .section-contents .exercise .problem-contents {
+    
+    .womi-interactive,
+    .womi-audio,
+    .womi-movie {
+        margin-bottom: -45px !important;
+    }
+}
+
+.reader-content .exercise .problem p.para {
+  margin-bottom: 25px;
+}
+
+.exercise .exercise-contents .commentary, .exercise .exercise-contents .note-tip {
+    margin: 0px 0px 10px;
+    padding: 8px 20px 10px;
+}
+
+.exercise .exercise-contents .commentary-contents .para,
+.exercise .exercise-contents .solution-contents .para,
+.exercise .exercise-contents .problem-contents .para {
+    margin-top: 12px;
+}
+
+.qmlitem .question .section-contents .para {
+    margin-bottom: 0px;
+}
+
+.qmlitem .question {
+    margin-bottom: 2px;
+}
+
+.reader-content .answer {
+    padding-left: 4px;
+}
+
+.reader-content ul li {
+    margin-left: 12px;
+}
+
+.reader-content h2.section-header {
+    margin-left: 0px;
+    text-indent: 0px;
+    font-size: 26px;
+}
+
+/* Answers subcollection */
+.reader-content .main-subcollection-answer h4 .title {
+    font-size: 14px;
+    line-height: 16px;
+    font-family: "open_sanssemibold";
+}
+
+.reader-content .main-subcollection-answer h4 {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+.reader-content .main-subcollection-answer h3 {
+    margin-bottom: 0px;
+}
+
+.reader-content  .main-subcollection-answer .level_2 h2.section-header,
+.reader-content  .main-subcollection-answer .level_2 h3.section-header,
+.reader-content  .main-subcollection-answer .level_2 h4.section-header {
+    margin-top: 0px;
+    line-height: 16px;
+}
+
+.reader-content  .main-subcollection-answer p.para {
+    margin-top: 0px !important;
+}
+
+.exercise .image-container,
+.exercise .womi-associated-text,
+.exercise .womi-associated-text > * {
+  page-break-before: auto;
+}
+
+.exercise-contents .commentary .newline + .womi-container {
+  page-break-before: auto;
+}
+
+.reader-content h4.womi-gallery-header .title {
+    font-size: 14px;
+}
+
+/* Scaling too wide tables */
+.reader-content div.table {
+  transform: scale(0.7);
+  margin-left: -15%;
+}
+
+/* Code layout fixes */
+.reader-content div.code pre.code-contents code span.newline {
+    display: none;
+}
+
+.reader-content div.code pre.code-contents code {
+    line-height: 17px;
+}
+
+.code {
+    padding: 4px 4px;
+}
+
+.reader-content div.code pre.code-contents {
+    margin: 4px 0px;
+}
+
+/* Too big images rescaling */
+.reader-content p.para > .womi-container .image-container img {
+  max-height: 450px !important;
+  width: auto;
+}
+
+/* Page breaking in list with para and womi */
+.reader-content .list ul li p + .womi-container {
+    page-break-before: avoid;
+}
+
+.reader-content .list ul li {
+    page-break-inside: avoid;
+}
+
+.reader-content h3.section-header {
+    margin-top: 16px;
+}
+
+/* Margin for womi in list */
+.reader-content .list li .womi-container.after-text {
+  margin-bottom: 20px !important;
+}
+
+.reader-content .list li .womi-container.after-text + .qr-code {
+    margin-top: -100px;
+}
+
+.exercise .womi-container.womi-interactive .womi-caption {
+    margin-bottom: 50px;
+}
+
+.exercise .womi-interactive + .qr-code {
+    margin-top: -100px;
+}
+
+.exercise {
+    margin-top: 24px;
+}
+
+.reader-content .chapter.about_module div.table {
+  transform: none;
+  margin-left: 0;
+}
+
+.exercise.combined-numbering .womi-container.womi-interactive .womi-caption {
+    margin-bottom: 0px;
+}
+
+.student-work .student-work-header .label .numbering-prefix,
+.student-work.homework .student-work-header .label .numbering-prefix {
+  display: inline;
+}
+
+/* Avoid page breake after header */
+
+.reader-content p.para > .newline + .womi-container {
+    page-break-before: avoid;
+}

@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% load compress staticfiles extensions common_ext %}
+
+{% block title %}{% collection_specific_translate presentation.content 'Baw się i ucz' %} -
+    {{ module_name }}{% endblock %}
+{% block head %}
+    {% compress css %}
+        <link type="text/less" rel="stylesheet"
+              href="{{ STATIC_URL }}reader/less/autonomic_womi/variants/autonomic-default.less">
+    {% endcompress %}
+    <base id="base" href="{{ base_url }}"
+          data-module-id="{{ module.md_content_id }}"
+          data-module-version="{{ module.md_version }}"
+          data-collection-id="{{ presentation.content.md_content_id }}"
+          data-collection-version="{{ presentation.content.md_version }}"
+          data-collection-variant="{{ presentation.content.variant }}"
+          data-womi-embed-pattern="{% womi_embed_pattern config %}"
+          data-pnl-header="{% collection_specific_translate presentation.content 'Baw się i ucz' %}">
+{% endblock %}
+{% block content %}
+    {% include "common/snippets/content_metadata.html" with content=presentation.content %}
+    <header id="main-header">
+        <div id="topbar">
+            <div class="topbar-inner">
+               <nav class="left-navigation">
+                <a href="{% begin_start_page_url %}" class="logo"></a>
+                {% comment %}<div class="title">{{ module_name }}</div>{% endcomment %}
+                <a class="about" href="{{ presentation.detail_url }}" id="collection_about">
+                    <span class="icon-20"></span>
+                    <span class="icon-title">O e-podręczniku</span>
+                </a>
+               </nav>
+                <nav class="right-navigation">
+                    {% if not presentation.config.is_preview %}
+                        <button class="search"><span class="icon-20"></span><span
+                            class="icon-title">Szukaj</span></button>
+                    {% endif %}
+                    <button class="title" id="usable-close" style="display:none">Zamknij</button>
+                    {#                <div style="display: {% if EPO_READER_AUTH_ENABLE %}block{% else %}none{% endif %}">#}
+                    {#                <a class="profile" style="display: none" href=""></a>#}
+                    {#                <a class="login" href="{% url_absolute 'auth.views.epo_login' %}" style="display: none"#}
+                    {#                                 data-login-view="{% url_absolute 'auth.views.epo_login' %}">#}
+                    {#                    <span class="icon-20"></span><span class="icon-title">Zaloguj</span>#}
+                    {#                </a>#}
+                    {#                </div>#}
+                    {#                    <button class="settings"><span class="icon-20"></span><span#}
+                    {#                            class="icon-title">Ustawienia</span></button>#}
+                    {#                    <ul class="top-dropdown is-hidden">#}
+                    {#                        <li>#}
+                    {#                            <div class="control-btns">#}
+                    {#                                <button id="core_curriculum" class="btn-in-dropdown">Podstawa programowa</button>#}
+                    {#                                <button id="license_switch" class="btn-in-dropdown">Licencje dla obiektów</button>#}
+                    {#                                <button id="license" class="btn-in-dropdown">Licencje</button>#}
+                    {#                                <button id="contact_form" class="btn-in-dropdown">Kontakt</button>#}
+                    {#                            </div>#}
+                    {#                            <button id="close-top-dropdown" class="btn-in-dropdown">x</button>#}
+                    {#                        </li>#}
+                    {#                    </ul>#}
+                </nav>
+            </div>
+        </div>
+        <div id="contentbar" class="underTopbar">
+            <div class="contentbar-inner">
+                <nav class="left-navigation">
+                    <button class="toc-map-toggle" id="pnl-button"><span class="icon-20"></span>Mapa</button>
+                    <a class="back-off-play-and-learn" href="{{ back_url }}"><span class="icon-20"></span>Czytaj</a>
+                    <div class="title-page-num"></div>
+                </nav>
+                <nav class="right-navigation">
+
+                </nav>
+            </div>
+        </div>
+        <div id="header-image">
+        </div>
+    </header>
+
+
+    {#<div id="toolbar" style="">#}
+    {#    <div id="centered">#}
+    {#        <img class="logo-img" src="{{ STATIC_URL }}front/img/gfx/logo.svg">#}
+    {#        <a id="read-btn" href="{{ back_url }}"><span>Czytaj</span></a>#}
+    {#        <span class="txt">{{ module_name }}</span>#}
+    {##}
+    {#    </div>#}
+    {#</div>#}
+    <div id="content-frame" style="">
+        <iframe style="width: 100%; height: 100%; border: 0; margin: 0; padding: 0" allowfullscreen="allowfullscreen"
+                data-src="{{ data.womi_url }}{{ data.mainFile }}"></iframe>
+    </div>
+
+    {% if not presentation.collection.is_source %}
+        <div class="hidden-div">
+            {% if not presentation.collection.is_source and presentation.collection_toc_womi %}
+                {% with toc_womi_path=presentation.collection_toc_womi|womi_file_url:'index.html' %}
+                    <div id="pnl-map" style="display:none; width: 100%; height: 100%">
+                         <iframe data-src="{{ toc_womi_path|make_schemeless }}" class="toc-womi-iframe"></iframe>
+                    </div>
+                {% endwith %}
+            {% endif %}
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block scripts_bottom %}
+    {% compress js %}
+
+        <script type="text/requirejs" src="{{ STATIC_URL }}reader/js/build/autonomic_womi.js"></script>
+    {% endcompress %}
+
+{% endblock %}

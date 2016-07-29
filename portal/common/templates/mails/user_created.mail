@@ -1,0 +1,6 @@
+Użytkownik został utworzony!
+
+Użytkownik: {{ user.username }}
+Hasło: {{ raw_password }}
+
+Platforma {{ instance }}

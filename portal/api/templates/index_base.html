@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load compress staticfiles cache i18n trackers %}
+<html>
+
+<head>
+
+    <title>
+        {{ title }}
+    </title>
+
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}api/less/bootstrap.less">
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}api/css/prettify/prettify.css">
+    {% endcompress %}
+
+    {% compress js %}
+        <script src="{{ STATIC_URL }}common/js/libs/jquery-2.0.3.min.js"></script>
+        <script src="{{ STATIC_URL }}api/js/libs/bootstrap.min.js"></script>
+        <script src="{{ STATIC_URL }}api/js/utils.js"></script>
+        <script src="{{ STATIC_URL }}api/js/libs/prettify/prettify.js"></script>
+    {% endcompress %}
+
+    {% tracker %}
+
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+            <!-- a class="navbar-brand" href="#">E-podręczniki developers</a -->
+            <a class="navbar-brand" href="/index/">
+                dev.epodreczniki.pl
+                <sup>
+                    <small>BETA</small>
+                </sup>
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/home/">Home</a></li>
+                <li><a href="/index/">API Methods Index</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">API methods<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        {% for api in docs %}
+                            {% if api.default_version %}
+                                <li><a href="/details/?model={{ api.id_hash }}">{{ api.path }}  v{{ api.version }}</a> </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        {% for page in pages|dictsort:"title" %}
+                            {% if page.url != '/details/' %}
+                            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+    <div class="container">
+        <div class="row well">
+            <p style="font-style:italic">
+                version 2.1: some methods were updated<br/>
+                API has been slightly modified due to introduction of the new features. Please review your codebase.</p>
+            {% block title %}
+            <h1 id="title">{{ title }}</h1>
+            {% endblock %}
+        </div>
+
+        <div class="row">
+            {% block main_page %}
+                <div class="col-md-8">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+                <div class="col-md-4">
+                    {% block right_bar %}{% endblock %}
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+.reader-content {
+    .observation {
+        border-left: 2px solid #FFDE40;
+        padding: 0 32px;
+
+        &.no-title {
+            .observation-header {
+                .label {
+                    left: 58px;
+                    background-image: url('../../../img/new-icons/variants/przyroda/obserwacja.svg');
+                }
+            }
+        }
+
+        .observation-header {
+            padding-left: 60px;
+            text-indent: -55px;
+            font-family: @sansSemiBold;
+
+            &.warning {
+                padding-left: 58px;
+                text-indent: -46px;
+            }
+        }
+
+        .observation-contents {
+            margin-left: 58px;
+
+            .objective {
+                background-color: #FFDE40;
+                font-family: @sansBold;
+                font-size: 16px;
+
+                .objective-header {
+                    font-family: @sansBold;
+                    text-transform: uppercase;
+                }
+
+                .objective-contents {
+                    font-family: @sansBold;
+                }
+            }
+
+            .foldable {
+                .foldable-header {
+                    font-family: @sansSemiBold;
+                    font-size: 16px;
+                    text-transform: uppercase;
+                }
+            }
+
+            .note-header {
+                .label {
+                    background-image: none;
+                    color: #bf4f4f;
+                    position: relative;
+//                    right: 12px;
+                }
+            }
+
+            .note-contents {
+                padding: 0 0 24px;
+            }
+        }
+    }
+}

@@ -1,0 +1,44 @@
+.reader-content {
+    .exposed { // Treści wyróżnione
+        padding: @space-D;
+        background-color: #E8E0BB;
+
+        .command-header,
+        .concept-header,
+        .definition-header,
+        .exercise-header,
+        .note-header,
+        .rule-header,
+        .student-work-header {
+            margin: 0;
+            padding: 0 0 @space-B;
+            border-bottom: none;
+        }
+
+        .student-work-contents {
+            .command {
+                margin: 0;
+                border: none;
+                padding: 0 24px 16px;
+            }
+        }
+
+        .womi-exercise-container {
+            .exercise-content {
+             .answer-list {
+                 li {
+                     border-top: none;
+                    }
+                }
+            }
+
+            .exercise-buttons {
+                border-top: none;
+            }
+        }
+
+        .note-contents {
+            padding-bottom: @space-B;
+        }
+    }
+}

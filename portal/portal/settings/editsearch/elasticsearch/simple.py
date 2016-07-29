@@ -1,0 +1,4 @@
+EPO_EDITSEARCH_HAYSTACK = {
+    'IP': '192.168.1.54',
+    'PORT': '9200',
+}

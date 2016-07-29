@@ -1,0 +1,142 @@
+{% extends "begin/base.html" %}
+{% load begin_tags wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+    {% include "begin/includes/page_header.html" with page=self request=request only %}
+
+    <div class="content-wrapper page-content-wrapper clearfix">
+
+        <!-- BEGIN .main-content -->
+        <div class="main-content page-content">
+
+            <div class="inner-content-wrapper">
+
+
+                <ul class="event-list">
+
+
+                    <!-- BEGIN .event-wrapper -->
+                    <li class="event type-event status-publish has-post-thumbnail hentry event-wrapper event-full event-single clearfix">
+
+                        <div class="event-date">
+                            <div class="event-m">{{ self.date_from|date:"N" }}</div>
+                            <div class="event-d">{{ self.date_from|date:"d" }}</div>
+                        </div>
+
+                        <div class="event-info">
+
+                            <div class="event-meta">
+
+                                <p><strong>Data: </strong>{{ self.date_from }}{% if self.date_to %} do
+                                    {{ self.date_to }}{% endif %}
+                                </p>
+
+                                <p><strong>Czas: </strong>{% if self.time_from %}{{ self.time_from|time }}{% endif %}
+                                    {% if self.time_to %} do {{ self.time_to|time }}{% endif %}</p>
+
+                                <p><strong>Miejsce: </strong>{{ self.location }}</p>
+
+                                {% if self.audience %}
+                                    <p><strong>Widownia: </strong>
+                                    {# From EVENT_AUDIENCE_CHOICES in models.py #}
+                                        {{ self.get_audience_display }}</p>
+                                {% endif %}
+                                {% if self.cost and self.cost != '0' %}
+                                    <p>Koszt: {{ self.cost|safe }}</p>
+                                {% endif %}
+
+                                {% if self.signup_link %}
+                                    <p>Zapisz się: <a href="{{ self.signup_link }}">{{ self.signup_link }}</a></p>
+                                {% endif %}
+
+                                <p>
+                                    <a class='calendar' href="{{ self.url }}?format=ical">
+                                        <strong>Dodaj do kalendarza</strong>
+                                    </a>
+                                </p>
+                            </div>
+
+                            {% if self.feed_image %}
+                                {% image self.feed_image width-650 as feed_img %}
+                            <img src="{{ feed_img.url }}" alt="" class="event-image">
+
+
+                            <div style="height: 30px;"></div>
+                            {% endif %}
+                            {% include "begin/includes/body.html" with body=self.body only %}
+                        </div>
+
+                        <!-- END .event-wrapper -->
+                    </li>
+
+
+                </ul>
+
+                <!-- END .inner-content-wrapper -->
+            </div>
+
+        </div>
+        {% include "begin/includes/sidebar.html" with page=self side="right" %}
+    </div>
+
+    {#<div class="well">#}
+    {#    <p><strong>#}
+    {#        {{ self.date_from }}{% if self.date_to %} to {{ self.date_to }}{% endif %}#}
+    {#        {% if self.time_from %}{{ self.time_from|time }}{% endif %}{% if self.time_to %} to#}
+    {#            {{ self.time_to|time }}{% endif %}#}
+    {#    </strong></p>#}
+    {#    {% if self.location %}<p>Location: {{ self.location }}</p>{% endif %}#}
+    {#    {% if self.audience %}#}
+    {#        <p>Audience:#}
+    {# From EVENT_AUDIENCE_CHOICES in models.py #}
+    {#            {{ self.get_audience_display }}</p>#}
+    {#    {% endif %}#}
+    {#    {% if self.cost %}#}
+    {#        <p>Cost: {{ self.cost|safe }}</p>#}
+    {#    {% endif %}#}
+    {##}
+    {#    {% if self.signup_link %}#}
+    {#        <p>Sign up: <a href="{{ self.signup_link }}">{{ self.signup_link }}</a></p>#}
+    {#    {% endif %}#}
+    {##}
+    {#    <p>#}
+    {#        <a class='calendar' href="{{ self.url }}?format=ical">#}
+    {#            Add to calendar#}
+    {#        </a>#}
+    {#    </p>#}
+    {#</div>#}
+
+    {#{% include "begin/includes/carousel.html" with carousel_items=self.carousel_items.all only %}#}
+    {##}
+    {#{% include "begin/includes/body.html" with body=self.body only %}#}
+    {##}
+    {#{% with self.speakers.all as speakers %}#}
+    {#    {% if speakers %}#}
+    {#        <div class="page-header"><h3>Speakers</h3></div>#}
+    {#        {% for speaker in speakers %}#}
+    {#            {% cycle '<div class="row">' '' '' %} {# Open row div before first speaker then every 3 loops #}
+    {#            <div class="col-sm-4">#}
+    {##}
+    {#                {% if speaker.link %}#}
+    {#                    <a href="{{ speaker.link }}">#}
+    {#                {% endif %}#}
+    {##}
+    {# Speaker name_display fields concatenates first_name and last_name fields #}
+    {#                <h4>{{ speaker.name_display }}</h4>#}
+    {#                {% if speaker.image %}#}
+    {#                    <div class="image">{% image speaker.image width-200 %}</div>#}
+    {#                {% endif %}#}
+    {##}
+    {#                {% if speaker.link %}#}
+    {#                    </a>#}
+    {#                {% endif %}#}
+    {#            </div>#}
+    {#            {% cycle '' '' '</div>' %} {# Close row div before every 3rd speaker #}
+    {#        {% endfor %}#}
+    {#        {% if not speakers|length|divisibleby:'3' %}</div>{% endif %}#}
+    {# Last close of row div if speakers list not exactly divisble by 3 #}
+    {#    {% endif %}#}
+    {#{% endwith %}#}
+
+
+{% endblock %}

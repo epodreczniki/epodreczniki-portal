@@ -1,0 +1,48 @@
+@darkGrayTextColor: #56544d;
+@lightGrayBackgroundColor: #f4f4f4;
+
+//colors and other variables now not only for the dashboard - thus moved here
+@dashboard-whitespace: 100px;
+@dashboard-border-radius: 3px;
+@dashboard-lightgray: #f4f4f4;
+@dashboard-mediumgray: #c8c7c7;
+@dashboard-simpleview-gray: #dddddd;
+@dashboard-advancedview-gray: #c6c6c7;
+@dashboard-create-objects-border-gray: #c0c0c0;
+@dashboard-navy: #585fbc;
+
+* {
+    font-family: open_sansregular, "Open Sans", sans-serif;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    font-family: open_sansregular, "Open Sans", sans-serif;
+    text-rendering: optimizeLegibility;
+    color: @darkGrayTextColor;
+}
+
+body {
+    background-color: @lightGrayBackgroundColor;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-width: 1200px;
+}
+
+a, a:link, a:visited, a:hover {
+    text-decoration: none;
+    color: @darkGrayTextColor;
+    cursor: pointer;
+}
+
+.icon {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+}
+
+.clearfix {
+    clear: both;
+}

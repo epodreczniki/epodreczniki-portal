@@ -1,0 +1,205 @@
+/* Styles for teachers section on edit profile page (common rules are in profile-edit.less) */
+@import "profile-edit.less";
+
+/* Teachers section */
+.teachers-list-edit, .teachers-list, .teachers-add {
+    .flex-display();
+    .flex-wrap(row, wrap);
+    .edit-profile-full-width();
+}
+
+.teachers {
+    .teachers-list-edit {
+        max-width: calc(@editProfileElementMaxWidth~" + 7px");
+    }
+}
+
+/* Add subject */
+.add-subject {
+    .flex-display();
+    .flex-keep-size();
+    .edit-profile-full-width();
+
+    margin: 23px 0 0 0;
+    font-family: open_sanssemibold, sans-serif;
+    font-size: @bigFontSize;
+}
+
+.add-subject-button {
+    display: inline-block;
+    width: 170px;
+    text-align: center;
+    line-height: 34px;
+    margin: 0 0 30px 0;
+    position: relative;
+    font-family: open_sanssemibold, sans-serif;
+    font-size: 17px;
+    line-height: 34px;
+    background-color: @profile-blue;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.add-subject-sign {
+    line-height: 34px;
+    font-size: 18px;
+    font-family: open_sanssemibold, sans-serif;
+    margin: 0 10px 0 0;
+    display: inline-block;
+    color: @profile-blue;
+    cursor: pointer;
+}
+
+/* New teacher */
+
+.new-teacher {
+    .edit-profile-full-width();
+    .flex-display();
+    -ms-flex-align: center;
+    .flex-align(center);
+    .flex-wrap(row, wrap);
+    margin-bottom: 25px;
+}
+
+.level-select-box {
+    text-align: left;
+    border: solid 1px #dcdcdc;
+    background-color: @disabled-field-color;
+    margin: 0 0 0 5px;
+    padding: 20px 20px 25px 20px;
+
+    .edit-profile-full-width();
+    .flex-display();
+    -ms-flex-pack: justify;
+    .flex-justify(space-between);
+    -ms-flex-align: start;
+    .flex-align(flex-start);
+
+    .profile-dropdown {
+        .edit-profile-full-width();
+        margin: 0 !important;
+
+        select {
+            max-width: 270px;
+            margin-top: 35px;
+            height: 29px;
+            line-height: 29px;
+
+            &:first-of-type {
+                margin-top: 0;
+            }
+        }
+
+        .new-teacher-email {
+            margin: 35px 0 0 0;
+            .edit-profile-full-width();
+            max-width: 418px;
+            background-image: url("../img/profile/triangle-grey.png");
+            background-repeat: no-repeat;
+            background-position: 100% 100%;
+            background-size: 15px 14px;
+        }
+
+    }
+
+    .close-level-select, .close-edit-teacher {
+        font-family: open_sanssemibold, sans-serif;
+        font-size: 17px;
+        color: #707070;
+        margin: -10px 0px 0px 0px;
+        float: right;
+        cursor: pointer;
+    }
+}
+
+/* Teacher buttons box */
+.teacher-buttons-box {
+    .flex-display();
+    .level-select-box();
+    -ms-flex-pack: center;
+    .flex-justify(center);
+    border: solid 1px #dcdcdc;
+    border-top: none;
+    background-color: @disabled-field-color;
+    margin: 0 0 0px 5px;
+    //padding: 18px 0;
+}
+
+.add-teacher-button {
+    margin: 0;
+}
+
+/* Teachers list and teacher */
+.teacher {
+    .edit-profile-full-width();
+    margin: 0 0 35px 0;
+
+    .teacher-view {
+        .edit-profile-full-width();
+        .flex-display();
+        .flex-wrap(row, nowrap);
+        -ms-flex-padding: justify; ;
+        .flex-justify(space-between);
+        margin-bottom: 13px;
+
+        .teacher-info-label {
+            text-transform: uppercase;
+            margin-left: 5px;
+            font-size: 17px;
+        }
+
+    }
+
+    .field-value {
+        .edit-profile-full-width();
+        max-width: @editProfileFieldMaxWidth;
+        margin: 0 0 0 5px;
+    }
+
+    @media all and (max-width: @profileMediumSize) {
+        .field-value, .disabled-field {
+            max-width: calc(~"100% - 27px");
+        }
+    }
+}
+
+/* Edit teacher */
+
+.edit-teacher {
+    .edit-profile-full-width();
+
+    .edit-level-select-box {
+        .edit-profile-full-width();
+        .level-select-box();
+        max-width: calc(@editProfileElementMaxWidth~" - 47px"); //two paddings, 5px margin and borders
+    }
+
+    @media all and (max-width: @profileLayoutMedium) {
+        .edit-level-select-box, .teacher-edit-buttons-box {
+            max-width: calc(~"100% - 47px");
+        }
+    }
+}
+
+.teacher-edit-buttons-box {
+    .teacher-buttons-box();
+    max-width: calc(@editProfileElementMaxWidth~" - 47px"); //two paddings, 5px margin and borders
+
+    @media all and (max-width: @profileLayoutMedium) {
+        .flex-wrap(row, wrap);
+    }
+}
+
+.remove-teacher-button, .add-teacher-button, .save-teacher-button {
+    .edit-button();
+    width: 164px;
+}
+
+.remove-teacher-button {
+    background-color: #9C595C;
+    margin: 0 27px 0 0;
+
+    @media all and (max-width: @profileLayoutMedium) {
+            margin: 0 0 27px 0;
+    }
+}

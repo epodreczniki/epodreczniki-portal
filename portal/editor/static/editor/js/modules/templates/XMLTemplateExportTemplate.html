@@ -1,0 +1,34 @@
+<module>
+    <type><%= moduleType %></type>
+    <tiled>
+        <templateRef><%= templateRef %></templateRef>
+        <% _.each(tiles, function(tile) { %>
+        <section>
+            <role><%= tile.role %></role>
+            <tileRef><%= tile.name %></tileRef>
+        </section>
+        <% }); %>
+    </tiled>
+</module>
+
+
+<template>
+    <name><%= moduleType %></name>
+    <key><%= templateRef %></key>
+
+    <gridWidth><%= width %></gridWidth>
+
+    <gridHeight><%= height %></gridHeight>
+
+    <% _.each(tiles, function(tile) { %>
+    <tile>
+        <name><%= tile.role %></name>
+        <key><%= tile.name %></key>
+        <top><%= tile.top %></top>
+        <left><%= tile.left %></left>
+        <height><%= tile.height %></height>
+        <width><%= tile.width %></width>
+    </tile>
+    <% }); %>
+
+</template>

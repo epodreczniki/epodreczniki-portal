@@ -1,0 +1,44 @@
+.reader-content {
+    a[data-link-type="tooltip"] {
+        display: inline;
+        word-wrap: wrap;
+        color: #3d71b8;
+        text-decoration: none;
+        font-family: open_sansbold;
+        word-break: normal;
+
+        &:visited {
+            color: #3d71b8;
+            text-decoration: underline;
+        }
+
+        &:hover {
+            color: #000;
+        }
+    }
+
+    .tooltip {
+        padding: 0 16px;
+        display: none;
+
+        .tooltip-header {
+            border-bottom: 1px solid #d9d9d9;
+            font-family: @sansLight;
+            font-size: 24px;
+            line-height: 1.4em; // ---> convert to 1.4
+
+        }
+
+        .tooltip-contents {
+            padding: 8px 0;
+
+            .content {
+                width: auto;
+
+                .para {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

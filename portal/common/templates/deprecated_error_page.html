@@ -1,0 +1,6 @@
+{% extends "base_error_page.html" %}
+
+{% block error_page_title %}Przestarzały adres{% endblock %}
+
+{% block error_title %}Przestarzały adres!{% endblock %}
+{% block error_content %}Strona została przeniesiona pod adres: <a href="{{ url }}">{{ url }}</a>{% endblock %}

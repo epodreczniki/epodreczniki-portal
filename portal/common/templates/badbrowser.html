@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+{% load compress staticfiles common_ext %}
+<head>
+    <title>Niewspierana przeglądarka</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    {% compress js %}
+        <script src="{{ STATIC_URL }}common/js/libs/cookie.js"></script>
+    {% endcompress %}
+
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}common/less/opensans.less">
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}common/less/common.less">
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}common/less/badbrowser.less">
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}front/less/front.less">
+    {% endcompress %}
+    {% compress css %}
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}front/css/bootstrap.min.css">
+    {% endcompress %}
+</head>
+<body class="theme-100percent">
+<div class="badbrowser-content">
+    <div class="badbrowsermain">
+        <script type="text/javascript">
+            var accept = function () {
+                if ((window.localStorage !== undefined) && (window.localStorage.getItem('epo_skipbadbrowser') !== 'true')) {
+                        localStorage.setItem('epo_skipbadbrowser', 'true');
+                }
+                else if (!docCookies.hasItem('epo_skipbadbrowser')) {
+                    var nextDay = new Date();
+                    nextDay.setDate(nextDay.getDate() + 1);
+                    docCookies.setItem('epo_skipbadbrowser', 'true', nextDay, "/");
+                }
+            };
+        </script>
+        <div class="row-fluid">
+            <div class="span3">
+                <div id="logo-bad">
+                    <img src="{% static "front/img/epodreczniki-badbrowser.png" %}"/>
+
+                    <div>epodreczniki.pl</div>
+                </div>
+
+            </div>
+            <div class="span9">
+                <p class="badbrowser-header">Technologie użyte w portalu epodreczniki.pl nie są wspierane przez Twoją
+                    przeglądarkę.</p>
+                <a class="go" onclick="accept()" href="/">Mimo to wchodzę do serwisu</a>
+            </div>
+        </div>
+    </div>
+    <!-- end .badbrowsermain -->
+    <div class="badbrowsercompatibility">
+        <div class="row-fluid">
+            <div class="badbrowserInfo">
+                <h4><i class="icon-info-sign"></i> Twoja przeglądarka:</h4>
+
+                <p class="yourbrowser">{{ request.META.HTTP_USER_AGENT }}</p>
+            </div>
+            <p>Zalecamy aktualizację oprogramowania do najnowszej wersji, co zwiększy jego funkcjonalność i poprawi
+                bezpieczeństwo.</p>
+
+            <p>Lista oficjalnie wspieranych przeglądarek dla komputerów PC i urządzeń mobilnych:</p>
+            <table>
+                <thead>
+                <tr>
+                    <td colspan="2">Przeglądarka</td>
+                    <td class="table-rightaligned">Wersja</td>
+                </tr>
+                </thead>
+                <tr>
+                    <td colspan="2">Internet Explorer</td>
+                    <td class="table-rightaligned">10 +</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Internet Explorer Mobile</td>
+                    <td class="table-rightaligned"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>pełne wsparcie</td>
+                    <td class="table-rightaligned">11 +</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>częściowe wsparcie</td>
+                    <td class="table-rightaligned">10 +</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Edge</td>
+                    <td class="table-rightaligned">1 +</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Firefox</td>
+                    <td class="table-rightaligned">38 +</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Chrome</td>
+                    <td class="table-rightaligned">40 +</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Safari</td>
+                    <td class="table-rightaligned">6 +</td>
+                </tr>
+                <tr>
+                    <td colspan="2">iOS Safari</td>
+                    <td class="table-rightaligned">7.0 +</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Android</td>
+                    <td class="table-rightaligned"></td>
+                </tr>
+                <tr>
+                    <td class="table-padded">Chrome dla Android (zalecana)</td>
+                    <td>pełne wsparcie</td>
+                    <td class="table-rightaligned">40 +</td>
+                </tr>
+                <tr>
+                    <td class="table-padded">przeglądarka wbudowana</td>
+                    <td>częściowe wsparcie</td>
+                    <td class="table-rightaligned">4.0 +</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Opera</td>
+                    <td class="table-rightaligned">29 +</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br/>
+</div>
+</body>
+</html>

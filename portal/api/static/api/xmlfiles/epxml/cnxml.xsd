@@ -1,0 +1,952 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 sp2 (x64) (http://www.altova.com) by Tomasz Kuczynski (Instytut Chemii Bioorganicznej PAN - Poznanskie Centrum Superkomputerowe) -->
+<xs:schema xmlns:ep="http://epodreczniki.pl/" xmlns:cnxml="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:q="http://cnx.rice.edu/qml/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" targetNamespace="http://cnx.rice.edu/cnxml" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://epodreczniki.pl/" schemaLocation="epXML.xsd"/>
+	<xs:import namespace="http://cnx.rice.edu/mdml" schemaLocation="mdml_epeditor.xsd"/>
+	<xs:import namespace="http://bibtexml.sf.net/" schemaLocation="bibtexml_epeditor.xsd"/>
+	<xs:import namespace="http://cnx.rice.edu/qml/1.0" schemaLocation="qml_epeditor.xsd"/>
+	<xs:import namespace="http://epodreczniki.pl/editor" schemaLocation="epeditor.xsd"/>
+	<xs:import namespace="http://www.w3.org/1998/Math/MathML" schemaLocation="mathml3/mathml3.xsd"/>
+	<xs:include schemaLocation="common_epeditor.xsd"/>
+	<!--Struktura modułu-->
+	<xs:complexType name="documentType">
+		<xs:annotation>
+			<xs:documentation>Typ elementu głównego modułu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<!--<xs:element ref="cnxml:title"/>-->
+			<xs:element name="title" type="cnxml:titleType"/>
+			<xs:element ref="cnxml:metadata"/>
+			<xs:element ref="cnxml:content"/>
+			<xs:element ref="bib:file" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="module-id" type="cnxml:idType" use="required"/>
+		<xs:attribute name="id" type="cnxml:idType" use="required"/>
+		<xs:attribute name="cnxml-version" type="xs:string" use="required" fixed="0.7"/>
+	</xs:complexType>
+	<xs:element name="document" type="cnxml:documentType">
+		<xs:annotation>
+			<xs:documentation>Element główny modułu</xs:documentation>
+		</xs:annotation>
+		<xs:key name="PKDocumentId">
+			<xs:selector xpath="."/>
+			<xs:field xpath="@id"/>
+		</xs:key>
+		<xs:keyref name="FKDocumentModule-id" refer="cnxml:PKDocumentId">
+			<xs:selector xpath="."/>
+			<xs:field xpath="@module-id"/>
+		</xs:keyref>
+		<xs:keyref name="FKDocumentMetadataContent-id" refer="cnxml:PKDocumentId">
+			<xs:selector xpath="."/>
+			<xs:field xpath="cnxml:metadata/md:content-id"/>
+		</xs:keyref>
+		<xs:key name="PKDocumentTitle">
+			<xs:selector xpath="."/>
+			<xs:field xpath="cnxml:title"/>
+		</xs:key>
+		<xs:keyref name="FKDocumentMetadataTitle" refer="cnxml:PKDocumentTitle">
+			<xs:selector xpath="."/>
+			<xs:field xpath="cnxml:metadata/md:title"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:complexType name="metadataType">
+		<xs:annotation>
+			<xs:documentation>Typ metadanych modułu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:annotation>
+				<xs:documentation>UWAGA: zarówno actors jak i roles są wymagane w przypadku, gdy mamy do czynienia z modułem, który nie jest technicznym.</xs:documentation>
+			</xs:annotation>
+			<xs:element ref="md:content-id"/>
+			<xs:element ref="md:repository"/>
+			<xs:element ref="md:version"/>
+			<xs:element ref="md:created"/>
+			<xs:element ref="md:revised"/>
+			<xs:element ref="md:title"/>
+			<xs:element ref="md:language"/>
+			<xs:element ref="md:license"/>
+			<xs:element ref="md:presentationTitle" minOccurs="0"/>
+			<xs:element ref="md:actors" minOccurs="0"/>
+			<xs:element ref="md:roles" minOccurs="0"/>
+			<xs:element ref="md:abstract" minOccurs="0"/>
+			<xs:element ref="md:keywordlist" minOccurs="0"/>
+			<xs:element ref="ep:e-textbook-module"/>
+			<xs:element ref="ep:origin-id" minOccurs="0"/>
+			<xs:element ref="ep:origin-version" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="mdml-version" type="xs:string" use="required" fixed="0.5"/>
+	</xs:complexType>
+	<xs:element name="metadata" type="cnxml:metadataType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający metadane modułu</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="contentType">
+		<xs:annotation>
+			<xs:documentation>Typ treści modułu</xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="section" type="cnxml:firstLevelSectionType"/>
+			<xs:element ref="ep:zebra-point"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="content" type="cnxml:contentType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający treść modułu</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:group name="sectionElementGroup">
+		<xs:annotation>
+			<xs:documentation>Dozwolona zawartość sekcji. UWAGA: Elementy dla cytatu blokowego oraz kodu blokowego są zdefiniowane wewnątrz grupy (inaczej byłaby kolizja z odpowiednikami inline). UWAGA: element ep:bookmark występuje tutaj na skutek zastosowania zakładki na tytule sekcji w MS Word.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="ep:bookmark"/>
+			<xs:element ref="cnxml:para"/>
+			<xs:element ref="cnxml:note"/>
+			<xs:element ref="cnxml:example"/>
+			<xs:element ref="cnxml:exercise"/>
+			<xs:element ref="cnxml:definition"/>
+			<xs:element ref="cnxml:rule"/>
+			<xs:element ref="ep:lead"/>
+			<xs:element ref="ep:intro"/>
+			<xs:element ref="ep:effect"/>
+			<xs:element ref="ep:prerequisite"/>
+			<xs:element ref="ep:revisal"/>
+			<xs:element ref="ep:command"/>
+			<xs:element ref="ep:student-work"/>
+			<xs:element ref="ep:concept"/>
+			<xs:element ref="ep:tooltip"/>
+			<xs:element ref="ep:procedure-instructions"/>
+			<xs:element ref="ep:biography"/>
+			<xs:element ref="ep:event"/>
+			<xs:element ref="ep:experiment"/>
+			<xs:element ref="ep:observation"/>
+			<xs:element ref="ep:technical-remarks"/>
+			<xs:element name="quote" type="cnxml:quoteType">
+				<xs:annotation>
+					<xs:documentation>Cytat blokowy (EP Cytat - akapit, EPK Cytat) jest zdefiniowany tutaj, aby nie było kolizji z cytatem inline, który ma zupełnie inny charakter.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="code" type="cnxml:codeType">
+				<xs:annotation>
+					<xs:documentation>Kod blokowy jest zdefiniowany tutaj, aby nie było kolizji z kodem inline, który ma zupełnie inny charakter.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="cnxml:list"/>
+			<xs:element ref="cnxml:table"/>
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="firstLevelSectionType">
+		<xs:annotation>
+			<xs:documentation>Typ opisujący sekcję pierwszego poziomu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="ep:firstLevelSectionParametersGroup" minOccurs="0"/>
+			<xs:element ref="cnxml:title" minOccurs="0"/>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:group ref="cnxml:sectionElementGroup">
+					<xs:annotation>
+						<xs:documentation>Dozwolona zawartość sekcji. UWAGA: Elementy dla cytatu blokowego oraz kodu blokowego są zdefiniowane wewnątrz grupy (inaczej byłaby kolizja z odpowiednikami inline). UWAGA: Gdy sekcja jest podzielona na kolumny (patrz ep:parameters), wtedy może zawierać tylko podsekcje!</xs:documentation>
+					</xs:annotation>
+				</xs:group>
+				<xs:element ref="ep:zebra-point"/>
+			</xs:choice>
+			<xs:element name="section" type="cnxml:secondLevelSectionType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="cnxml:idType" use="required"/>
+		<xs:attributeGroup ref="ep:firstLevelSectionAttributesGroup"/>
+	</xs:complexType>
+	<xs:complexType name="secondLevelSectionType">
+		<xs:annotation>
+			<xs:documentation>Typ opisujący sekcję drugiego poziomu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="ep:secondLevelSecionParametersGroup" minOccurs="0"/>
+			<xs:element ref="cnxml:title" minOccurs="0"/>
+			<xs:group ref="cnxml:sectionElementGroup" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="section" type="cnxml:thirdLevelSectionType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="cnxml:idType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="thirdLevelSectionType">
+		<xs:annotation>
+			<xs:documentation>Typ opisujący sekcję trzeciego poziomu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="cnxml:title"/>
+			<xs:group ref="cnxml:sectionElementGroup" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="section" type="cnxml:fourthLevelSectionType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="cnxml:idType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="fourthLevelSectionType">
+		<xs:annotation>
+			<xs:documentation>Typ opisujący sekcję pierwszego poziomu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="cnxml:title"/>
+			<xs:group ref="cnxml:sectionElementGroup" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="cnxml:idType" use="required"/>
+	</xs:complexType>
+	<!--	<xs:group name="titleWithMathMLGroup">
+		<xs:annotation>
+			<xs:documentation>Grupa zawierająca tytuł pozwalający na wykorzystanie MathML np. w instrukcji postępowania.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="title" type="cnxml:titleWithMathMLType"/>
+		</xs:sequence>
+	</xs:group>-->
+	<!-- dajemy możliwość popłynięcia w tytułach z semantyką na max - to może być niebezpieczne, ale tego typu praktyki zaobserwowaliśmy u autorów już w przeszłości np. cnxml:foreign albo ep:*-reference w nazwie biogramu -->
+	<!--<xs:element name="title" type="cnxml:titleType">-->
+	<xs:element name="title" type="cnxml:simpleInlineContentType">
+		<xs:annotation>
+			<xs:documentation>Element będący tytułem modułu, sekcji, listy, tabeli, kodu, doświadczenia, obserwacji etc.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!--	<xs:element name="label" type="cnxml:titleType">-->
+	<xs:element name="label" type="cnxml:simpleInlineContentType">
+		<xs:annotation>
+			<xs:documentation>Element będący tytułem cytatu, ...</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!--Paragraf i definicja jego zawartości-->
+	<xs:group name="verySimpleInlineContentGroup">
+		<xs:annotation>
+			<xs:documentation>Grupa bazowych elementów dozwolonych wewnątrz elementów inline typu sub i sup.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="cnxml:emphasis"/>
+			<xs:element ref="cnxml:quote"/>
+			<xs:element ref="cnxml:foreign"/>
+			<xs:element ref="cnxml:term"/>
+			<xs:element ref="cnxml:code"/>
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="verySimpleInlineContentType" mixed="true">
+		<xs:annotation>
+			<xs:documentation>Typ bazowy dla elementów sub i sup</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:group ref="cnxml:verySimpleInlineContentGroup"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="linkInlineContentGroup">
+		<xs:annotation>
+			<xs:documentation>Grupa bazowych elementów dozwolonych wewnątrz łączy, odwołań etc (to co w simpleInlineContentGroup, ale bez innych łączy).</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="ep:bookmark"/>
+			<xs:element ref="cnxml:emphasis"/>
+			<xs:element ref="cnxml:quote"/>
+			<xs:element ref="cnxml:foreign"/>
+			<xs:element ref="cnxml:term"/>
+			<xs:element ref="cnxml:code"/>
+			<xs:element ref="cnxml:newline"/>
+			<xs:element ref="ep:nbsp"/>
+			<xs:element ref="ep:tab"/>
+			<xs:element ref="mml:math"/>
+			<xs:element ref="cnxml:equation"/>
+			<xs:element ref="cnxml:sup"/>
+			<xs:element ref="cnxml:sub"/>
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="linkInlineContentType" mixed="true">
+		<xs:annotation>
+			<xs:documentation>Typ dla łączy, dozwalający zawarcie elementów inline wewnątrz łączy</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:group ref="cnxml:linkInlineContentGroup"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="simpleInlineContentGroup">
+		<xs:annotation>
+			<xs:documentation>grupa bazowych elementów dozwolonych w celi tabelki (to co w paragrafie, ale bez referencji WOMI, Galerii, tabel, czy list).</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="cnxml:link"/>
+			<xs:element ref="ep:tooltip-reference"/>
+			<xs:element ref="ep:glossary-reference"/>
+			<xs:element ref="ep:concept-reference"/>
+			<xs:element ref="ep:biography-reference"/>
+			<xs:element ref="ep:event-reference"/>
+			<xs:element ref="ep:bibliography-reference"/>
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="simpleInlineContentType" mixed="true">
+		<xs:annotation>
+			<xs:documentation>Typ dla elementów będących nagłówkami lub tytułami elementów blokowych (title, name, label)</xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:group ref="cnxml:linkInlineContentGroup"/>
+			<xs:group ref="cnxml:simpleInlineContentGroup"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:group name="extendedInlineContentGroup">
+		<xs:annotation>
+			<xs:documentation>grupa elementów mogących wejść w skład zawartości rozszerzonej np. paragrafu</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="cnxml:list"/>
+			<xs:element ref="cnxml:table"/>
+			<xs:element ref="ep:reference"/>
+			<xs:element ref="ep:gallery"/>
+			<xs:element ref="ep:fold-point"/>
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="extendedInlineContentType" mixed="true">
+		<xs:annotation>
+			<xs:documentation>Typ bazowy dla paragrafu dozwalający elementy typu: przypisy, odwołania, emfazy, listy, galerie, referencje WOMI</xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:group ref="cnxml:linkInlineContentGroup"/>
+			<xs:group ref="cnxml:simpleInlineContentGroup"/>
+			<xs:group ref="cnxml:extendedInlineContentGroup"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="paraContainerType">
+		<xs:annotation>
+			<xs:documentation>dozwolona zawartość bloków, które do tej pory posiadały wewnątrz same para</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element ref="cnxml:para"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Kontener na paragrafy z id</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cnxml:paraContainerType">
+				<xs:attribute name="id" type="cnxml:idType" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="para">
+		<xs:annotation>
+			<xs:documentation>Paragraf</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cnxml:extendedInlineContentType">
+					<xs:attribute name="id" type="cnxml:idType" use="required"/>
+					<xs:attribute ref="ep:stretch"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="qmlSectionContainerType">
+		<xs:annotation>
+			<xs:documentation>Typ kontener sekcji dla QML</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="section">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="cnxml:para" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="id" type="cnxml:idType" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--Bloki semantyczne proste-->
+	<xs:element name="note">
+		<xs:annotation>
+			<xs:documentation>Notka (EP Notka)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cnxml:paraContainerWithIdType">
+					<xs:attribute name="type" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="tip"></xs:enumeration>
+								<xs:enumeration value="important"></xs:enumeration>
+								<xs:enumeration value="warning"></xs:enumeration>
+								<xs:enumeration value="curiosity"></xs:enumeration>
+								<xs:enumeration value="remember"></xs:enumeration>
+								<xs:enumeration value="consider"></xs:enumeration>
+								<xs:enumeration value="see-also"></xs:enumeration>
+								<xs:enumeration value="good-to-know"></xs:enumeration>
+								<xs:enumeration value="for-interested"></xs:enumeration>
+								<xs:enumeration value="time-capsule"></xs:enumeration>
+								<xs:enumeration value="no-label"></xs:enumeration>
+								<!--								<xs:enumeration value="more"></xs:enumeration>-->
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute ref="ep:presentation-variant"/>
+					<xs:attribute ref="ep:foldable"/>
+					<xs:attribute ref="ep:recipient"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="example" type="cnxml:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Przykład (EP Przykład)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!--Bloki semantyczne złożone lub składowe bloków złożonych, które nie mogą występować same-->
+	<xs:element name="problem" type="cnxml:problemType">
+		<xs:annotation>
+			<xs:documentation>Definicja problemu w ćwiczeniu, poleceniu, etc. (EP Ćwiczenie problem, EP Polecenie w EPK Polecenie)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="problemType">
+		<xs:annotation>
+			<xs:documentation>Typ dla problemu w zadaniu</xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element ref="cnxml:para"/>
+			<xs:element name="quote" type="cnxml:quoteType">
+				<xs:annotation>
+					<xs:documentation>Cytat blokowy (EP Cytat - akapit, EPK Cytat) jest zdefiniowany tutaj, aby nie było kolizji z cytatem inline, który ma zupełnie inny charakter.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="id" type="cnxml:idType" use="required"/>
+	</xs:complexType>
+	<xs:element name="solution" type="cnxml:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Rozwiązanie ćwiczenia (EP Ćwiczenie - rozwiązanie)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="commentary">
+		<xs:annotation>
+			<xs:documentation>Wyjaśnienie ćwiczenia (w przypadku typu ustawionego na example przykładowe rozwiązanie)  (EP Ćwiczenie - wyjaśnienie, EP Przykład)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cnxml:paraContainerWithIdType">
+					<xs:attribute name="type">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="example"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="exerciseType">
+		<xs:annotation>
+			<xs:documentation>Typ ćwiczenie</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:effect-of-education" minOccurs="0"/>
+			<xs:choice>
+				<xs:sequence>
+					<!--<xs:element name="title" type="cnxml:titleType2" minOccurs="0"/>-->
+					<xs:element name="title" type="cnxml:simpleInlineContentType" minOccurs="0"/>
+					<xs:choice>
+						<xs:element ref="ep:alternatives"/>
+						<xs:group ref="ep:simpleExerciseGroup"/>
+						<xs:element ref="q:item"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:choice>
+					<xs:element ref="ep:reference" minOccurs="0" maxOccurs="1"/>
+				</xs:choice>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="id" type="ep:idType" use="required"/>
+		<xs:attribute ref="ep:stretch"/>
+		<xs:attribute ref="ep:foldable"/>
+		<xs:attribute ref="ep:content-status"/>
+		<xs:attribute name="type" use="optional">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="WOMI"/>
+					<xs:enumeration value="common"/>
+					<xs:enumeration value="pair-work"/>
+					<xs:enumeration value="groupwork"/>
+					<xs:enumeration value="game"/>
+					<xs:enumeration value="witch"/>
+					<xs:enumeration value="gremlin"/>
+					<xs:enumeration value="reading"/>
+					<xs:enumeration value="challenge"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attributeGroup ref="ep:exerciseAttributesGroup"/>
+	</xs:complexType>
+	<xs:element name="exercise" type="cnxml:exerciseType">
+		<xs:annotation>
+			<xs:documentation>Element ćwiczenie</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="meaning" type="cnxml:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Znaczenie definicji</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="definitionType">
+		<xs:annotation>
+			<xs:documentation>Typ definicja</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<!--<xs:element name="term" type="cnxml:titleType"/>-->
+			<xs:element name="term" type="cnxml:simpleInlineContentType"/>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="cnxml:meaning"/>
+				<xs:element ref="cnxml:example" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ep:source" minOccurs="0"/>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="id" type="cnxml:idType" use="required"/>
+		<xs:attribute ref="ep:glossary" use="required"/>
+		<xs:attribute ref="ep:presentation-variant"/>
+	</xs:complexType>
+	<xs:element name="definition">
+		<xs:annotation>
+			<xs:documentation>Element definicja</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cnxml:definitionType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="quoteType">
+		<xs:annotation>
+			<xs:documentation>Typ cytat blokowy (EPK Cytat)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="cnxml:label" minOccurs="0"/>
+			<xs:element ref="ep:author" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ep:comment" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="cnxml:para" maxOccurs="unbounded"/>
+			<xs:element ref="ep:source" minOccurs="0"/>
+			<xs:element ref="ep:license" minOccurs="0"/>
+			<xs:element ref="ep:license-additional-info" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="ep:idType" use="required"/>
+		<xs:attribute ref="ep:foldable"/>
+		<xs:attribute ref="ep:content-status"/>
+	</xs:complexType>
+	<xs:complexType name="codeType">
+		<xs:annotation>
+			<xs:documentation>Typ kod blokowy (EPK Kod)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="cnxml:title" minOccurs="0"/>
+			<xs:element ref="cnxml:para"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="ep:idType" use="required"/>
+		<xs:attribute name="display" use="required" fixed="block"/>
+		<xs:attribute name="lang">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="C"/>
+					<xs:enumeration value="Java"/>
+					<xs:enumeration value="Objective -C"/>
+					<xs:enumeration value="C++"/>
+					<xs:enumeration value="PHP"/>
+					<xs:enumeration value="C#"/>
+					<xs:enumeration value="(Visual) Basic"/>
+					<xs:enumeration value="Python"/>
+					<xs:enumeration value="Transact -SQL"/>
+					<xs:enumeration value="JavaScript"/>
+					<xs:enumeration value="Visual Basic .NET"/>
+					<xs:enumeration value="Perl"/>
+					<xs:enumeration value="Ruby"/>
+					<xs:enumeration value="Pascal"/>
+					<xs:enumeration value="PL/SQL"/>
+					<xs:enumeration value="Lisp"/>
+					<xs:enumeration value="Delphi/Object Pascal"/>
+					<xs:enumeration value="Groovy"/>
+					<xs:enumeration value="MATLAB"/>
+					<xs:enumeration value="COBOL"/>
+				</xs:restriction>
+				<!-- W chwili obecnej zamknięta lista - do rozszerzenia, lub wyłączenia, jeżeli będzie taka potrzeba -->
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="proof" type="cnxml:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Dowód reguły (EP Reguła - dowód)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statement" type="cnxml:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Twierdzenie w regule (EP Reguła - twierdzenie)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ruleType">
+		<xs:annotation>
+			<xs:documentation>Typ reguła</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="cnxml:title"/>
+			<xs:element ref="cnxml:statement" maxOccurs="unbounded"/>
+			<xs:element ref="cnxml:proof" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="cnxml:example" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="cnxml:idType" use="required"/>
+		<xs:attribute ref="ep:glossary" use="required"/>
+		<xs:attribute name="type">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="rule"></xs:enumeration>
+					<xs:enumeration value="theorem"></xs:enumeration>
+					<xs:enumeration value="lemma"></xs:enumeration>
+					<xs:enumeration value="law"></xs:enumeration>
+					<xs:enumeration value="property"></xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute ref="ep:presentation-variant"/>
+	</xs:complexType>
+	<xs:element name="rule" type="cnxml:ruleType">
+		<xs:annotation>
+			<xs:documentation>Element reguły</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- elementy inline-->
+	<!-- Wewnętrzny typ dla elementów oznaczonych INLINE powinien być minimum cnxml:linkInlineContentType, lub nawet cnxml:extendedInlineContentType, ale ze względu na czystość elementów na wyjściu damy xs:string - w razie potrzeby trzeba dostosować -->
+	<xs:element name="sup" type="cnxml:verySimpleInlineContentType">
+		<xs:annotation>
+			<xs:documentation>Element inline przypis górny</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="sub" type="cnxml:verySimpleInlineContentType">
+		<xs:annotation>
+			<xs:documentation>Element inline przypis dolny</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="emphasis">
+		<xs:annotation>
+			<xs:documentation>INLINE Emfaza (EP Emfaza, EP Emfaza - podrubienie, EP Emfaza - kursywa + pogrubienie)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:attribute name="effect" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="italics"></xs:enumeration>
+							<xs:enumeration value="bold"></xs:enumeration>
+							<xs:enumeration value="bolditalics"></xs:enumeration>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			<!--			<xs:complexContent>
+				<xs:extension base="cnxml:inlineContentType">
+			</xs:complexContent>-->
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="quote">
+		<xs:annotation>
+			<xs:documentation>INLINE Cytat (EP Cytat)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="display" use="required" fixed="inline"/>
+				</xs:extension>
+			</xs:simpleContent>
+			<!--			<xs:complexContent>
+				<xs:extension base="cnxml:inlineContentType">
+			</xs:complexContent>-->
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="foreign" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>INLINE Język obcy (EP Język obcy)</xs:documentation>
+		</xs:annotation>
+		<!--	<xs:element name="foreign" type="cnxml:inlineContentType">-->
+	</xs:element>
+	<xs:element name="term" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>INLINE Określenie (EP Określenie); Nazwa pojęcia/definicji (EP Nazwa)</xs:documentation>
+		</xs:annotation>
+		<!--	<xs:element name="term" type="cnxml:inlineContentType">-->
+	</xs:element>
+	<xs:element name="code" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>INLINE Kod (EP Kod)</xs:documentation>
+		</xs:annotation>
+		<!--	<xs:element name="code" type="cnxml:inlineContentType">-->
+	</xs:element>
+	<xs:element name="newline">
+		<xs:annotation>
+			<xs:documentation>Przejście do nowej linii. Element pusty ("miękki enter").</xs:documentation>
+		</xs:annotation>
+		<xs:complexType/>
+	</xs:element>
+	<xs:element name="link">
+		<xs:annotation>
+			<xs:documentation>Element łącza do modułu lub zakładki w module(bookmark).</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cnxml:linkInlineContentType">
+					<xs:attribute name="target-id" type="cnxml:idType"/>
+					<xs:attribute name="document" type="cnxml:idType"/>
+					<xs:attribute ref="ep:collection-id" use="optional"/>
+					<xs:attribute ref="ep:collection-version" use="optional"/>
+					<xs:attribute ref="ep:collection-recipient" use="optional"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="equationType">
+		<xs:annotation>
+			<xs:documentation>MathML w formie blokowej</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="mml:math"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="cnxml:idType" use="required"/>
+	</xs:complexType>
+	<xs:element name="equation" type="cnxml:equationType">
+		<xs:annotation>
+			<xs:documentation>MathML w formie blokowej</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- listy -->
+	<xs:complexType name="listType">
+		<xs:annotation>
+			<xs:documentation>Typ lista</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="cnxml:title" minOccurs="0"/>
+			<xs:element ref="cnxml:item" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="cnxml:idType" use="required"/>
+		<xs:attribute name="list-type" use="required">
+			<xs:annotation>
+				<xs:documentation>Typ listy: punktowana lub numerowana</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="enumerated"></xs:enumeration>
+					<xs:enumeration value="enumerated-full-path"></xs:enumeration>
+					<xs:enumeration value="bulleted"></xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="number-style">
+			<xs:annotation>
+				<xs:documentation>Styl numerowania. Ten atrybut występuje tylko w w momencie, gdy wartość list-type to 'enumerated'.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="arabic"></xs:enumeration>
+					<xs:enumeration value="lower-roman"></xs:enumeration>
+					<xs:enumeration value="upper-roman"></xs:enumeration>
+					<xs:enumeration value="lower-alpha"></xs:enumeration>
+					<xs:enumeration value="upper-alpha"></xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="start-value" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>Wartość początkowa numerowania listy. Atrybut występuje tylko w momencie, gdy wartość list-type to 'enumerated'.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="mark-prefix">
+			<xs:annotation>
+				<xs:documentation>Prefix przed numerowaniem elementu listy.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="mark-suffix">
+			<xs:annotation>
+				<xs:documentation>Postfix po numerowaniu elementu listy.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="list" type="cnxml:listType">
+		<xs:annotation>
+			<xs:documentation>Element lista</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="item" type="cnxml:paraContainerType">
+		<xs:annotation>
+			<xs:documentation>Element składowy listy</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- tabele bazują na modelu CALS-->
+	<xs:complexType name="entryType">
+		<xs:annotation>
+			<xs:documentation>Typ komórka tabeli</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cnxml:simpleInlineContentType">
+				<xs:attribute name="namest">
+					<xs:annotation>
+						<xs:documentation>Nazwa kolumny (table/tgroup/colspec/@colname) , w której zaczyna się komórka. Wykorzystywane razem z nameend w momencie, gdy potrzebne jest scalanie w poziomie. UWAGA: w konwerterze przyjęto schemat nazewnictwa c{n}, gdzie n jest tożsame z numerem kolumny.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="c[1-9][0-9]*"/>
+							<xs:pattern value="col[A-Z]"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="nameend">
+					<xs:annotation>
+						<xs:documentation>Nazwa kolumny (table/tgroup/colspec/@colname) , w której kończy się komórka. Wykorzystywane razem z nameend w momencie, gdy potrzebne jest scalanie w poziomie. UWAGA: w konwerterze przyjęto schemat nazewnictwa c{n}, gdzie n jest tożsame z numerem kolumny.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="c[1-9][0-9]*"/>
+							<xs:pattern value="col[A-Z]"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="morerows" type="xs:positiveInteger">
+					<xs:annotation>
+						<xs:documentation>Liczba komórek tabeli do scalenia w pionie (w dół).</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="entry">
+		<xs:annotation>
+			<xs:documentation>Element komórka tabeli</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cnxml:entryType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="rowType">
+		<xs:annotation>
+			<xs:documentation>Typ wiersz tabeli</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="cnxml:entry" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="row" type="cnxml:rowType">
+		<xs:annotation>
+			<xs:documentation>Element wiersz tabeli</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="tbodyType">
+		<xs:annotation>
+			<xs:documentation>Typ ciało tabeli</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="cnxml:row" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="tbody" type="cnxml:tbodyType">
+		<xs:annotation>
+			<xs:documentation>Element ciało tabeli</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="theadType">
+		<xs:annotation>
+			<xs:documentation>Typ nagłówek tabeli</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="cnxml:row" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="thead" type="cnxml:theadType">
+		<xs:annotation>
+			<xs:documentation>Element nagłówek tabeli</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="colspecType">
+		<xs:annotation>
+			<xs:documentation>Typ specyfikacja kolumny tabeli</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="colnum" type="xs:positiveInteger" use="optional">
+			<xs:annotation>
+				<xs:documentation>Numer kolumny.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="colname" use="required">
+			<xs:annotation>
+				<xs:documentation>Nazwa kolumny tabeli - wykorzystywana do scalania w poziomie. UWAGA: w konwerterze przyjęto schemat nazewnictwa c{n}, gdzie n jest tożsame z numerem kolumny.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="c[1-9][0-9]*"/>
+					<xs:pattern value="col[A-Z]"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="colwidth" use="optional">
+			<xs:annotation>
+				<xs:documentation>Szerokość kolumny.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:positiveInteger">
+					<xs:minInclusive value="1"/>
+					<xs:maxInclusive value="99"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="colspec" type="cnxml:colspecType">
+		<xs:annotation>
+			<xs:documentation>Element specyfikacja kolumny tabeli</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="tgroupType">
+		<xs:annotation>
+			<xs:documentation>Typ grupy w tabeli</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="cnxml:colspec" maxOccurs="unbounded"/>
+			<xs:element ref="cnxml:thead" minOccurs="0"/>
+			<xs:element ref="cnxml:tbody"/>
+		</xs:sequence>
+		<xs:attribute name="cols" type="xs:positiveInteger" use="required">
+			<xs:annotation>
+				<xs:documentation>Liczba kolumn w tabeli</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="tgroup" type="cnxml:tgroupType">
+		<xs:annotation>
+			<xs:documentation>Element grupy w tabeli</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="tableType">
+		<xs:annotation>
+			<xs:documentation>Typ tabela</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="cnxml:title"/>
+			<xs:element ref="cnxml:tgroup"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="cnxml:idType" use="required"/>
+		<xs:attribute name="summary" type="xs:string" use="required"/>
+		<xs:attribute ref="ep:style" use="optional"/>
+		<xs:attribute name="pgwide" use="optional">
+			<xs:annotation>
+				<xs:documentation>Szerokość tabeli.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:positiveInteger">
+					<xs:minInclusive value="1"/>
+					<xs:maxInclusive value="100"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="table" type="cnxml:tableType">
+		<xs:annotation>
+			<xs:documentation>Element tabela</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

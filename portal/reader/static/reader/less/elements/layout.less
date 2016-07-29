@@ -1,0 +1,96 @@
+// Grid setting, columns & gutters
+
+.grid {
+    //removed paddings and height 100%
+}
+
+.fancybox-close {
+    position: fixed !important;
+}
+
+.fancybox-close-topbar {
+    //background: url('../../../img/nav-close-mini.svg') no-repeat rgba(0, 0, 0, 0.89);
+    background: url('../../../img/search-close.svg') no-repeat;
+    border-radius: 5px;
+    background-size: cover;
+    position: absolute !important;
+    width: 19px;
+    height: 19px;
+}
+
+*:not([class*='jp-']), *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.center {
+    margin: 0 auto !important;
+    display: block;
+}
+
+.col-main {
+    max-width: 1012px;
+    margin: 0 auto;
+    padding: 0 20px 50px 20px;
+}
+
+.col-sidebar {
+    width: 30%;
+    height: 100%;
+    position: fixed;
+    top: 40px;
+    z-index: @highestZIndex - 2000;
+    background: @sidebarColor;
+    overflow-y: none;
+    overflow-x: none;
+}
+
+.hide-sidebar {
+    margin-left: -30%;
+}
+
+// Touchable areas
+
+// Media queries
+@media (max-width: @mobileBreakpoint) {
+    .col-sidebar {
+        display: none;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        top: 0;
+        left: 0;
+        z-index: @highestZIndex - 300;
+    }
+
+    .col-main {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media (min-width: @mobileBreakpoint) {
+    .col-sidebar {
+        display: block;
+    }
+}
+
+@media (max-width: @phoneBreakpoint) {
+    .col-main {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+// Print styles
+@media print {
+    .topbar, .col-sidebar, .permanent-navigation, .bottombar {
+        display: none !important;
+    }
+
+    .col-main {
+        width: 100%;
+        margin-left: 0;
+    }
+}

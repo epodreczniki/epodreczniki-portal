@@ -1,0 +1,56 @@
+{% extends "editres/space.html" %}
+
+{% load urls collection_cover editres_general %}
+
+{% block title_block %}{{ category_driver.nice_plural|capfirst }} - Przestrzeń {{ space_driver.db_space.label|capfirst }}{% endblock title_block %}
+
+{% block topbar %}
+    {% include "editres/topbars/listing.html" %}
+{% endblock %}
+
+
+{% block main_panel %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-sm-8 col-xs-12">
+                    <span>W przestrzeni znajduje się {{ drivers|length }} obiektów tego typu.</span>
+                </div>
+                <div class="col-sm-2 col-xs-4">
+                    <button
+                        data-cascade-forms-container-id="listing-operations-container"
+                        data-cascade-forms-provider-url="{% url 'editstore_start_object' space.identifier category_driver.category %}"
+                        data-cascade-forms-list-prepend-id="editres-listing-{{ category_driver.category }}"
+                        data-cascade-forms-name='create'
+                        class="cascade-forms-initializer btn btn-success btn-sm"
+                    >
+                        <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Utwórz
+                    </button>
+                </div>
+
+                <div class="col-sm-2 col-xs-4">
+                    <button
+                        data-cascade-forms-container-id="listing-operations-container"
+                        data-cascade-forms-provider-url="{% url 'editstore_import_object' space.identifier category_driver.category %}"
+                        data-cascade-forms-fixed-mode="full"
+                        data-cascade-forms-list-prepend-id="editres-listing-{{ category_driver.category }}"
+                        data-cascade-forms-name='import'
+                        class="cascade-forms-initializer btn btn-primary btn-sm"
+                    >
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Importuj
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body" id="listing-operations-container" style="display: none">
+
+        </div>
+    </div>
+{% endblock main_panel %}
+
+
+{% block following_panels %}
+    {% objects_listing category_driver.category drivers %}
+{% endblock following_panels %}
+
+

@@ -1,0 +1,65 @@
+{% extends 'auth_base.html' %}
+
+{% load compress %}
+
+{% block additional_css %}
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}auth/less/jquery.fancybox.less">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <div id="agreement_info" style="display: none">
+         W oparciu o art. 23, ust. 1 pkt 1 i ust. 2 Ustawy z dnia 29 sierpnia 1997 roku o ochronie danych osobowych (tekst jednolity: Dz. U. 2014 r. poz. 1182) wyrażam zgodę na przetwarzanie, moich danych osobowych, podanych w związku z rejestracją użytkownika w portalu epodreczniki.pl, przez Ośrodek Rozwoju Edukacji (ORE) z siedzibą przy ul. Aleje Ujazdowskie 28,00-478 Warszawa.
+        <br><br>
+        Podanie danych osobowych jest dobrowolne. Przysługuje Pani/Panu prawo dostępu do swoich danych, ich poprawiania a także wycofania niniejszej zgody.
+    <br><br>
+Administratorem danych osobowych jest Ośrodek Rozwoju Edukacji (ORE) z siedzibą przy ul. Aleje Ujazdowskie 28, 00-478 Warszawa.
+<br><br>
+Administrator danych zapewnia ochronę Państwa danych osobowych. Dane osobowe będą udostępniane wyłącznie odbiorcom uprawnionym do ich otrzymania na podstawie przepisów prawa lub upoważnionym w oparciu o wyrażone przez Państwa zgody.
+    </div>
+    <div class="register-main">
+        <div class="relative-form">
+
+            <div class="login-header">
+                <p class="centered-line">Zarejestruj się w&nbsp;e&#8209;podręcznikach</p>
+            </div>
+
+            <ul class="errorlist">
+                {% for key, value in form.errors.items %}
+                    <li>{{ value }}</li>
+                {% endfor %}
+            </ul>
+
+            <form method="post" action="{% url 'auth-register-user' %}">
+                {% csrf_token %}
+
+                {# EPP-6938 BEGIN #}
+                <input type="text" style="display:none">
+                <input type="password" style="display:none">
+                {# EPP-6938 END #}
+
+                {{ form.as_html }}
+                <p class="form-info">
+                {{ form.get_info }}
+                </p>
+
+                <p class="form-info">
+                    <input type="checkbox" id="agreement_accepted" name="agreement_accepted">
+                    <label for="agreement_accepted">Wyrażam zgodę na <a href="#" onclick="$.fancybox($('#agreement_info').html(), {autoSize: true, maxWidth: 500})">przetwarzanie moich danych osobowych</a>.</label>
+                </p>
+
+                <input class="login-button epo-login" type="submit" value="Zarejestruj"/>
+                <input type="hidden" name="next" value="{{ next }}"/>
+            </form>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block bottom_scripts %}
+    {% compress js %}
+    <script src="{{ STATIC_URL }}common/js/libs/jquery-2.0.3.min.js"></script>
+    <script src="{{ STATIC_URL }}common/js/libs/jquery.fancybox.js"></script>
+    {% endcompress %}
+{% endblock %}

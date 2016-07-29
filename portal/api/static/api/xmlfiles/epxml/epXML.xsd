@@ -1,0 +1,1846 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 sp2 (x64) (http://www.altova.com) by Tomasz Kuczynski (Instytut Chemii Bioorganicznej PAN - Poznanskie Centrum Superkomputerowe) -->
+<xs:schema xmlns:ep="http://epodreczniki.pl/" xmlns:cnxml="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/" xmlns:q="http://cnx.rice.edu/qml/1.0" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" targetNamespace="http://epodreczniki.pl/" elementFormDefault="qualified" attributeFormDefault="qualified">
+	<xs:import namespace="http://cnx.rice.edu/cnxml" schemaLocation="cnxml_epeditor.xsd"/>
+	<!--	<xs:import namespace="http://cnx.rice.edu/mdml" schemaLocation="mdml_epeditor.xsd"/>-->
+	<xs:import namespace="http://bibtexml.sf.net/" schemaLocation="bibtexml_epeditor.xsd"/>
+
+	<xs:import namespace="http://cnx.rice.edu/qml/1.0" schemaLocation="qml_epeditor.xsd"/>
+	<xs:import namespace="http://epodreczniki.pl/editor" schemaLocation="epeditor.xsd"/>
+	<xs:import namespace="http://www.w3.org/1998/Math/MathML" schemaLocation="mathml3/mathml3.xsd"/>
+	<xs:include schemaLocation="common_epeditor.xsd"/>
+	<!-- Referencja WOMI-->
+	<xs:simpleType name="widthType">
+		<xs:annotation>
+			<xs:documentation>Szerokość kolumny/szerokość WOMI wyrażona w procentach.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="width" type="ep:widthType">
+		<xs:annotation>
+			<xs:documentation>Szerokość kolumny/szerokość WOMI.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="context" type="xs:boolean" default="false">
+		<xs:annotation>
+			<xs:documentation>Oznaczenie, czy jest to WOMI kontekstu - prezentowane jako przypinka w portalu.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="reading-roomType">
+		<xs:annotation>
+			<xs:documentation>Oznaczenie, czy WOMI powinno trafić do ogólnoe-podręcznikowej galerii WOMI.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:boolean">
+				<xs:attribute name="show-format-contents" type="xs:boolean" use="optional">
+					<xs:annotation>
+						<xs:documentation>Informacja, czy WOMI powinno trafić do galerii razem z tekstem skojarzonym. Atrybut powinien być ustawiony tylko w momencie, gdy wartość reading-roomType jest ustawiona na true.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="reading-room" type="ep:reading-roomType" default="false">
+		<xs:annotation>
+			<xs:documentation>Oznaczenie, czy WOMI powinno trafić do ogólnoe-podręcznikowej galerii WOMI.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="zoomableType">
+		<xs:annotation>
+			<xs:documentation>Oznaczenie, czy WOMI można przybliżyć oraz w jakim trybie (lupa/przybliżenie). </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="no"></xs:enumeration>
+			<xs:enumeration value="zoom"></xs:enumeration>
+			<xs:enumeration value="magnifier"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="zoomable" type="ep:zoomableType" default="no">
+		<xs:annotation>
+			<xs:documentation>Oznaczenie, czy WOMI można przybliżyć oraz w jakim trybie (lupa/przybliżenie). </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="avatar" type="xs:boolean" default="false">
+		<xs:annotation>
+			<xs:documentation>Oznaczenie, czy jest to WOMI typu awatar.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="embedded" type="xs:boolean" default="true">
+		<xs:annotation>
+			<xs:documentation>Oznaczenie, czy jest to WOMI osadzone w treści.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="hide-captionType">
+		<xs:annotation>
+			<xs:documentation>Oznaczenie, które z podpisów WOMI powinny być ukryte, a które nie.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="none"></xs:enumeration>
+			<xs:enumeration value="title"></xs:enumeration>
+			<xs:enumeration value="number"></xs:enumeration>
+			<xs:enumeration value="all"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="hide-caption" type="ep:hide-captionType">
+		<xs:annotation>
+			<xs:documentation>Oznaczenie, które z podpisów WOMI powinny być ukryte, a które nie.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="asideType">
+		<xs:annotation>
+			<xs:documentation>Oznaczenie, czy WOMI powinno być wypchnięte na prawą lub lewą stronę</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="left"></xs:enumeration>
+			<xs:enumeration value="right"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="aside" type="ep:asideType">
+		<xs:annotation>
+			<xs:documentation>Oznaczenie, czy WOMI powinno być wypchnięte na prawą lub lewą stronę</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="contentType" mixed="true">
+		<xs:annotation>
+			<xs:documentation>Tekst skojarzony z WOMI lub galerią WOMI.</xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element ref="mml:math"/>
+			<xs:element ref="cnxml:newline"/>
+			<xs:element ref="ep:nbsp"/>
+			<xs:element ref="cnxml:emphasis"/>
+			<xs:element ref="bib:entry"/>
+		</xs:choice>
+		<xs:attribute name="id" type="ep:idType" use="required"/>
+		<xs:attribute name="format" use="required">
+			<xs:annotation>
+				<xs:documentation>Format dla którego przeznaczony jest tekst skojarzony.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="classic"></xs:enumeration>
+					<xs:enumeration value="mobile"></xs:enumeration>
+					<xs:enumeration value="static"></xs:enumeration>
+					<xs:enumeration value="static-mono"></xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="content" type="ep:contentType">
+		<xs:annotation>
+			<xs:documentation>Tekst skojarzony z WOMI lub galerią WOMI.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:group name="contentGroup">
+		<xs:annotation>
+			<xs:documentation>Grupa tekstów skojarzonych z WOMI lub galerią WOMI.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:content" maxOccurs="4">
+				<xs:annotation>
+					<xs:documentation>Tekst skojarzony z WOMI lub galerią WOMI. UWAGA: maksymalnie mogą wystąpić 4 teksty skojarzone z WOMI / galerią WOMI - po jednym dla danego formatu.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="referenceType">
+		<xs:annotation>
+			<xs:documentation>Typ referencja do WOMI</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:width" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Szerokość - jest wartością wyrażoną w procentach w odniesieniu do kolumny tekstu, w której umieszczone jest WOMI. UWAGA: ustawianie szerokości WOMI jest dopuszczalne tylko w przypadku WOMI wizualnych (wideo, ilustracja, ikona, aplikacja).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ep:context" minOccurs="0"/>
+			<xs:element ref="ep:reading-room" minOccurs="0"/>
+			<xs:element ref="ep:zoomable" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Oznaczenie, czy WOMI można przybliżyć oraz w jakim trybie (lupa/przybliżenie). UWAGA: atrybut dotyczy tylko WOMI typu ikona oraz ilustracja.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ep:avatar" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Oznaczenie, czy jest to WOMI typu awatar. UWAGA: wartość 'true' może być zastosowana tylko w połączeniu z WOMI typu aplikacja.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ep:embedded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Oznaczenie, czy jest to WOMI osadzone w treści. UWAGA: stosowanie tego elementu i nadawanie mu wartości false ma sens tylko w połączeniu z elementem context ustawionym na true.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ep:hide-caption" minOccurs="0"/>
+			<xs:element ref="ep:aside" minOccurs="0"/>
+			<xs:element ref="ep:disabled-alternative-reference" minOccurs="0"/>
+			<xs:group ref="ep:contentGroup" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="ep:WOMIidType" use="required">
+			<xs:annotation>
+				<xs:documentation>Identyfikator WOMI pochodzący z RT</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="instance-id" type="ep:idType">
+			<xs:annotation>
+				<xs:documentation>Identyfikator konkretnej instancji WOMI - wystąpienia WOMI w treści</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="reference" type="ep:referenceType">
+		<xs:annotation>
+			<xs:documentation>Referencja do WOMI</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- Galeria WOMI-->
+	<xs:simpleType name="galleryOptionsVisibilityType">
+		<xs:annotation>
+			<xs:documentation>Widoczności poszczególnych atrybutów galerii.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="all"></xs:enumeration>
+			<xs:enumeration value="hide-fullscreen"></xs:enumeration>
+			<xs:enumeration value="hide-normal"></xs:enumeration>
+			<xs:enumeration value="hide"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="galleryType">
+		<xs:annotation>
+			<xs:documentation>Galeria WOMI.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="cnxml:title" minOccurs="0"/>
+			<xs:group ref="ep:contentGroup" minOccurs="0"/>
+			<xs:element ref="ep:reference" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Referencja do WOMI. UWAGA: W galerii powinny być minimum 2 WOMI, ale ze względu na możliwość wstawiania nowych galerii trzeba to sprawdzić w momencie zapisywania modułów.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="ep:idType" use="required"/>
+		<xs:attribute name="start-on" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>Numer elementu, który ma być aktywnego po załadowaniu się galerii.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="miniatures-only" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Oznaczenie, czy jest to galeria składająca się tylko z miniatur bez elementu głównego - galeria typu C.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="thumbnails" type="ep:galleryOptionsVisibilityType">
+			<xs:annotation>
+				<xs:documentation>Widoczność miniaturek galerii.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="titles" type="ep:galleryOptionsVisibilityType">
+			<xs:annotation>
+				<xs:documentation>Widoczność tytułów galerii oraz WOMI.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="format-contents" type="ep:galleryOptionsVisibilityType">
+			<xs:annotation>
+				<xs:documentation>Widoczność tekstów skojarzonmych z galerią oraz WOMI.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="view-width">
+			<xs:annotation>
+				<xs:documentation>Szerokość siatki galerii.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:positiveInteger">
+					<xs:minInclusive value="1"/>
+					<xs:maxInclusive value="8"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="view-height">
+			<xs:annotation>
+				<xs:documentation>Wysokość siatki galerii.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:positiveInteger">
+					<xs:minInclusive value="1"/>
+					<xs:maxInclusive value="8"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="playlist">
+			<xs:annotation>
+				<xs:documentation>Sposób odtwarzania elementów playlisty</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="autoplay"></xs:enumeration>
+					<xs:enumeration value="pause"></xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="gallery" type="ep:galleryType">
+		<xs:annotation>
+			<xs:documentation>Galeria WOMI. UWAGA: w zależności od typu galerii, wymagane są różne zestawy atrybutów ([R] - wymagany). Galerie: A - pokaz slajdów, B - siatka, C - pozioma, D - playlista wideo. Atrybuty galerii slideshow (A): id [R], start-on, thumbnails, titles, format-contents. Atrybuty galerii grid (B): id [R], view-width [R], view-height[R]. Atrybuty galerii miniatures (C): id [R], miniatures-only [R]=true, thumbnails, titles, format-contents. Atrybuty galerii playlist (D): id [R], start-on, thumbnails, titles, format-contents, playlist [R].</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!--Metadane-->
+	<xs:simpleType name="recipientType">
+		<xs:annotation>
+			<xs:documentation>Odbiorca treści</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="student"></xs:enumeration>
+			<xs:enumeration value="teacher"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attribute name="recipient" type="ep:recipientType">
+		<xs:annotation>
+			<xs:documentation>Odbiorca treści</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:simpleType name="content-statusType">
+		<xs:annotation>
+			<xs:documentation>Status treści</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="canon"></xs:enumeration>
+			<xs:enumeration value="expanding"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attribute name="content-status" type="ep:content-statusType">
+		<xs:annotation>
+			<xs:documentation>Status treści</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attributeGroup name="firstLevelSectionAttributesGroup">
+		<xs:annotation>
+			<xs:documentation>Atrybuty ep sekcji pierwszego stopnia.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute ref="ep:recipient" use="optional">
+			<xs:annotation>
+				<xs:documentation>UWAGA: ten atrybut sekcji może być używany tylko w momencie, gdy globalnie zadeklarowano moduł jako uczniowski, a jedyna wartość jaką może przyjąć to teacher</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute ref="ep:content-status" use="optional">
+			<xs:annotation>
+				<xs:documentation>UWAGA: ten atrybut sekcji może być używany tylko w momencie, gdy globalnie zadeklarowano moduł jako kanon, a jedyna wartość jaką może przyjąć to expanding</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:element name="type" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Element typ modułu - w chwili obecnej xs:string, nie wprowadzamy restrykcji zgodnej z templateMappings.xml, gdyż nikt w prezentacji z tego nie korzysta.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="module-headerType">
+		<xs:annotation>
+			<xs:documentation>Powiązanie z modułem WOMI z nagłówkiem</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:reference"/>
+<!-- 			<xs:element name="reference">
+				<xs:annotation>
+					<xs:documentation>Referencja do WOMI z nagłówkiem</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="id" type="ep:idType" use="required"/>
+				</xs:complexType>
+			</xs:element> -->
+		</xs:sequence>
+		<xs:attribute name="title-presentation" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="dark"></xs:enumeration>
+					<xs:enumeration value="light"></xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="title-position">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="on-header"></xs:enumeration>
+					<xs:enumeration value="above-header"></xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="module-header" type="ep:module-headerType">
+		<xs:annotation>
+			<xs:documentation>Powiązanie z modułem WOMI z nagłówkiem</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="play-and-learnType">
+		<xs:annotation>
+			<xs:documentation>Powiązanie z modułem WOMI z baw się i ucz</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="reference">
+				<xs:annotation>
+					<xs:documentation>Referencja do WOMI z baw się i ucz</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="id" type="ep:idType" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="play-and-learn" type="ep:play-and-learnType">
+		<xs:annotation>
+			<xs:documentation>Powiązanie z modułem WOMI z baw się i ucz</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="externalType">
+		<xs:annotation>
+			<xs:documentation>Powiązanie z modułem zasobów z KZD</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="reference" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Referencja do WOMI z zasobem KZD</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="id" type="ep:idType" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="external" type="ep:externalType">
+		<xs:annotation>
+			<xs:documentation>Powiązanie z modułem zasobów z KZD</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="referencesType">
+		<xs:annotation>
+			<xs:documentation>Powiązania modułu z WOMI (nagłówek, baw się i ucz, KZD).</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:module-header" minOccurs="0"/>
+			<xs:element ref="ep:play-and-learn" minOccurs="0"/>
+			<xs:element ref="ep:external" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="references" type="ep:referencesType">
+		<xs:annotation>
+			<xs:documentation>Powiązania modułu z WOMI (nagłówek, baw się i ucz, KZD).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="generated-typeType">
+		<xs:annotation>
+			<xs:documentation>Typ modułu generowanego automatycznie (np. słowniczek, biogramy, etc).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="glossary"/>
+			<xs:enumeration value="biography"/>
+			<xs:enumeration value="bibliography"/>
+			<xs:enumeration value="concept"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="generated-type" type="ep:generated-typeType">
+		<xs:annotation>
+			<xs:documentation>Element typu modułu generowanego automatycznie.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="numberingType">
+		<xs:annotation>
+			<xs:documentation>Typ elementu numbering.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="skip"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="numbering" type="ep:numberingType">
+		<xs:annotation>
+			<xs:documentation>Element numbering</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="templateType">
+		<xs:annotation>
+			<xs:documentation>Typ szablon modułu. UWAGA: W edytorze nie wspieramy układu kaflowego, dlatego jedyną opcją jest 'linear'</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="linear"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="template" type="ep:templateType">
+		<xs:annotation>
+			<xs:documentation>Element szablon modułu.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="presentationType">
+		<xs:annotation>
+			<xs:documentation>Atrybuty prezentacyjne dla modułu. UWAGA: nie dodaję width, height, fixed-tile-layout bo kafli nie wspieramy</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:numbering" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element numbering odpowiadający za "wyjęcie" modułu z numerowania. UWAGA: W przypadku, gdy odbiorcą treści jest nauczyciel (/document/metadata/ep:e-textbook-module/@ep:recipient) trzeba wstawić ten element.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ep:type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Typ modułu nie jest wspierany, ale jest przepuszczany, tak, żeby nie było problemów z edycją i gdyby nagle okazało się, że wracamy do typów modułów i ról sekcji.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ep:template">
+				<xs:annotation>
+					<xs:documentation>Jedyny wspierany rodzaj szablonu to 'linear', gdyż nie wspieramy edycji kafli.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="presentation" type="ep:presentationType">
+		<xs:annotation>
+			<xs:documentation>Atrybuty prezentacyjne dla modułu. UWAGA: nie dodaję width, height, fixed-tile-layout bo kafli nie wspieramy</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="core-curriculum-stageType">
+		<xs:annotation>
+			<xs:documentation>Patrz http://uspp.pl/ (do dyskusji z grupą portalową jak się tam podpiąć).</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="key" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="core-curriculum-stage" type="ep:core-curriculum-stageType">
+		<xs:annotation>
+			<xs:documentation>Patrz http://uspp.pl/ (do dyskusji z grupą portalową jak się tam podpiąć).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="core-curriculum-schoolType">
+		<xs:annotation>
+			<xs:documentation>Patrz http://uspp.pl/ (do dyskusji z grupą portalową jak się tam podpiąć).</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="key" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="core-curriculum-school" type="ep:core-curriculum-schoolType">
+		<xs:annotation>
+			<xs:documentation>Patrz http://uspp.pl/ (do dyskusji z grupą portalową jak się tam podpiąć).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="core-curriculum-subjectType">
+		<xs:annotation>
+			<xs:documentation>Patrz http://uspp.pl/ (do dyskusji z grupą portalową jak się tam podpiąć).</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="key" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="core-curriculum-subject" type="ep:core-curriculum-subjectType">
+		<xs:annotation>
+			<xs:documentation>Patrz http://uspp.pl/ (do dyskusji z grupą portalową jak się tam podpiąć).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="core-curriculum-versionType">
+		<xs:annotation>
+			<xs:documentation>Patrz http://uspp.pl/ (do dyskusji z grupą portalową jak się tam podpiąć).</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="key" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="core-curriculum-version" type="ep:core-curriculum-versionType">
+		<xs:annotation>
+			<xs:documentation>Patrz http://uspp.pl/ (do dyskusji z grupą portalową jak się tam podpiąć).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="core-curriculum-abilityType" mixed="true">
+		<xs:annotation>
+			<xs:documentation>Patrz http://uspp.pl/ (do dyskusji z grupą portalową jak się tam podpiąć).</xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element ref="mml:math"/>
+			<xs:element ref="cnxml:sup"/>
+			<xs:element ref="cnxml:sub"/>
+		</xs:choice>
+		<xs:attribute name="key" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="core-curriculum-ability">
+		<xs:annotation>
+			<xs:documentation>Patrz http://uspp.pl/ (do dyskusji z grupą portalową jak się tam podpiąć).</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ep:core-curriculum-abilityType">
+					<xs:attribute name="core-curriculum-main" type="xs:boolean" use="optional"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="core-curriculum-entryType">
+		<xs:annotation>
+			<xs:documentation>Typ dla wpisu zgodnego z podstawą programową pochodzącą z USPP</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:core-curriculum-stage"/>
+			<xs:element ref="ep:core-curriculum-school"/>
+			<xs:element ref="ep:core-curriculum-subject"/>
+			<xs:element ref="ep:core-curriculum-version" minOccurs="0"/>
+			<xs:element ref="ep:core-curriculum-ability" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="core-curriculum-entry" type="ep:core-curriculum-entryType">
+		<xs:annotation>
+			<xs:documentation>Element dla wpisu zgodnego z podstawą programową pochodzącą z USPP</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="core-curriculum-entriesType">
+		<xs:annotation>
+			<xs:documentation>Typ dla grupy wpisów zgodnych z podstawą programową pochodzących z USPP</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:core-curriculum-entry" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="core-curriculum-entries" type="ep:core-curriculum-entriesType">
+		<xs:annotation>
+			<xs:documentation>Element dla grupy wpisów zgodnych z podstawą programową pochodzących z USPP</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="e-textbook-moduleType">
+		<xs:annotation>
+			<xs:documentation>Typ dla rozszerzeń metadanych stworzonych na potrzeby e-podręczników.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:references" minOccurs="0"/>
+			<xs:element ref="ep:generated-type" minOccurs="0"/>
+			<xs:element ref="ep:presentation"/>
+			<xs:element ref="ep:core-curriculum-entries" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element dla grupy wpisów zgodnych z podstawą programową pochodzących z USPP. UWAGA: W każdym module poza technicznymi jest potrzebne minimum jedno hasło podstawy programowej.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="version" type="xs:string" use="required" fixed="1.5"/>
+	</xs:complexType>
+	<xs:element name="origin-id" type="ep:origin-idType">
+		<xs:annotation>
+			<xs:documentation>Element id źrodłowego modułu</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="origin-idType">
+		<xs:annotation>
+			<xs:documentation>Typ id źrodłowego modułu</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="origin-version" type="ep:origin-versionType">
+		<xs:annotation>
+			<xs:documentation>Element wersji źrodłowego modułu, w przypadku gdy moduł był tworzony na podstawie innego</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="origin-versionType">
+		<xs:annotation>
+			<xs:documentation>Typ elementu wersji źrodłowego modułu</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="e-textbook-module">
+		<xs:annotation>
+			<xs:documentation>Rozszerzenia metadanych stworzone na potrzeby e-podręczników. UWAGA: nie dodaję generated-type, dzięki temu wywali się, gdy ktoś spróbuje edytować słownik</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ep:e-textbook-moduleType">
+					<xs:attribute ref="ep:recipient" use="required"/>
+					<xs:attribute ref="ep:content-status" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Struktura-->
+	<xs:element name="role" >
+		<xs:annotation>
+			<xs:documentation>Element rola sekcji - używany do wprowadzania nagłówków sekcji typu: Konteksty, Preteksty, itp. lub szarej apli - Dodatkowy opis zasobów.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="JPOL_E3_E4_Konteksty"></xs:enumeration>
+				<xs:enumeration value="JPOL_E3_E4_Tekstykultury"></xs:enumeration>
+				<xs:enumeration value="JPOL_E3_E4_Preteksty"></xs:enumeration>
+				<xs:enumeration value="JPOL_E3_E4_Gramatyka"></xs:enumeration>
+				<xs:enumeration value="JPOL_E3_E4_Komunikacjaizycie"></xs:enumeration>
+				<xs:enumeration value="JPOL_E3_E4_Zadaniowo"></xs:enumeration>
+				<xs:enumeration value="JPOL_E3_E4_Dodatkowyopiszasobow"></xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:simpleType name="columnsType">
+		<xs:annotation>
+			<xs:documentation>Typ liczby kolumn. Wprowadziłem restrykcję na max. 5 kolumn (to i tak przesada).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:positiveInteger">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="columns" type="ep:columnsType">
+		<xs:annotation>
+			<xs:documentation>Element liczby kolumn w sekcji. UWAGA: Gdy liczba jest różna od 1, wtedy sekcja musi posiadać dokładnie tyle podsekcji ile wynosi liczba kolumn (każda z tych podsekcji musi mieć parametr oznaczający szerokość kolumny). Sekcja dzielona na kolumny nie może posiadać innych elementów niż podsekcje i parametry.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="start-new-page" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Element oznaczający początek nowej paginy.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="stretch">
+		<xs:annotation>
+			<xs:documentation>Element oznaczający powiększoną szerokość sekcji kolumnowej (nie sekcji standardowej)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="full-width"></xs:enumeration>
+				<xs:enumeration value="extended-width"></xs:enumeration>
+				<xs:enumeration value="extended-shifted-width"></xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:attribute name="stretch" type="ep:stretchType">
+		<xs:annotation>
+			<xs:documentation>Atrybut oznaczający powiększoną szerokość elementu</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:simpleType name="stretchType">
+		<xs:annotation>
+			<xs:documentation>Typ oznaczający powiększoną szerokość elementu</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="full-width"></xs:enumeration>
+			<xs:enumeration value="extended-width"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="stretch-title">
+		<xs:annotation>
+			<xs:documentation>Element oznaczający powiększoną szerokość tytułu sekcji (standardowej lub kolumnowej)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="full-width"></xs:enumeration>
+				<xs:enumeration value="extended-width"></xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:group name="firstLevelSectionParametersGroup">
+		<xs:annotation>
+			<xs:documentation>Grupa parametrów dla sekcji pierwszego stopnia.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="parameters" type="ep:firstLevelSectionParametersType"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="firstLevelSectionParametersType">
+		<xs:annotation>
+			<xs:documentation>Typ parametrów dla sekcji pierwszego stopnia</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:role" minOccurs="0"/>
+			<xs:element ref="ep:columns"/>
+			<xs:element ref="ep:start-new-page" minOccurs="0"/>
+			<xs:element name="foldable" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element mówiący o tym, czy sekcja powinna być zwinięta, czy nie.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ep:stretch" minOccurs="0"/>
+			<xs:element ref="ep:stretch-title" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="secondLevelSectionParametersType">
+		<xs:annotation>
+			<xs:documentation>Typ parametrów dla sekcji drugiego stopnia</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:width"/>
+			<xs:element ref="ep:stretch-title" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="secondLevelSecionParametersGroup">
+		<xs:annotation>
+			<xs:documentation>Grupa parametrów dla sekcji drugiego stopnia. UWAGA: Gdy sekcja pierwszego stopnia jest podzielona na kolumny (liczba kolumn różna od 1), wszystkie jej podsekcje drugiego stopnia muszą posiadać parametry.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="parameters" type="ep:secondLevelSectionParametersType"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Kontener na paragrafy z ep:id</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cnxml:paraContainerType">
+				<xs:attribute name="id" type="ep:idType" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Odwołania do słowniczków, dymków, bibliografii etc.-->
+	<xs:attribute name="target-name" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Nazwa dla referencji np. do wykorzystania jako indeks, który pojawi się w formatach statycznych.</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attributeGroup name="bibtexmlEntryAttributesGroup">
+		<xs:annotation>
+			<xs:documentation>Atrybuty dla zapisu bibliograficznego.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute ref="ep:target-name" use="required"/>
+		<xs:attribute name="show-in" use="optional">
+			<xs:annotation>
+				<xs:documentation>Pozwala określić, czy zapis bibliograficzny ma się pojawić również w module, w którym jest zdefiniowany, czy tylko w bibliografi zbiorczej (domyslnie bibliography-and-module).</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="bibliography-and-module"></xs:enumeration>
+					<xs:enumeration value="bibliography-only"></xs:enumeration>
+					<xs:enumeration value="inline-only"></xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:complexType name="baseGlossaryReferenceType" mixed="true">
+		<xs:annotation>
+			<xs:documentation>Baza referencji do elementu semantycznego znajdującego się w słowniczku lub w tym module. Ma zastosowanie w przypadku: definicji, reguł, pojęć, biogramów, wydarzeń oraz bibliografii.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cnxml:linkInlineContentType">
+				<xs:attribute name="id" type="ep:idType" use="required">
+					<xs:annotation>
+						<xs:documentation>UWAGA: ep:id w tym przypadku nie jest unikalnym identyfikatorem tego elementu, lecz identyfikatorem celu. Zależnie od typu odwołania wskazuje na definicję, regułe, pojęcie, biogram, wydarzenie lub wpis bibliograficzny znajdujący się w słowniczku/bibliografii lub w tym module.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute ref="ep:target-name"/>
+				<xs:attribute name="local-reference" type="xs:boolean" use="required">
+					<xs:annotation>
+						<xs:documentation>Oznaczenie, czy referencja jest lokalna - prowadzi do elementu zawartego w tym samym module.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="tooltip-reference" type="ep:baseGlossaryReferenceType">
+		<xs:annotation>
+			<xs:documentation>Odwołanie do dymka (EPK Dymek - odwołanie).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="disabled-alternative-reference">
+		<xs:annotation>
+			<xs:documentation>Odwołanie do dymka z tekstem alternatywnym (EPK Dymek - odwołanie).</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="id" type="ep:idType" use="required">
+				<xs:annotation>
+					<xs:documentation>UWAGA: ep:id w tym przypadku nie jest unikalnym identyfikatorem tego elementu, lecz identyfikatorem celu. Wskazuje na tooltip z opisem alternatywnym dla niepełnosprawnych w tym module.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="glossary-reference" type="ep:baseGlossaryReferenceType">
+		<xs:annotation>
+			<xs:documentation>Odwołanie do słowniczka (do definicji lub reguły)  (EPK Słowniczek - odwołanie).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="concept-reference" type="ep:baseGlossaryReferenceType">
+		<xs:annotation>
+			<xs:documentation>Odwołanie do pojęcia  (EPK Pojęcie - odwołanie).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="biography-reference" type="ep:baseGlossaryReferenceType">
+		<xs:annotation>
+			<xs:documentation>Odwołanie do biogramu  (EPK Biogram - odwołanie).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="event-reference" type="ep:baseGlossaryReferenceType">
+		<xs:annotation>
+			<xs:documentation>Odwołanie do wydarzenia  (EPK Wydarzenie - odwołanie).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="bibliography-reference" type="ep:baseGlossaryReferenceType">
+		<xs:annotation>
+			<xs:documentation>Odwołanie do bibliografii ( (EPK Zapis bibliograficzny - odwołanie)).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:attribute name="glossary" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Oznaczenie, czy element ma trafić do słowniczka, czy nie</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<!-- elementy w treści -->
+	<xs:element name="lead" type="ep:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Blok lead (EP Lead).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="intro" type="ep:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Blok intro (EP Intro)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="effectType">
+		<xs:annotation>
+			<xs:documentation>Typ elementu effect (EP Nauczysz się). Typ służy do stworzenia labeli: Co wiem, Co potrafię, Co rozumiem</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ep:paraContainerWithIdType">
+				<xs:attribute name="type">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="skill"></xs:enumeration>
+							<xs:enumeration value="knowledge"></xs:enumeration>
+							<xs:enumeration value="understanding"></xs:enumeration>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="effect" type="ep:effectType">
+		<xs:annotation>
+			<xs:documentation>Blok effect (EP Nauczysz się)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="prerequisite" type="ep:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Blok prerequisite (EP Przygotuj przed lekcją)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="revisal" type="ep:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Blok revisal (EP Przypomnij sobie)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="technical-remarks" type="ep:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Blok komentarza technicznego (EP Komentarz techniczny)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="commandType">
+		<xs:annotation>
+			<xs:documentation>Typ command (EP Polecenie)</xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:annotation>
+				<xs:documentation>UWAGA: W commandType mogą wystąpić tylko notki typu: tip, important, warning</xs:documentation>
+			</xs:annotation>
+			<xs:element ref="cnxml:problem"/>
+			<xs:element ref="cnxml:note"/>
+			<xs:element ref="ep:work-area" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+		<xs:attribute name="id" type="ep:idType" use="required"/>
+		<xs:attribute name="type">
+			<xs:annotation>
+				<xs:documentation>Typ polecenia. Narazie tylko dodany dla zdefiniowania debaty.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="debate"></xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute ref="ep:presentation-variant"/>
+	</xs:complexType>
+	<xs:element name="command">
+		<xs:annotation>
+			<xs:documentation>Blok command  (EP Polecenie)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ep:commandType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="step" type="ep:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Element krok w instrukcji postępowania (EP Krok)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="procedure-instructionsType">
+		<xs:annotation>
+			<xs:documentation>Typ instrukcja postępowania (EP Instrukcja postępowania)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<!--<xs:group ref="cnxml:titleWithMathMLGroup"/>-->
+			<xs:element ref="cnxml:title"/>
+			<xs:element ref="ep:step" minOccurs="2" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="ep:idType" use="required"/>
+	</xs:complexType>
+	<xs:element name="procedure-instructions" type="ep:procedure-instructionsType">
+		<xs:annotation>
+			<xs:documentation>Element instrukcja postępowania (EP Instrukcja postępowania)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="tooltipType">
+		<xs:annotation>
+			<xs:documentation>Typ dymek (EP Dymek)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="cnxml:title"/>
+			<xs:element name="content" type="ep:paraContainerWithIdType"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="ep:idType" use="required"/>
+		<xs:attribute name="type">
+			<xs:annotation>
+				<xs:documentation>Typ dymka</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="JPOL_E3_E4_glossary"></xs:enumeration>
+					<xs:enumeration value="JPOL_E3_E4_apposition"></xs:enumeration>
+					<xs:enumeration value="JPOL_E3_E4_curiosity"></xs:enumeration>
+					<xs:enumeration value="disabled-alternative"></xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="tooltip" type="ep:tooltipType">
+		<xs:annotation>
+			<xs:documentation>Element dymek (EP Dymek)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="bookmark">
+		<xs:annotation>
+			<xs:documentation>Zakładka - cel łącza</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="id" type="ep:idType" use="required"/>
+			<xs:attribute name="name" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Nazwa zakładki pozwalająca zorganizować edycję łączy w sposób wygodniejszy dla użytkownika.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fold-point">
+		<xs:annotation>
+			<xs:documentation>Miejsce zawijania się. Uwaga: do stosowania tylko i wyłącznie w połączeniu z ep:foldable=true</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="id" type="ep:idType" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="zebra-point">
+		<xs:annotation>
+			<xs:documentation>Miejsce zmiany pasa zebry na inny kolor.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="id" type="ep:idType" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="nbsp">
+		<xs:annotation>
+			<xs:documentation>Nbsp. Element pusty - znak nbsp ("spacja niełamiąca").</xs:documentation>
+		</xs:annotation>
+		<xs:complexType/>
+	</xs:element>
+	<xs:element name="tab">
+		<xs:annotation>
+			<xs:documentation>Tab. Element pusty pozwalający na kontrolę wcięć, szczególnie w cn:code.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType/>
+	</xs:element>
+	<xs:element name="author" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Autor cytatu (EP Autor)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="source">
+		<xs:annotation>
+			<xs:documentation>Źródło cytatu w postaci odwołania do zapisu bibliograficznego</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="bibliography-reference">
+					<xs:annotation>
+						<xs:documentation>Odwołanie do zapisu bibliograficznego, ale typu inline i jako element pusty</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="id" type="ep:idType" use="required"/>
+						<xs:attribute name="local-reference" type="xs:boolean" use="required">
+							<xs:annotation>
+								<xs:documentation>Oznaczenie, czy referencja jest lokalna - prowadzi do elementu zawartego w tym samym module.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="inline" use="required" fixed="true"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="comment" type="ep:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Komentarz do cytatu (EP Cytat akapit - komentarz)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="concept" type="cnxml:definitionType">
+		<xs:annotation>
+			<xs:documentation>Pojęcie (EPK Pojęcie)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="student-workType">
+		<xs:annotation>
+			<xs:documentation>Typ zestawu zadań dla ucznia (EPK Praca domowa, EPK Zbiór zadań)</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:sequence>
+				<xs:element ref="cnxml:problem"/>
+				<xs:element ref="cnxml:exercise" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="ep:command"/>
+				<xs:element ref="cnxml:exercise"/>
+				<xs:element ref="ep:experiment"/>
+				<xs:element ref="ep:observation"/>
+			</xs:choice>
+		</xs:choice>
+		<xs:attribute name="id" type="ep:idType" use="required"/>
+		<xs:attribute name="type" use="required">
+			<xs:annotation>
+				<xs:documentation>Typ zestawu zadań. UWAGA: Jeżeli jest równy 'homework', w zestawie mogą występować polecenia, ćwiczenia, doświadczenia i obserwacje. Gdy type jest równy exercise-set, to zawartością bloku może być problem, po którym następuje wiele podrzędnych ćwiczeń.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="homework"></xs:enumeration>
+					<xs:enumeration value="exercise-set"></xs:enumeration>
+					<xs:enumeration value="project"></xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute ref="ep:presentation-variant"/>
+	</xs:complexType>
+	<xs:element name="student-work" type="ep:student-workType">
+		<xs:annotation>
+			<xs:documentation>Element zestawu zadań dla ucznia</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!--	<xs:element name="name" type="ep:titleType">-->
+	<xs:element name="name" type="cnxml:simpleInlineContentType">
+		<xs:annotation>
+			<xs:documentation>Nazwa wydarzenia, biogramu (EP Nazwa)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="datePartType">
+		<xs:annotation>
+			<xs:documentation>Typ składowa daty</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="year" type="xs:int"/>
+			<xs:element name="month" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:positiveInteger">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="12"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="day" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:positiveInteger">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="31"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="dateType">
+		<xs:annotation>
+			<xs:documentation>Typ data</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="date-start" type="ep:datePartType"/>
+			<xs:element name="date-end" type="ep:datePartType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>End date musi być zdefiniowane dla opcji: century, beginning-of-century, end-of-century, middle-of-century, turn-of-century</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="type" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="century"/>
+					<xs:enumeration value="year"/>
+					<xs:enumeration value="date"/>
+					<xs:enumeration value="around-year"/>
+					<xs:enumeration value="beginning-of-century"/>
+					<xs:enumeration value="end-of-century"/>
+					<xs:enumeration value="middle-of-century"/>
+					<xs:enumeration value="turn-of-century"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="date" type="ep:dateType">
+		<xs:annotation>
+			<xs:documentation>Element data</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="startEndType">
+		<xs:annotation>
+			<xs:documentation>Typ początek / koniec (wydarzenia, biogramu, ...)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:date" minOccurs="0"/>
+			<xs:element name="location" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="birth" type="ep:startEndType">
+		<xs:annotation>
+			<xs:documentation>Element urodzenie</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="death" type="ep:startEndType">
+		<xs:annotation>
+			<xs:documentation>Element śmierć</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!--	TODO: do rozważenia przygotowanie osobnego typu dla referencji WOMI oraz galerii zawartych w biogramie/wydarzeniu. -->
+	<xs:complexType name="biographyType">
+		<xs:annotation>
+			<xs:documentation>Typ biogram</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:name">
+				<xs:annotation>
+					<xs:documentation>Imie i nazwisko (EP Name)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sorting-key" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Klucz sortowania</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ep:birth" minOccurs="0"/>
+			<xs:element ref="ep:death" minOccurs="0"/>
+			<xs:element ref="ep:reference" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Referencja do WOMI. UWAGA: Referencja WOMI w biogramie ma ograniczoną liczbę właściwości. Elementy, które należy uwzględnić to: ep:reading-room, ep:zoomable, ep:hide-caption oraz ep:content. Uwaga ta dotyczy się również referencji do WOMI zawartych w ep:gallery w biogramie.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ep:gallery" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Galeria WOMI. UWAGA: w zależności od typu galerii, wymagane są różne zestawy atrybutów ([R] - wymagany). Galerie: A - pokaz slajdów, B - siatka, C - pozioma, D - playlista wideo. Atrybuty galerii slideshow (A): id [R], start-on, thumbnails, titles, format-contents. Atrybuty galerii grid (B): id [R], view-width [R], view-height[R]. Atrybuty galerii miniatures (C): id [R], miniatures-only [R]=true, thumbnails, titles, format-contents. Atrybuty galerii playlist (D): id [R], start-on, thumbnails, titles, format-contents, playlist [R]. UWAGA: Galeria WOMI wewnątrz biogramu ma ograniczoną liczbę opcji. Atrybuty przyjmują stałe wartości: ep:miniatures-only="true", ep:format-contents="hide-normal", a tytuł jest kopią zawartości ep:name.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="content" type="ep:paraContainerWithIdType">
+				<xs:annotation>
+					<xs:documentation>Zawartość biogramu. Zdefiniowana na tym poziomie ze względu na potencjalną kolizję z ep:content wchodzący w skład referencji WOMI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="ep:idType" use="required"/>
+		<xs:attribute ref="ep:glossary" use="required"/>
+	</xs:complexType>
+	<xs:element name="biography" type="ep:biographyType">
+		<xs:annotation>
+			<xs:documentation>Element biogram (EPK Biogram)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="event-start" type="ep:startEndType">
+		<xs:annotation>
+			<xs:documentation>Element początek wydarzenia</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="event-end" type="ep:startEndType">
+		<xs:annotation>
+			<xs:documentation>Element koniec wydarzenia</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!--	 TODO: do rozważenia przygotowanie osobnego typu dla referencji WOMI oraz galerii zawartych w biogramie/wydarzeniu.-->
+	<xs:complexType name="eventType">
+		<xs:annotation>
+			<xs:documentation>Typ wydarzenie</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:name">
+				<xs:annotation>
+					<xs:documentation>Nazwa (EP Nazwa)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sorting-key" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Klucz sortowania</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ep:event-start" minOccurs="0"/>
+			<xs:element ref="ep:event-end" minOccurs="0"/>
+			<xs:element ref="ep:reference" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Referencja do WOMI. UWAGA: Referencja WOMI w wydarzeniu ma ograniczoną liczbę właściwości. Elementy, które należy uwzględnić to: ep:reading-room, ep:zoomable, ep:hide-caption oraz ep:content. Uwaga ta dotyczy się również referencji do WOMI zawartych w ep:gallery w wydarzeniu.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ep:gallery" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Galeria WOMI. UWAGA: w zależności od typu galerii, wymagane są różne zestawy atrybutów ([R] - wymagany). Galerie: A - pokaz slajdów, B - siatka, C - pozioma, D - playlista wideo. Atrybuty galerii slideshow (A): id [R], start-on, thumbnails, titles, format-contents. Atrybuty galerii grid (B): id [R], view-width [R], view-height[R]. Atrybuty galerii miniatures (C): id [R], miniatures-only [R]=true, thumbnails, titles, format-contents. Atrybuty galerii playlist (D): id [R], start-on, thumbnails, titles, format-contents, playlist [R]. UWAGA: Galeria WOMI wewnątrz wydarzenia ma ograniczoną liczbę opcji. Atrybuty przyjmują stałe wartości: ep:miniatures-only="true", ep:format-contents="hide-normal", a tytuł jest kopią zawartości ep:name.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="content" type="ep:paraContainerWithIdType">
+				<xs:annotation>
+					<xs:documentation>Zawartość wydarzenia. Zdefiniowana na tym poziomie ze względu na potencjalną kolizję z ep:content wchodzący w skład referencji WOMI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="ep:idType" use="required"/>
+		<xs:attribute ref="ep:glossary" use="required"/>
+	</xs:complexType>
+	<xs:element name="event" type="ep:eventType">
+		<xs:annotation>
+			<xs:documentation>Element wydarzenie (EPK Wydarzenie)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="problem" type="ep:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Element problem z doświadczenia (EP Doświadczenie - problem badawczy).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="hypothesis" type="ep:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Element hipoteza z doświadczenia (EP Doświadczenie - hipoteza)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="objective" type="ep:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Element cel z doświadczenia/obserwacji (EP Doświadczenie - cel)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="instruments" type="ep:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Element materiały i przyrządy z doświadczenia/obserwacji (EP Doświadczenie - materiały i przyrządy)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="instructions" type="ep:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Element instrukcja z doświadczenia/obserwacji (EP Doświadczenie - instrukcja)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="conclusions" type="ep:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Element podsumowanie z doświadczenia/obserwacji (EP Doświadczenie - podsumowanie)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!--	(TODO: BRAK W MS WORD)-->
+	<xs:element name="demonstration" type="ep:paraContainerWithIdType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający zilustrowanie całego procesu doświadczenia/obserwacji</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="experimentType">
+		<xs:annotation>
+			<xs:documentation>Typ doświadczenie (EPK Doświadczenie)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:annotation>
+				<xs:documentation>UWAGA: W eksperymencie mogą występować tylko notki typu: tip, warning, important.</xs:documentation>
+			</xs:annotation>
+			<xs:element ref="cnxml:title"/>
+			<xs:element ref="cnxml:note" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="ep:problem"/>
+					<xs:element ref="cnxml:note" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="ep:hypothesis"/>
+				</xs:sequence>
+				<xs:element ref="ep:objective"/>
+			</xs:choice>
+			<xs:element ref="cnxml:note" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:sequence minOccurs="0">
+				<xs:element ref="ep:instruments"/>
+				<xs:element ref="cnxml:note" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:element ref="ep:instructions"/>
+			<xs:element ref="cnxml:note" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:sequence minOccurs="0">
+				<xs:element ref="ep:conclusions"/>
+				<xs:element ref="cnxml:note" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:element ref="ep:demonstration"/>
+				<xs:element ref="cnxml:note" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="id" type="ep:idType" use="required"/>
+		<xs:attribute name="supervised" type="xs:boolean" use="required">
+			<xs:annotation>
+				<xs:documentation>Wymaga nadzoru osoby dorosłej.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="context-dependent" type="xs:boolean" use="required">
+			<xs:annotation>
+				<xs:documentation>Zależny od kontekstu.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="experiment" type="ep:experimentType">
+		<xs:annotation>
+			<xs:documentation>Element doświadczenie</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="observationType">
+		<xs:annotation>
+			<xs:documentation>Typ obserwacja (EPK Obserwacja)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:annotation>
+				<xs:documentation>UWAGA: W obserwacji mogą występować tylko notki typu: tip, warning, important.</xs:documentation>
+			</xs:annotation>
+			<xs:element ref="cnxml:title"/>
+			<xs:element ref="cnxml:note" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ep:objective"/>
+			<xs:element ref="cnxml:note" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:sequence minOccurs="0">
+				<xs:element ref="ep:instruments"/>
+				<xs:element ref="cnxml:note" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:element ref="ep:instructions"/>
+			<xs:element ref="cnxml:note" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:sequence minOccurs="0">
+				<xs:element ref="ep:conclusions"/>
+				<xs:element ref="cnxml:note" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:element ref="ep:demonstration"/>
+				<xs:element ref="cnxml:note" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="id" type="ep:idType" use="required"/>
+		<xs:attribute name="supervised" type="xs:boolean" use="required">
+			<xs:annotation>
+				<xs:documentation>Wymaga nadzoru osoby dorosłej.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="context-dependent" type="xs:boolean" use="required">
+			<xs:annotation>
+				<xs:documentation>Zależna od kontekstu.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="observation" type="ep:observationType">
+		<xs:annotation>
+			<xs:documentation>Element obserwacja</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:group name="simpleExerciseGroup">
+		<xs:annotation>
+			<xs:documentation>Grupa elementów, które można zawrzeć w prostym ćwiczeniu.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="cnxml:problem"/>
+			<xs:element ref="cnxml:note" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Notka. UWAGA: w tym miejscu może występować tylko notka typu tip, jest to wskazówka rozwiązania zadania.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ep:work-area" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="cnxml:solution" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="cnxml:commentary" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:element name="work-area">
+		<xs:annotation>
+			<xs:documentation>Text area do zadań otwartych.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType/>
+	</xs:element>
+	<xs:simpleType name="formatType">
+		<xs:annotation>
+			<xs:documentation>Typ dla formatu alternatywy epXML.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="classicmobile"></xs:enumeration>
+			<xs:enumeration value="static"></xs:enumeration>
+			<xs:enumeration value="static-mono"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="format" type="ep:formatType">
+		<xs:annotation>
+			<xs:documentation>Element dla formatu alternatywy epXML</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="formatsType">
+		<xs:annotation>
+			<xs:documentation>Typ dla formatów alternatyw epXML. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:format" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation>Element dla formatu alternatywy epXML. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="formats" type="ep:formatsType">
+		<xs:annotation>
+			<xs:documentation>Element dla formatów alternatyw epXML. UWAGA: elementy format są zadeklarowane wewnątrz typu, aby zrobić wybór między predefiniowanymi wartościami.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="presentation-style">
+		<xs:annotation>
+			<xs:documentation>Element określający typ prezentowania odpowiedzi w przypadku zadań z elementami losowości. Uwaga: ma zastosowanie w przypadku, gdy mamy do czynienia z q:item/@type='multiple-response'.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="true-false"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<!--	TODO: opisać zależność-->
+	<xs:element name="correct-in-set">
+		<xs:annotation>
+			<xs:documentation>Element dla liczby poprawnych odpowiedzi w zestawie w zadaniu z elementami losowości w momencie, gdy mamy doczynienia z pytaniem wielokrotnej odpowiedzi. UWAGA: zakres zależy od ep:presented-answers oraz count(q:item/q:answer).</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:pattern value="(\d+-)?[1-9]\d*"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<!--	TODO: Opisać zależności-->
+	<xs:element name="presented-answers">
+		<xs:annotation>
+			<xs:documentation>Element dla liczby prezentowanych odpowiedzi w zadaniu z elementami losowości. UWAGA: dozwolone wartości dla liczby prezentowanych odpowiedzi zależą od wartości ep:behaviour oraz count(q:item/q:answer).</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:positiveInteger">
+				<xs:minInclusive value="2"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:simpleType name="behaviourType">
+		<xs:annotation>
+			<xs:documentation>Typ dla sposób przetwarzania odpowiedzi w zadaniu z elementami losowości.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="randomize"></xs:enumeration>
+			<xs:enumeration value="randomize-sets"></xs:enumeration>
+			<xs:enumeration value="all-sets"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="behaviour" type="ep:behaviourType">
+		<xs:annotation>
+			<xs:documentation>Element dla sposób przetwarzania odpowiedzi w zadaniu z elementami losowości.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="configType">
+		<xs:annotation>
+			<xs:documentation>Typ konfiguracji zadania z elementami losowości.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:behaviour"/>
+			<xs:element ref="ep:presented-answers"/>
+			<xs:element ref="ep:correct-in-set" minOccurs="0"/>
+			<xs:element ref="ep:presentation-style" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="config" type="ep:configType">
+		<xs:annotation>
+			<xs:documentation>Element konfiguracji zadania z elementami losowości.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="alternativeType">
+		<xs:annotation>
+			<xs:documentation>Typ dla alternatywy w epXML.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:formats">
+				<xs:annotation>
+					<xs:documentation>Element dla formatów alternatyw epXML. UWAGA: ze względu na uproszczenie możliwe powinny być 2 typy alternatyw: classicmobile - wtedy wewnątrz alternativeType powinno znajdować się ep:reference, lub static i static-mono na raz (2 ep:format), wtedy w alternativeType powinny znajdować się elementy z grupy simpleExercise.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element ref="ep:reference"/>
+				<xs:group ref="ep:simpleExerciseGroup"/>
+				<xs:sequence>
+					<xs:element ref="ep:config" minOccurs="0"/>
+					<xs:element ref="q:item"/>
+				</xs:sequence>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="id" type="ep:idType" use="required"/>
+	</xs:complexType>
+	<xs:element name="alternative" type="ep:alternativeType">
+		<xs:annotation>
+			<xs:documentation>Element dla alternatywy w epXML.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="alternativesType">
+		<xs:annotation>
+			<xs:documentation>Typ dla alternatyw w epXML.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ep:alternative" minOccurs="2" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation>W ramach alternatyw może znajdować się między 2, a 3 alternatywy dla każdego z formatów emisyjnych. UWAGA: na chwilę obecną w trakcie konwersji powstaje alternatywa dla formatów dynamicznych (classicmobile) oraz dla formatów statycznych (static oraz static-mono).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="alternatives" type="ep:alternativesType">
+		<xs:annotation>
+			<xs:documentation>Element alternatyw w epXML. UWAGA: w chwili obecnej stosowane tylko i wyłącznie w odniesieniu do zawartości elementu exercise. UWAGA: w ep:alternatives nie mogą występować dwie ep:alternative dla tej samej wartości ep:format.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:attributeGroup name="exerciseAttributesGroup">
+		<xs:annotation>
+			<xs:documentation>Atrybuty ćwiczenia</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="context-dependent" type="xs:boolean" use="required"/>
+		<!-- TODO: OPIS-->
+		<xs:attribute name="interactivity">
+			<xs:annotation>
+				<xs:documentation>Atrybut interactivity powinien być wykorzystany do podjęcia decyzji jakie podelementy są dozwolone w ramach exercise/alternatyw. Są to zależności niewyrażalne w schemacie XML.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="static"></xs:enumeration>
+					<xs:enumeration value="random"></xs:enumeration>
+					<xs:enumeration value="interactive"></xs:enumeration>
+					<xs:enumeration value="womi_with_alternatives"></xs:enumeration>
+					<xs:enumeration value="quiz"></xs:enumeration>
+					<xs:enumeration value="random_quiz"></xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="on-paper" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute ref="ep:presentation-variant" use="optional"/>
+	</xs:attributeGroup>
+	<xs:element name="effect-of-education">
+		<xs:annotation>
+			<xs:documentation>Efekt kształcenia wykorzystywany przez matematyków w ćwiczeniach</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="A"/>
+				<xs:enumeration value="B"/>
+				<xs:enumeration value="C"/>
+				<xs:enumeration value="K"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:attributeGroup name="qmlAnswerAttributesGroup">
+		<xs:annotation>
+			<xs:documentation>Atrybuty odpowiedzi qml</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="in-set" type="xs:positiveInteger"/>
+	</xs:attributeGroup>
+	<xs:attribute name="presentation-variant">
+		<xs:annotation>
+			<xs:documentation>Atrybut pozwalający oznaczyć, że blok semantyczny ma być wyeksponowany w warstwie prezentacyjnej np. Zadanie, Polecenie, Notka, Definicja, Reguła, Pojęcie, Praca domowa</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="exposed"></xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="foldable" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Atrybut pozwalający oznaczyć, że notka jest, lub nie jest zwijalna. UWAGA: Ma zastosowanie tylko i wyłącznie w przypadku notki typu curiosity i ma dla niej domyślną wartość true.</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+
+	<xs:simpleType name="licenseURLType">
+		<xs:annotation>
+			<xs:documentation>Opcje dla URL licencji WOMI/cytatu</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+			<xs:enumeration value="http://www.epodreczniki.pl/licenses/e-podreczniki/1.0"/>
+			<xs:enumeration value="http://creativecommons.org/publicdomain/zero/1.0/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by/1.0/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by/2.0/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by/2.5/pl/legalcode"/>
+			<xs:enumeration value="http://creativecommons.org/licenses/by/3.0/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by/4.0/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-sa/1.0/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-sa/2.0/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-sa/2.5/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-sa/3.0/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-sa/4.0/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nd/1.0/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nd/2.0/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nd/2.5/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nd/3.0/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nd/4.0/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nc/1.0/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nc/2.0/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nc/2.5/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nc/3.0/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nc/4.0/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nc-nd/2.0/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nc-nd/2.5/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nc-nd/3.0/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nc-sa/1.0/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nc-sa/2.0/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nc-sa/2.5/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nc-sa/3.0/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode"/>
+			<xs:enumeration value="http://www.epodreczniki.pl/licenses/domena-publiczna/1.0"/>
+			<xs:enumeration value="http://www.epodreczniki.pl/licenses/tylko-do-uzytku-edukacyjnego/1.0"/>
+			<xs:enumeration value="http://www.epodreczniki.pl/licenses/tylko-do-uzytku-edukacyjnego-na-epodreczniki_pl/1.0"/>
+			<xs:enumeration value="http://www.epodreczniki.pl/licenses/tylko-do-uzytku-niekomercyjnego/1.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="licenseBaseType">
+		<xs:annotation>
+			<xs:documentation>Bazowy typ licencji WOMI/cytatu z ograniczeniem na wartości</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+				<xs:enumeration value=""/>
+				<xs:enumeration value="E-podręczniki 1.0"/>
+				<xs:enumeration value="CC 0 1.0"/>
+				<xs:enumeration value="CC BY 1.0"/>
+				<xs:enumeration value="CC BY 2.0"/>
+				<xs:enumeration value="CC BY 2.5"/>
+				<xs:enumeration value="CC BY 3.0"/>
+				<xs:enumeration value="CC BY 4.0"/>
+				<xs:enumeration value="CC BY SA 1.0"/>
+				<xs:enumeration value="CC BY SA 2.0"/>
+				<xs:enumeration value="CC BY SA 2.5"/>
+				<xs:enumeration value="CC BY SA 3.0"/>
+				<xs:enumeration value="CC BY SA 4.0"/>
+				<xs:enumeration value="CC BY-ND 1.0"/>
+				<xs:enumeration value="CC BY-ND 2.0"/>
+				<xs:enumeration value="CC BY-ND 2.5"/>
+				<xs:enumeration value="CC BY-ND 3.0"/>
+				<xs:enumeration value="CC BY-ND 4.0"/>
+				<xs:enumeration value="CC BY-NC 1.0"/>
+				<xs:enumeration value="CC BY-NC 2.0"/>
+				<xs:enumeration value="CC BY-NC 2.5"/>
+				<xs:enumeration value="CC BY-NC 3.0"/>
+				<xs:enumeration value="CC BY-NC 4.0"/>
+				<xs:enumeration value="CC BY-NC-ND 2.0"/>
+				<xs:enumeration value="CC BY-NC-ND 2.5"/>
+				<xs:enumeration value="CC BY-NC-ND 3.0"/>
+				<xs:enumeration value="CC BY-NC-ND 4.0"/>
+				<xs:enumeration value="CC BY-NC-SA 1.0"/>
+				<xs:enumeration value="CC BY-NC-SA 2.0"/>
+				<xs:enumeration value="CC BY-NC-SA 2.5"/>
+				<xs:enumeration value="CC BY-NC-SA 3.0"/>
+				<xs:enumeration value="CC BY-NC-SA 4.0"/>
+				<xs:enumeration value="domena publiczna"/>
+				<xs:enumeration value="tylko do użytku edukacyjnego"/>
+				<xs:enumeration value="tylko do użytku edukacyjnego na epodreczniki.pl"/>
+				<xs:enumeration value="tylko do użytku niekomercyjnego"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="licenseType">
+		<xs:annotation>
+			<xs:documentation>Kompletny typ licencji WOMI/cytatu</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="ep:licenseBaseType">
+				<xs:attribute name="url" type="ep:licenseURLType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="license" type="ep:licenseType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający licencję elementu nadrzędnego (np. cytatu)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="license-additional-info" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Element zawierający dodatkowe informacje licencyjne (np. w cytacie)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="bibliographyPatternType" mixed="true">
+		<xs:annotation>
+			<xs:documentation>Wzór wstawiania bibliografii</xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="title">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="author">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="booktitle">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="year">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="key">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="edition">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="organization">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="address">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="series">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="editor">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="publisher">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="number">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="journal">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="note">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="howpublished">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="pages">
+				<xs:complexType/>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="bibliographyPattern" type="ep:bibliographyPatternType">
+		<xs:annotation>
+			<xs:documentation>Element wzóru wstawiania bibliografii.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:attribute name="style">
+		<xs:annotation>
+			<xs:documentation>atrybut styl dla cn:table</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="zebra"></xs:enumeration>
+				<xs:enumeration value="plain"></xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="collection-version" type="xs:positiveInteger">
+		<xs:annotation>
+			<xs:documentation>Atrybut zawierający wersję kolekcji w łączu</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="collection-id" type="ep:idType">
+		<xs:annotation>
+			<xs:documentation>Atrybut zawierający id kolekcji w łączu</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="collection-recipient" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Atrybut zawierający odbiorcę treści kolekcji w łączu</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+</xs:schema>

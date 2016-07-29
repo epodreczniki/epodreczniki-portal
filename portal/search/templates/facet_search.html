@@ -1,0 +1,118 @@
+{% extends "front/base_front.html" %}
+
+{% load staticfiles compress search_functions url_process common_ext %}
+
+{% block stylesheets %}
+    {{ block.super }}
+    {% compress css %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}search/css/search.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}search/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}search/css/bootstrap-theme.min.css"/>
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+
+    <form class="search_form" action="{% host_url 'search' 'classic_search' %}" method="get">
+        <div class="control-group">
+
+            <label class="control-label" for="textinput"></label>
+
+            <div class="controls">
+                {% if query != "" %}
+                    <input id="textinput" name="text_input" type="text" value="{{ query }}" autocomplete="off">
+                {% else %}
+                    <input id="textinput" name="text_input" type="text" placeholder="Szukaj..." autocomplete="off">
+                {% endif %}
+
+                <p class="help-block">Wyszukaj e-podręczniki</p>
+            </div>
+        </div>
+    </form>
+
+    {% if facets %}
+        <div class="facets">
+            <ul class="nav nav-tabs tabs">
+                {% for facet_field, facet_item in facets.items %}
+                    <li {% if forloop.counter == 1 %}class="active"{% endif %}><a href="#{{ facet_field }}">{{ facet_item.display_name }}</a></li>
+                {% endfor %}
+            </ul>
+            {% for facet_field, facet_item in facets.items %}
+            <div id="{{ facet_field }}" class="tab panel-default panel-topless">
+                {% if facet_item.values %}
+                    <ul class="nav nav-pills nav-stacked">
+                        {% for facet_display_name, facet_value, facet_count in facet_item.values %}
+                            <li><a href="{% url 'search.views.search' %}?q={{ q }}&facet={{ facet_field }}&value={{ facet_value }}"><span class="badge pull-right">{{ facet_count }}</span>{{ facet_display_name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <ul class="nav nav-pills nav-stacked"><li class="nav-empty">- brak w ustawionych warunkach wyszukiwania -</li></ul>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+        </div>
+    {% endif %}
+
+    <div class="results">
+        {% if results %}
+
+            <div>
+                {% if query %}
+                <p>Wyniki wyszukiwania dla frazy: <b>{{ query }}</b></p>
+                {% endif %}
+                {% if facet %}
+                <p>Wyniki ograniczone przez warunek: <b>{{ facet }} = {{ value   }}</b></p>
+                {% endif %}
+            </div>
+
+            {% for result in results %}
+
+                <div class="result">
+
+                    {% assign_search_result result.link 1 as collection_info %}
+                    {% if collection_info.school_type %}
+                        <a href="{% host_url 'www' 'front.views.new_index' education_level=collection_info.school_type %}"><span
+                                class="result-school">{{ collection_info.school_type }}</span></a>
+                    {% endif %}
+                    {% if collection_info.ep_class %}
+                        <a href="{% host_url 'www' 'front.views.new_index' education_level=collection_info.school_type level=collection_info.ep_class %}"> <span
+                                class="result-ep-class">klasa {{ collection_info.ep_class }}</span></a>
+                    {% endif %}
+                    {% if collection_info.subject %}
+                        <a href="{% host_url 'www' 'front.views.new_index' education_level=collection_info.school_type subject=collection_info.subject.id %}"> <span
+                                class="result-subject">{{ collection_info.subject }}</span></a>
+                    {% endif %}
+
+                    <a href="{% search_result_url result.link %}">
+                        <div class="result-title_collection">{{ collection_info }} </div>
+                    </a>
+
+                    {% autoescape off %}
+                        <p>{{ result.solr_highlights.content.0 }}</p>
+                    {% endautoescape %}
+
+                </div>
+
+            {% empty %}
+
+                <div class="no-results">
+                    <p>Brak wyników!</p>
+                </div>
+
+            {% endfor %}
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+{% block scripts_bottom %}
+    {{ block.super }}
+    {% compress js %}
+        <script src="{{ STATIC_URL }}common/js/libs/jquery-2.0.3.min.js"></script>
+        <script src="{{ STATIC_URL }}search/js/libs/bootstrap.min.js"></script>
+        <script src="{{ STATIC_URL }}search/js/libs/tabenizer.js"></script>
+    {% endcompress %}
+
+{% endblock %}

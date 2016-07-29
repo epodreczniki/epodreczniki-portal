@@ -1,0 +1,10 @@
+<span class="preInputText"><%= preInputText %></span>
+
+<select class="answer" data-id="<%= questionId %>">
+	<option value=""><%= placeholder %></option>
+	<% _.each(answersId, function(id) { %>  
+		<option data-id="<%= id %>" value="<%= value(id) %>"><%= value(id) %></option>
+	<% }); %>
+</select>
+<span class="postInputText"><%= postInputText %></span>
+<% if (lineBreak) %> <br/>

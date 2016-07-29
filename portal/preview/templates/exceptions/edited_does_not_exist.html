@@ -1,0 +1,5 @@
+{% extends "exception_error.html" %}
+
+{% block error_content %}
+Najnowsza dostępna wersja znajduje się <a href="{% url 'preview_collection_details' exception.nice_extra.identifier 'latest' %}">tutaj</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% autoescape off %}
+    <div class="womi-container">
+        <div class="classic">
+            {{ classic }}
+        </div>
+        {% if mobile %}
+            <div class="mobile" data-auto="true">
+                {{ mobile }}
+            </div>
+        {% endif %}
+    </div>
+
+{% endautoescape %}

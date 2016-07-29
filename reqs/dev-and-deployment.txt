@@ -1,0 +1,2 @@
+django-libsass==0.2
+libsass==0.5.0

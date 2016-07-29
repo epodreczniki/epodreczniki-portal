@@ -1,0 +1,24 @@
+@import "../../elements/common-variables";
+
+//for now
+
+.generated-attachment {
+    margin: @space-A 0;
+    padding: 8px 0;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    a {
+        padding: 8px 8px 8px 40px;
+        color: #fff;
+        text-decoration: none;
+        background-image: url("../../../img/reader-nav-attachment.svg");
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        background-size: auto 90;
+    }
+
+    &:hover {
+        background-color: @hover-color;
+    }
+}

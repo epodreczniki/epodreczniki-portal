@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://cnx.rice.edu/collxml"
+    xmlns="http://cnx.rice.edu/collxml"
+    xmlns:md="http://cnx.rice.edu/mdml"
+    xmlns:ep="http://epodreczniki.pl/"    
+    xmlns:cnxsi="http://cnx.rice.edu/system-info"
+    elementFormDefault="qualified"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" vc:minVersion="1.1">
+    
+    <xs:import namespace="http://cnx.rice.edu/mdml" schemaLocation="mdml.xsd"/>
+    <xs:import namespace="http://epodreczniki.pl/" schemaLocation="ep.xsd"/>
+    <xs:import namespace="http://cnx.rice.edu/system-info" schemaLocation="cnxsi.xsd"/>    
+    
+    <xs:element name="subcollection">
+        <xs:annotation>
+            <xs:documentation>An element that represents a subcollection in a collection.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="md:title"/>
+                <xs:element ref="ep:view-attributes" minOccurs="0"/>
+                <xs:element ref="content"/>
+            </xs:all>
+            <xs:attribute ref="ep:id"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="module">
+        <xs:annotation>
+            <xs:documentation>An element that represents a module in a collection.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="md:title"/>
+                <xs:element ref="md:subtitle" minOccurs="0"/>
+            </xs:all>
+            <xs:attribute name="repository" type="xs:anyURI">
+                <xs:annotation>
+                    <xs:documentation>An attribute that represents main address of repository.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="url" type="xs:anyURI">
+                <xs:annotation>
+                    <xs:documentation>An attribute that represents location of current module in repository.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="document" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>An attribute that represents module id.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="version" type="xs:string"/>
+            <xs:attribute ref="cnxsi:version-at-this-collection-version"/>
+            <xs:attribute ref="ep:toc"/>
+            <xs:attribute ref="ep:numbering"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="content">
+        <xs:annotation>
+            <xs:documentation>An element to hold the content of the context element ('subcollection', 'module').</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="module"/>
+                <xs:element ref="subcollection"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="metadata">
+        <xs:annotation>
+            <xs:documentation>An element to hold details about collection.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="md:content-id"/>
+                <xs:element ref="md:content-url" minOccurs="0"/>
+                <xs:element ref="md:repository"/>
+                <xs:element ref="md:version"/>
+                <xs:element ref="md:created"/>
+                <xs:element ref="md:revised"/>
+                <xs:element ref="md:language"/>
+                <xs:element ref="md:license"/>
+                <xs:element ref="md:title"/>
+                <xs:element ref="md:subtitle" minOccurs="0"/>
+                <xs:element ref="md:education-levellist" minOccurs="0"/>
+                <xs:element ref="md:keywordlist" minOccurs="0"/>
+                <xs:element ref="md:subjectlist" minOccurs="0"/>
+                <xs:element ref="md:abstract" minOccurs="0"/>
+                <xs:element ref="ep:e-textbook"/>
+                <xs:element ref="md:actors"/>
+                <xs:element ref="md:roles"/>
+                <xs:element ref="ep:root-id" minOccurs="0"/>
+                <xs:element ref="ep:origin-id" minOccurs="0"/>
+                <xs:element ref="ep:origin-version" minOccurs="0"/>
+            </xs:all>
+            <xs:attribute name="mdml-version" type="xs:decimal" default="0.5"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="collection">
+        <xs:annotation>
+            <xs:documentation>Document element of a CollXML document; it and its contents describe a collection of modules at a particular version.n</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="metadata" minOccurs="0"/>
+                <xs:element ref="content"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+</xs:schema>

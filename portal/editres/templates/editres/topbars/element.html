@@ -1,0 +1,21 @@
+{% load urls editres_general %}
+
+<li class="{% if navbar_chosen == presentation_driver.presentation_kind %}active{% endif %} text-uppercase dropdown">
+    <a class='editres-navbar-narrow ' href="{% if navbar_chosen == presentation_driver.presentation_kind %}#{% else %}{{ presentation_driver.presentation_url }}{% endif %}">
+        {% short_label presentation_driver.presentation_label %}
+    </a>
+    <a class='editres-navbar-narrow dropdown-toggle' data-toggle='dropdown' href="#">
+        <span class='caret'></span>
+    </a>
+    <ul class='dropdown-menu'>
+        {% with siblings=presentation_driver.presentation_siblings %}
+        {% for sibling in siblings.0 %}
+        <li><a href="{{ sibling.presentation_url }}">{{ sibling.presentation_label }}</a></li>
+        {% endfor %}
+        {% if siblings.1 %}
+        <li role="presentation" class="divider"></li>
+        <li><a href="{{ presentation_driver.presentation_parent.presentation_url }}">Więcej...</a></li>
+        {% endif %}
+        {% endwith %}
+    </ul>
+</li>

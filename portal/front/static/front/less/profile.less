@@ -1,0 +1,441 @@
+@import "mixins";
+@import "profile-variables";
+
+.profile-body {
+  #content-wrap {
+    position: relative;
+    min-height: 100% !important;
+  }
+}
+
+/* Main containers */
+
+.profile-wrap-gradient {
+  background: rgba(246, 247, 248, 1);
+  background: -moz-linear-gradient(left, rgba(246, 247, 248, 1) 0%, rgba(246, 247, 248, 1) 49%, rgba(255, 255, 255, 1) 51%, rgba(255, 255, 255, 1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(246, 247, 248, 1)), color-stop(49%, rgba(246, 247, 248, 1)), color-stop(51%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
+  background: -webkit-linear-gradient(left, rgba(246, 247, 248, 1) 0%, rgba(246, 247, 248, 1) 49%, rgba(255, 255, 255, 1) 51%, rgba(255, 255, 255, 1) 100%);
+  background: -o-linear-gradient(left, rgba(246, 247, 248, 1) 0%, rgba(246, 247, 248, 1) 49%, rgba(255, 255, 255, 1) 51%, rgba(255, 255, 255, 1) 100%);
+  background: -ms-linear-gradient(left, rgba(246, 247, 248, 1) 0%, rgba(246, 247, 248, 1) 49%, rgba(255, 255, 255, 1) 51%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(to right, rgba(246, 247, 248, 1) 0%, rgba(246, 247, 248, 1) 49%, rgba(255, 255, 255, 1) 51%, rgba(255, 255, 255, 1) 100%);
+}
+
+#profile-content {
+  position: absolute;
+  .flex-display();
+  min-height: 100%;
+  width: 100%;
+  // min-height set in JS
+
+  @media all and (min-width: @profileMediumSize) {
+    .profile-wrap-gradient();
+    background-color: #fff;
+  }
+}
+
+.profile-content-wrap {
+  position: relative;
+  margin: @profileTopbarHeight auto 0 auto;
+  min-height: calc(~"100% - " @profileTopbarHeight);
+  width: 100%;
+  max-width: @profileContentWidth;
+  display: none;
+
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    min-height: calc(~"100vh - " @profileTopbarHeight);
+  }
+
+  &.visible {
+    .flex-display();
+    -ms-flex-align: stretch;
+    .flex-align(stretch);
+  }
+
+  @media all and (max-width: @profileMediumSize) {
+    &.visible {
+      .flex-wrap(column, nowrap);
+      -ms-flex-align: center;
+      .flex-align(center);
+    }
+  }
+}
+
+.profile-container {
+  h2 {
+    position: relative;
+    width: 100%;
+    margin: 0 0 42px 0;
+    padding: 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+  }
+}
+
+aside, .profile-container {
+  padding-top: 55px;
+
+  @media all and (max-width: @profileMediumSize) {
+    padding-top: 0;
+  }
+}
+
+/* Styles for aside and its children */
+.aside-shadow {
+  -webkit-box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+aside {
+  position: relative;
+  .flex-display();
+  -ms-flex-pack: end;
+  .flex-justify(flex-end);
+
+  width: @profileAsideWidth;
+  border-right: 1px solid #edeeef;
+  background-color: #f6f7f8;
+  .flex-keep-size();
+  padding-left: 16px;
+
+  @media all and (max-width: @profileMediumSize) {
+    -ms-flex-pack: center;
+    .flex-justify(center);
+    .aside-shadow();
+    width: 100%;
+    padding-left: 0;
+    margin-bottom: 6px !important;
+    border-right: none;
+  }
+
+}
+
+.aside-toolbar {
+  position: fixed;
+  -ms-transform: translate(-@profileAsideWidth, 0px);
+  -webkit-transform: translate(-@profileAsideWidth, 0px);
+  transform: translate(-@profileAsideWidth, 0px);
+  width: 100%;
+  max-width: @profileAsideWidth;
+
+  @media all and (max-width: @profileMediumSize) {
+    position: relative;
+    -ms-transform: translate(0, 0px);
+    -webkit-transform: translate(0, 0px);
+    transform: translate(0, 0px);
+    max-width: 100%;
+    padding: 0 50px;
+  }
+
+  @media all and (max-width: 500px) {
+    padding: 0 20px;
+  }
+}
+
+/* MS Edge correction */
+@supports (-ms-accelerator:true) {
+  .aside-toolbar {
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+}
+
+.aside-filters-toggle {
+  display: none;
+  cursor: pointer;
+
+  @media all and (max-width: @profileMediumSize) {
+    .flex-display();
+    -ms-flex-pack: center;
+    .flex-justify(center);
+  }
+
+  .aside-filters-toggle-button {
+    padding: 20px 0;
+
+    span {
+      font-family: open_sansbold, sans-serif;
+      font-size: 14px;
+      color: @profile-blue;
+    }
+
+  }
+}
+
+.aside-filters-foldable {
+  @media all and (max-width: @profileMediumSize) {
+    padding-bottom: 45px;
+    border-top: 1px solid #adadad;
+
+    &.hidden {
+      display: none;
+    }
+  }
+}
+
+.aside-filters-content {
+  @media all and (max-width: @profileMediumSize) {
+    .flex-display();
+    .flex-wrap(row, nowrap);
+    -ms-flex-pack: distribute;
+    .flex-justify(space-around);
+    padding-top: 29px;
+  }
+
+  @media all and (max-width: @profileSmallSize) {
+    .flex-wrap(row, wrap);
+  }
+
+  .aside-filters-column {
+    @media all and (max-width: @profileSmallSize) {
+      max-width: 200px;
+    }
+  }
+
+  .aside-filters-single-column {
+    @media all and (max-width: @profileMediumSize) {
+      width: 100%;
+      max-width: 216px;
+      .flex-keep-size();
+    }
+  }
+}
+
+.aside-filters-buttons {
+  @media all and (max-width: @profileMediumSize) {
+    .flex-display();
+    -ms-flex-pack: center;
+    .flex-justify(center);
+  }
+}
+
+.aside-header {
+  font-family: open_sanssemibold, sans-serif;
+  font-size: 14px;
+  margin-bottom: 13px;
+  position: relative;
+  width: calc(~"100% - 2px");
+  margin-left: 2px;
+}
+
+/* Styles for notes container and its children*/
+
+.profile-container {
+  position: relative;
+  width: calc(~"100% - " @profileAsideWidth);
+  background-color: #fff;
+
+  @media all and (max-width: @profileMediumSize) {
+    width: 100%;
+    //width: calc(~"100% - 40px");
+  }
+
+  @media all and (max-width: @profileSmallSize) {
+    width: 100%;
+  }
+
+}
+
+.profile-data-container {
+  width: calc(~"100% - " @profileEditAsideWidth);
+
+  @media all and (max-width: @profileMediumSize) {
+    width: 100%;
+  }
+}
+
+.notes-list, .readings-list, .readings-tabs, .progress-list, .stats-list {
+  position: relative;
+  padding: 0 13px 0 47px;
+
+  @media all and (max-width: @profileMediumSize) {
+    padding: 0px 21px 0 23px;
+  }
+
+  @media all and (max-width: @profileSmallSize) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .search-form {
+    position: relative;
+    width: 100%;
+  }
+
+  .searchbar {
+    position: relative;
+    margin-top: 0;
+    border: none;
+    border-bottom: 2px solid @profileBorderGray;
+    box-shadow: none;
+    margin-bottom: 42px;
+  }
+
+  .searchbar-inner {
+    margin: 0 0 22px 0 !important;
+  }
+
+  .search-input {
+    margin-left: 5px;
+    width: calc(~"100% - 112px - 7px") !important;
+
+    input {
+      border: 2px solid @profileBorderGray !important;
+      border-right: none !important;
+    }
+  }
+
+  .search-button {
+    margin-right: 2px;
+  }
+
+  .notes-horizontal-line {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+  }
+
+  h2 {
+    font-family: 'open_sanslight', sans-serif;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 39px;
+    margin-bottom: 42px;
+    padding-bottom: 15px;
+    text-align: justify;
+
+    @media all and (max-width: @profileMediumSize) {
+      display: none;
+    }
+
+  }
+}
+
+/* Common profile dropdown styles */
+.profile-dropdown {
+  position: relative;
+  width: calc(~"100% - 16px");
+  margin-bottom: 28px;
+
+  @media all and (max-width: @profileSmallSize) {
+    width: 100%;
+  }
+
+  select {
+    position: relative;
+    width: 100%;
+    height: 34px;
+    line-height: 34px;
+    font-family: open_sanssemibold, sans-serif;
+    font-size: 12px;
+    border: none;
+    overflow: hidden;
+    color: #ffffff;
+    margin: 0;
+    padding: 0 0 0 10px;
+    background-color: @profile-blue;
+    background-size: 9% 50%;
+    background-repeat: no-repeat;
+    background-position: 95% 60%;
+    background-image: url("../img/select-down-arrow.png");
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+
+    option {
+      color: @profile-blue;
+      background-color: #ffffff;
+    }
+  }
+
+  select::-ms-expand {
+    display: none;
+  }
+}
+
+/* Profile buttons */
+.profile-read-button {
+  width: 101px;
+  border: 1px solid @profile-blue;
+  background-color: #fff;
+  height: 27px;
+  margin-left: auto;
+  margin-top: 6px;
+  .flex-display();
+  -ms-flex-align: center;
+  .flex-align(center);
+  -ms-flex-pack: center;
+  .flex-justify(center);
+
+  a:link, a:visited, a:hover, a:active {
+    color: @profile-blue;
+    font-size: 16px;
+    font-family: open_sansregular, sans-serif;
+    text-decoration: none;
+    padding: 3px 28px 2px 28px;
+  }
+
+  .read-label {
+      .flex-display();
+    }
+}
+
+#profile-overlay {
+    background: white;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0
+    bottom: 0;
+    left: 0;
+    z-index: @highestZIndex;
+    overflow: none;
+}
+
+#profile-overlay-message {
+    position: absolute;
+    top: 30%;
+    text-align: center;
+    width: 100%;
+    color: @m-blue;
+    font-family: open_sanslight;
+
+    .spinner {
+    width: 40px;
+    height: 40px;
+    background-color: @m-blue;
+    border-color: @m-blue;
+    border: 1px solid;
+
+    margin: 5% auto;
+    -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+    animation: sk-rotateplane 1.2s infinite ease-in-out;
+    }
+
+    @-webkit-keyframes sk-rotateplane {
+    0% { -webkit-transform: perspective(120px) }
+    50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+    100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+    }
+
+    @keyframes sk-rotateplane {
+    0% { 
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+    } 50% { 
+        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+    } 100% { 
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+        -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    }
+    }
+}
+
+.no-scroll {
+    overflow: hidden;
+}

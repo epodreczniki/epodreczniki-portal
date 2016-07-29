@@ -1,0 +1,137 @@
+<div class="metadata-full-edit-form">
+
+    <div class="metadata-section">
+        <h2>Metadane</h2>
+        <ul class="no-ul" data-role="meta">
+            <li class="metadata-item">
+                <label for="meta-module-title">Tytuł modułu</label><input class="full-input" id="meta-module-title"
+                                                                          value="<%= title %>">
+            </li>
+            <li class="metadata-item">
+                <label for="metadata-license">Licencja</label><input class="full-input" id="metadata-license" data-url="<%= licenseUrl %>"
+                                                                     value="<%= license %>">
+            </li>
+        </ul>
+
+        <!-- <button class="full-button" data-role="update-meta">Uaktualnij</button> -->
+
+        <div class="metadata-section">
+            <h2>Autorzy</h2>
+
+            <ul class="no-ul" data-role="authors">
+
+                <% _.each(authors.list, function(author, ia) { %>
+                <li class="metadata-item" data-role="item">
+
+                    <% _.each(authors.template, function(field) { %>
+                    <div style="display: block">
+                        <%= field.label || field.tag %><input class="full-input" data-role="<%= field.tag %>"
+                                                              value="<%= author[field.tag][0] %>">
+
+                    </div>
+                    <% }); %>
+                    <button class="full-button" data-role="delete" data-index="<%= ia %>">Usuń</button>
+                    <button class="full-button" data-role="update" data-index="<%= ia %>">Uaktualnij</button>
+                </li>
+
+                <% }); %>
+
+            </ul>
+			
+			<div>
+				<div>
+					<button class="full-button" style="width: 90%" id="add-author">Dodaj autora</button>
+					<button class="full-button" style="width: 10%" id="add-author-menu">Menu</button>
+				</div>
+				<ul id="add-author-menu-items">
+				</ul>
+			</div>
+        </div>
+
+        <div class="metadata-section">
+            <h2>Podstawa programowa</h2>
+            <ul class="no-ul" data-role="cc">
+                <% _.each(cc.list, function(ccel, ia) { %>
+                <li class="metadata-item" data-role="item">
+                    <% _.each(cc.template, function(field) { %>
+                    <div style="display: block">
+                    	<% if(field.tag !== 'authors-comment') { %>
+                    	<%= field.label || field.tag %><input class="full-input" readonly data-role="<%= field.tag %>" data-key="<%= ccel[field.tag][0]['ep:key'] %>"
+                                                              value="<%= ccel[field.tag][0].value %>">
+                    	<% }else{ %>
+                    	<%= field.label || field.tag %><textarea class="full-input" data-role="<%= field.tag %>" data-key="<%= field.tag %>"
+                                                              value="<%= ccel[field.tag][0] %>"><%= ccel[field.tag][0] %></textarea>
+                    	<% } %>
+                    </div>
+                    <% }); %>
+                    <button class="full-button" data-role="delete" data-index="<%= ia %>">Usuń</button>
+                    <button class="full-button" data-role="update" data-index="<%= ia %>">Uaktualnij</button>
+                </li>
+
+                <% }); %>
+
+            </ul>
+            <button class="full-button" id="add-cc">Dodaj podstawę programową</button>
+        </div>
+        
+        <div class="metadata-section">
+            <h2>Edukacje</h2>
+            <ul class="no-ul" data-role="education">
+                <% _.each(educations, function(education, idx) { %>
+                <li class="metadata-item" data-role="item">
+                    <div style="display: block">
+                        Edukacja: <input readonly class="full-input" value="<%= education['core-curriculum-subject'][0].value %>">                                       
+						Opis: <textarea class="full-input"><%= education['authors-comment'][0] %></textarea>
+                    </div>
+                    <button class="full-button" data-role="delete" data-index="<%= idx %>">Usuń</button>
+                    <button class="full-button" data-role="update" data-index="<%= idx %>">Uaktualnij</button>
+                </li>
+
+                <% }); %>
+
+            </ul>
+            <button class="full-button" id="add-education">Dodaj edukację</button>
+        </div>
+        
+        <div class="metadata-section">
+        	 <h2>Polecenia uzupełniające</h2>
+        	 
+        	 <ul class="no-ul" data-role="ccommand">
+        	 
+        	 	<% _.each(ccommands, function(ccommand, idx) { %>
+                <li class="metadata-item" data-role="item">
+                    <div style="display: block">
+                        Polecenie uzupełniające : <input class="full-input" value="<%= ccommand %>">
+                    </div>
+                    <button class="full-button" data-role="delete" data-index="<%= idx %>">Usuń</button>
+                    <button class="full-button" data-role="update" data-index="<%= idx %>">Uaktualnij</button>
+                </li>
+                
+                <% }); %>
+                
+        	 </ul>
+        	 <button class="full-button" id="add-ccommand">Dodaj polecenie uzupełniające</button>
+        </div>
+        
+        <div class="metadata-section">
+        	 <h2>Przypinki</h2>
+        	 
+        	 <ul class="no-ul" data-role="pins">
+        	 
+        	 	<% _.each(pins, function(pin, idx) { %>
+                <li class="metadata-item" data-role="item">
+                    <div style="display: block">
+                        Referencja do WOMI: <input class="full-input" value="<%= pin %>">
+                    </div>
+                    <button class="full-button" data-role="delete" data-index="<%= idx %>">Usuń</button>
+                    <button class="full-button" data-role="update" data-index="<%= idx %>">Uaktualnij</button>
+                </li>
+                
+                <% }); %>
+                
+        	 </ul>
+        	 <button class="full-button" id="add-pin">Dodaj przypinkę</button>
+        </div>
+        
+    </div>
+</div>

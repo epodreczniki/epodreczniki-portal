@@ -1,0 +1,10 @@
+{% extends "jira_issues/issue.txt" %}
+
+{% block details %}
+{{ block.super }}
+URL: {{ form.module_occurrence.get_absolute_url }}
+Kolekcja: {{ form.module_occurrence.collection.md_content_id }}
+Wersja: {{ form.module_occurrence.collection.md_version }}
+Wariant: {{ form.module_occurrence.collection.variant }}
+Moduł: {{ form.module_occurrence.module.md_content_id }}
+{% endblock %}

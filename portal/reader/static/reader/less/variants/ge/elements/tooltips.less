@@ -1,0 +1,34 @@
+@tooltipBaseMargin: 10px;
+@tooltipIconSize: 61px;
+@tooltipPaddingTop: 23px;
+@tooltipPaddingLeft: @tooltipIconSize + 5px + @tooltipBaseMargin;
+@tooltipPaddingRight: 10px;
+@tooltipHeight: @tooltipIconSize + 10px;
+@iconMargin: 24px;
+@tooltipMarginTop: @tooltipIconSize + @iconMargin + 5px;
+
+.GE-Tip {
+    position: absolute;
+    margin-top: -@tooltipMarginTop;
+    margin-left: -5px;
+    padding: @tooltipPaddingTop;
+    padding-left: @tooltipPaddingLeft;
+    padding-right: @tooltipPaddingRight;
+    height: @tooltipHeight;
+    width: auto;
+    border-radius: 35px;
+    white-space: nowrap;
+    font-size: 22px;
+    font-family: Belfer;
+    color: white;
+    z-index: -1;
+}
+
+.GE-Tip-One {
+    background-color: #2b8258;
+    z-index: 8;
+}
+
+.GE-Tip-Two {
+    background-color: #47996e;
+}

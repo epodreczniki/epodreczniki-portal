@@ -1,0 +1,14 @@
+{% load compress staticfiles common_ext %}
+<title>
+{% block title %}{{ collection.md_title }} • epodreczniki.pl{% endblock %}
+</title>
+{% block stylesheets %}
+    <!-- EPP-2100: it should not be linked here -->
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}reader/less/variants/standard-2/all-common.less">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+

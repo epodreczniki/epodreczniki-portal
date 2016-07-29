@@ -1,0 +1,32 @@
+{
+    "query": {
+        "filtered": {
+            "query": {
+                "match_all": {}
+            },
+            "filter": {
+                "term": {
+                    "attributes.title": "fajna"
+                }
+            }
+        }
+    }
+}
+
+{
+    "filtered" : {
+        "query" : {
+            "match_all" : {}
+        },
+        "filter" : {
+            "or" : [
+                {
+                    "term" : { "name.second" : "banon" }
+                },
+                {
+                    "term" : { "name.nick" : "kimchy" }
+                }
+            ]
+        }
+    }
+}

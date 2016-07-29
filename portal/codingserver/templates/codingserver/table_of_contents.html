@@ -1,0 +1,6 @@
+<!-- HTML table of contents for collection {{ collection.identifier }}, version {{ collection.version }}-->
+{% if collection.ep_environment_type == 'early-education' or collection.ep_environment_type == 'ee' %}
+    {% include 'layouts/ge/components/table_of_content.html' %}
+{% else %}
+    <!-- not supported for other collection types -->
+{% endif %}

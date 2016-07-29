@@ -1,0 +1,65 @@
+{% load extensions common_ext %}
+
+<div class="topbar-ge" data-component="topbar">
+    <div class="topbar-ge-inner topbar-ge-inner-hidden" style="display: none">
+        <ul class="breadcrumbs-buttons top-level-list">
+            <li>
+                <button id="breadcrumb-1">s</button>
+            </li>
+            <li>
+                <button id="breadcrumb-2">s</button>
+            </li>
+        </ul>
+        <ul class="main-navigation-tabs top-level-list">
+            <li class="dropdown-menu" id="exercise-list">
+                <button class="toggle-button">Plan zajęć</button>
+                <ul class="exercise-list-content dropdown-content"></ul>
+            </li>
+            <li class="dropdown-menu" id="supplementary-tasks">
+                <button class="toggle-button">Polecenia <br/> uzupełniające</button>
+                <ul class="supplementary-tasks-content dropdown-content">
+                </ul>
+            </li>
+            <li class="dropdown-menu" id="core-curriculum">
+                <button class="toggle-button" id="cc">Rozkład <br/> materiału</button>
+                <ul class="core-curriculum-content dropdown-content"></ul>
+            </li>
+            <li class="dropdown-menu">
+                <button id="licences-btn" class="toggle-button">Licencje</button>
+                <ul id="licenses-content" class="dropdown-content">
+                </ul>
+            </li>
+            {% comment %}<li class="dropdown-menu">
+                <button id="help-btn" class="toggle-button"
+                        onclick="location.href='//www.{{ top_domain }}/reader/c/190307/v/latest/t/student-canon'">Pomoc
+                </button>
+            </li>
+            <li class="dropdown-menu">
+                <button id="search-btn" class="toggle-button"
+                        onclick="location.href='{% host_url 'search' 'classic_search_details' collection.md_content_id collection.md_version collection.variant %}?level={{ collection.education_code }}&class={{ collection.class_code }}' ">
+                    Szukaj
+                </button>
+            </li>{% endcomment %}
+            </li>
+            <li>
+                <button class="toggle-button" id="showHideWomi"></button>
+            </li>
+        </ul>
+        <ul class="additional-navigation-buttons top-level-list">
+            <li>
+                <button id="search-btn" class="toggle-button search search-button rounded"
+                        onclick="location.href='{% host_url 'search' 'classic_search_details' collection.md_content_id collection.md_version collection.variant %}?level={{ collection.education_code }}&class={{ collection.class_code }}' ">
+                </button>
+
+            </li>
+            <li>
+                <button id="help-btn" class="toggle-button help rounded"
+                        onclick="location.href='//www.{{ top_domain }}/reader/c/190307/v/latest/t/student-canon'">?
+                </button>
+            </li>
+        </ul>
+    </div>
+    <button class="toggle-topbar toggle-topbar-up" title="Menu"></button>
+    <button class="contact-form-trigger contact-form-trigger-up" title="Zgłoś uwagi"></button>
+</div>
+

@@ -1,0 +1,49 @@
+{% extends "editres/base.html" %}
+{% load compress common_ext %}
+
+{% block title_block %}Publikacje{% endblock %}
+
+{% block topbar %}
+    {% include "publication/topbars/base.html" %}
+{% endblock %}
+
+
+{% block head_scripts %}
+    {{ block.super }}
+    {% compress js %}
+        <script src="{{ STATIC_URL }}common/js/libs/require.js"></script>
+    {% endcompress %}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}publication/js/build/publication.js"></script>
+    {% endcompress %}
+{% endblock %}
+
+{% block inner_content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class='row'>
+            <div class='col-xs-2'>
+                <span class='panel-title'>Stan zadań</span>
+            </div>
+            <div class='col-xs-2'>
+                liczba zadań: <span id='publication-objects-counter'></span>
+            </div>
+            <div class='col-xs-2'>
+                <div id='publication-initialization-marker'>
+                    <span class='glyphicon glyphicon-refresh'></span> inicjalizacja...
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body" id='presentation-root-section'>
+    </div>
+</div>
+{% endblock inner_content %}
+
+{% block scripts_bottom %}
+    {{ block.super }}
+    <script>
+    var rootDescriptors = {{ root_descriptors|jsondumps|safe }};
+    var presentationsDepth = {% if interface_depth %}{{ interface_depth }}{% else %}null{% endif %};
+    </script>
+{% endblock scripts_bottom %}

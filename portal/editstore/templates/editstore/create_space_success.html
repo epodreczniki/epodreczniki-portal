@@ -1,0 +1,12 @@
+{% extends "editstore/response_success.html" %}
+
+{% load editres_general %}
+
+{% block content %}
+<span>Utworzono przestrzeń</span>
+<a href="{{ space.get_absolute_url }}" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Przejdź dalej</a>
+{% endblock content %}
+
+{% block list_prepend %}
+    {% space_tile space_driver=space_driver %}
+{% endblock list_prepend %}

@@ -1,0 +1,86 @@
+// stopka
+
+footer {
+    position: fixed;
+    bottom: 0;
+    box-sizing: border-box;
+    clear: both;
+    //height: @footer-height;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    font-family: @sansLight;
+    font-size: 13px;
+
+    .footer-content {
+        position: relative;
+        margin: 10px auto;
+
+        width: 90%;
+        max-width: 1200px;
+        height: 80px;
+
+        background-image: url('../../img/e_PODRECZNIKI_stopka_.svg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 100%;
+
+        @media all and (max-width: 800px) {
+            height: 50px;
+        }
+
+    }
+
+    ul {
+
+        li {
+            display: inline;
+
+            a {
+                padding: 1px 4px;
+                color: #444;
+
+                @media (max-width: 480px) {
+                    padding: 1px 2px;
+                }
+
+                &:hover, &:focus {
+                    background: #fff;
+                    color: #000;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.frontpage-footer {
+    position: relative;
+}
+
+/* Fixes for FF */
+@-moz-document url-prefix() {
+    .footer-content {
+        background-size: 90%auto!important;
+
+        @media all and (max-width: 800px) {
+            background-size: 90% auto !important
+        }
+    }
+}
+
+/* Fixes for IE */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE10+ CSS styles go here */
+    .footer-content {
+        -ms-background-position-x: 0px;
+        -ms-background-position-y: 0px;
+        background-size: 90% auto!important;
+
+        @media all and (max-width: 800px) {
+            background-size: 90% auto !important
+        }
+    }
+
+
+}

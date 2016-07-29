@@ -1,0 +1,228 @@
+{% load begin_tags compress static wagtailuserbar wagtailcore_tags common_ext trackers extensions %}
+{% get_site_root as site_root %}
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>
+        {% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}
+        {% block title_suffix %}{% endblock %}</title>
+    <meta name="description" content=""/>
+
+    {% compress css %}
+
+        <link rel="stylesheet" href="{{ STATIC_URL }}begin/css/main_style.css" type="text/css" media="all"/>l
+
+        <link rel='stylesheet' id='superfish-css' href='{{ STATIC_URL }}begin/css/superfish.css' type='text/css'
+              media='all'/>
+        <link rel='stylesheet' id='prettyPhoto-css' href='{{ STATIC_URL }}begin/css/prettyPhoto.css' type='text/css'
+              media='all'/>
+        <link rel='stylesheet' id='flexslider-css' href='{{ STATIC_URL }}begin/css/flexslider.css' type='text/css'
+              media='all'/>
+        <link rel='stylesheet' id='responsive-css' href='{{ STATIC_URL }}begin/css/responsive.css' type='text/css'
+              media='all'/>
+        <link rel='stylesheet' id='colour-css' type="text/x-scss" href='{{ STATIC_URL }}begin/css/colour.scss'
+              media='all'/>
+
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'begin/css/begin.scss' %}">
+
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'begin/css/begin-fonts.scss' %}">
+
+
+    {% endcompress %}
+
+    {% compress css %}
+        <link rel="stylesheet" type="text/less" href="{% static 'begin/less/begin.less' %}">
+    {% endcompress %}
+
+    {% block extra_css %}
+
+
+    {% endblock %}
+
+    <script>
+        if (localStorage.EPO_WELCOME) {
+            //pass;
+        }
+        else {
+            localStorage.EPO_WELCOME = 'welcome';
+            // EPP-6974: temporarily hidden
+{#             window.location = "{% url 'begin_intro' %}";#}
+        }
+    </script>
+    {##}
+    {#    <script type='text/javascript' src='{{ STATIC_URL }}begin/js/jquery-1.11.1.min.js'></script>#}
+    {#    <script type='text/javascript' src='{{ STATIC_URL }}begin/js/jquery-migrate-1.2.1.min.js'></script>#}
+    {% tracker %}
+</head>
+
+<body id="top" class="{% block body_class %}{% endblock %}">
+<div id="contact-form-data" data-contact-form-absolute-path="{% url_absolute 'common.views.contact_form' %}"></div>
+
+{#{% wagtailuserbar %}#}
+{#{% block menu %}#}
+{#            {% get_site_root as site_root %}#}
+{#            {% top_menu parent=site_root calling_page=self %}#}
+{#        {% endblock %}#}
+
+<div id="header-wrapper-outer">
+    <div id="header-wrapper-mockup"></div>
+    <div id="header-wrapper">
+
+        <!-- BEGIN #header-border -->
+        <div id="header-border">
+
+            <!-- BEGIN #header-top -->
+            <div id="header-top" class="clearfix">
+                <ul class="top-left-nav clearfix" role="menu">
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page" role="menuitem"
+                        aria-label="Start">
+                        <a href="{% pageurl site_root %}">Start</a><span aria-hidden="true"> | </span></li>
+                    {% for pagin in site_root.get_children.live.in_menu %}
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page" role="menuitem"
+                            aria-label="{{ pagin }}">
+                            <a href="{% pageurl pagin %}">{{ pagin }}</a><span aria-hidden="true"> | </span>
+                        </li>
+                    {% endfor %}
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page" role="menuitem"
+                        aria-label="Biblioteka">
+                        <a href="{% url 'front.views.new_index' education_level=2 %}">Biblioteka</a><span
+                        aria-hidden="true"> | </span></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page" role="menuitem"
+                        aria-label="Zasoby">
+                        <a href="{% url 'kzd_main' %}">Zasoby</a><span aria-hidden="true"> | </span></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page" role="menuitem"
+                        aria-label="Licencje">
+                        <a href="{% url 'begin_licenses' %}">Licencje</a><span aria-hidden="true"> | </span></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page" role="menuitem"
+                        aria-label="Kontakt">
+                        <a id="contact_form" href="#">Kontakt</a><span aria-hidden="true"> | </span></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page" role="menuitem"
+                        aria-label="Częste pytania">
+                        <a href='{% pageurl site_root %}faq'>Częste pytania</a><span aria-hidden="true"> | </span></li>
+                </ul>
+
+                <ul class="top-right-nav clearfix" role="menu">
+                    {% comment %} <li class="phone-icon" role="menuitem">+48 22 123 45 67</li>{% endcomment %}
+                    {% comment %}<li class="email-icon" role="menuitem"><a>kontakt@epodreczniki.pl</a></li>{% endcomment %}
+                    {% if EPO_READER_AUTH_ENABLE %}
+
+                        <li role="menuitem"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-68 profile">
+                            <a href="{% url 'front.views.profile' %}" class="user-name"></a><span aria-hidden="true"> | </span></li>
+                        <li role="menuitem" aria-label="Wyloguj"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-68 profile">
+                            <a href="{% host_url 'user' "auth.views.epo_logout" %}?redirect_logout={% current_request_as_next_redirect_url %}">&nbsp;Wyloguj</a></li>
+                        <li role="menuitem" aria-label="Logowanie"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-68 login">
+                            <a href="{% host_url 'user' 'auth.views.epo_login' %}">Logowanie</a>{% comment %}<span> | </span>{% endcomment %}
+                        </li>
+
+                        {% comment %}<li role="menuitem" aria-label="Rejestracja"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-68 login">
+                            <a href="#">&nbsp;Rejestracja</a></li>{% endcomment %}
+                    {% else %}
+                        <li role="menuitem" aria-label="Logowanie"
+                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-68">
+                            <a href="{% host_url 'user' 'auth.views.epo_login' %}">Logowanie</a></li>
+                    {% endif %}
+                </ul>
+                <!-- END #header-top -->
+            </div>
+
+            <!-- BEGIN #header-content-wrapper -->
+            <div id="header-content-wrapper" class="clearfix">
+
+
+                <div id="logo" role="banner">
+                    <h1>
+                        <a href="{% pageurl site_root %}" title="Strona główna">
+                            <img src="{% static 'begin/images/epo/ep.svg' %}" alt="Logo epodreczniki"/>
+                        </a>
+                        {#                    <a href="#">Park<span>College</span></a>#}
+                    </h1>
+                </div>
+
+                <ul class="social-icons clearfix" role="menu">
+                    <li role="menuitem" aria-label="Dzieci w Polsce"><a href="http://www.dzieciwpolsce.pl/"
+                                                                 target="_blank" title="Dzieci w Polsce"><span
+                        class="unicef-icon active-icon"></span></a></li>
+                    <li role="menuitem" aria-label="Facebook"><a href="https://www.facebook.com/epodreczniki?fref=ts"
+                                                                 target="_blank" title="Facebook"><span
+                        class="facebook-icon active-icon"></span></a></li>
+                    <li role="menuitem" aria-label="YouTube"><a href="https://www.youtube.com/user/epodreczniki"
+                                                                target="_blank" title="YouTube"><span
+                        class="youtube-icon active-icon"></span></a></li>
+                    <li role="menuitem"><a href="http://www.ore.edu.pl/" target="_blank"
+                                           title="Ośrodek Rozwoju Edukacji"><span
+                        class="ore-icon active-icon"></span></a></li>
+                    <li role="menuitem" aria-label="Ministerstwo Edukacji Narodowej"><a href="http://men.gov.pl/"
+                                                                                        target="_blank"
+                                                                                        title="Ministerstwo Edukacji Narodowej"><span
+                        class="men-icon active-icon"></span></a>
+                    <li role="menuitem" aria-label="Centralna Komisja Egzaminacyjna"><a
+                        href="http://cke.edu.pl/index.php" target="_blank" title="Centralna Komisja Egzaminacyjna"><span
+                        class="cke-icon active-icon"></span></a>
+                    <li role="menuitem"><a href="http://naszelementarz.men.gov.pl/" target="_blank"
+                                           title="Nasz Elementarz"><span
+                        class="ne-icon active-icon"></span></a>
+                    <li role="menuitem"><a href="https://wolnelektury.pl/" target="_blank" title="Wolne Lektury"><span
+                        class="wl-icon active-icon"></span></a>
+                </ul>
+                <!-- END #header-content-wrapper -->
+            </div>
+
+            <!-- BEGIN #main-menu-wrapper -->
+            {% block menu %}
+                {% get_site_root as site_root %}
+                {#            {% top_menu parent=site_root calling_page=self %}#}
+                {% promo_links %}
+            {% endblock %}
+
+
+            <!-- END #header-border -->
+        </div>
+
+        <!-- END #header-wrapper -->
+    </div>
+</div>
+
+{% block content %}{% endblock %}
+
+{% block footer %}
+    {% include "begin/includes/footer.html" %}
+{% endblock %}
+
+{% compress js %}
+    <script src="{{ STATIC_URL }}common/js/libs/modernizr.custom.js"></script>
+    <script type='text/javascript' src='{{ STATIC_URL }}common/js/libs/require.js'></script>
+{% endcompress %}
+{% compress js %}
+    <script type="text/requirejs" src="{{ STATIC_URL }}common/js/build/common.js"></script>
+{% endcompress %}
+
+{% compress js %}
+
+    <script type='text/javascript' src='{{ STATIC_URL }}begin/js/jquery-ui.min.js'></script>
+    <script type='text/javascript' src='{{ STATIC_URL }}begin/js/tinynav.min.js'></script>
+    <script type='text/javascript' src='{{ STATIC_URL }}begin/js/jquery.uniform.js'></script>
+    <script type='text/javascript' src='{{ STATIC_URL }}begin/js/superfish.js'></script>
+    <script type='text/javascript' src='{{ STATIC_URL }}begin/js/jquery.prettyPhoto_newest.js'></script>
+    <script type='text/javascript' src='{{ STATIC_URL }}begin/js/jquery.flexslider-min.js'></script>
+    <script type='text/javascript' src='{{ STATIC_URL }}begin/js/scripts.js'></script>
+
+{% endcompress %}
+
+{% compress js %}
+    <script type="text/requirejs" src="{{ STATIC_URL }}begin/js/build/begin.js"></script>
+{% endcompress %}
+{% block extra_js %}
+{% endblock %}
+</body>
+</html>

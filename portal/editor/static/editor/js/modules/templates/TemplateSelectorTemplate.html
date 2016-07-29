@@ -1,0 +1,16 @@
+<div>
+    <div class="arrow-left" data-role="carousel-back">
+        <i class="fa fa-arrow-left"></i>
+    </div>
+    <div class="carousel">
+
+        <% _.each(items, function(item){ %>
+        <div class="image-placeholder hidden">
+            <img src="<%= item.url %>" data-item="<%= item.item %>">
+        </div>
+        <% }); %>
+    </div>
+    <div class="arrow-right" data-role="carousel-forward">
+        <i class="fa fa-arrow-right"></i>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+@import "detail";
+.reader-content {
+    .concept { // Pojęcie
+        .common-spacing();
+        .contents-cleaner();
+        padding-top: @space-D;
+        margin-top: 0;
+        .concept-header {
+            .simple-block-header();
+            margin-bottom: @space-A;
+            padding-bottom: 0;
+
+            .title {
+                padding-left: 1.75em;
+                background-image: url("../../../img/new-icons/ic-definicja.svg");
+                background-repeat: no-repeat;
+                background-position: left 50%;
+                background-size: auto 100%;
+
+                @media screen and (-ms-high-contrast: active) {
+                    background-image: none;
+                    background-color: transparent;
+                }
+            }
+        }
+
+        .concept-contents {
+            .typical-nested-example();
+             margin: 0 @side-space;
+        }
+
+        .bottom-cleaner();
+    }
+
+    .definition { // Definicja
+        .contents-cleaner();
+        padding-top: @space-D;
+
+        .definition-header {
+            .simple-block-header();
+            margin-bottom: @space-A;
+            padding-bottom: 0;
+
+            .label {
+                background-image: url("../../../img/new-icons/ic-definicja.svg");
+            }
+
+            .title {
+                margin: 0;
+                padding: 0;
+
+                @media screen and (-ms-high-contrast: active) {
+                    background-image: none;
+                    background-color: transparent;
+                }
+            }
+        }
+
+        .definition-contents {
+            .typical-nested-example();
+             margin: 0 @side-space;
+        }
+    }
+
+    .fancybox-inner {
+        .definition,
+        .concept {
+            margin: 8px;
+            padding: 8px 16px;
+            //background-color: #edf4f9;
+
+            &-contents {
+                border: none;
+            }
+
+            .definition-header,
+            .concept-header {}
+
+            .image-container img {
+                max-width: 100% !important;
+            }
+        }
+    }
+}

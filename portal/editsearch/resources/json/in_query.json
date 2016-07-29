@@ -1,0 +1,12 @@
+{
+	"name": "fajny filtr", 
+	"filter": { 
+		"operator": "and", 
+		"operands": [ { 
+			"field": "id", 
+			"value": ["i9kyx2rEG1","iBmdcmqpHK"], 
+			"mode": "in", 
+			"fixed": true 
+		}]
+	}
+}

@@ -1,0 +1,118 @@
+{% load staticfiles compress %}
+<div id="user-type-bar" style="display:none">
+    <div class="welcome-page">
+        <div class="content" id="welcome-pl">
+
+            <h1>
+                E-podręczniki
+            </h1>
+
+            <p>
+                Serdecznie witamy stronie epodreczniki.pl.
+            </p>
+
+            <p>
+                Miło nam poinformować, że pod tym adresem udostępniamy publiczną wersję testowej platformy technologicznej wraz z przykładowymi treściami <span class="nobr">e-podręcznika</span> do edukacji wczesnoszkolnej.
+            </p>
+
+            <p>
+                Udostępniona wersja platformy umożliwia testowanie podstawowej funkcjonalności oraz umożliwia dostęp do <span class="nobr">e-podręczników</span> do kształcenia ogólnego zarówno z mobilnych, jak i stacjonarnych urządzeń.
+            </p>
+
+            <p class="nav-title">
+                Jestem
+            </p>
+
+            <nav>
+                <button class="" id="user-type-student" type="button">uczniem</button>
+                <button class="" id="user-type-teacher" type="button">nauczycielem</button>
+            </nav>
+        </div>
+        <div class="content" id="welcome-en">
+
+            <h1>
+                E-podręczniki
+            </h1>
+
+            {% comment %}<p>
+                Welcome to the site epodreczniki.pl.
+            </p>{% endcomment %}
+
+            {% comment %}<p>
+                We are proud to inform you that this site is super, fantastic, fabulous, magnificent, ultra high quality, excellent and immense.
+            </p>
+            {% endcomment %}
+
+            <p>
+                {%  comment %}<div class="container">
+                <div class="row">
+                    <div class="span9">
+                        <p> {
+                            Modern educational MOOC platform to create and share e-books on the principle of full disclosure (all digital content included in e-books will be available on-line under the free Creative Commons BY/SA licenses)
+                        </p>
+                    </div>
+                    <div class="span3">
+                        <img src="{% static "front/img/eng_welcome/cc.svg" %}" />
+                    </div>
+                </div>
+            </div><!-- end .container --> {% endcomment %}
+                Modern educational MOOC platform to create and share <span class="nobr">e-books</span> on the principle of full disclosure (all digital content included in <span class="nobr">e-books</span> will be available <span class="nobr">on-line</span> under the free Creative Commons BY/SA licenses).
+            </p>
+
+            <p>
+                {% comment %}
+            <div class="container">
+                <div class="row">
+                    <div class="span3">
+                        <img src="{% static "front/img/eng_welcome/03.png" %}" width="64" height="64"/>
+                    </div>
+                    <div class="span9">
+                        <p>
+                            E-books will include text, audio, video, interactive quiz and on-line educational applications.
+                        </p>
+                    </div>
+                </div>
+            </div><!-- end .container -->{% endcomment %}
+                E-books will include text, audio, video, interactive quiz and <span class="nobr">on-line</span> educational applications.
+            </p>
+
+            <p>
+                {%  comment %}<div class="container">
+                <div class="row">
+                    <div class="span9">
+                        <p>
+                            Additional 2,500 objects of teaching resources to support teachers using new e-books from 13,000 primary schools, 7,000 secondary schools and 6,000 colleges.
+                        </p>
+                    </div>
+                    <div class="span3">
+                        <img src="{% static "front/img/eng_welcome/02.png" %}" height="64"/>
+                    </div>
+                </div>
+            </div><!-- end .container --> {% endcomment %}
+                Additional 2,500 objects of teaching resources to support teachers using new e-books from 13,000 primary schools, 7,000 secondary schools and 6,000 colleges.
+            </p>
+
+            <p>
+                The epodreczniki.pl platform will be also distributed as open source software and support:<br />
+                Flexibility, which means the ability to specify different user modes. <br />
+                    Modularity, which implies the coexistence of different versions and functions of each <span class="nobr">e-book.</span>
+
+            </p>
+
+            <p class="nav-title">
+                I am
+            </p>
+
+            <nav>
+                <button class="" id="user-type-student-en" type="button">a student</button>
+                <button class="" id="user-type-teacher-en" type="button">a teacher</button>
+            </nav>
+        </div>
+        {% compress js %}
+            <script type="text/javascript" src="{{ STATIC_URL }}common/js/welcome-redirect.js"></script>
+        {% endcompress %}
+        <script>
+
+        </script>
+    </div>
+</div>

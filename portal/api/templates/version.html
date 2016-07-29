@@ -1,0 +1,44 @@
+{% extends "index_base.html" %}
+{% load staticfiles cms_utils %}
+{% block title %}
+    <div>
+
+        <img style="vertical-align: baseline; padding-top: 5px; padding-right: 5px;"
+             src="{% static "front/img/epodreczniki.svg" %}"
+             data-fallback="{% static "front/img/epodreczniki.png" %}"
+             alt="Logo epodreczniki.pl"/>
+
+        <h1 style="display: inline;">{{ title }}</h1>
+    </div>
+{% endblock %}
+
+{% block main_page %}
+    Determining1 API version is done by a HTTP header rather than a url.
+    <h2>Method for select API version</h2>
+    <p>Each method can have a few of versions where each other differs a little or more.
+        To avoid generation thousand of url patterns, api version is not embedded in url.</p>
+    <p>API version can be selected with use of <code>Accept</code> header, where there can be assigned a version string:
+        <code>application/psnc.epo.api-v&lt;version-number&gt;</code>.
+        Remember that a format accept determination string should be provided, for more information see:
+        <a href="/format/">Format Param and Content Negotiation</a></p>
+    <h4>Example header</h4>
+    <code>Accept: application/json; application/psnc.epo.api-v1.0</code>
+
+    <p>If an accept header is not provided: a default version of method will be returned. It can be:</p>
+    <ul>
+        <li>
+            version of a particular method related with current API version,
+        </li>
+        <li>
+            last of known version of a particular method (lower thar current API version),
+        </li>
+        <li>
+            default version of a particular method, that should be used mainly (it can be specific version greater than
+            current API version).
+        </li>
+    </ul>
+
+    <h1>Current API version: 2.0 (and some methods following 2.1)</h1>
+
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'new_templates/base_front.html' %}
+{% load staticfiles collection_cover compress collections extensions common_ext url_process %}
+
+
+
+
+{% load staticfiles compress requirejs extensions common_ext collection_cover %}
+
+{% block body_class %}class="theme-100percent"{% endblock %}
+{% comment %}{% block body_class %}class="theme{{ theme }} theme-100percent"{% endblock %} Previous version {% endcomment %}
+
+{% block content %}
+    {{ block.super }}
+    <style>
+    li{
+        list-style: none !important;
+    }
+    .navbar{
+        display:block !important;
+        height:25px !important;
+    }
+    .navbar:after{
+        content:'';
+        display:block;
+        clear:both;
+    }
+    </style>
+    <div class="width:30%"></div>
+    <nav class="navbar navbar-inverse navbar-fixed-top opensans-font">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a style="float:left" class="navbar-brand" href="{% url 'front_landing_page' %}"><img src="{% static "front/img/gfx/logo.png" %}" /></a>
+            </div>
+            <div style="width:50%;float:left;"></div>
+            <div id="navbar" class="navbar-collapse collapse" style="">
+                <ul class="nav navbar-nav" style="float:left;">
+                    <li><div>Biblioteka</div></li>
+                </ul>
+                <ul id="thisNav" class="nav navbar-nav navbar-right">
+                    <li style="float: left;">
+                        <a title="Szukaj" class="search" ><img src="{% static "front/img/gfx/szukaj.png" %}" class="position"/>Szukaj</a>
+                    </li>
+                    <li style="float:left;"><a href="#"><img src="{% static "front/img/gfx/biblioteka.png" %}" class="position"/>Biblioteka</a></li>
+                    <li style="float:left;"><a href="#"><img src="{% static "front/img/gfx/profil.png" %}" class="position"/>Profil</a></li>
+                    <li><a href="#"><img src="{% static "front/img/gfx/ustawienia.png" %}" class="position" /></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block container %}
+
+    {% endblock %}
+
+{% endblock %}
+
+{% block scripts_bottom %}
+    {{ block.super }}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}front/js/build/new_front.js"></script>
+    {% endcompress %}
+{% endblock %}

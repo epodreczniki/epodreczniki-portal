@@ -1,0 +1,103 @@
+{% extends "begin/base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+{% if self.date %}
+    {% block heading %}
+        <div class="page-header">
+            <h2>{{ self.title }} {{ self.date }}</h2>
+        </div>
+    {% endblock %}
+{% endif %}
+
+{% block content %}
+    {#    {% include "begin/includes/carousel.html" with carousel_items=self.carousel_items.all only %}#}
+    {##}
+    {#    {% include "begin/includes/body.html" with body=self.body only %}#}
+
+{#    <div class="page-header clearfix"#}
+{#         style="background:url(http://themes.quitenicestuff.com/parkcollegewp/wp-content/uploads/2013/05/23_demo_image.jpg);">#}
+{##}
+{#        <div class="page-header-inner clearfix">#}
+{#            <div class="page-title">#}
+{#                <h2>{{ self.title }}</h2>#}
+{##}
+{#                <div class="page-title-block"></div>#}
+{#            </div>#}
+{#            <div class="breadcrumbs clearfix"><p><a rel="v:url" property="v:title"#}
+{#                                                    href="http://themes.quitenicestuff.com/parkcollegewp/">Home</a> »#}
+{#                Full Width </p></div>#}
+{#        </div>#}
+{##}
+{#    </div>#}
+
+    {% include "begin/includes/page_header.html" with page=self request=request only %}
+
+    <div class="content-wrapper page-content-wrapper clearfix">
+
+        <!-- BEGIN .main-content -->
+        <div class="main-content page-content">
+
+            <!-- BEGIN .inner-content-wrapper -->
+            <div class="inner-content-wrapper">
+
+
+                <!-- BEGIN .blog-entry -->
+                <div class="post type-post status-publish format-standard has-post-thumbnail hentry category-learning tag-college tag-education blog-entry clearfix">
+
+                    <div class="blog-info">
+                        <div class="blog-date">
+                            <h3><span class="date-big">{{ self.date|date:"d" }} </span><span>{{ self.date|date:"N" }}</span></h3>
+                        </div>
+                        {% comment %}<ul class="blog-meta">
+                            <li><strong>przez</strong> {{ self.owner }}</li>
+
+                        </ul>{% endcomment %}
+                    </div>
+
+                    <div class="blog-content blog-content-single clearfix">
+
+                        {% if self.include_feed_image %}
+                            {% image self.feed_image width-650 as feed_img %}
+                            <img src="{{ feed_img.url }}" alt="" class="blog-image">
+                            <p class="image-title">{{ self.feed_image.title }}</p>
+                        {% endif %}
+                        {% include "begin/includes/body.html" with body=self.body only %}
+
+
+                    </div>
+
+
+
+
+
+                    <div class="clearboth"></div>
+
+
+                    <!-- BEGIN #respond -->
+                    <!-- END .blog-entry -->
+                </div>
+
+                <!-- END .inner-content-wrapper -->
+            </div>
+
+            <!-- END .main-content -->
+        </div>
+
+        {% include "begin/includes/sidebar.html" with page=self side="right" %}
+        <!-- END .content-wrapper -->
+    </div>
+
+{#    {% with self.tags.all as tags %}#}
+{#        {% if tags %}#}
+{#            <div class="page-header"><h3>Tags</h3></div>#}
+{#            {% for tag in tags %}#}
+{#                <a href="{% pageurl self.blog_index %}?tag={{ tag }}">#}
+{#                    <button class="btn btn-primary" type="button">{{ tag }}</button>#}
+{#                </a>#}
+{#            {% endfor %}#}
+{#        {% endif %}#}
+{#    {% endwith %}#}
+{##}
+{#    {% include "begin/includes/related_links.html" with related_links=self.related_links.all only %}#}
+{% endblock %}

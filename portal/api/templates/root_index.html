@@ -1,0 +1,44 @@
+{% extends "index_base.html" %}
+{% load staticfiles cms_utils %}
+{% block title %}
+    <div>
+
+        <img style="vertical-align: baseline; padding-top: 5px; padding-right: 5px;"
+             src="{% static "front/img/epodreczniki.svg" %}"
+             data-fallback="{% static "front/img/epodreczniki.png" %}"
+             alt="Logo epodreczniki.pl"/>
+
+        <h1 style="display: inline;">{{ title }}</h1>
+    </div>
+{% endblock %}
+{% block main_page %}
+
+    <div id="div-api">
+        <ul class="no-bullets" id="list-api">
+            {% for api in docs %}
+                {% if api.default_version %}
+                    <li class="item-api">
+
+                        <ul class="no-bullets">
+
+                            <li>
+
+                                <a href="/details/?model={{ api.id_hash }}"><h4 class="span-path">{{ api.path }}</h4>
+                                </a> <p>VERSION: {{ api.version }}</p>
+                                {% autoescape off %}
+
+                                    <p>{{ api.description|parse_tags }}</p>
+
+                                {% endautoescape %}
+
+                            </li>
+
+                        </ul>
+
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+

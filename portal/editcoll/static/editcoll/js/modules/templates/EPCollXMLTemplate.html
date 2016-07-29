@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<col:collection xmlns:col="http://cnx.rice.edu/collxml" 
+				xmlns:cnxsi="http://cnx.rice.edu/system-info" 
+				xmlns:ep="http://epodreczniki.pl/"
+                xmlns:cn="http://cnx.rice.edu/cnxml"
+				xmlns:md="http://cnx.rice.edu/mdml">
+<col:metadata mdml-version="1.2">
+	<md:content-id><%= metadata.contentId %></md:content-id>
+	<md:repository><%= metadata.repository %></md:repository>
+	<md:version><%= metadata.version %></md:version>
+	<md:created><%= metadata.created %></md:created>
+	<md:revised><%= metadata.revised %></md:revised>
+	<md:title><%= metadata.title %></md:title>
+	<md:subtitle><%= metadata.subtitle %></md:subtitle>
+	<md:language><%= metadata.language %></md:language>
+	<md:abstract><%= metadata._abstract %></md:abstract>
+	<md:license url="<%= metadata.license.url %>"><%= metadata.license.name %></md:license>
+	<md:education-levellist>		
+			<md:education-level><%= metadata.educationLevellist %></md:education-level>
+	</md:education-levellist>
+	<md:subjectlist>
+        <md:subject><%= metadata.subjectlist %></md:subject>
+	</md:subjectlist>
+	<ep:e-textbook ep:content-status="<%= metadata.eTextbook.contentStatus %>" ep:recipient="<%= metadata.eTextbook.recipient %>" ep:version="<%= metadata.eTextbook.version %>">
+
+		<ep:references>
+             <% if (metadata.eTextbook.collectionHeader) { %>
+            <ep:collection-header ep:title-presentation="<%= metadata.eTextbook.collectionHeaderTitlePresentation %>">
+                <ep:reference ep:id="<%= metadata.eTextbook.collectionHeader %>"></ep:reference>
+            </ep:collection-header>
+            <% } %>
+            <% if (metadata.eTextbook.collectionToc) { %>
+            <% if (metadata.eTextbook.collectionToc.length > 0) { %>
+            <ep:collection-toc>
+                <% _.each(metadata.eTextbook.collectionToc, function(collectionT){ %>
+                <ep:reference ep:id="<%= collectionT[0] %>">
+                <% _.each(collectionT[1], function(link){ %>
+			        <ep:link ep:toc-id="<%= link[1] %>" ep:module-id="<%= link[0] %>" />
+		        <% }); %>
+                </ep:reference>
+                <% }); %>
+            </ep:collection-toc>
+            <% } %>
+            <% } %>
+        </ep:references>
+
+        <ep:class><%= metadata.eTextbook._class %></ep:class>
+        <% if (metadata.eTextbook.volume) { %>
+            <ep:volume><%= metadata.eTextbook.volume %></ep:volume>
+        <% } %>
+		<ep:stylesheet><%= metadata.eTextbook.stylesheet %></ep:stylesheet>
+		<ep:environment-type><%= metadata.eTextbook.environmentType %></ep:environment-type>
+		<ep:signature><%= metadata.eTextbook.signature %></ep:signature>
+		<ep:cover ep:cover-type="<%= metadata.eTextbook.coverType %>"><%= metadata.eTextbook.cover %></ep:cover>
+        <ep:show-technical-remarks><%= metadata.eTextbook.showTechnicalRemarks %></ep:show-technical-remarks>
+        <ep:learning-objectives>
+            <% _.each(metadata.eTextbook.learningObjectives, function(learningObjective){ %>
+            <ep:learning-objective>
+                <ep:learning-objective-version ep:key="<%= learningObjective.versionKey %>"><%= learningObjective.version %></ep:learning-objective-version>
+                <ep:learning-objective-stage ep:key="<%= learningObjective.stageKey %>"><%= learningObjective.stage %></ep:learning-objective-stage>
+                <ep:learning-objective-school ep:key="<%= learningObjective.schoolKey %>"><%= learningObjective.school %></ep:learning-objective-school>
+                <ep:learning-objective-subject ep:key="<%= learningObjective.subjectKey %>"><%= learningObjective.subject %></ep:learning-objective-subject>
+                <ep:learning-objective-scope ep:key="<%= learningObjective.scopeKey %>"><%= learningObjective.scope %></ep:learning-objective-scope>
+                <ep:learning-objective-name ep:key="<%= learningObjective.nameKey %>"><%= learningObjective.name %></ep:learning-objective-name>
+                <ep:learning-objective-text><%= learningObjective.text %></ep:learning-objective-text>
+            </ep:learning-objective>
+            <% }); %>
+        </ep:learning-objectives>
+	</ep:e-textbook>
+	<md:actors>
+		<% _.each(metadata.actors, function(actor){ %>
+		<md:person userid="<%= actor.userid %>">
+			<md:fullname><%= actor.fullname %></md:fullname>
+			<md:firstname><%= actor.firstname %></md:firstname>
+			<md:surname><%= actor.surname %></md:surname>
+			<md:email><%= actor.email %></md:email>
+		</md:person>
+		<% }); %>
+        <% _.each(metadata.organizations, function(organization){ %>
+        <md:organization userid="<%= organization.userid %>">
+			<md:fullname><%= organization.fullname %></md:fullname>
+			<md:shortname><%= organization.shortname %></md:shortname>
+		</md:organization>
+        <% }); %>
+	</md:actors>
+	<md:roles>
+		<% _.each(metadata.roles, function(role){ %>
+		<md:role type="<%= role.type %>"><%= role.value.toString().replace(/,/g, ' ') %></md:role>
+		<% }); %>
+	</md:roles>
+</col:metadata>
+    <col:content>
+        <% _.each(content, function(contentObject) { %>
+            <% if(contentObject.contentType == "subcollection"){ %>
+        <col:subcollection ep:id="<%= contentObject.id %>">
+		<md:title><%= contentObject.title %></md:title>
+		<ep:view-attributes>
+		<% _.each(contentObject.viewAttributes, function(viewAttr){ %>
+			<ep:view-attribute ep:id="<%= viewAttr.id %>" ep:type="<%= viewAttr.type %>" ep:value="<%= viewAttr.value %>"/>
+		<% }); %>
+		</ep:view-attributes>
+        <col:content>
+		    <% if(contentObject.content.length > 0) { %>
+		        <% _.each(contentObject.content, function(contentObj){ %>
+                    <% if(contentObj.contentType == "subcollection"){ %>
+            <col:subcollection ep:id="<%= contentObj.id %>">
+		        <md:title><%= contentObj.title %></md:title>
+		        <ep:view-attributes>
+		                <% _.each(contentObj.viewAttributes, function(viewAttr){ %>
+			    <ep:view-attribute ep:id="<%= viewAttr.id %>" ep:type="<%= viewAttr.type %>" ep:value="<%= viewAttr.value %>"/>
+		                <% }); %>
+   		        </ep:view-attributes>
+                <col:content>
+                        <% if(contentObj.content.length > 0) { %>
+		                    <% _.each(contentObj.content, function(contObject){ %>
+                                <% if(contObject.contentType == "subcollection"){ %>
+                    <col:subcollection ep:id="<%= contObject.id %>">
+		                <md:title><%= contObject.title %></md:title>
+		                <ep:view-attributes>
+		                            <% _.each(contObject.viewAttributes, function(viewAttr){ %>
+			            <ep:view-attribute ep:id="<%= viewAttr.id %>" ep:type="<%= viewAttr.type %>" ep:value="<%= viewAttr.value %>"/>
+		                            <% }); %>
+   		                </ep:view-attributes>
+                        <col:content>
+                                    <% if(contObject.content.length > 0) { %>
+		                                <% _.each(contObject.content, function(cObj){ %>
+                                            <% if(cObj.contentType == "subcollection"){ %>
+                            <col:subcollection ep:id="<%= cObj.id %>">
+		                        <md:title><%= cObj.title %></md:title>
+		                        <ep:view-attributes>
+		                                        <% _.each(cObj.viewAttributes, function(viewAttr){ %>
+			                        <ep:view-attribute ep:id="<%= viewAttr.id %>" ep:type="<%= viewAttr.type %>" ep:value="<%= viewAttr.value %>"/>
+		                                        <% }); %>
+   		                        </ep:view-attributes>
+                                <col:content>
+
+
+                                </col:content>
+                            </col:subcollection>
+                                            <% } else { %>
+                            <col:module cnxsi:version-at-this-collection-version="<%= cObj.versionAtThisCollectionVersion %>" document="<%= cObj.document %>" repository="<%= cObj.repository %>" version="<%= cObj.version %>">
+                                <md:title><%= cObj.title %></md:title>
+                            </col:module>
+                                            <% } %>
+		                                <% }); %>
+		                            <% } %>
+                        </col:content>
+                    </col:subcollection>
+                                <% } else { %>
+                    <col:module cnxsi:version-at-this-collection-version="<%= contObject.versionAtThisCollectionVersion %>" document="<%= contObject.document %>" repository="<%= contObject.repository %>" version="<%= contObject.version %>">
+                        <md:title><%= contObject.title %></md:title>
+                    </col:module>
+                                <% } %>
+		                    <% }); %>
+		                 <% } %>
+                </col:content>
+            </col:subcollection>
+                    <% } else { %>
+            <col:module cnxsi:version-at-this-collection-version="<%= contentObj.versionAtThisCollectionVersion %>" document="<%= contentObj.document %>" repository="<%= contentObj.repository %>" version="<%= contentObj.version %>">
+                <md:title><%= contentObj.title %></md:title>
+            </col:module>
+                     <% }%>
+		        <% }); %>
+		    <% } %>
+        </col:content>
+        </col:subcollection>
+            <% } else { %>
+        <col:module cnxsi:version-at-this-collection-version="<%= contentObject.versionAtThisCollectionVersion %>" document="<%= contentObject.document %>" repository="<%= contentObject.repository %>" version="<%= contentObject.version %>">
+			<md:title><%= contentObject.title %></md:title>
+		</col:module>
+            <% }%>
+        <% }); %>
+    </col:content>
+</col:collection>

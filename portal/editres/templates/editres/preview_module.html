@@ -1,0 +1,28 @@
+{% extends "editres/space.html" %}
+
+{% block main_panel_heading %}
+    {% include "editres/object_info_bar.html" %}
+{% endblock main_panel_heading %}
+
+{% block main_panel_body %}
+    <div class="well">
+        <div class="row">
+            <div class="col-xs-12">
+                <br>
+                <p>Moduł {{ driver.title }} jest dostępny w następujących kolekcjach:</p>
+                <ul>
+                {% for d in collection_drivers %}
+                    <li>
+                        {{ d.title }}:
+                        {% if d.does_exist %}
+                        <a href="{{ d.editor_url }}">strona kolekcji</a> |
+                        {% endif %}
+                        <a href="{{ d.preview_url }}">podgląd kolekcji</a> |
+                        <a href="{{ d.preview_url }}">podgląd modułu</a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock main_panel_body %}

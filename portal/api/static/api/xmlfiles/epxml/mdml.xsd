@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 sp2 (x64) (http://www.altova.com) by Tomasz Kuczynski (Instytut Chemii Bioorganicznej PAN - Poznanskie Centrum Superkomputerowe) -->
+<xs:schema xmlns:md="http://cnx.rice.edu/mdml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:cnxml="http://cnx.rice.edu/cnxml" xmlns:mml="http://www.w3.org/1998/Math/MathML" targetNamespace="http://cnx.rice.edu/mdml" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/1998/Math/MathML" schemaLocation="mathml3/mathml3.xsd"/>
+	<xs:import namespace="http://cnx.rice.edu/cnxml" schemaLocation="cnxml_epeditor.xsd"/>
+	<xs:include schemaLocation="common_epeditor.xsd"/>
+	<xs:element name="content-id" type="md:idType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający identyfikator modułu</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="repository" type="xs:string" fixed="https://epodreczniki.pcss.pl/">
+		<xs:annotation>
+			<xs:documentation>Element zawierający repozytorium źródłowe modułu (domyślnie zawsze https://epodreczniki.pcss.pl/)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="version" type="xs:positiveInteger">
+		<xs:annotation>
+			<xs:documentation>Element zawierający wersję modułu</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="created" type="md:dateTimeType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający datę utworzenia modułu</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="revised" type="md:dateTimeType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający datę modyfikacji modułu</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="title" type="md:titleType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający tytuł modułu</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="presentationTitle" type="md:presentationTitleType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający tytuł modułu, w przypadku gdy potrzebne jest formatowanie przy pomocy emfaz, itp.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="language" type="md:languageType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający treści modułu</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="actors" type="md:actorsType">
+		<xs:annotation>
+			<xs:documentation>Element listę autorów modułu</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="person" type="md:personType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający pojedynczego autora</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="fullname" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Element zawierający pełne imię i nazwisko aktora</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="firstname" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Element zawierający imię aktora</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="surname" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Element zawierający nazwisko aktora</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="email" type="md:emailType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający e-mail aktora</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="roles" type="md:rolesType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający listę ról aktorów</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="role" type="md:roleType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający pojedynczą rolę aktora (autor, recenzent, edytor, itp.)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="keyword" type="md:keywordType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający pojedyncze słowo kluczowe</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="keywordlist">
+		<xs:annotation>
+			<xs:documentation>Element zawierający listę słów kluczowych</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="md:keyword" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--	<xs:element name="actors" type="md:actors"/>
+	<xs:element name="roles" type="md:roles"/>
+	<xs:element name="keywordlist" type="md:keywordlist"/>
+-->
+	<xs:simpleType name="keywordType">
+		<xs:annotation>
+			<xs:documentation>Typ elementu słowa kluczowego modułu</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="emailType">
+		<xs:annotation>
+			<xs:documentation>Typ elementu adresu e-mail</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="dateTimeType">
+		<xs:annotation>
+			<xs:documentation>Typ elementu data i czasu</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{4}-\d{2}-\d{2} \d{2}:\d{2} CES?T"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="languageType">
+		<xs:annotation>
+			<xs:documentation>Typ elementu języka w zapisie zdefiniowanym przez IETF w BCP 47 - tylko wybrane, wspierane opcje</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="pl-PL"></xs:enumeration>
+			<xs:enumeration value="en-US"></xs:enumeration>
+			<xs:enumeration value="fr-FR"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="licenseURLType">
+		<xs:annotation>
+			<xs:documentation>Typ atrybutu url z adresem w elemencie licencji</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="https://creativecommons.org/licenses/by/1.0/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by/2.0/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by/2.5/pl/legalcode"/>
+			<xs:enumeration value="http://creativecommons.org/licenses/by/3.0/pl/legalcode"/>
+			<xs:enumeration value="https://creativecommons.org/licenses/by/4.0/legalcode"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="licenseBaseType">
+		<xs:annotation>
+			<xs:documentation>Typ bazowy licencji z ograniczeniem na wartości</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CC BY 1.0"/>
+			<xs:enumeration value="CC BY 2.0"/>
+			<xs:enumeration value="CC BY 2.5"/>
+			<xs:enumeration value="CC BY 3.0"/>
+			<xs:enumeration value="CC BY 4.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="licenseType">
+		<xs:annotation>
+			<xs:documentation>Typ kompletny licencji</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="md:licenseBaseType">
+				<xs:attribute name="url" type="md:licenseURLType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="license" type="md:licenseType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający licencję modułu</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="actorsType">
+		<xs:annotation>
+			<xs:documentation>Typ elemetu aktorów zaangażowanych w tworzenie dokumentu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="md:person" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="personType">
+		<xs:annotation>
+			<xs:documentation>Typ elementu aktora</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="md:fullname"/>
+			<xs:element ref="md:firstname"/>
+			<xs:element ref="md:surname"/>
+			<xs:element ref="md:email"/>
+		</xs:sequence>
+		<xs:attribute name="userid" type="md:idType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="rolesType">
+		<xs:annotation>
+			<xs:documentation>Typ elementu z rolami aktorów zaangażowanych w projekt</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="md:role" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="roleType">
+		<xs:annotation>
+			<xs:documentation>Typ elementu roli aktora zaangażowanego w projekt</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="type" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="abstractType" mixed="true">
+		<xs:annotation>
+			<xs:documentation>Typ elementu abstraktu/opisu modułu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element ref="mml:math"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="abstract" type="md:abstractType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający abstrakt modułu</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:group name="presentationTitleContentGroup">
+		<xs:annotation>
+			<xs:documentation>Grupa bazowych elementów dozwolonych tytułu modułu</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="cnxml:emphasis"/>
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="presentationTitleType" mixed="true">
+		<xs:annotation>
+			<xs:documentation>Typ elementu tytuł modułu z formatowaniem w postaci emfaz, itp.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:group ref="md:presentationTitleContentGroup"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

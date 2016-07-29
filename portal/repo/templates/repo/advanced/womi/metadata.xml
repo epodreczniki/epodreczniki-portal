@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<Autor>{{ metadata_json.author }}</Autor>
+<Tytul>{{ metadata_json.title }}</Tytul>
+<TekstAlternatywny>{{ metadata_json.alternativeText }}</TekstAlternatywny>
+<Licencja>{{ metadata_json.license }}</Licencja>
+{% for keyword in metadata_json.keywords %}
+<SlowaKluczowe>{{ keyword }}</SlowaKluczowe>
+{% endfor %}
+{% if metadata_json.extended.origin %}<Pochodzenie>{{ metadata_json.extended.origin }}</Pochodzenie>{% endif %}
+{% if metadata_json.purpose != 'epo' %}<Przeznaczenie>{{ metadata_json.purpose }}</Przeznaczenie>{% endif %}
+{% if metadata_json.extended.recipient %}<Odbiorca>{% if metadata_json.extended.recipient == 'student' %}Uczeń{% elif metadata_json.extended.recipient == 'teacher' %}Nauczyciel{% endif %}</Odbiorca>{% endif %}
+{% if metadata_json.extended.category %}<Kategoria>{{ metadata_json.extended.category }}</Kategoria>{% endif %}
+{% if metadata_json.extended.description %}<Opis>{{ metadata_json.extended.description }}</Opis>{% endif %}
+{% if metadata_json.verificationState %}<StanWeryfikacji>{{ metadata_json.verificationState }}</StanWeryfikacji>{% endif %}
+{% if metadata_json.customId %}<IdentyfikatorWlasny>{{ metadata_json.customId }}</IdentyfikatorWlasny>{% endif %}
+{% if metadata_json.extended.learningObjectives %}<PodstawaProgramowa>{{ metadata_json.extended.learningObjectives|join:"|" }}</PodstawaProgramowa>{% endif %}
+{% if metadata_json.extended.environments %}<SystemOperacyjny>{{ metadata_json.extended.environments|join:"|" }}</SystemOperacyjny>{% endif %}
+{% if metadata_json.licenseAdditionalInfo %}<LicencjaDodatkoweInfo>{{ metadata_json.licenseAdditionalInfo }}</LicencjaDodatkoweInfo>{% endif %}
+</metadata>

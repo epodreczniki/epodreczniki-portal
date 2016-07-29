@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+{% load compress staticfiles extensions common_ext %}
+<html class="ie-zoom" lang="pl">
+<head>
+
+    {% block head %}
+    {% endblock %}
+
+
+    {% block stylesheets %}
+        {% compress css %}
+            <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editres/less/bootstrap.less">
+        {% endcompress %}
+    {% endblock %}
+
+    {% compress js %}
+        <script src="{{ STATIC_URL }}common/js/libs/require.js"></script>
+    {% endcompress %}
+
+    {% block head_scripts  %}
+
+        {% compress js %}
+            <script type="text/requirejs" src="{{ STATIC_URL }}editres/js/build/editres.js"></script>
+        {% endcompress %}
+
+    {% endblock %}
+
+    <title>{% block title_block %}Edycja Online{% endblock title_block %}</title>
+
+</head>
+
+<body class='editres-body-with-fixed-navbar'>
+
+{% block content %}
+    {% block topbar %}
+        {% include "editres/topbars/start.html" %}
+    {% endblock %}
+
+    {% block main_content %}
+    <div class="container">
+    {% block inner_content_header %}
+        {% include "editres/messages_div.html" %}
+    {% endblock %}
+
+    {% block inner_content %}
+
+        <div class="row">
+            <div class="{% if stream %}col-md-9{% else %}col-md-12{% endif %}">
+                {% block main_panel %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            {% block main_panel_heading %}
+                            {% endblock %}
+                        </div>
+
+                        <div class="panel-body">
+                            {% block main_panel_body %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                {% endblock main_panel %}
+
+                {% block following_panels %}
+                {% endblock following_panels %}
+            </div>
+
+            {% if stream %}
+            <div class="col-md-3">
+                <div class="panel panel-default" id='edit-history-stream' data-stream-key="{{ stream.stream_key }}">
+                    <div class="panel-heading">
+                        <span>Historia</span>
+                    </div>
+
+                    <ul class='list-group edit-history-stream-list'>
+                        {% esi_link stream.stream_fetch_url %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+    {% endblock %}
+    </div>
+    {% endblock main_content %}
+
+    {% block dialogs_content %}
+    {% endblock %}
+
+
+
+{% endblock %}
+
+{% block scripts_bottom %}
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ STATIC_URL }}editres/js/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}editres/js/bootstrap.min.js"></script>
+    <script src="{{ STATIC_URL }}editcommon/js/libs/bootstrap-dialog.js"></script>
+    <script src="{{ STATIC_URL }}editres/js/sorttable.js"></script>
+
+{% endblock %}
+
+</body>
+
+</html>

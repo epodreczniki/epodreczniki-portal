@@ -1,0 +1,95 @@
+[
+    {
+        "id": "26762/1",
+        "identifier": "26762",
+        "version": "1",
+        "category": "collection",
+        "repository": "main",
+        "edited": true,
+        "files": [
+            { "path": "http://content.beta.epodreczniki.pl/content/collection/26762/1/student-canon/collection.xml", "full_text": true }
+        ],
+        "attributes": {
+            "title": "fajna kolekcja"
+        },
+        "using": [
+            { "category": "module", "identifier": "i5VpstO8NX", "version": "1", "direct": true },
+            { "category": "module", "identifier": "iWm4pYupLO", "version": "1", "direct": true },
+            { "category": "module", "identifier": "ihJRZFvgcE", "version": "1", "direct": true },
+            { "category": "module", "identifier": "ioP6lPMVuq", "version": "1", "direct": true },
+            { "category": "module", "identifier": "ig3Zx9geCB", "version": "1", "direct": true },
+            { "category": "module", "identifier": "iYxQHBwCGq", "version": "1", "direct": true },
+            { "category": "module", "identifier": "iylHRRc1Uf", "version": "1", "direct": true },
+            { "category": "module", "identifier": "iqrS9g1hTB", "version": "1", "direct": true },
+            { "category": "module", "identifier": "iizsRejLWb", "version": "1", "direct": true },
+            { "category": "module", "identifier": "iCj1fnMMGY", "version": "1", "direct": true },
+            { "category": "module", "identifier": "iRsAawVaDM", "version": "1", "direct": true },
+            { "category": "module", "identifier": "i5nsB40gkS", "version": "1", "direct": true },
+            { "category": "module", "identifier": "iVTLgdCuPr", "version": "1", "direct": true },
+            { "category": "module", "identifier": "iyj8W51b77", "version": "1", "direct": true },
+            { "category": "module", "identifier": "indCBnpI0v", "version": "1", "direct": true },
+            { "category": "module", "identifier": "inMPi61yDX", "version": "1", "direct": true },
+            { "category": "module", "identifier": "iSQwXww9Ou", "version": "1", "direct": true },
+            { "category": "module", "identifier": "ipuguoUwZm", "version": "1", "direct": true },
+            { "category": "module", "identifier": "ipxwBVP6nh", "version": "1", "direct": true },
+            { "category": "module", "identifier": "isEL1PiHp1", "version": "1", "direct": true },
+            { "category": "module", "identifier": "iKDLpEqiCa", "version": "1", "direct": true },
+            { "category": "module", "identifier": "ieMZ8my6KJ", "version": "1", "direct": true },
+            { "category": "module", "identifier": "iMDpOCzvA8", "version": "1", "direct": true },
+            { "category": "module", "identifier": "iGGPGsUguV", "version": "1", "direct": true },
+            { "category": "module", "identifier": "iInf2jLLRq", "version": "1", "direct": true },
+            { "category": "module", "identifier": "iP3ngVbBLb", "version": "1", "direct": true }
+        ]
+    },
+    {
+        "id": "i5VpstO8NX/1",
+        "identifier": "i5VpstO8NX",
+        "version": "1",
+        "category": "module",
+        "repository": "main",
+        "edited": true,
+        "files": [
+            { "path": "http://content.beta.epodreczniki.pl/content/module/i5VpstO8NX/1/student-canon/module.xml", "full_text": true }
+        ],
+        "attributes": {
+            "title": "fajny modul"
+        },
+        "using": [
+            { "category": "womi", "identifier": "13222", "version": "1", "direct": true },
+            { "category": "womi", "identifier": "13223", "version": "1", "direct": false }
+        ]
+    },
+    {
+        "id": "13222/1",
+        "identifier": "13222",
+        "version": "1",
+        "category": "womi",
+        "repository": "main",
+        "edited": true,
+        "files": [
+            { "path": "http://content.beta.epodreczniki.pl/content/womi/13222/manifest.json", "full_text": true }
+        ],
+        "attributes": {
+            "title": "fajne womi 1"
+        },
+        "using": [
+        ]
+    },
+    {
+        "id": "13223/1",
+        "identifier": "13223",
+        "version": "1",
+        "category": "womi",
+        "repository": "main",
+        "edited": true,
+        "files": [
+            { "path": "http://content.beta.epodreczniki.pl/content/womi/13223/manifest.json", "full_text": true }
+        ],
+        "attributes": {
+            "title": "fajne womi 2"
+        },
+        "using": [
+        ]
+    }
+]
+

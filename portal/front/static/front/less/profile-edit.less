@@ -1,0 +1,428 @@
+@import "mixins";
+@import "profile-variables";
+
+@editProfileElementMaxWidth: 490px;
+@editProfileFieldMaxWidth: @editProfileElementMaxWidth - 27px;
+
+@profileLayoutMedium: 816px;
+
+@avatarSize: 82px;
+
+/* Mixin for full width elements */
+.edit-profile-full-width {
+  position: relative;
+  width: 100%;
+  max-width: @editProfileElementMaxWidth;
+
+  @media all and (max-width: @profileMediumSize) {
+    max-width: 100%;
+  }
+}
+
+/* General containers */
+.edit-profile-wrap {
+  margin: 0 auto 0 auto;
+  position: relative;
+  width: 100%;
+  .flex-display();
+  -ms-flex-align: stretch;
+  .flex-align(stretch);
+  max-width: @profileEditContentWidth;
+
+  @media all and (max-width: @profileMediumSize) {
+    .flex-wrap(row, wrap);
+  }
+
+  aside, .profile-data-container {
+    .flex-display();
+  }
+
+  aside {
+    -ms-flex-pack: end;
+    .flex-justify(flex-end);
+    width: @profileEditAsideWidth;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+}
+
+@media all and (max-width: @profileMediumSize) {
+  .edit-profile-wrap > aside {
+    width: 100%;
+    -ms-flex-pack: center;
+    .flex-justify(center);
+    border: none;
+    padding: 0;
+  }
+}
+
+.photos-container {
+  position: relative;
+  width: 100%;
+  float: right;
+  max-width: @profileEditAsideWidth;
+  padding-top: 75px;
+
+  @media all and (max-width: @profileMediumSize) {
+    padding-top: 40px;
+    max-width: calc(~"100% - 100px");
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  @media all and (max-width: 407px) {
+    max-width: calc(~"100% - 20px");
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .aside-filters-foldable {
+    @media all and (max-width: @profileMediumSize) {
+      width: 100%;
+    }
+  }
+
+  .aside-filters-content {
+    @media all and (max-width: @profileMediumSize) {
+      max-width: @profileEditAsideWidth;
+      margin: 0 auto;
+      position: relative;
+      .flex-wrap(row, wrap);
+    }
+  }
+
+  .aside-filters-column {
+    @media all and (max-width: @profileMediumSize) {
+      position: relative;
+      width: 100%;
+      .flex-keep-size();
+    }
+
+    @media all and (max-width: @profileSmallSize) {
+      max-width: 100%;
+    }
+  }
+}
+
+.profile-data-container {
+  padding-top: 62px;
+
+  @media all and (max-width: @profileMediumSize) {
+    width: 100%;
+    padding-top: 6px;
+    .flex-display();
+    -ms-flex-pack: center;
+    .flex-justify(center);
+  }
+}
+
+.edit-profile {
+  padding: 0 0 0 58px;
+
+  @media all and (max-width: 950px) {
+    padding: 0 13px 0 58px;
+  }
+
+  @media all and (max-width: @profileMediumSize) {
+    padding: 0 50px;
+  }
+
+  @media all and (max-width: @profileSmallSize) {
+    padding: 0 20px;
+  }
+}
+
+/* Edit profile sections */
+.edit-profile-buttons, .about, .account-info, .teachers {
+  position: relative;
+  width: 100%;
+  max-width: @editProfileElementMaxWidth;
+  .flex-display();
+  .flex-wrap(row, wrap);
+}
+
+.about {
+  margin-bottom: 64px;
+}
+
+.account-info, .teachers {
+  margin-bottom: 56px;
+}
+
+/* Edit profile buttons section  */
+
+//mixin for buttons
+.edit-button {
+  width: 100px;
+  font-family: open_sanssemibold, sans-serif;
+  font-size: 17px;
+  line-height: 29px;
+  background-color: @profile-blue;
+  color: #ffffff;
+  margin: 0;
+  cursor: pointer;
+}
+
+.edit-profile-button {
+  .edit-button();
+}
+
+.cancel-button {
+  .edit-button();
+  color: @profile-blue;
+  background-color: #fff;
+  border: 1px solid @profile-blue;
+  margin-right: 17px;
+}
+
+.edit-profile-buttons {
+  margin-bottom: 42px;
+
+  @media all and (max-width: @profileMediumSize) {
+    -ms-flex-pack: center;
+    .flex-justify(center);
+  }
+}
+
+/* Common field styles */
+.user-field {
+  width: 100%;
+}
+
+.fields-label {
+  margin: 0 0 15px 0;
+  font-family: open_sansregular, sans-serif;
+  font-size: @mediumFontSize;
+}
+
+.field-value, .field-area-value {
+  width: 100%;
+  max-width: @editProfileFieldMaxWidth;
+  margin: 0 0 20px 5px;
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+  font-size: 16px;
+  color: #434243;
+  font-family: open_sanssemibold, sans-serif;
+}
+
+.field-value {
+  @media all and (max-width: 950px) {
+    max-width: calc(~"100% - 27px");
+  }
+}
+
+.field-area-value {
+  @media all and (max-width: 950px) {
+    max-width: calc(~"100% - 27px");
+  }
+}
+
+.field-value:focus, .field-value.focus, .field-area-value:focus, .field-area-value.focus {
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 1px #969696;
+}
+
+.disabled-field {
+  background-color: @disabled-field-color;
+}
+
+.field-area-value {
+  margin: 0 0 0 5px;
+  z-index: 1;
+  position: relative;
+}
+
+/* About and account-info */
+.about-label, .edit-account-container, .teacher-label {
+  width: 100%;
+  margin: 0 0 25px 5px;
+  font-family: open_sanssemibold, sans-serif;
+  font-size: 21px;
+}
+
+.account-info-label {
+  float: left;
+  display: inline-block;
+}
+
+.account-edit-button, .teachers-edit-button {
+  display: inline-block;
+  font-family: open_sansregular, sans-serif;
+  font-size: 14px;
+  color: @profile-blue;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+.account-edit-button:hover, .account-edit-button.hover {
+  text-decoration: underline;
+}
+
+.textarea-wrap {
+  .edit-profile-full-width();
+
+  @media all and (max-width: @profileLayoutMedium) {
+    max-width: 100%;
+  }
+
+  .user-home-input {
+    min-height: 118px;
+
+    @media all and (max-width: @profileLayoutMedium) {
+      max-width: calc(~"100% - 27px");
+    }
+  }
+
+  .resize-textarea {
+    position: absolute;
+    bottom: 4px;
+    right: 0;
+    pointer-events: none;
+    z-index: 2;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 15px 15px;
+    border-color: transparent transparent @profile-blue transparent;
+
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      bottom: 0;
+    }
+
+  }
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+  .textarea-wrap {
+    .resize-textarea {
+      bottom: 1px;
+      right: 1px;
+    }
+  }
+}
+
+/* MS Edge correction */
+@supports (-ms-accelerator:true) {
+  .textarea-wrap {
+    .resize-textarea {
+      bottom: 0;
+    }
+  }
+}
+
+.disabled-buttons {
+
+  .add-subject-button {
+    background-color: #d3d3d3;
+    color: #ffffff;
+    cursor: default;
+  }
+
+  .add-subject-sign {
+    color: #d3d3d3;
+    cursor: default;
+  }
+}
+
+.gender-group, .type-group {
+  .edit-profile-full-width();
+  max-width: @editProfileElementMaxWidth;
+  margin: 0 0 20px 0px;
+  padding: 0px;
+  line-height: 25px;
+  font-size: 17px;
+
+  input[type=radio] {
+    margin: 0 25px 16px 0;
+  }
+}
+
+.type-group {
+  margin: 0;
+}
+
+.selected-avatar {
+  .edit-profile-full-width();
+  height: 282px;
+  background-size: cover;
+  margin-bottom: 41px;
+
+  @media all and (max-width: @profileMediumSize) {
+    width: 288px;
+    height: 282px;
+  }
+
+  @media all and (max-width: 335px) {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 41px auto;
+  }
+}
+
+.avatars-container {
+  .edit-profile-full-width();
+  .flex-display();
+  .flex-wrap(row, wrap);
+  -ms-flex-pack: start;
+  .flex-justify(flex-start);
+
+  @media all and (max-width: 335px) {
+    -ms-flex-pack: center;
+    .flex-justify(center);
+  }
+
+  .avatar-image {
+    .flex-display();
+    margin: 0 20px 25px 0;
+
+    &:nth-of-type(3n) {
+      margin-right: 0;
+    }
+
+    @media all and (max-width: 335px) {
+      &:nth-of-type(3n) {
+        margin-right: 20px;
+      }
+    }
+
+    .avatar {
+      cursor: pointer;
+      background-size: cover;
+      width: @avatarSize;
+      height: @avatarSize;
+    }
+
+    .add-avatar-wrapper {
+      width: @avatarSize;
+      height: @avatarSize;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      background-image: url('../img/profile/avatars/add-avatar-icon.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+      -ms-flex-pack: center;
+      .flex-justify(center);
+      -ms-flex-align: center;
+      .flex-align(center);
+
+      form {
+        position: relative;
+        width: inherit;
+        height: inherit;
+
+        input {
+          width: @avatarSize - 2px;
+          height: @avatarSize - 2px;
+          z-index: 111;
+          cursor: pointer;
+          opacity: 0;
+        }
+      }
+    }
+  }
+}

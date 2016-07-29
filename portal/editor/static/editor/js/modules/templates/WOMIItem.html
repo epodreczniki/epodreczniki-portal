@@ -1,0 +1,46 @@
+<div class="womi-item" data-id="<%= womi.id %>">
+
+    <div class="womi-item-header">
+        <a class="womi-item-delete-button"><div></div></a><!-- podstawić ikonę -->
+        <div class="womi-item-description">
+            <span>id: <%= womi.id %> </span>
+            <span>typ: <%= womi['media-type'] %></span>
+        </div>
+        <!--<div class="womi-item-sound-bar">
+            <a>+</a>
+            <a>-</a>
+        </div>-->
+        <div class="womi-item-attributes">
+            <a><div></div></a>
+        </div>
+        <div class="womi-item-title">
+            <%= womi.title %>
+        </div>
+    </div>
+
+    <div class="womi-item-image-container">
+        <img src="<%= image %>" class="womi-item-image">
+        <div class="ui-helper-clearfix"></div>
+    </div>
+
+    <div class="womi-item-author">
+        <% _.each(womi.author, function(a){ %> <span><%= a %></span> <% }); %>
+    </div>
+
+</div>
+
+<!-- <div class="womi-item" data-id="<%= womi.id %>">
+    <table>
+        <tr>
+            <td style="width: 58%; min-width: 80px;"><img src="<%= image %>" class="womi-item-image"></td>
+            <td style="width: 40%;">
+                <ul style="">
+                    <li>id: <%= womi.id %></li>
+                    <li>autorzy: <% _.each(womi.author, function(a){ %> <span><%= a %></span> <% }); %></li>
+                    <li>tytuł: <%= womi.title %></li>
+                    <li>typ: <%= womi['media-type'] %></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</div>-->

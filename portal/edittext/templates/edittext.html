@@ -1,0 +1,80 @@
+{% extends "editres/base.html" %}
+{% load compress staticfiles %}
+
+{% block title_block %}{{ category_driver.nice_single|capfirst }} {{ driver.title|capfirst }} ({{ path }}){% endblock title_block %}
+
+{% block stylesheets %}
+    {{ block.super }}
+
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}edittext/less/edittext.less">
+    {% endcompress %}
+{% endblock %}
+
+{% block head_scripts  %}
+    <script src="{{ STATIC_URL }}/3rdparty/epo/frame_script.js"></script>
+{% endblock %}
+
+{% block topbar %}
+    {% include "editres/topbars/editor.html" %}
+{% endblock %}
+
+
+{% block main_content %}
+
+    {% if lock %}
+    <div class="container">
+    {% include "editcommon/editor_common_attributes.html" %}
+    <script id="{{ driver.category }}_{{ driver.identifier }}_{{ driver.version }}" type="text/lock-payload">
+        {% autoescape off %}
+        {{ lock }}
+        {% endautoescape %}
+    </script>
+
+    <div class="panel panel-default">
+        {% include "editres/snippets/editor_bar.html" %}
+    </div>
+    </div>
+
+
+    {% block below_bars_section %}
+    <div class="container adjusted-height">
+    {% block editor_section %}
+    <div class="panel panel-default">
+        <div class="panel-body" id='editor-panel'>
+
+            <div data-preprocess="notminify" id="editor" data-path="{{ path }}">{% if content %}{{ content }}{% else %}function foo(items) {
+    var x = "All this is syntax highlighted";
+    return x;
+}{% endif %}</div>
+        </div>
+    </div>
+    {% endblock editor_section %}
+    </div>
+    {% endblock below_bars_section %}
+
+    {% else %}
+    <div class="container adjusted-height">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span>Inny użytkownik edytuje ten zasób. Spróbuj ponownie później.</span>
+        </div>
+
+    </div>
+    </div>
+    {% endif %}
+
+
+{% endblock main_content %}
+
+{% block scripts_bottom %}
+    {{ block.super }}
+
+    {% compress js %}
+        <script src="{{ STATIC_URL }}common/js/libs/require.js"></script>
+    {% endcompress %}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}edittext/js/build/edittext.js"></script>
+    {% endcompress %}
+{% endblock %}
+

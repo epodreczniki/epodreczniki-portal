@@ -1,0 +1,11 @@
+{
+  "name": "fajny filtr",
+  "filter": {
+        "field": "category",
+        "value": ["collection"],
+        "mode": "exact",
+        "fixed": true
+  },
+  "fields": ["identifier"],
+  "size": 100
+}

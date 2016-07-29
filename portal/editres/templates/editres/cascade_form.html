@@ -1,0 +1,34 @@
+<div class='cascade-forms-single' >
+    <div class='cascade-forms-attributes'
+        data-cascade-forms-estimated-time="{{ form.estimated_time }}"
+        data-cascade-forms-finish="{{ form.finish }}"
+    >
+    </div>
+    <div class='cascade-forms-source-description'>
+        <span>{{ form.description_text }}</span>
+    </div>
+    <div class='cascade-forms-source-fields'>
+        <form autocomplete='off'>
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+        <div class='form-group row'>
+            <div class='col-sm-5'>
+            {{ field.label_tag }}
+            </div>
+            <div class='col-sm-7'>
+            {{ field }}
+            </div>
+        </div>
+        {% endfor %}
+        </form>
+    </div>
+    <div class='cascade-forms-source-submit'>
+        <button type="button" autocomplete='off' class="btn btn-{{ form.style_button }} btn-sm cascade-forms-submit">
+            <span class='glyphicon glyphicon-{{ form.style_glyph }}'></span>
+            <span class='cascade-forms-description-in-button'>{{ form.description_text }}</span>
+        </button>
+    </div>
+</div>

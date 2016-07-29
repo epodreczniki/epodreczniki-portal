@@ -1,0 +1,53 @@
+{% extends "begin/base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+    {#    {% include "begin/includes/intro.html" with intro=self.intro only %}#}
+    {##}
+    {# Uses method defined in models.py to retrieve all upcoming events #}
+    {# See also standard index for creating a listing with a tag #}
+    {#    {% with self.events.all as events %}#}
+    {#        {% if events %}#}
+    {#            <div class="list-group">#}
+    {#                {% for event in events %}#}
+    {#                    {% include "begin/includes/event_list_item.html" %}#}
+    {#                {% endfor %}#}
+    {#            </div>#}
+    {#        {% endif %}#}
+    {#    {% endwith %}#}
+    {##}
+    {#    {% include "begin/includes/related_links.html" with related_links=self.related_links.all only %}#}
+
+    {% include "begin/includes/page_header.html" with page=self request=request only %}
+
+    <div class="content-wrapper page-content-wrapper clearfix">
+
+        <!-- BEGIN .main-content -->
+        <div class="main-content page-content">
+
+            <!-- BEGIN .inner-content-wrapper -->
+            <div class="inner-content-wrapper">
+
+
+                <ul class="event-list-full">
+
+
+                    {% with self.events.all as events %}
+                        {% if events %}
+                            {% for event in events %}
+                                {% include "begin/includes/event_list_item.html" with event_place='-full' %}
+                            {% endfor %}
+                        {% endif %}
+
+                    {% endwith %}
+
+                    <!-- END .inner-content-wrapper -->
+                </ul>
+            </div>
+            <!-- END .main-content -->
+        </div>
+
+        {% include "begin/includes/sidebar.html" with page=self side="right" %}
+        <!-- END .content-wrapper -->
+    </div>
+{% endblock %}

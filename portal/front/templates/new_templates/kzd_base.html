@@ -1,0 +1,118 @@
+{% extends 'front/base_front_with_navbar.html' %}
+
+{% load staticfiles compress requirejs extensions common_ext collection_cover %}
+
+{% block body_class %}{% endblock %}
+{% comment %}{% block body_class %}class="theme{{ theme }} theme-100percent"{% endblock %} Previous version {% endcomment %}
+
+{% block content %}
+    {% block topbar_include %}
+        {% include 'topbars/topbar_kzd.html' %}
+    {% endblock %}
+
+    {% comment %}
+        TODO EPP-5244
+        {% include "front/admin_messages.html" with admin_messages=admin_messages %}
+    {% endcomment %}
+    {% block container %}
+
+        <div id="kzd-lister" data-edit-pattern="{{ edit_pattern }}"></div>
+
+        <div id="kzd-welcome-box">
+
+
+            <div id="kzd-edulevel-list">
+                <a class="edu-level-switcher" data-level-id="E1">
+                    <div class="img-level"></div>
+                    Edukacja<br/>wczesnoszkolna
+                    <ul class="categories-type-box">
+                        <li class="option" data-category-item="">wszystkie</li>
+                        {% for category_item in sorted_categories %}
+                            <li class="option" data-category-item="{{ category_item.category_name }}">
+                                    {{ category_item.category_label }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </a>
+                <a class="edu-level-switcher" data-level-id="E2">
+                    <div class="img-level"></div>
+                    Edukacja<br/>podstawowa 4-6
+                    <ul class="categories-type-box">
+                        <li class="option" data-category-item="">wszystkie</li>
+                        {% for category_item in sorted_categories %}
+                            <li class="option" data-category-item="{{ category_item.category_name }}">
+                                    {{ category_item.category_label }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </a>
+                <a class="edu-level-switcher" data-level-id="E3">
+                    <div class="img-level"></div>
+                    Edukacja<br/>gimnazjalna
+                    <ul class="categories-type-box">
+                        <li class="option" data-category-item="">wszystkie</li>
+                        {% for category_item in sorted_categories %}
+                            <li class="option" data-category-item="{{ category_item.category_name }}">
+                                    {{ category_item.category_label }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </a>
+                <a class="edu-level-switcher" data-level-id="E4">
+                    <div class="img-level"></div>
+                    Edukacja<br/>ponadgimnazjalna
+                    <ul class="categories-type-box">
+                        <li class="option" data-category-item="">wszystkie</li>
+                        {% for category_item in sorted_categories %}
+                            <li class="option" data-category-item="{{ category_item.category_name }}">
+                                    {{ category_item.category_label }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </a>
+            </div>
+
+            <br/>
+
+            <div id="kzd-category-list">
+                <h2>Wybierz kategorię:</h2>
+                <div class="categories">
+                {% for category_item in sorted_categories %}
+                    <a class="category" data-category-item="{{ category_item.category_name }}">
+                        <div class="{{ category_item.category_class }} category-icon"></div>
+                            <p><span class="kzd-category-label">{{ category_item.category_label }}</span><br>
+                                [{{ category_item.count }}]
+                            </p>
+                    </a>
+                {% endfor %}
+                </div>
+            </div>
+
+            <br/>
+            <h5>Łączna liczba zasobów: {{ all_items_count }}</h5>
+            <br/>
+
+        </div>
+
+        {% block maincontent %}
+        {% endblock %}
+
+
+    {% endblock %}
+
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ block.super }}
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}front/less/front.less">
+    {% endcompress %}
+{% endblock %}
+
+{% block scripts_bottom %}
+    {{ block.super }}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}front/js/build/kzd.js"></script>
+    {% endcompress %}
+{% endblock %}

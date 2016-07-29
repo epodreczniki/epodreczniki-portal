@@ -1,0 +1,15 @@
+<div id="admin-message-bar" style="display: none;">
+    <button type="button" id="admin-message-toggle">
+        <a href="#">
+        </a>
+    </button>
+    <div id="admin-message-bar-indicator">
+        <a href="#">
+        </a>
+    </div>
+    <div id="admin-message-bar-messages">
+        {% for admin_message in admin_messages %}
+            <div class="admin-message scrollable-text" data-publish-date="{{admin_message.date|date:"U"}}">{{admin_message.text}}</div>
+        {% endfor %}
+    </div>
+</div>

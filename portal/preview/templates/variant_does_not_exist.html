@@ -1,0 +1,6 @@
+{% extends "base_error_page.html" %}
+
+{% block error_title %}Brak wariantu w kolekcji.{% endblock %}
+
+{% block error_content %}Kolekcja o identyfikatorze <span class='emp'>{{ collection_id }}</span> nie posiada wariantu <span class='emp'>{{ variant }}</span>.{% endblock %}
+

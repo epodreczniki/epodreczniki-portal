@@ -1,0 +1,245 @@
+@import "../detail";
+
+@composite_blocks_width_threshold: 750px;
+
+.composite_blocks_width_repairer(@name) {
+
+    @media (max-width: @composite_blocks_width_threshold) {
+
+        .@{name}-content {
+            .@{name}-info {
+                .womi-container {
+                    width: 100%;
+                }
+
+                .@{name}-metrics {
+                    width: 100%;
+                }
+
+                .womi-gallery {
+                    float: left;
+                }
+
+                .here-here {
+                    float: right;
+                }
+            }
+        }
+    }
+}
+
+.experiment_and_observation_common(@name, @svg) {
+
+    .@{name}-header {
+        .simple-block-header();
+        padding-left: 0;
+
+        .label {
+            display: inline;
+            background-image: url(@svg);
+
+            .numbering {
+                .numbering-prefix {
+                    display: none;
+                }
+
+                .numbering-element {}
+            }
+        }
+
+        .title {
+            margin-bottom: -20px;
+        }
+    }
+
+    .@{name}-contents {
+        .objective {
+            .objective-header {
+                .complex-block-header();
+            }
+
+            .objective-contents {}
+        }
+
+        .hypothesis {
+            .hypothesis-header {
+                .complex-block-header();
+            }
+
+            .hypothesis-contents {}
+        }
+
+        .instruments {
+            .instruments-header {
+                .complex-block-header();
+            }
+
+            .instruments-contents {}
+        }
+
+        .instructions {
+            .instructions-header {
+                .complex-block-header();
+            }
+
+            .instructions-contents {}
+        }
+
+        .conclusions {
+            .conclusions-header {
+                .complex-block-header();
+            }
+
+            .conclusions-contents {
+                .bottom-cleaner();
+            }
+        }
+
+        .note-warning {
+            margin: 0;
+            padding: @space-B 0;
+        }
+
+        .note-header {
+            margin-bottom: @space-B;
+        }
+    }
+}
+
+.event_and_biography_common(@name, @svg, @start-name, @end-name) {
+    margin-top: @space-D;
+
+    .@{name}-header {
+        .simple-block-header();
+        padding-bottom: 0;
+
+        .label {
+            display: inline;
+            background-image: url(@svg);
+        }
+    }
+
+    .@{name}-contents {
+        margin: 0 @side-space;
+
+        .@{name}-info {
+
+            .name {
+                font-family: @sansRegular;
+                font-size: 2em;
+                line-height: 2em; // ---> convert to 2
+            }
+
+            .womi-container {
+                float: left;
+                width: 40%;
+                padding: 0;
+                margin-right: 32px;
+
+                @media (max-width: 480px) {
+                    width: 100%;
+                }
+
+                .image-container {}
+                .title {}
+                .caption {}
+            }
+
+            .@{name}-metrics {
+                float: left;
+                margin: @space-A 0;
+                width: 50%;
+
+                @media (max-width: 480px) {
+                    margin: 0;
+                    width: 100%;
+                }
+
+                .@{start-name} {
+                    clear: both;
+
+                    .@{start-name}-contents {
+                        .date {
+                            clear: both;
+
+                            .date-header {
+                                font-family: @sansRegular;
+                                float: left;
+                                margin-right: 31px;
+                            }
+
+                            .date-contents {
+                                float: left;
+                            }
+                        }
+
+                        .location {
+                            clear: both;
+
+                            .location-header {
+                                font-family: @sansRegular;
+                                float: left;
+                                margin-right: 13px;
+                            }
+
+                            .location-contents {
+                                float: left;
+                                margin-bottom: 8px;
+                            }
+                        }
+                    }
+                }
+
+                .@{end-name} {
+                    clear: both;
+
+                    .@{end-name}-contents {
+                        .date {
+                            clear: both;
+
+                            .date-header {
+                                font-family: @sansRegular;
+                                float: left;
+                                margin-right: 51px;
+                            }
+                            .date-contents {
+                                float: left;
+                            }
+                        }
+
+                        .location {
+                            clear: both;
+
+                            .location-header {
+                                font-family: @sansRegular;
+                                float: left;
+                                margin-right: 33px;
+                            }
+
+                            .location-contents {
+                                float: left;
+                                margin-bottom: 8px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .womi-gallery {
+                width: 100%;
+                clear: both;
+
+                @media (max-width: @composite_blocks_width_threshold) {
+                    float: left;
+                }
+            }
+        }
+
+        .content {
+            clear: both;
+//            .bottom-cleaner();   ===> ET-2257
+        }
+    }
+
+    .composite_blocks_width_repairer(name);
+}

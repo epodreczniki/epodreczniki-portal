@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<col:collection xmlns:col="http://cnx.rice.edu/collxml" xmlns:cnxsi="http://cnx.rice.edu/system-info" xmlns:ep="http://epodreczniki.pl/" xmlns:md="http://cnx.rice.edu/mdml">
+    <col:metadata mdml-version="1.2">
+        <md:content-id>{{ collection_id }}</md:content-id>
+        <md:repository>https://epodreczniki.pcss.pl/repo</md:repository>
+        <md:version>{{ collection_version }}</md:version>
+        <md:created>{{ timestamp }}</md:created>
+        <md:revised>{{ timestamp }}</md:revised>
+        <md:language>pl</md:language>
+        <md:license url="http://creativecommons.org/licenses/by/3.0/pl/legalcode"/>
+        <md:title>Nowa kolekcja {{ collection_id }}</md:title>
+        <md:education-levellist>
+        </md:education-levellist>
+        <md:subjectlist>
+        </md:subjectlist>
+        <md:abstract></md:abstract>
+        <ep:e-textbook ep:content-status="canon" ep:recipient="student" ep:version="1.1">
+            <ep:signature/>
+        </ep:e-textbook>
+        <md:actors>
+        </md:actors>
+        <md:roles>
+        </md:roles>
+    </col:metadata>
+    <col:content>
+    </col:content>
+</col:collection>

@@ -1,0 +1,83 @@
+.reader-content {
+    ol,
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    ol {
+        list-style-type: none;
+
+        li {
+            margin-left: 30px;
+        }
+
+        .item-decoration {}
+    }
+
+    ul {
+        list-style-position: outside;
+
+        li {
+            margin-left: 20px;
+        }
+    }
+
+    ol.other > li.item {
+        margin-left: 0;
+    }
+
+    li.item li.item {
+        margin-left: 16px;
+    }
+
+    div.answers-container.has-mathml .answer {
+        padding-bottom: 8px;
+    }
+
+    div.answer {
+        line-height: 2em; // ---> convert to 2
+    }
+
+    .list {
+        margin: @space-A 0;
+        padding: 0;
+        text-align: left;
+
+        .enumerated,
+        .lower-alpha {
+
+            &.has-mathml .item {
+                padding-bottom: 8px;
+            }
+
+            .item {
+                position: relative;
+
+                .item-decoration {
+                    position: absolute;
+                    right: 100%;
+                    margin-right: 6px;
+                }
+            }
+        }
+
+        .lower-alpha {
+            padding-left: 0;
+        }
+
+        .bullet {
+            .item {
+                padding-left: 8px;
+            }
+        }
+
+        .list {
+            margin: 0;
+        }
+    }
+}
+
+.item > .para {
+    display: inline;
+}

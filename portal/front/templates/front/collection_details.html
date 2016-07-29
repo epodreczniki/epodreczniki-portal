@@ -1,0 +1,219 @@
+{% extends "front/universal_details.html" %}
+{% load staticfiles collection_cover compress collections extensions common_ext url_process %}
+
+{% block topbar_bottom_buttons %}
+    {% if not collection.is_emergency_hosted_collection %}
+        {{ block.super }}
+
+        {% with collection|find_static_format:'pdf' as format %}
+            {% if format %}
+                {% if format.present_in_interface or presentation.config.is_preview %}
+                <li>
+                    <div class="download popup-button read_links" data-function="download" onclick="window.open('{{ format.get_absolute_url|make_schemeless }}?filename={{ format.filename }}','new_window');" tabindex="0">
+                            <img src="{% static "front/img/gfx/pobierz.png" %}" class="position" alt="Pobierz i drukuj"/>
+                            Pobierz i drukuj
+                    </div>
+                </li>
+                {% endif %}
+            {% endif %}
+        {% endwith %}
+
+        {% if not presentation.collection.is_source %}
+            <li>
+                <div onclick="location.href='{{ presentation.read_url }}';" id="read_link" class="read_links" tabindex="0">
+                    <img src="{% static "front/img/gfx/czytaj.png" %}" class="position" alt="Czytaj"/>
+                    Czytaj
+                </div>
+            </li>
+        {% endif %}
+    {% endif %}
+{% endblock topbar_bottom_buttons %}
+
+{% block sidebar_content %}
+    <div class="cover">
+        <div class="cover-holder">
+            <div class="cover-overlay">
+                <img class="img-responsive" src="{{ collection|cover_url }}"
+                     alt="okładka podręcznika {{ collection.md_title }}"/>
+
+                <div class="cover-title cover-class-{{ collection.md_school.ep_class }}">
+                    <div class="cover-subject">{{ collection.md_subject.md_name|upper }}</div>
+                    <div class="cover-topic">{{ collection.md_title }}{% if collection.volume %} (tom&nbsp{{ collection.volume }}){% endif %}</div>
+                    {% spaceless %}
+                        <div class="cover-class-level" data-class="{{ collection.md_school.ep_class }}">
+                            {% if collection.md_school.ep_class %}klasa {{ collection.md_school.ep_class }}, {% endif %}{% if collection.md_school.get_md_education_level_display %}{{ collection.md_school.get_md_education_level_display|lower }}{% endif %}
+                        </div>
+                    {% endspaceless %}
+                    {% if collection.kind_nice %}
+                    <div class="cover-class-level">{{ collection.kind_nice }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-small description">
+        <ul class="list-unstyled">
+            <li><strong>Oznaczenia treści</strong></li>
+            <li><img src="{% static "front/img/gfx/star.svg" %}" class="position" alt="Status treści"/>treści rozszerzające
+            </li>
+            <li><img src="{% static "front/img/gfx/university.svg" %}" class="position" alt="Adresat"/>oprawa
+                metodyczna
+            </li>
+        </ul>
+        {% if collection.md_subject.md_name|lower == "matematyka" %}
+            <br>
+            <ul class="list-unstyled">
+                <li><strong>Oznaczenia zadań</strong></li>
+                <li><img src="{% static "front/img/gfx/icon_blue_A.svg" %}" class="position exercise-type" alt="Zadanie A"/>Zadanie z
+                    minimalnego poziomu osiągnięcia efektu kształcenia
+                </li>
+                <li><img src="{% static "front/img/gfx/icon_blue_B.svg" %}" class="position exercise-type" alt="Zadanie B"/>Zadanie z
+                    ogólnego poziomu osiągnięcia efektu kształcenia
+                </li>
+                <li><img src="{% static "front/img/gfx/icon_blue_C.svg" %}" class="position exercise-type" alt="Zadanie C"/>Zadanie z
+                    kreatywnego osiągnięcia efektu kształcenia
+                </li>
+                <li><img src="{% static "front/img/gfx/icon_blue_K.svg" %}" class="position exercise-type" alt="Zadanie K"/>Zadanie
+                    do osiągnięcia kompetencji
+                </li>
+                <li><img src="{% static "front/img/gfx/icon-exercise-on-paper.svg" %}" class="position exercise-textbook" alt="Zadanie w zeszycie"/>
+                    Zadanie do wykonania w zeszycie
+                </li>
+            </ul>
+        {% endif %}
+        {% if collection.ep_environment_type == "uwr" %}
+            <br>
+            <ul class="list-unstyled">
+                <li><strong>Oznaczenia zadań</strong></li>
+                <li><img src="{% static "front/img/gfx/icon_expanding.svg" %}" class="position exercise-uwr-type" alt="Zadanie rozszerzone"/>Zadanie
+                    na poziomie rozszerzonym
+                </li>
+                <li><img src="{% static "front/img/gfx/icon_blue_groupwork.svg" %}" class="position exercise-uwr-type" alt="Zadanie grupowe"/>Zadanie
+                    do wykonania w grupie
+                </li>
+                <li><img src="{% static "front/img/gfx/icon_blue_pair_work.svg" %}" class="position exercise-uwr-type" alt="Zadanie w parach"/>Zadanie
+                    do wykonania w parach
+                </li>
+            </ul>
+        {% endif %}
+    </div>
+{% endblock sidebar_content %}
+
+{% block main_content %}
+    {% with collection=presentation.content %}
+
+        {# those conditions presentation.config.is_preview are here below because of EPP-5604 #}
+        <ol class="breadcrumb">
+                {% if collection.md_school %}
+                    <li class="not_empty">
+                    {% if presentation.config.is_preview %}
+                        {{ collection.md_school.get_md_education_level_display }}&nbsp;
+                    {% else %}
+                        <a href="{% url 'front.views.new_index' education_level=collection.md_school.education_code %}">{{ collection.md_school.get_md_education_level_display }}&nbsp;</a>
+                    {% endif %}
+                    </li>
+                {% else %}
+                    <li class="empty">
+                    </li>
+                {% endif %}
+                {% if collection.md_school.ep_class %}
+                    <li class="not_empty">
+                    {% if presentation.config.is_preview or not collection.md_school %}
+                        Klasa {{ collection.md_school.ep_class }}&nbsp;
+                    {% else %}
+                        <a href="{% url 'front.views.new_index' education_level=collection.md_school.education_code level=collection.md_school.ep_class %}">Klasa {{ collection.md_school.ep_class }}&nbsp;</a>
+                    {% endif %}
+                    </li>
+                {% else %}
+                    <li class="empty">
+                    </li>
+                {% endif %}
+                {% if collection.md_subject %}
+                    <li class="not_empty">
+                    {{ collection.md_subject.md_name }}&nbsp;
+                    </li>
+                {% else %}
+                    <li class="empty">
+                    </li>
+                {% endif %}
+        </ol>
+        <h1>{{ collection.md_title }}{% if collection.volume %} (tom&nbsp{{ collection.volume }}){% endif %}</h1>
+
+        {% if collection.md_subtitle %}
+            <h2 class="subtitle">
+                {{ collection.md_subtitle }}
+            </h2>
+        {% endif %}
+
+        {% if collection.md_institution %}
+            <h2 class="institution">
+                {{ collection.md_institution }}
+            </h2>
+        {% endif %}
+
+        {% if presentation.version_mode == 'fixed' %}
+            <h3 class="version-mode">Wersja: {{ collection.md_version }} <a
+                href="{% url collection.CONFIG.VARIANT_DETAILS_VIEW collection.identifier 'latest' collection.variant %}">Przejdź
+                do najnowszej</a></h3>
+        {% elif presentation.version_mode == 'latest' %}
+            <h3 class="version-mode">Wersja najnowsza ({{ collection.md_version }})</h3>
+        {% elif presentation.version_mode == 'edited' %}
+            <h3 class="version-mode">Wersja edytowana ({{ collection.md_version }})</h3>
+        {% endif %}
+
+        {% block preview_diagnostics_section %}
+        {% endblock %}
+
+        {% if collection.has_siblings %}
+            <div class="version">
+                Wariant
+                {% for sibling in presentation.sibling_variants %}
+                    {% if sibling.variant == presentation.variant %}
+                        {# check if it's possible to read it from local storage #}
+                        <a href="{{ sibling.detail_url }}">{{ sibling.nice_short_variant_name }}</a>
+                    {% else %}
+                        <a href="{{ sibling.detail_url }}"
+                           class="inactive">{{ sibling.nice_short_variant_name }}</a>
+                    {% endif %}
+                    {% if not forloop.last %} / {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if presentation.collection.md_abstract %}
+            <p class="abstract">{{ presentation.collection.md_abstract }}</p>
+        {% endif %}
+
+        {% if not presentation.collection.is_source %}
+            <h2>Spis treści</h2>
+
+            <div class="collection-toc toc">
+                {% if not presentation.collection.is_source and presentation.collection_toc_womi %}
+                    {% for mapping_url, mapping_title in presentation|collection_presentation_toc_mappings %}
+                        <ol class="" style='list-style-type:none;'>
+                            <li><a class="title" href="{{ mapping_url }}">{{ mapping_title }}</a></li>
+                        </ol>
+                    {% endfor %}
+                {% endif %}
+                {% details_toc_iteration presentation collection.root_collection %}
+            </div>
+        {% endif %}
+    {% endwith %}
+{% endblock main_content %}
+
+
+{% block ultra_uncommon_behaviour %}
+    {% if not presentation.collection.is_source %}
+        <div class="buttons">
+            {% if not presentation.collection.is_source and presentation.collection_toc_womi %}
+                {% with toc_womi_path=presentation.collection_toc_womi|womi_file_url:'index.html' %}
+                    <a class="a-button" href="#" id="pnl-button">{% collection_specific_translate presentation.content 'Baw się i ucz' %}</a>
+                    <div id="pnl-map" style="display:none; width: 100%; height: 100%">
+                        <iframe data-src="{{ toc_womi_path|make_schemeless }}" class="toc-womi-iframe"></iframe>
+                    </div>
+                {% endwith %}
+            {% endif %}
+            <a class="a-button" href="{{ presentation.read_url }}">Czytaj</a>
+        </div>
+    {% endif %}
+{% endblock %}

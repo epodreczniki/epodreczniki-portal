@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<div class="user-bar-inner">
+    <div class="user-photo">
+        <img src="{% static "front/img/profile/avatar-blank01.jpg" %}">
+    </div>
+    <div class="user-bar-rows">
+        <div class="user-info">
+            <div class="user-name"></div>
+            <div class="user-email"></div>
+            {# <div class="user-school"><p>Lorem ipsum</p></div> #}
+        </div>
+        <div class="profile-nav">
+
+            {# markup zmieniony na niezgodny z semantyką po konsultacjach artystycznych #}
+             {# <div class="add-user-photo"><span style="display: none;">dodaj zdjęcie</span></div> #}
+
+            <nav class="profile-main-tabs">
+                <li id="profile-readings-tab" class="profile-main-tab" onclick="window.location.hash='#last'">
+                    <span>Moja półka</span>
+                </li>
+                <li id="profile-progress-tab" class="profile-main-tab" onclick="window.location.hash='#progress'"><span>Moje
+                    odpowiedzi</span>
+                </li>
+                <li id="profile-notes-tab" class="profile-main-tab" onclick="window.location.hash='#notes'"><span>Moje
+                    notatki</span>
+                </li>
+                <li id="profile-statistics-tab" class="profile-main-tab" onclick="window.location.hash='#stats'">
+                    <span>Statystyki</span>
+                </li>
+            </nav>
+        </div>
+    </div>
+</div>

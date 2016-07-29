@@ -1,0 +1,9 @@
+{% extends "editres/topbars/space.html" %}
+
+{% block topbar_content %}
+    {{ block.super }}
+
+    {% include "editres/topbars/element.html" with presentation_driver=category_driver %}
+
+{% endblock %}
+

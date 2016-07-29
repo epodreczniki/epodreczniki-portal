@@ -1,0 +1,41 @@
+<div class="extended-kzd-description-inner">
+    <div class="kzd-top">
+        <a class="kzd-go-to-res" href="<%= kzdUrl %>" target="_blank">Pokaż zasób</a>
+        <a class="kzd-edit" style="display: none" href="#" target="_blank">Edytuj</a> <!-- TODO EPP-6854 -->
+    </div>
+    <div class="kzd-cover">
+        <img src="<%= imgUrl %>" />
+    </div>
+    <div class="kzd-middle">
+        <h3><%= attributes.title %></h3>
+        <br/>
+        <span class="kzd-title">Opis:</span>
+        <p class="kzd-description">
+        <%= description %>
+        </p>
+        <br/>
+        <span class="kzd-title">Autorzy:</span>
+        <p>
+        <%= authors %>
+        </p>
+        <br/>
+        <span class="kzd-title">Licencja:</span>
+        <p>
+            <%= attributes.license %>
+        </p>
+    </div>
+    <div class="kzd-right">
+        <p><span class="kzd-title">Poziom:</span>
+            <%= nameEduLevel %>
+        </p>
+        <br/>
+        <p><span class="kzd-title">Kategoria:</span><br/>
+            <%= attributes.extended_category %>
+        </p>
+        <br/>
+        <p><span class="kzd-title">Słowa kluczowe:</span><br/>
+        <div class="kzd-tags">
+        </div>
+        </p>
+    </div>
+</div>

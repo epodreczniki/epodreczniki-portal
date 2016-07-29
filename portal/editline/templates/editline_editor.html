@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+{% load compress staticfiles common_ext %}
+<html class="ie-zoom" lang="pl">
+<head>
+    <title>Edytor modułu</title>
+
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 7px;
+            left: 0;
+        }
+
+        .btn-float {
+            float: left;
+            margin-left:10px;
+            margin-top: 6px;
+        }
+
+        .btn {
+            margin-left:10px;
+        }
+        #collectionView, #moduleView, #login {
+            padding-top: 3px;
+            padding-bottom: 2px;
+            margin-top: 5px;
+        }
+        #loginElement {
+            margin-right: 0;
+        }
+
+        #xopus {
+            width: 100%;
+            height: 100%;
+            border: 0
+        }
+
+        .navbar-nav > li > a {
+            color: #666;
+        }
+
+        .navbar-nav > li > a:hover {
+            color: #212121;
+        }
+
+        .navbar-nav > .open > a, .navbar-nav > .open > a:hover, .navbar-nav > .open > a:focus {
+            background-color: #EEE;
+            color: #212121;
+        }
+
+        .roles {
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+
+        .role {
+            padding-left: 30px;
+            padding-right: 20px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+
+    </style>
+
+    {% block stylesheets %}
+        {% compress css %}
+            <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editres/less/bootstrap.less">
+        {% endcompress %}
+    {% endblock %}
+
+    {% block scripts_top %}
+
+
+        {% compress js %}
+            <script src="{{ STATIC_URL }}editline/js/3rdparty/jquery.min.js"></script>
+            <script src="{{ STATIC_URL }}editline/js/3rdparty/jquery.cookie.js"></script>
+
+            <script src="{{ STATIC_URL }}editline/js/3rdparty/underscore-min.js"></script>
+
+            <script src="{{ STATIC_URL }}editcoll/js/plugins/bootstrap.min.js"></script>
+            <script src="{{ STATIC_URL }}editcommon/js/libs/bootstrap-dialog.js"></script>
+        {% endcompress %}
+        <script src="{{ STATIC_URL }}/3rdparty/epo/frame_script.js"></script>
+        <script>
+            function getModuleId() { return "{{ driver.identifier }}" }
+            function getModuleVersion() { return "{{ driver.version }}" }
+            function getUserName() { return "{{ request.user }}" }
+        </script>
+        {% compress js %}
+            <script src="{{ STATIC_URL }}editline/js/wrapper.js"></script>
+        {% endcompress %}
+    {% endblock %}
+
+
+
+</head>
+<body>
+{% include "editcommon/editor_common_attributes.html" %}
+<div id="editorarea" >
+
+    <div id="topbar" >
+
+        <h4 class="btn-float" id="collectionid" style="display: none; ">Kolekcja: <code></code>
+            <script>
+                if (getCollectionId()) {
+                    $("#collectionid code").html(getCollectionId());
+                    $("#collectionid").show();
+                }
+
+            </script>
+        </h4>
+
+        <h4 class="btn-float">Moduł: <code>{{ driver.identifier }}/{{ driver.version }}</code></h4>
+
+
+        {% if "c" not in request.GET %}
+            <a id="backtoedit" class="btn-float btn btn-primary" href="{{ driver.editor_url }}">
+                Strona zasobu
+            </a>
+        {% endif %}
+
+        {% with driver.dummy_collection_driver.preview_url as preview_url %}
+            {% if preview_url %}
+                <ul class="nav navbar-nav" id="modulePreviewNav">
+                    <li>
+                        <a id="moduleView" class="btn btn-primary" target="_blank"
+                           href="{{ preview_url }}">
+                            Podgląd modułu
+                        </a>
+                    </li>
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% if "c" in request.GET %}
+            <ul class="nav navbar-nav" id="collectionPreviewNav" style="display: none;">
+                <li>
+                    <a id="collectionView" class="btn btn-primary" target="_blank"
+                       href="{% url 'preview_collection_details' 'collectionId' 'collectionVersion' %}">
+                        Podgląd kolekcji
+                    </a>
+                </li>
+            </ul>
+            <script>
+                if (getCollectionId()) {
+                    $("#collectionView").attr("href",$("#collectionView").attr("href").replace("collectionId/collectionVersion" , getCollectionId()));
+                    $("#collectionPreviewNav").show();
+                }
+
+            </script>
+        {% endif %}
+
+        {% if request.user.is_authenticated %}
+                    <ul id="loginElement" class="nav navbar-nav navbar-right" >
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="login" href="#" >Zalogowany
+                                jako: {{ request.user }}<span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="login">
+                                <li class=""><a id="epoLogout" href="{% host_url 'user' "auth.views.epo_logout" %}">Wyloguj</a></li>
+                                {% if driver.user_effective_roles %}
+                                    <li class="divider"></li>
+                                    <li class="roles">Role:</li>
+                                    {% for user_role in driver.user_effective_roles %}
+                                        <li class="role {{ user_role }}">
+                                            <script>$(".role." + "{{ user_role }}").html(getNiceRole("{{ user_role }}"))</script>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </ul>
+                {% endif %}
+
+    </div>
+    <div id="editor">
+        {% if editor_enabled %}
+            <div id="xopus">
+
+            </div>
+        {% else %}
+        <h2>Edytor treści liniowej nie jest jeszcze dostępny...</h2>
+        <h4>Spróbuj ponownie później.</h4>
+        {% endif %}
+    </div>
+</div>
+{% block extended %}
+
+{% endblock %}
+</body>
+</html>

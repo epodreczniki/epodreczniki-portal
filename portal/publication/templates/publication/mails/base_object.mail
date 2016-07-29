@@ -1,0 +1,36 @@
+{% extends "publication/mails/base.mail" %}
+{% load common_ext %}
+
+{% block lead %}{{ subject }}{% endblock %}
+
+{% block content %}
+Data zdarzenia: {% now 'Y-m-d H:i:s' %}
+
+Opis obiektu:
+- typ: {{ driver.category }}
+- identyfikator: {{ driver.identifier }}
+- wersja: {{ driver.version }}
+- tytuł: {{ driver.title }}
+- szkoła: {{ driver.repo_driver.school }}
+- klasa: {{ driver.repo_driver.ep_class }}
+- przedmiot: {{ driver.repo_driver.subject }}
+
+- platforma: {{ TOP_DOMAIN }}
+- zleceniodawca: {{ context.publication_user.username }}
+- data zlecenia: {{ context.publication_obj.created|date:'Y-m-d H:i:s' }}
+
+
+Aktualny status zlecenia jest dostępny pod adresem:
+https:{% host_url 'www' 'publication.views.publication_view' driver.category driver.identifier driver.version driver.aspect %}
+
+{% block extra %}
+{% if driver.repo_driver.preview_url %}Podgląd obiektu jest dostępny pod adresem:
+http://www.{{ TOP_DOMAIN }}{{ driver.repo_driver.preview_url }}
+{% endif %}
+{% if driver.published_url %}Obiekt opublikowany będzie dostępny pod adresem:
+http://www.{{ TOP_DOMAIN }}{{ driver.published_url }}
+(dopóki obiekt nie zostanie opublikowany, będzie skutkował komunikatem: 'błędny adres')
+{% endif %}
+{% endblock extra %}
+{% endblock content %}
+

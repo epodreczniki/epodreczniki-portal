@@ -1,0 +1,94 @@
+<section class="notes-content-wrap profile-content-wrap" xmlns="http://www.w3.org/1999/html">
+    <aside>
+        <section class="aside-toolbar">
+            <section class="aside-filters-toggle">
+                <div class="aside-filters-toggle-button">
+                    <span>pokaż filtry wyszukiwania</span>
+                </div>
+            </section>
+            <section class="aside-filters-foldable">
+                <section class="aside-filters-content">
+                    <section class="aside-filters-column">
+                        <p class="aside-header">
+                            Przedmiot:
+                        </p>
+
+                        <div class="profile-dropdown subject-dropdown">
+                            <select name="subject_select" id="subject_select">
+                                <option value="all">Wszystkie</option>
+                                {% for subject in subjects %}
+                                    <option value="{{ subject.id }}">{{ subject.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <p class="aside-header">
+                            Kolor:
+                        </p>
+
+                        <div class="note-color-picker">
+                            <div class="note-color-pick color-box red">
+                                <input class="color-radio" type="radio" name="color" value="0"/>
+                            </div>
+                            <div class="note-color-pick color-box yellow">
+                                <input class="color-radio" type="radio" name="color" value="1"/>
+                            </div>
+                            <div class="note-color-pick color-box blue">
+                                <input class="color-radio" type="radio" name="color" value="2"/>
+                            </div>
+                            <div class="note-color-pick color-box green">
+                                <input class="color-radio" type="radio" name="color" value="3"/>
+                            </div>
+                            <div class="note-color-pick color-box purple">
+                                <input class="color-radio" type="radio" name="color" value="4"/>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="aside-filters-column">
+                        <p class="aside-header">
+                            Typ:
+                        </p>
+
+                        <div class="profile-dropdown note-type-picker">
+                            <select name="type_select" id="type_select">
+                                <option value="all">Wszystkie</option>
+                                <option value="note">Z treścią</option>
+                                <option value="bookmark">Bez treści</option>
+                            </select>
+                        </div>
+                    <p class="aside-header">
+                        Kolejność:
+                    </p>
+
+                    <div class="profile-dropdown order-dropdown">
+                        <select name="order_select" id="note_order_select">
+                            <option value="latest">Od najnowszych</option>
+                            <option value="oldest">Od najstarszych</option>
+
+                        </select>
+                    </div>
+
+                    <p class="aside-header">
+                        Data:
+                    </p>
+                    <div class="profile-date-container">
+                        <div class="profile-date-element"><label for="profile-notes-date-start">Od </label><span><input id="profile-notes-date-start" class="field-date-value" type="text"></span></div>
+                        <div class="profile-date-element"><label for="profile-notes-date-end">Do </label><span><input id="profile-notes-date-end"  class="field-date-value" type="text"></span></div>
+                    </div>
+                    </section>
+                </section>
+                <section class="aside-filters-buttons">
+                    <!--button class="filter-button" id="do-filtering">Filtruj</button-->
+                    <button class="filter-button" id="clear-filter">Wyczyść filtr</button>
+                </section>
+            </section>
+        </section>
+    </aside>
+
+    <section class="notes-container profile-container">
+        <section class="notes-list" data-url-pattern="{{ reader_url_pattern }}">
+            <h2>Moje notatki</h2>
+        </section>
+    </section>
+</section>

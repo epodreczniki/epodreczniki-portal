@@ -1,0 +1,65 @@
+.reader-content {
+
+    .foldable {
+
+        &.exercise,
+        &.note-for-interested,
+        &.note-tip,
+        &.note-curiosity,
+        &.note-good-to-know,
+        &.note-time-capsule {
+            padding-top: 14px;
+            padding-bottom: 16px;
+        }
+
+        .foldable-header {
+            margin: 0;
+            padding: 0;
+
+            .additional-image {
+                float: left;
+                margin-left: -50px;
+                padding-right: 0;
+                top: 2px;
+
+                @media (max-width: (@default-width + 80)) {
+                    float: none;
+                    margin-left: 15px;
+                    padding-right: 0;
+                    top: 2px;
+                }
+            }
+        }
+
+        .foldable-contents {
+            padding: 0;
+            margin-top: @space-B;
+        }
+
+        .additional-image {
+            background: url('../../../img/new-icons/variants/uwr/icon-foldable-red.svg') center bottom/100% auto no-repeat;
+        }
+
+        .folded {
+            background: url('../../../img/new-icons/variants/uwr/icon-foldable-red.svg') center top/100% auto no-repeat;
+        }
+    }
+
+    .extended-width {
+        &.foldable, .foldable {
+            .foldable-header {
+                .additional-image {
+                    @media (max-width: (@extended-width + 80)) {
+                        float: none;
+                        margin-left: 15px;
+                        padding-right: 0;
+                        top: 2px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+

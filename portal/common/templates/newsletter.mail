@@ -1,0 +1,5 @@
+{% for batch in changelog %}** {{ batch.nice_name }}{% for entry in batch.entries %}
+  * {{ entry.text }}{% for issue in entry.issues %}
+    {{ issue.get_absolute_url }}{% endfor %}{% endfor %}
+
+{% endfor %}

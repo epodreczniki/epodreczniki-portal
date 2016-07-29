@@ -1,0 +1,342 @@
+{% extends "index_base.html" %}
+{% load staticfiles cms_utils %}
+
+{% block title %}
+    <div>
+
+        <img style="vertical-align: baseline; padding-top: 5px; padding-right: 5px;"
+             src="{% static "front/img/epodreczniki.svg" %}"
+             data-fallback="{% static "front/img/epodreczniki.png" %}"
+             alt="Logo epodreczniki.pl"/>
+
+        <h1 style="display: inline;">{{ title }}</h1>
+    </div>
+{% endblock %}
+
+{% block main_page %}
+    <div class="container">
+    <div class="row">
+    <p>Our platform is based on open source standards, in particular the XML standard as the universal language that can
+        be easily used as a set of semantic rules for creating structural data. Specifically, as an authoring language
+        used for creating and editing our e-books we have decided to adopt and extend the open XML schemas proposed by
+        the <a href="http://cnx.org/">Connexions project</a>: <abbr title="Connexions Markup Language">CNXML</abbr>,
+        <abbr title="Collection Markup Language">CollXML</abbr>, <abbr title="Metadata Modeling Language">mdml</abbr>, <abbr title="Questions Markup Language">QML</abbr> and <abbr title="BibTeX as XML markup">BibTeXML</abbr>. 
+    </p>
+    <p>However, Connexions schemas are created in RNG schema format, which was not well suited for our needs. To mitigate RNG shortcomings we decide to rewrite Connexions schema and out own in XSD format.
+    </p>
+
+    <p>Consequently, the following XML schemas have been created:</p>
+    <ul>
+        <li><a href="#epcollxml">epCollXML</a></li>
+        <li><a href="#epxml">epXML</a></li>
+    </ul>
+
+    <section id="epcollxml">
+        <h1>epCollXML</h1>
+
+        <h2>Summary</h2>
+
+        <p>epCollXML represents an e-textbook as a whole. It consists of a set of metadata that describe the e-textbook
+            together with a list of modules that form the e-textbook's content. Each separate module is a unit of
+            content called <a href="#epxml">epXML</a>.</p>
+
+        <p>epCollXML defines the structure of an e-textbook, including the hierarchy of optional sub-collections
+            (chapters and sub-chapters) and the ordering of the modules.</p>
+
+        <h2>Schemas</h2>
+
+        <p><a href="{% static 'api/xmlfiles/epcollxml/documentation/epCollXML.html' %}">Documentation of XSD for epCollXML</a></p>
+
+        <p>Root element of every epCollXML collection is <code>&lt;col:collection&gt;</code> element. It contains 2 main children elements: <code>&lt;col:metadata&gt;</code>, <code>&lt;col:content&gt;</code>.</p>
+
+        <p>epCollXML specific metadata is in the <code>&lt;ep:e-textbook&gt;</code> element that is an additionally
+            allowed subelement of the <code>&lt;col:metadata&gt;</code> element.</p>
+
+        <p><code>&lt;col:content&gt;</code> element contains hierarchy of <code>&lt;col:module&gt;</code> elements, grouped in optional <code>&lt;col:subcollection&gt;</code> elements.</p>
+
+        <h2>Sample epCollXML</h2>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;col:collection xmlns:col="http://cnx.rice.edu/collxml" xmlns:ep="http://epodreczniki.pl/"
+                xmlns:md="http://cnx.rice.edu/mdml"&gt;
+    &lt;col:metadata mdml-version="0.5"&gt;
+        &lt;md:content-id&gt;321&lt;/md:content-id&gt;
+        &lt;md:repository&gt;https://epodreczniki.pcss.pl/repo&lt;/md:repository&gt;
+        &lt;md:version&gt;1&lt;/md:version&gt;
+        &lt;md:created&gt;2013-08-27 03:35 CEST&lt;/md:created&gt;
+        &lt;md:revised&gt;2014-05-12 10:13 CEST&lt;/md:revised&gt;
+        &lt;md:language&gt;pl&lt;/md:language&gt;
+        &lt;md:license url="http://www.example.com/license"/&gt;
+        &lt;md:title&gt;Matematyka 1. Gimnazjum&lt;/md:title&gt;
+        &lt;md:education-levellist&gt;
+            &lt;md:education-level key="E3"&gt;Gimnazjum&lt;/md:education-level&gt;
+        &lt;/md:education-levellist&gt;
+        &lt;md:subjectlist&gt;
+            &lt;md:subject&gt;matematyka&lt;/md:subject&gt;
+        &lt;/md:subjectlist&gt;
+        &lt;md:abstract&gt;Abstrakt e-podręcznika&lt;/md:abstract&gt;
+        &lt;ep:e-textbook ep:version="1.5" ep:content-status="canon" ep:recipient="student"&gt;
+            &lt;ep:references&gt;
+                &lt;ep:collection-header&gt;
+                    &lt;ep:reference ep:id="12"/&gt;
+                &lt;/ep:collection-header&gt;
+            &lt;/ep:references&gt;
+            &lt;ep:class&gt;1&lt;/ep:class&gt;
+            &lt;ep:cover ep:cover-type="png"&gt;123&lt;/ep:cover&gt;
+            &lt;ep:signature/&gt;
+            &lt;ep:show-technical-remarks&gt;false&lt;/ep:show-technical-remarks&gt;
+            &lt;ep:learning-objectives&gt;
+                &lt;ep:learning-objective&gt;
+                    &lt;ep:learning-objective-version ep:key="1.1"&gt;Dz.U. 30.05.2014, poz.
+                        803
+                    &lt;/ep:learning-objective-version&gt;
+                    &lt;ep:learning-objective-stage ep:key="E4"&gt;Etap 1&lt;/ep:learning-objective-stage&gt;
+                    &lt;ep:learning-objective-school ep:key="SRE"&gt;Szkoły ponadgimnazjalne, których
+                        ukończenie umożliwia uzyskanie świadectwa dojrzałości po zdaniu egzaminu
+                        maturalnego
+                    &lt;/ep:learning-objective-school&gt;
+                    &lt;ep:learning-objective-subject ep:key="MAT"
+                            &gt;Matematyka
+                    &lt;/ep:learning-objective-subject&gt;
+                    &lt;ep:learning-objective-scope ep:key="I"&gt;Zakres
+                        podstawowy
+                    &lt;/ep:learning-objective-scope&gt;
+                    &lt;ep:learning-objective-name ep:key="CEL-E4-SRE-MAT-1.0-I-I"&gt;Wykorzystanie i
+                        tworzenie informacji
+                    &lt;/ep:learning-objective-name&gt;
+                    &lt;ep:learning-objective-text&gt;Uczeń interpretuje tekst matematyczny. Po
+                        rozwiązaniu zadania interpretuje otrzymany
+                        wynik.
+                    &lt;/ep:learning-objective-text&gt;
+                &lt;/ep:learning-objective&gt;
+            &lt;/ep:learning-objectives&gt;
+        &lt;/ep:e-textbook&gt;
+        &lt;md:actors&gt;
+            &lt;md:person userid="1"&gt;
+                &lt;md:fullname&gt;Jan Kowalski&lt;/md:fullname&gt;
+                &lt;md:firstname&gt;Jan&lt;/md:firstname&gt;
+                &lt;md:surname&gt;Kowalski&lt;/md:surname&gt;
+                &lt;md:email&gt;jan.kowalskie@example.com&lt;/md:email&gt;
+            &lt;/md:person&gt;
+            &lt;md:person userid="2"&gt;
+                &lt;md:fullname&gt;Krzysztof Nowak&lt;/md:fullname&gt;
+                &lt;md:firstname&gt;Krzysztof&lt;/md:firstname&gt;
+                &lt;md:surname&gt;Nowak&lt;/md:surname&gt;
+                &lt;md:email&gt;k.nowak@example.com&lt;/md:email&gt;
+            &lt;/md:person&gt;
+            &lt;md:person userid="3"&gt;
+                &lt;md:fullname&gt;Maria Przykładowa&lt;/md:fullname&gt;
+                &lt;md:firstname&gt;Maria&lt;/md:firstname&gt;
+                &lt;md:surname&gt;Przykładowa&lt;/md:surname&gt;
+                &lt;md:email&gt;maria@example.com&lt;/md:email&gt;
+            &lt;/md:person&gt;
+        &lt;/md:actors&gt;
+        &lt;md:roles&gt;
+            &lt;md:role type="author"&gt;1&lt;/md:role&gt;
+            &lt;md:role type="author"&gt;2&lt;/md:role&gt;
+            &lt;md:role type="editor"&gt;3&lt;/md:role&gt;
+        &lt;/md:roles&gt;
+    &lt;/col:metadata&gt;
+    &lt;col:content&gt;
+        &lt;col:module ep:toc="skip" repository="https://epodreczniki.pcss.pl/repo"
+                    url="https://epodreczniki.pcss.pl/repo/Content/000/1_Do_pominiecia_m.xml?moduleId=ixIINEXa1"&gt;
+            &lt;md:title&gt;Strona do pominięcia w spisie&lt;/md:title&gt;
+        &lt;/col:module&gt;
+        &lt;col:subcollection&gt;
+            &lt;ep:view-attributes&gt;
+                &lt;ep:view-attribute ep:type="panorama" ep:id="1009"/&gt;
+            &lt;/ep:view-attributes&gt;
+            &lt;md:title&gt;Tytuł rozdziału&lt;/md:title&gt;
+            &lt;col:content&gt;
+                &lt;col:module repository="https://epodreczniki.pcss.pl/repo"
+                            url="https://epodreczniki.pcss.pl/repo/Content/608/1_Pojecie_funkcji_m.xml?moduleId=irTLSZt4S4"&gt;
+                    &lt;md:title&gt;Pojęcie funkcji&lt;/md:title&gt;
+                &lt;/col:module&gt;
+                &lt;col:module repository="https://epodreczniki.pcss.pl/repo"
+                            url="https://epodreczniki.pcss.pl/repo/Content/609/2_Dziedzina_naturalna_funkcji._Wyznaczanie_dziedziny_funkcji_na_podstawie_wzoru_m.xml?moduleId=iVroTdM7oP"&gt;
+                    &lt;md:title&gt;Dziedzina funkcji&lt;/md:title&gt;
+                &lt;/col:module&gt;
+                &lt;col:module repository="https://epodreczniki.pcss.pl/repo"
+                            url="https://epodreczniki.pcss.pl/repo/Content/610/3_Argument_i_wartosc_funkcji._Miejsca_zerowe_funkcji_liczbowej_x.xml?moduleId=ize0JTEiOe"&gt;
+                    &lt;md:title&gt;Argument i wartość funkcji. Miejsca zerowe funkcji liczbowej&lt;/md:title&gt;
+                &lt;/col:module&gt;
+            &lt;/col:content&gt;
+        &lt;/col:subcollection&gt;
+    &lt;/col:content&gt;
+&lt;/col:collection&gt;
+</pre>
+    </section>
+
+    <section id="epxml">
+        <h1>epXML</h1>
+
+        <h2>Summary</h2>
+
+        <p>epXML represents a unit of content (a module). As a basic building block of an e-textbook it should be
+            atomic, reusable and self-contained. The specific amount of information included in epXML may vary but
+            should approximately be equal to a chapter of a classic textbook.</p>
+
+        <h2>Schemas</h2>
+
+        <p><a href="{% static 'api/xmlfiles/epxml/documentation/epXML.html' %}">Documentation of XSD for epXML</a></p>
+
+        <p>Root element of every epXML module is <code>&lt;cnxml:document&gt;</code> element. It contains 4 main children elements: <code>&lt;cnxml:title&gt;</code>, <code>&lt;cnxml:metadata&gt;</code>, <code>&lt;cnxml:content&gt;</code> and optional <code>&lt;bib:file&gt;</code>.</p>
+
+        <p>epXML specific metadata is in the <code>&lt;ep:e-textbook-module&gt;</code> element that is an additionally allowed subelement of the <code>&lt;cnxml:metadata&gt;</code> element.</p>
+
+        <p>Main content of the module is located in <code>&lt;cnxml:content&gt;</code> element.</p>
+        
+        <h2>Sample epXML</h2>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;document xmlns="http://cnx.rice.edu/cnxml"
+  xmlns:cnxml="http://cnx.rice.edu/cnxml"
+  xmlns:md="http://cnx.rice.edu/mdml"
+  xmlns:bib="http://bibtexml.sf.net/"
+  xmlns:q="http://cnx.rice.edu/qml/1.0"
+  xmlns:ep="http://epodreczniki.pl/"
+  xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  id="irTLSZt4S4" module-id="irTLSZt4S4" cnxml-version="0.7"&gt;
+  &lt;title&gt;Pojęcie funkcji&lt;/title&gt;
+  &lt;metadata mdml-version="0.5"&gt;
+    &lt;md:content-id&gt;irTLSZt4S4&lt;/md:content-id&gt;
+    &lt;md:repository&gt;https://epodreczniki.pcss.pl/&lt;/md:repository&gt;
+    &lt;md:version&gt;2&lt;/md:version&gt;
+    &lt;md:created&gt;2013-08-28 14:03 CEST&lt;/md:created&gt;
+    &lt;md:revised&gt;2014-05-12 10:15 CEST&lt;/md:revised&gt;
+    &lt;md:title&gt;Pojęcie funkcji&lt;/md:title&gt;
+    &lt;md:language&gt;pl-PL&lt;/md:language&gt;
+    &lt;md:license url="http://creativecommons.org/licenses/by/3.0/pl/legalcode"&gt;CC BY 3.0&lt;/md:license&gt;
+    &lt;md:actors&gt;
+      &lt;md:person userid="person1"&gt;
+        &lt;md:fullname&gt;Jan Kowalski&lt;/md:fullname&gt;
+        &lt;md:firstname&gt;Jan&lt;/md:firstname&gt;
+        &lt;md:surname&gt;Kowalski&lt;/md:surname&gt;
+        &lt;md:email&gt;jan.kowalski@example.com&lt;/md:email&gt;
+      &lt;/md:person&gt;
+      &lt;md:person userid="person2"&gt;
+        &lt;md:fullname&gt;Krzysztof Nowak&lt;/md:fullname&gt;
+        &lt;md:firstname&gt;Krzysztof&lt;/md:firstname&gt;
+        &lt;md:surname&gt;Nowak&lt;/md:surname&gt;
+        &lt;md:email&gt;k.nowak@example.com&lt;/md:email&gt;
+      &lt;/md:person&gt;
+    &lt;/md:actors&gt;
+    &lt;md:roles&gt;
+      &lt;md:role type="author"&gt;person1&lt;/md:role&gt;
+      &lt;md:role type="author"&gt;person2&lt;/md:role&gt;
+    &lt;/md:roles&gt;
+    &lt;ep:e-textbook-module ep:version="1.5" ep:recipient="student" ep:content-status="canon"&gt;
+      &lt;ep:presentation&gt; 
+        &lt;ep:template&gt;linear&lt;/ep:template&gt;
+      &lt;/ep:presentation&gt; 
+      &lt;ep:core-curriculum-entries&gt; 
+        &lt;ep:core-curriculum-entry&gt; 
+          &lt;ep:core-curriculum-stage ep:key="E4"&gt;Etap 4&lt;/ep:core-curriculum-stage&gt; 
+          &lt;ep:core-curriculum-school ep:key="SRE"&gt;Szkoły ponadgimnazjalne, których ukończenie umożliwia uzyskanie świadectwa dojrzałości po zdaniu egzaminu maturalnego&lt;/ep:core-curriculum-school&gt; 
+          &lt;ep:core-curriculum-subject ep:key="EPO"&gt;E-podręczniki&lt;/ep:core-curriculum-subject&gt; 
+          &lt;ep:core-curriculum-version ep:key="E1.0"&gt;Testowa podstawa programowa projektu e-podręczniki&lt;/ep:core-curriculum-version&gt; 
+          &lt;ep:core-curriculum-ability ep:key="E4-SRE-EPO-E1.0-I.1"&gt;Uczeń potrafi "ostylować" dokument zawierający źródło modułu e-podręcznika.&lt;/ep:core-curriculum-ability&gt; 
+        &lt;/ep:core-curriculum-entry&gt; 
+      &lt;/ep:core-curriculum-entries&gt;
+    &lt;/ep:e-textbook-module&gt;
+  &lt;/metadata&gt;
+  &lt;content&gt;
+    &lt;section id="s0"&gt;
+      &lt;ep:lead ep:id="lead"&gt;&lt;para id="s1p0"&gt;Lead of the module&lt;/para&gt;&lt;/ep:lead&gt;
+      &lt;ep:revisal ep:id="revisal"&gt;
+        &lt;para id="revisalp1"&gt;What you need to know, part 1&lt;/para&gt;
+        &lt;para id="revisalp2"&gt;What you need to know, part 2&lt;/para&gt;
+      &lt;/ep:revisal&gt;
+      &lt;ep:effect ep:id="effect"&gt;
+        &lt;para id="effectp1"&gt;What you'll learn, part 1&lt;/para&gt;
+        &lt;para id="effectp2"&gt;What you'll learn, part 2&lt;/para&gt;
+      &lt;/ep:effect&gt;
+    &lt;/section&gt;
+    &lt;section id="s1"&gt;
+      &lt;title&gt;Introduction&lt;/title&gt;
+      &lt;para id="s1p1"&gt;Paragraph's content. Can for instance include &lt;mml:math/&gt; and &lt;ep:reference ep:id="10"/&gt;.&lt;/para&gt;
+      &lt;para id="s1p2"&gt;Another paragraph...&lt;/para&gt;
+      &lt;exercise id="e1" ep:context-dependent="false"&gt;
+        &lt;ep:effect-of-education&gt;B&lt;/ep:effect-of-education&gt;
+        &lt;title&gt;Sample exercise&lt;/title&gt;
+        &lt;problem id="e1pr1"&gt;
+          &lt;para id="e1pr1p1"&gt;Problem description&lt;/para&gt;
+        &lt;/problem&gt;
+        &lt;solution id="e1sol1"&gt;
+          &lt;para id="e1sol1p1"&gt;Solution description for the exercise&lt;/para&gt;
+        &lt;/solution&gt;
+      &lt;/exercise&gt;
+      &lt;ep:command ep:id="com1"&gt;
+        &lt;problem id="com1pr1"&gt;
+          &lt;para id="com1pr1p1"&gt;First problem description&lt;/para&gt;
+        &lt;/problem&gt;
+        &lt;note id="com1n1" type="warning"&gt;
+          &lt;para id="com1pr1p1a"&gt;A warning note&lt;/para&gt;
+        &lt;/note&gt;
+        &lt;note id="com1n2" type="tip"&gt;
+          &lt;para id="com1pr1p1b"&gt;A tip note&lt;/para&gt;
+        &lt;/note&gt;
+        &lt;problem id="com1pr2"&gt;
+          &lt;para id="com1pr2p1"&gt;Second problem description&lt;/para&gt;
+        &lt;/problem&gt;
+      &lt;/ep:command&gt;
+    &lt;/section&gt;
+    &lt;section id="s2"&gt;
+      &lt;title&gt;The title of a definition&lt;/title&gt;
+      &lt;definition id="s2d1" ep:glossary="false"&gt;
+        &lt;term&gt;The definition's term&lt;/term&gt;
+        &lt;meaning id="s2d1m1"&gt;&lt;para id="com1pr1p1c"&gt;The meaning of the definition&lt;/para&gt;&lt;/meaning&gt;
+        &lt;ep:source&gt;
+          &lt;ep:bibliography-reference ep:id="bibliography1" ep:local-reference="true" ep:inline="true"/&gt;
+        &lt;/ep:source&gt;
+      &lt;/definition&gt;
+      &lt;ep:concept id="s2conc1" ep:glossary="false"&gt;
+        &lt;term&gt;The concept's term&lt;/term&gt;
+        &lt;meaning id="s2conc1m1"&gt;&lt;para id="com1pr1p1d"&gt;The concept's meaning&lt;/para&gt;&lt;/meaning&gt;
+        &lt;meaning id="s2conc1m2"&gt;&lt;para id="com1pr1p1e"&gt;The concept's alternative meaning&lt;/para&gt;&lt;/meaning&gt;
+      &lt;/ep:concept&gt;
+        &lt;para id="s2p1"&gt;
+          &lt;ep:gallery ep:id="s2p1g1" ep:titles="hide-normal"&gt;
+            &lt;title&gt;Image gallery with image titles hidden in the "normal" (inline) view&lt;/title&gt;
+            &lt;ep:content ep:id="s2p1g1c1" ep:format="classic"&gt;
+              &lt;!-- related text for the classic format --&gt;
+            &lt;/ep:content&gt;
+            &lt;ep:content ep:id="s2p1g1c2" ep:format="mobile"&gt;
+              &lt;!-- related text for the mobile format --&gt;
+            &lt;/ep:content&gt;
+            &lt;ep:content ep:id="s2p1g1c3" ep:format="static"&gt;
+              &lt;!-- related text for the static format (PDF) --&gt;
+            &lt;/ep:content&gt;
+            &lt;ep:content ep:id="s2p1g1c4" ep:format="static-mono"&gt;
+              &lt;!-- related text for the static grayscale format (e-book) --&gt;
+            &lt;/ep:content&gt;
+            &lt;ep:reference ep:id="101" ep:instance-id="i101"/&gt;
+            &lt;ep:reference ep:id="102" ep:instance-id="i102"/&gt;
+            &lt;ep:reference ep:id="103" ep:instance-id="i103"/&gt;
+            &lt;ep:reference ep:id="104" ep:instance-id="i104"/&gt;
+            &lt;ep:reference ep:id="105" ep:instance-id="i105"/&gt;
+          &lt;/ep:gallery&gt;
+        &lt;/para&gt;
+    &lt;/section&gt;
+  &lt;/content&gt;
+  &lt;bib:file&gt;
+    &lt;bib:entry id="bibliography1" ep:target-name="Bibliography entry No. 1"&gt;
+      &lt;bib:article&gt;
+        &lt;bib:author&gt;First Author, Second Author&lt;/bib:author&gt;
+        &lt;bib:title&gt;The title of the bibliography article&lt;/bib:title&gt;
+        &lt;bib:journal&gt;The name of the journal the bibliography article was published in&lt;/bib:journal&gt;
+        &lt;bib:year&gt;2014&lt;/bib:year&gt;
+      &lt;/bib:article&gt;
+    &lt;/bib:entry&gt;
+  &lt;/bib:file&gt;
+&lt;/document&gt;
+</pre>
+
+    </section>
+
+    </div>
+  </div>
+
+<!-- 2015-10-30 -->
+
+{% endblock %}

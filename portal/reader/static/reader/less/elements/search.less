@@ -1,0 +1,119 @@
+.search-box {
+    z-index: @highestZIndex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+    background: white;
+
+    .search_form {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+
+        #textinput {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 16px 72px 0 32px;
+            border: none;
+            font-weight: bold;
+            font-size: 96px;
+        }
+
+        .help-block {
+            padding: 0;
+            padding-left: 36px;
+            color: #ccc;
+            font-size: 24px;
+            font-family: open sans, sans-serif;
+            font-weight: 300;
+        }
+    }
+
+    .close-button {
+
+        a {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 32px;
+            height: 32px;
+            margin: 26px;
+            background: url(../../../img/search-close.svg);
+            background-size: 100% 100%;
+            //border: none;
+            border: 1px solid transparent;
+            opacity: 0.15;
+            line-height: 0;
+            font-size: 0;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    .results {
+        padding: 16px;
+
+        .result, .no-results {
+            max-width: 800px;
+            margin-bottom: 16px;
+            padding: 8px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+
+            a {
+                color: #777;
+                text-decoration: none;
+            }
+
+            a:hover {
+                color: #000;
+                text-decoration: none;
+            }
+
+            .result-school,
+            .result-ep-class,
+            .result-subject,
+            .result-variant, {
+                padding: 4px 6px;
+                margin-right: 3px;
+                background: #ccc;
+                color: #fff;
+                border-radius: 3px;
+                font-size: 9px;
+                font-family: verdana, sans-serif;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            .result-title_collection {
+                font-family: open sans, sans-serif;
+                font-weight: 300;
+                font-size: 32px;
+            }
+
+            p {
+                margin: 0;
+                font-family: open sans, sans-serif;
+                font-size: 14px;
+                color: #444;
+
+                em {
+                    background: #00ccff;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+}
+
+.html-body-no-overflow {
+    overflow: hidden !important;
+}

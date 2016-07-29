@@ -1,0 +1,10 @@
+<h2>{{ womi_owner.md_title }}</h2>
+{% if womi_owner.womi_references_prefetch_related_womi.all %}
+<ul>
+{% for reference in womi_owner.womi_references_prefetch_related_womi.all %}
+<li>
+{% include "womi_references.html" with womi_owner=reference.womi %}
+</li>
+{% endfor %}
+</ul>
+{% endif %}

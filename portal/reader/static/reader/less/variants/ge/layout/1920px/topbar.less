@@ -1,0 +1,284 @@
+@border-thick: 5px;
+@topbar-ge-height: 120px;
+@topbar-ge-height-firefox: 119px;
+
+.topbar-ge {
+    .topbar-ge-inner {
+        .topbar-ge-inner-mixin(@topbar-ge-height, 0 20px, @border-thick);
+    }
+
+    ul.breadcrumbs-buttons button {
+        .breadcrumbs-button-mixin(74px, 20px, @border-thick);
+    }
+
+    .main-navigation-tabs {
+        button {
+            .main-navigation-tabs-button-mixin(110px, 180px, 9px, 10px, 28px, 15px);
+            line-height: 1.2;
+        }
+
+        .dropdown-content {
+            //.main-navigation-tabs-dropdown-mixin(@topbar-ge-height, 450px, 25px, 28px, 10px);
+            .main-navigation-tabs-dropdown-mixin(@topbar-ge-height, 490px, 59px, 28px, 10px);
+            padding-top: 54px;
+            font-size: 24px;
+            line-height: 29px;
+        }
+
+        .supplementary-tasks-content {
+            margin: 0px !important;
+            padding-bottom: 51px;
+
+            ul {
+                //padding-top: 16px;
+                text-indent: 0px;
+                padding: 0px;
+
+                //.supplementary-tasks-content-mixin(20px, 10px);
+                li {
+                    text-indent: 0px;
+                    min-height: 28px;
+                    line-height: 29px;
+                    padding: 0px !important;
+                    margin: 0px;
+                    margin-bottom: 28px;
+
+                    &:last-of-type {
+                        margin-bottom: 0px;
+                    }
+                }
+            }
+        }
+
+        #licenses-content {
+            padding-bottom: 33px;
+        }
+
+        .copyright {
+            margin-top: 40px;
+        }
+
+        .exercise-list-content {
+            padding-top: 53px;
+            padding-bottom: 51px;
+            overflow-y: auto;
+
+            p {
+                line-height: 30px;
+            }
+
+            li {
+                line-height: 30px;
+                margin: 0px;
+                margin-bottom: 30px;
+
+                &:first-of-type {
+                    margin-top: 30px;
+                }
+
+                &:last-of-type {
+                    margin-bottom: 0px;
+                }
+            }
+
+            span {
+                vertical-align: middle;
+            }
+
+            .print-card-module {
+                height: 60px !important;
+
+                a {
+                    position: absolute;
+                    top: -2px;
+                    right: 0px;
+                    z-index: 500;
+                }
+            }
+        }
+
+        .core-curriculum-content {
+            padding-top: 48px;
+            padding-bottom: 51px;
+        }
+
+        .one-cc-item {
+            padding-top: 4px;
+            padding-bottom: 20px;
+
+            &:last-of-type {
+                padding-bottom: 0px;
+            }
+
+            p {
+                margin-bottom: 26px;
+
+                &:last-of-type {
+                    margin-bottom: 0px;
+                }
+            }
+        }
+    }
+
+    .additional-navigation-buttons {
+        button.help {
+            width: 71px;
+            height: 71px;
+            .rounded(50px, #fff, 5px);
+            margin-right: 3px !important;
+        }
+    }
+
+    .topbar-ge-inner-hidden {
+        top: -@topbar-ge-height - @border-thick;
+    }
+
+    .toggle-topbar {
+        width: 82px;
+        height: 122px;
+        top: 98px;
+        right: 79px;
+
+        @-moz-document url-prefix() {
+            .toggle-topbar {
+                top: 99px;
+            }
+        }
+    }
+
+    .toggle-topbar-up {
+        top: -22px;
+    }
+
+    //
+    .contact-form-trigger {
+        width: 168px; 
+        height: 60px;
+        right: 180px;
+        top: @topbar-ge-height;
+    }
+
+    .contact-form-trigger-up {
+        top: 0;
+    }
+    //
+
+    .module-print-card-link {
+        width: 65px;
+        height: 65px;
+        outline: 0px;
+    }
+}
+
+@-moz-document url-prefix() {
+    * {
+        outline: 0 !important;
+    }
+
+    .topbar-ge {
+        .topbar-ge-inner {
+            .topbar-ge-inner-mixin(@topbar-ge-height-firefox, 0 20px, @border-thick);
+        }
+    }
+
+    .main-navigation-tabs {
+        button {
+            .main-navigation-tabs-button-mixin(110px, 240px, 7px, 10px, 28px, 15px) !important;
+            line-height: 1.2;
+            border: none;
+        }
+    }
+
+    /*fix to address an issue in Firefox - to be removed when no longer needed */
+    .module-print-card-link {
+        &:hover {
+            background-position: calc(~"50% - 1px") 0% !important;
+        }
+    }
+
+    .dropdown-content {
+        padding-top: 53px !important;
+    }
+
+    .exercise-list-content {
+        padding-top: 52px !important;
+        padding-bottom: 51px !important;
+        overflow-y: auto;
+    }
+
+    .core-curriculum-content {
+        padding-top: 49px !important;
+        padding-bottom: 51px !important;
+    }
+
+    .one-cc-item:first-of-type {
+        padding-top: 3px !important;
+    }
+
+    .one-cc-item {
+        padding-bottom: 21px !important;
+
+        &:last-of-type {
+            padding-bottom: 0px !important;
+        }
+    }
+
+    #licenses-content {
+        padding-top: 53px !important;
+    }
+
+    .toggle-topbar {
+        top: 99px;
+    }
+
+    .toggle-topbar-up {
+        top: -23px;
+    }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .main-navigation-tabs {
+        .dropdown-menu {
+            margin-right: 10px !important;
+        }
+
+        button {
+            .main-navigation-tabs-button-mixin(110px, 240px, 10px, 10px, 28px, 15px) !important;
+            line-height: 1.2;
+            border: none;
+        }
+    }
+
+    .core-curriculum-content {
+        padding-top: 50px !important;
+        padding-bottom: 50px !important;
+    }
+
+    .exercise-list-content {
+        padding-top: 54px !important;
+        padding-bottom: 49px !important;
+        overflow-y: auto;
+
+        p:last-of-type {
+            margin-bottom: 16px !important;
+        }
+
+        li {
+            margin-bottom: 0px;
+            padding: 0px;
+        }
+    }
+
+    #licenses-content, .supplementary-tasks-content {
+        padding-top: 55px !important;
+    }
+
+    .supplementary-tasks-content {
+        padding-bottom: 50px !important;
+    }
+
+    .toggle-topbar {
+        height: 121px !important;
+    }
+
+}

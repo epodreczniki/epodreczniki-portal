@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{% load staticfiles common_ext %}
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+                       xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+    <ShortName>epodreczniki.pl</ShortName>
+    <Description>Wyszukiwarka podręczników w serwisie epodreczniki.pl</Description>
+    <Image width="32" height="32" type="image/x-icon">
+        {# TODO: This won't work properly on local, developer's server! #}
+        http:{% static 'basics/root/favicon.ico' %}
+    </Image>
+    <Url type="text/html" method="get" template="http:{% host_url 'search' 'classic_search' %}">
+        <Param name="q" value="{searchTerms}"/>
+    </Url>
+    <Url type="application/opensearchdescription+xml" rel="self"
+         template="{% url_absolute_with_scheme 'common.views.opensearch' %}"/>
+</OpenSearchDescription>

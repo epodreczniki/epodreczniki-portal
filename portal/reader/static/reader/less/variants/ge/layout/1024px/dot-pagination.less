@@ -1,0 +1,23 @@
+@singleDotSize: 40px;
+
+.dot-pagination-ul {
+    li {
+        width: @singleDotSize;
+        height: @singleDotSize;
+
+        .dot-icon {
+            width: @singleDotSize;
+            height: @singleDotSize;
+        }
+    }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    @singleDotSize: 39px!important; //IE bug - wrong background position
+
+    .dot-icon {
+        width: @singleDotSize !important;
+        height: @singleDotSize !important;
+    }
+}
+

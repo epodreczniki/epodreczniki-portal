@@ -1,0 +1,62 @@
+.arrow-navigation {
+    div {
+        z-index: 100 !important;
+    }
+
+    button {
+        background-color: transparent !important;
+        background-size: 300% 100% !important;
+        background-position: 0% 0%;
+        background-repeat: no-repeat !important;
+        width: 36px !important;
+        height: 72px !important;
+        position: absolute !important;
+        border: none;
+
+        &:hover, &:focus {
+            background-position: 50% 0%;
+        }
+
+        &:active {
+            background-position: 100% 0%;
+        }
+    }
+
+    .arrow-navigation {
+
+        &-left {
+            z-index: @highestZIndex - 200;
+            position: fixed;
+            top: 50%;
+            margin-top: -(@button-size/2);
+
+            left: 0px !important;
+
+            button {
+                background-image: url("../../../img/GE/nav-back.svg") !important;
+
+                &.active {
+                    background-position: 0 0;
+                }
+            }
+        }
+
+        &-right {
+
+            z-index: @highestZIndex - 200;
+            position: fixed;
+            top: 50%;
+            right: 0;
+            margin-top: -(@button-size/2);
+
+            button {
+                background-image: url("../../../img/GE/nav-next.svg") !important;
+                margin-left: -36px !important;
+
+                &.active {
+                    background-position: 0 0;
+                }
+            }
+        }
+    }
+}

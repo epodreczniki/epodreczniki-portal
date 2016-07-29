@@ -1,0 +1,39 @@
+.topbar-ge-inner-mixin(@height, @padding, @border-thick) {
+    height: @height + @border-thick;
+    line-height: @height;
+    padding: @padding;
+    border-bottom-width: @border-thick;
+}
+
+.breadcrumbs-button-mixin(@size, @distance, @border-thick) {
+    width: @size;
+    height: @size;
+    margin-right: @distance;
+    .rounded(50px, @white, @border-thick);
+}
+
+.main-navigation-tabs-button-mixin(@height, @width, @margin-t, @margin-r,  @font-size, @radius) {
+    height: @height;
+    width: @width;
+    margin-top: @margin-t;
+    margin-right: @margin-r;
+    font-size: @font-size;
+
+    border-top-left-radius: @radius;
+    border-top-right-radius: @radius;
+}
+
+.main-navigation-tabs-dropdown-mixin(@top, @width, @padding, @line-height, @radius) {
+    top: @top;
+    width: @width;
+    padding: @padding;
+    line-height: @line-height;
+
+    border-bottom-left-radius: @radius;
+    border-bottom-right-radius: @radius;
+}
+
+.supplementary-tasks-content-mixin(@margin-l, @padding-l) {
+    margin-left: @margin-l;
+    padding-left: @padding-l;
+}

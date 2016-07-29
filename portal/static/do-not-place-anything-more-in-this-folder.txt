@@ -1,0 +1,3 @@
+...or face consequences.
+
+The deployment procedure was reworked from the ground up - no contents from here are 'just' deployed to static servers.

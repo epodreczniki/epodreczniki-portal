@@ -1,0 +1,31 @@
+{% extends 'auth_base.html' %}
+
+
+{% block content %}
+
+    <div class="register-main">
+        <div class="relative-form">
+
+            <div class="login-header full-width">
+                <p class="centered-line">Zaakceptuj zgodę na przetwarzanie danych osobowych</p>
+            </div>
+
+            <span>
+                W oparciu o art. 23, ust. 1 pkt 1 i ust. 2 Ustawy z dnia 29 sierpnia 1997 roku o ochronie danych osobowych (tekst jednolity: Dz. U. 2014 r. poz. 1182) wyrażam zgodę na przetwarzanie moich danych osobowych, podanych w związku z rejestracją użytkownika w portalu epodreczniki.pl, przez Ośrodek Rozwoju Edukacji (ORE) z siedzibą przy ul. Aleje Ujazdowskie 28,00-478 Warszawa.
+Podanie danych osobowych jest dobrowolne. Przysługuje Pani/Panu prawo dostępu do swoich danych, ich poprawiania a także wycofania niniejszej zgody.
+
+Administratorem danych osobowych jest Ośrodek Rozwoju Edukacji (ORE) z siedzibą przy ul. Aleje Ujazdowskie 28, 00-478 Warszawa.
+
+Administrator danych zapewnia ochronę Państwa danych osobowych. Dane osobowe będą udostępniane wyłącznie odbiorcom uprawnionym do ich otrzymania na podstawie przepisów prawa lub upoważnionym w oparciu o wyrażone przez Państwa zgody.
+            </span>
+
+        </div>
+        <form class="agreement-form" method="post">
+            <div class="centered-line"><input type="checkbox" id="accept_box" name="accept_box"><label for="accept_box">akceptuję postanowienia regulaminu</label></div>
+            <input type="hidden" value="{{ next }}" name="next">
+            <button type="submit" class="login-button epo-login">Zapisz</button>
+        </form>
+        <hr>
+        <button type="submit" class="login-button epo-login" onclick="window.location.href='{% url 'auth.views.epo_logout' %}'">Wyloguj</button>
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'topbar_base.html' %}
+{% load staticfiles collection_cover compress collections extensions common_ext url_process %}
+
+{% comment %} Template for details-like topbar: base with search pointing to book-scope search {% endcomment %}
+
+{% block topbar_title %}
+    {% if collection.normalized_ep_stylesheet == 'standard-2-tutorial' %}
+        <div id="topbar-title" class="title">Pomoc</div>
+    {% else %}
+        <div id="topbar-title" class="title">O e-podręczniku</div>
+    {% endif %}
+{% endblock %}
+
+{% block search_button %}
+    {% if not presentation.config.is_preview %}
+        {% if not collection %}
+            <button class="search" title="Szukaj" onclick="window.location.href='{% host_url "search" "classic_search" %}'"><span
+                    class="icon-20"></span><span
+                    class="icon-title">Szukaj</span>
+            </button>
+        {% else %}
+            <button class="search" title="Szukaj"
+                    onclick="window.location.href='{% host_url 'search' 'classic_search_details' collection.md_content_id collection.md_version collection.variant %}'">
+                <span class="icon-20"></span><span
+                    class="icon-title">Szukaj</span>
+            </button>
+        {% endif %}
+    {% endif %}
+{% endblock %}

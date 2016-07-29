@@ -1,0 +1,317 @@
+{% extends "base.html" %}
+
+{% load staticfiles collection_cover compress requirejs extensions common_ext collections url_process front_utils %}
+
+{% block title %}{{ collection.md_title }} • epodreczniki.pl{% endblock %}
+
+{% block stylesheets %}
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}front/less/123/details123.less">
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}front/css/jquery-ui-1.10.4.custom.css">
+    {% endcompress %}
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+    <a href="{% host_url 'www' 'front.views.new_index' education_level=1 level=collection.md_school_ep_class_or_none %}"
+       class="back-button-container" title="Powrót do strony głównej">
+        <div class="back-button"
+             style="background-image: url('{% static "front/img/one2three/wstecz_ikony.svg" %}')!important">
+        </div>
+    </a>
+
+    <div class="details123-topbar-container">
+        <div class="details123-image-container">
+            <img class="book_cover details123-bookcover" src="{{ collection|cover_url }}"
+                 alt="okładka podręcznika {{ collection.md_title }}">
+        </div>
+        <div class="details123-title-container">
+
+            <h1>Podręcznik do edukacji wczesnoszkolnej</h1>
+            {% if collection.md_subtitle %}
+                <h3 class="subtitle">
+                    {{ collection.md_subtitle }}
+                </h3>
+            {% endif %}
+            {% if collection.md_institution %}
+                <h3>
+                    {{ collection.md_institution }}
+                </h3>
+            {% endif %}
+            <div>
+                {% with collection.authors as authors %}
+                    {% if colls|length > 4 %}
+                        <div class="collapsed-authors" id="panel-authors">
+                            <h2 class="book_authors_h2">{{ colls|join:", " }}</h2>
+
+                            <div class="icon-angle-down" id="collapse-authors"></div>
+                        </div>
+                    {% else %}
+                        <div id="panel-authors">
+                            <h2 class="book_authors_h2">{{ colls|join:", " }}</h2>
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="book_details_container">
+                <div class="book_details_breadcrumbs">
+                    <h3 class="book_details_h3">Grupa Edukacyjna S.A.</h3>
+
+                    <h3 class="book_details_h3">Szkoła: podstawowa</h3>
+
+                    <h3 class="book_details_h3">Klasa:
+                        {% if collection.md_school and collection.md_school.ep_class %}
+                            {{ collection.md_school.ep_class }}{% else %}brak{% endif %}</h3>
+                </div>
+            </div>
+
+            {% block preview_diagnostics_section %}
+            {% endblock %}
+        </div>
+
+
+        <div class="details123-description-container">
+            Nowoczesne technologie pomagają dostosować edukację do wymogów XXI wieku. Twórcy e&#8209;podręcznika
+            do edukacji wczesnoszkolnej treści nauczania zgodne z podstawą programową zaprezentowali w bardzo
+            nowoczesnej i pięknej plastycznie formie, która ma szansę spodobać się uczniom.
+        </div>
+
+
+
+
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="details123-tabs-container">
+        <div id="details-tabs">
+            <ul>
+                <li class="details123-nav-element"><a href="#" data-tab="details123-toc-tab">Spis treści</a></li>
+                <li class="details123-nav-element"><a href="#" data-tab="details123-info-tab">O e-podręczniku</a>
+                </li>
+                <li class="details123-nav-element"><a href="#" data-tab="details123-authors-tab">Realizacja</a>
+                </li>
+                <li class="details123-nav-element"><a href="#" data-tab="details123-download-tab">Do pobrania</a></li>
+            </ul>
+
+            <div class="clearfix"></div>
+
+            <div class="details123-content">
+
+                <div id="details123-toc-tab" class="details123-tab-content">
+
+
+                    <div class="details123-toc-container">
+                        {% if not collection.volume %}
+                            <div id="details123-toc-column1" class="details123-toc-column">
+                                {% include 'front/toc123.html' with parent_content=collection.root_collection|get_collection_level_x_content:"1" hide=False %}
+                            </div>
+
+                            <div id="details123-toc-column2" class="details123-toc-column">
+                                {% include 'front/toc123.html' with parent_content=collection.root_collection|get_collection_level_x_content:"2" hide=True %}
+                            </div>
+                        {% else %}
+                            <div id="details123-toc-column1" class="details123-toc-column"
+                                 style="display: none"></div>
+                            <div id="details123-toc-column2" class="details123-toc-column">
+                                {% include 'front/toc123.html' with parent_content=collection.root_collection|get_collection_level_x_content:"2" hide=False %}
+                            </div>
+                        {% endif %}
+
+                        <div id="details123-toc-column3" class="details123-toc-column">
+                            {% include 'front/toc123.html' with parent_content=collection.root_collection|get_collection_level_x_content:"3" hide=True resolve_first_module=True %}
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                </div>
+                <div class="clearfix"></div>
+                <div id="details123-info-tab" class="details123-tab-content">
+                    <section class="details-info-container">
+
+                        <section class="info-column">
+
+                            <h3 style="margin: 0px; margin-bottom: -1px; line-height: 31px; padding: 0px; font-size: 31px;">
+                                E-podręcznik a podstawa programowa</h3>
+
+                            <p style="margin: 0px; margin-bottom: 32px!important; line-height: 30px; font-size: 25px; padding: 0px;">
+                                E-podręcznik do edukacji wczesnoszkolnej oferuje kompletny zestaw wiedzy i umożliwia
+                                zdobycie umiejętności zgodnie z Rozporządzeniem Ministra Edukacji Narodowej z dnia
+                                30
+                                maja 2014 r. zmieniającym rozporządzenie w sprawie podstawy programowej wychowania
+                                przedszkolnego oraz kształcenia ogólnego w poszczególnych typach szkół (Dz. U. 2014
+                                poz.
+                                803).
+                            </p>
+
+                            <h3 style="margin: 0px; margin-bottom: -1px; line-height: 31px; padding: 0px; font-size: 31px;">
+                                Bogactwo multimedialne</h3>
+
+                            <p style="margin: 0px; line-height: 30px; font-size: 25px; padding: 0px;">
+                                Treści edukacyjne e-podręcznika przekazywane są w atrakcyjnej formie. Multimedia:
+                                filmy,
+                                animacje, galerie zdjęć, gry, obrazy, grafiki – uatrakcyjniają naukę, ułatwiając
+                                przyswajanie informacji i kształtowanie umiejętności. Stanowią całość z treściami
+                                podawanymi w tradycyjnej formie, np. w postaci tekstów literackich.
+                            </p>
+                        </section>
+
+                        <section class="info-column">
+
+                            <h3 style="margin: 0px; margin-bottom: -1px; line-height: 31px; padding: 0px; font-size: 31px;">
+                                Świat e-podręcznika</h3>
+
+                            <p style="margin: 0px; margin-bottom: 32px!important; line-height: 30px; font-size: 25px; padding: 0px; position: relative">
+                                E-podręcznik wykorzystuje metodę nauki przez zabawę. Zaprasza dzieci do dwóch
+                                światów –
+                                fantastycznego i realnego. Pierwszy zamieszkują Zgrzyciaki, istoty tajemnicze i nie
+                                przez wszystkich widziane. Dzieci poznają Animę, Erona, Figa oraz Profesora Zgrzyta.
+                                Drugi świat jest realny i zamieszkują go ludzie, między innymi Julka i Kuba,
+                                bliźniaki,
+                                które właśnie rozpoczęły naukę w pierwszej klasie.
+                            </p>
+
+                            <h3 style="margin: 0px; margin-bottom: -1px; line-height: 31px; padding: 0px; font-size: 31px;">
+                                Budowa e-podręcznika</h3>
+
+                            <p style="margin: 0px; line-height: 30px; font-size: 25px; padding: 0px;">
+                                Materiał został uporządkowany według naturalnego cyklu życia ludzi i przyrody. Z
+                                tego
+                                założenia wynika podział na cztery części odpowiadające poszczególnym porom roku.
+                                Każda
+                                część podzielona jest na bloki tematyczne, a te na tematy, które wiążą się ze
+                                światem
+                                bliskim dziecku – zmianami zachodzącymi w przyrodzie, środowiskiem rodzinnym i
+                                szkolnym,
+                                świętami, zabawą i nauką.
+                            </p>
+
+                        </section>
+                    </section>
+
+
+                    <section class="details123-info-authors">
+                        {% comment %}
+                            {% include "front/universal_authors.html" with authored_content=collection %} {% endcomment %}
+
+                        <div class="clearfix">
+                            {% if collection.ep_signature %}
+                            {% autoescape off %}
+                            {% reprocess_cn_tags collection.ep_signature %}
+                            {% endautoescape %}
+                            {% endif %}
+                        </div>
+                    </section>
+
+                </div>
+
+                <div id="details123-authors-tab" class="details123-tab-content">
+                    <section class="details-info-container details-authors-container">
+                        {% include 'front/includes/details123-authors.html' %}
+
+                    </section>
+                </div>
+
+                <div id="details123-download-tab" class="details123-tab-content">
+                    <section class="details-info-container details-download-container">
+                    <section class="download-section">
+                        <h2>Podstawa programowa</h2>
+                        <section class="details123-app-buttons">
+                           {% comment %} <section class="info-column"> {%  endcomment %}
+                                <section class="details123-download-header">
+                                    <a href="//{{ resources_url }}ee/Rozklad_materialu_klasa_{{ collection.md_school.ep_class }}.pdf" target="_blank">
+                                        <div class="details123-download-icon curriculum-download-icon"></div>
+                                        <div class="details123-download-label">
+                                            <h3 style="margin: 0px; margin-bottom: -1px; line-height: 31px; padding: 0px; font-size: 31px;">
+                                                Pobierz plik podstawy programowej</h3>
+                                        </div>
+                                    </a>
+                                </section>
+                            {% comment %}</section> {% endcomment %}
+                        </section>
+                    </section>
+
+                    <section class="download-section">
+                        <h2>Aplikacja offline</h2>
+                        <section class="details123-app-buttons">
+                            <section class="info-column">
+                                <section class="details123-download-header">
+                                    <a href="//{{ resources_url }}ee/EP-3.0.0.4.exe">
+                                        <div class="details123-download-icon app-download-icon"></div>
+                                        <div class="details123-download-label">
+                                            <h3 style="margin: 0px; margin-bottom: -1px; line-height: 31px; padding: 0px; font-size: 31px;">
+                                                Pobierz aplikację w wersji offline</h3>
+                                        </div>
+                                    </a>
+                                </section>
+                            </section>
+                            <section class="info-column">
+                                <section class="details123-download-header">
+
+                                    {% with collection|find_static_format:'offline-ee' as format %}
+                                        {% if format %}
+                                            {% if format.present_in_interface %}
+                                                <a href="{{ format.get_absolute_url|make_schemeless }}?filename={{ format.filename }}">
+                                                    {# pora roku i klasa na podstawie metadanych #}
+                                                    <div class="details123-download-icon book-download-icon
+                                                        {% if collection.volume == 1 %} book-download-autumn
+                                                        {% elif collection.volume == 2 %}book-download-winter
+                                                        {% elif collection.volume == 3 %} book-download-spring
+                                                        {% elif collection.volume == 4 %} book-download-summer
+                                                        {% else %} book-download-autumn {# default #}
+                                                        {% endif %}
+                                                    "></div>
+                                                    <div class="details123-download-label">
+                                                        <h3 style="margin: 0px; margin-bottom: -1px; line-height: 31px; padding: 0px; font-size: 31px;">
+                                                            Pobierz podręcznik
+                                                            {% if collection.md_school and collection.md_school.ep_class %}
+                                                                klasa&nbsp;{{ collection.md_school.ep_class }}{% else %}brak{% endif %}{% if collection.md_school and collection.volume %},
+                                                                {% if collection.volume == 1 %} Jesień
+                                                                {% elif collection.volume == 2 %} Zima
+                                                                {% elif collection.volume == 3 %} Wiosna
+                                                                {% elif collection.volume == 4 %} Lato
+                                                                {% else %} błędny numer tomu
+                                                                {% endif %}
+                                                            {% else %}, brak{% endif %}
+                                                        </h3>
+                                                    </div>
+                                                </a>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endwith %}
+                                </section>
+                            </section>
+                        </section>
+                        <section class="details123-app-description">
+                            <p>Aplikacja off&#8209;line dla&nbsp;e&#8209;podręczników do&nbsp;edukacji wczesnoszkolnej została stworzona z&nbsp;myślą o&nbsp;użytkownikach, którzy mają ograniczony dostęp do&nbsp;Internetu.</p>
+                            <p>Aplikację można pobrać i&nbsp;zainstalować na&nbsp;komputerze działającym pod&nbsp;kontrolą systemu operacyjnego Microsoft Windows w&nbsp;wersji&nbsp;7 lub&nbsp;nowszej.</p>
+                            <p>Po&nbsp;instalacji aplikacji należy dodać wybrane e&#8209;podręczniki do&nbsp;edukacji wczesnoszkolnej. W&nbsp;tym&nbsp;celu należy:</p>
+                            <ul class="details123-app-list">
+                                <li>zapisać plik z&nbsp;wybranym e&#8209;podręcznikiem na&nbsp;dysku komputera,</li>
+                                <li>uruchomić aplikację,</li>
+                                <li>wybrać z&nbsp;dolnego menu opcję Dodaj, a&nbsp;następnie wskazać lokalizację pliku z&nbsp;e&#8209;podręcznikiem.</li>
+                            </ul>
+                            <p>Powyższą operację wykonujemy dla&nbsp;wszystkich e&#8209;podręczników, z&nbsp;których chcemy skorzystać w&nbsp;trybie off&#8209;line.</p>
+                            <p>Ze względu na duże rozmiary nie zaleca&nbsp;się pobierania kilku e&#8209;podręczników jednocześnie.</p>
+
+                        </section>
+                    </section>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts_bottom %}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}front/js/build/common.js"></script>
+        <script type="text/requirejs" src="{{ STATIC_URL }}front/js/build/details123.js"></script>
+    {% endcompress %}
+{% endblock %}

@@ -1,0 +1,375 @@
+@import "adobegaramondpro";
+@import "opensans";
+@import "ubuntu";
+@import "ptsans";
+@import "sourcesanspro";
+
+@orange: #ff9933;
+@blue: #33b5e5;
+
+* {
+    font-family: open_sanslight, "Open Sans", sans-serif;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    //width: 100%;
+    height: 100%;
+    font-family: open_sanslight, "Open Sans", sans-serif;
+}
+
+body {
+    background-color: #f5eeed;
+    min-width: 1200px;
+}
+
+.hero {
+    position: absolute;
+    top: 0;
+
+    min-width: 1200px;
+    width: 100%;
+
+    min-height: 822px;
+    height: 822px;
+    background-image: url('../img/books.jpg');
+    -webkit-background-size: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+a, a:link, a:visited, a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+//topbar
+
+.nav-topbar {
+    position: relative;
+    height: 80px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    background-color: rgba(133, 137, 160, 0.38);
+
+    .nav-inner {
+        position: relative;
+        width: 1200px;
+        margin: 0 auto;
+        height: 100%;
+    }
+
+    .nav-logo {
+        float: left;
+        background-image: url('../img/edytor-white.svg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 55px;
+        width: 48px;
+        padding: 0;
+        margin: 9px 26px 0px 12px;
+
+    }
+
+    .nav-description {
+        position: relative;
+        display: inline;
+        top: 18px;
+        font-size: 32px;
+        font-family: "UbuntuLight", sans-serif;
+        color: #fff;
+    }
+
+    ul {
+        display: inline;
+        position: relative;
+        height: 100%;
+        color: #fff;
+        list-style-type: none;
+        text-indent: 0;
+        margin: 0;
+        margin-left: 105px;
+        padding-left: 0;
+        top: 17px;
+
+        li {
+            display: inline;
+            text-transform: uppercase;
+            font-size: 20px;
+            margin-right: 36px;
+            cursor: pointer;
+
+            &:last-of-type {
+                margin-right: 0px;
+            }
+
+            a {
+                font-family: 'ptsans', 'PT Sans', sans-serif;
+            }
+        }
+    }
+
+    .login-register {
+        display: inline;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 377px;
+        padding-right: 21px;
+        height: 52px;
+    }
+
+    .signup, .signin {
+        position: relative;
+        top: 14px;
+        height: 100%;
+        display: inline-block;
+        color: #fff;
+
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 21px;
+
+        width: 165px;
+        margin: 0;
+        cursor: pointer;
+
+        a {
+            font-family: 'SourceSansProSemibold', sans-serif;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            padding-top: 12px;
+            padding-bottom: 12px;
+
+        }
+    }
+
+    .signup {
+        margin-left: 24px;
+        background-color: @orange;
+        float: right;
+    }
+
+    .signin {
+        background-color: @blue;
+        float: left;
+    }
+}
+
+//content
+
+.center {
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    min-width: 1200px;
+    max-width: 100%;
+    color: #FFF;
+    overflow: visible;
+}
+
+.header {
+    padding-top: 165px;
+    padding-bottom: 135px;
+    margin: 0 auto;
+    max-width: 970px;
+
+    text-align: center;
+    font-size: 75px;
+    font-family: 'AdobeGaramondPro', serif;
+    font-weight: bolder;
+    line-height: 93px;
+    text-shadow: 3px 3px 6px #402729;
+
+    @media all and (max-width: 1200px) {
+        width: 90%;
+    }
+}
+
+.welcome-page-description {
+    position: relative;
+    width: 1200px;
+    background-color: white;
+    color: rgb(36, 34, 127);
+    margin: 0 auto;
+
+    font-size: 24px;
+
+    .welcome-page-description-header {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-basis: 0;
+        flex-basis: 0;
+        background-color: rgba(133, 137, 160, 0.8);
+        color: #fff;
+        padding: 15px 22px;
+
+        .welcome-page-description-header-text {
+            min-height: 78px;
+            font-size: 34px;
+            font-family: 'SourceSansPro', sans-serif;
+            line-height: 48px;
+            display: -webkit-flex;
+            display: flex;
+            padding-right: 22px;
+            margin: 0;
+
+            p {
+                font-weight: 300;
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        .signup-double {
+            display: -webkit-flex;
+            display: flex;
+            width: 418px;
+            height: 80px;
+
+            font-size: 28px;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-align-items: center;
+            align-items: center;
+
+            background-color: @orange;
+            cursor: pointer;
+
+            span {
+                font-family: 'SourceSansPro', sans-serif;
+                font-weight: 500;
+            }
+        }
+    }
+
+    .welcome-page-description-content {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-justify-content: space-around;
+        justify-content: space-around;
+        padding-top: 67px;
+
+        .welcome-page-description-column {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            width: 300px;
+
+            .welcome-page-description-column-image {
+                display: -webkit-flex;
+                display: flex;
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                width: 150px;
+                height: 150px;
+                -webkit-align-self: center;
+                align-self: center;
+                margin-bottom: 9px;
+
+                &.column1 {
+                    background-image: url('../img/printer.png');
+                }
+
+                &.column2 {
+                    background-image: url('../img/laptop.png');
+                }
+
+                &.column3 {
+                    background-image: url('../img/key.png');
+                }
+            }
+
+            .welcome-page-description-column-header {
+                display: -webkit-flex;
+                display: flex;
+                font-size: 49px;
+                font-family: "open_sansregular", "Open Sans";
+                font-weight: normal;
+                color: #3a3838;
+                -webkit-align-self: center;
+                align-self: center;
+                margin-bottom: 25px;
+            }
+
+            p {
+                display: -webkit-flex;
+                display: flex;
+                color: #3a3838;
+                -webkit-align-self: center;
+                align-self: center;
+
+                text-align: center;
+                font-size: 23px;
+                line-height: 27px;
+
+                margin-bottom: 45px;
+                padding: 0;
+                padding-top: 40px;
+                border-top: 2px solid #56544d;
+            }
+        }
+    }
+}
+
+footer {
+    background-color: #fff;
+    position: relative;
+    height: 120px;
+    width: 100%;
+    margin-top: 80px;
+
+    .footer-content {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        height: 100%;
+        width: 1200px;
+        background-image: url('../img/e_PODRECZNIKI_stopka_.svg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 100%;
+    }
+}
+
+.clearfix {
+    clear: both;
+}
+
+/* Fixes for FF */
+@-moz-document url-prefix() {
+    .footer-content {
+        background-size: 1200px 80px !important;
+    }
+}
+
+/* Fixes for IE */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE10+ CSS styles go here */
+    .footer-content {
+        -ms-background-position-x: 0px;
+        -ms-background-position-y: 0px;
+        background-size: 1200px 80px !important;
+    }
+
+    .welcome-page-description-column {
+        p {
+            width: 300px;
+        }
+    }
+}

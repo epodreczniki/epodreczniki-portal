@@ -1,0 +1,38 @@
+@import "detail";
+
+.reader-content {
+    .rule { // Reguła
+        .common-spacing();
+
+        .rule-header {
+            .simple-block-header();
+            margin-bottom: @space-B;
+            padding-bottom: @space-A;
+
+            .label {
+                padding-left: 1.75em;
+                background-image: url('../../../img/new-icons/ic-regula.svg');
+                background-repeat: no-repeat;
+                background-position: 0px 50%;
+                background-size: auto 100%;
+
+                .numbering {
+                    display: none;
+                }
+            }
+        }
+
+        .rule-contents {
+            .typical-nested-example();
+
+            .proof {
+                margin: @space-B 0 0;
+
+                .proof-header {
+                    font-family: @sansLight;
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,176 @@
+{% extends "editres/base.html" %}
+
+{% load compress staticfiles %}
+
+{% block stylesheets %}
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editres/less/bootstrap.less">
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editcommon/less/womi_dialog/womi_dialog.less">
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editcommon/less/jstree/default/style.less">
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editcoll/less/main.less">
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}editcoll/css/aciTree.css">
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editcommon/less/res_lister/main_lister.less">
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}editcommon/less/bootstrap_dialog/bootstrap-dialog.less">
+    {% endcompress %}
+{% endblock %}
+
+{% block head_scripts %}
+
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}editcoll/js/build/common.js"></script>
+    {% endcompress %}
+
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}editcoll/js/build/editcoll.js"></script>
+
+    {% endcompress %}
+
+    {% compress js %}
+        <script src="{{ STATIC_URL }}editcoll/js/plugins/bootstrap.min.js"></script>
+        <script src="{{ STATIC_URL }}editcommon/js/libs/bootstrap-dialog.js"></script>
+        <script src="{{ STATIC_URL }}editcoll/js/plugins/jquery.min.js"></script>
+    {% endcompress %}
+
+{% endblock %}
+
+{% block topbar %}
+    {% include "editres/topbars/editor.html" %}
+{% endblock %}
+
+{% block inner_content %}
+    {% include "editcommon/editor_common_attributes.html" %}
+    <div class="modal fade" id="editcollSubCollModal" tabindex="-1" role="dialog" aria-labelledby="editcollSubCollModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span></button>
+                    <h4 class="modal-title" id="addSubcollectionModalTitle"></h4>
+                </div>
+                <div class="modal-body" id="addSubcollectionModalBody">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+                    <button type="button" class="btn btn-primary" id="saveSubcollChangesButton">Zapisz zmiany</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editcollModuleModal" tabindex="-1" role="dialog" aria-labelledby="editcollModuleModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span></button>
+                    <h4 class="modal-title" id="addModuleModalTitle"></h4>
+                </div>
+                <div class="modal-body" id="addModuleModalBody">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+                    <button type="button" class="btn btn-primary" id="saveModuleChangesButton">Zapisz zmiany</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editAttrsModal" tabindex="-1" role="dialog" aria-labelledby="editAttrsModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span></button>
+                    <h4 class="modal-title" id="editAttrsModalTitle"></h4>
+                </div>
+                <div class="modal-body" id="editAttrsModalBody">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+                    <button type="button" class="btn btn-primary" id="editAttrsModalSaveButton">Zapisz zmiany</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editOnlineModuleModal" tabindex="-1" role="dialog" aria-labelledby="editOnlineModuleModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span></button>
+                    <h4 class="modal-title" id="editOnlineModuleModalTitle"></h4>
+                </div>
+                <div class="modal-body" id="editOnlineModuleModalBody">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel panel-default">
+        {% include "editres/snippets/editor_bar.html" %}
+        {% comment %}
+
+        <div class="panel-heading">
+            <div class='row'>
+                <div class='col-sm-6'>
+                    <span></span>
+                </div>
+                <div class='col-sm-2'>
+                    <button class="btn-float btn btn-primary" id="repoExportButton">Zapisz</a>
+                </div>
+                <div class='col-sm-2'>
+                    <button class="btn-float btn btn-primary" id="allowEditButton">Włącz edycję</button>
+                </div>
+                <div class='col-sm-2'>
+                    <a id="collectionView" class="btn-float btn btn-primary" target="_blank"
+                        href="{{ driver.preview_url }}">
+                        Podgląd kolekcji
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endcomment %}
+    </div>
+
+    <div class='row '>
+        <div class='col-sm-4'>
+
+            <div class="panel panel-default" id="editcoll-tree-container">
+                <div class="panel-heading editcoll-write-only">
+                    <div class="row">
+                        <div class='col-sm-4'>
+                            <button class='add-subcollection-image btn btn-success btn-sm' data-toggle="tooltip" data-placement="top"  title='' data-original-title="Dodaj subkolekcję" href="#" id="addSubcollectionButton">
+                                <span class='glyphicon glyphicon-tree-conifer'></span> Rozdział
+                            </button>
+                        </div>
+                        <div class='col-sm-4'>
+                            <button class='add-module-image btn btn-success btn-sm' data-toggle="tooltip" data-placement="top" title='' data-original-title="Dodaj moduł" href="#" id="addModuleButton">
+                                <span class='glyphicon glyphicon-leaf'></span> Moduł
+                            </button>
+                        </div>
+                        <div class='col-sm-4 editcoll-write-only'>
+                            <button class='pull-right btn btn-danger btn-sm' data-toggle="tooltip" data-placement="top" title='' data-original-title="Usuń element" id="deleteElementButton">
+                                <span class='glyphicon glyphicon-fire'></span> Usuń
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="jstree_main">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class='col-sm-8'>
+
+            <div id="editcoll-metadata-tab">
+                <div class="editcoll-metadata" id="collection-editor-meta"></div>
+            </div>
+
+        </div>
+    </div>
+{% endblock inner_content %}
+
+{% block scripts_bottom %}
+{% endblock scripts_bottom %}

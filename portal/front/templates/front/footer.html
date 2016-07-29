@@ -1,0 +1,11 @@
+{% load common_ext %}
+
+<footer class="centered-footer">
+    <ul role="menu">
+        <li role="menuitem"><a href="{% url 'front.views.about' %}">O nas</a></li>
+        <li role="menuitem"><a href="{% url 'front.views.terms' %}">Regulamin</a></li>
+        <li role="menuitem"><a href="{% host_url 'dev' 'dev_root' %}">Developers</a></li>
+        <li role="menuitem"><a href="{% url 'front.views.terms' %}#cookies">Cookies</a></li>
+        <li role="menuitem"><a href="{% url 'front.views.statistics' %}">Statystyki</a></li>
+    </ul>
+</footer>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns:cnxml="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:q="http://cnx.rice.edu/qml/1.0"
+    xmlns:bib="http://bibtexml.sf.net/"
+    xmlns:ep="http://epodreczniki.pl/"
+    xmlns="http://cnx.rice.edu/cnxml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    id="{{ module_id }}"
+    module-id="{{ module_id }}"
+    cnxml-version="0.7">
+    <title>{{ title }}</title>
+    <metadata mdml-version="0.5">
+        {% include "editstore/objects/new_metadata.xml" %}
+
+        <ep:e-textbook-module ep:version="1.5" ep:recipient="student" ep:content-status="canon">
+            {% block presentation %}
+            {% endblock %}
+        </ep:e-textbook-module>
+    </metadata>
+    <content>
+        {% block standard_content %}
+            {% endblock %}
+    </content>
+</document>

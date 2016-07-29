@@ -1,0 +1,33 @@
+{% extends "editres/snippets/listing_object.html" %}
+
+{% block extra_metadata %}
+    {% if driver.parsed_object %}
+    <p>
+        {{ driver.parsed_object.md_subtitle|default:"-"|truncatewords:10}}
+    </p>
+    <p>
+        <ul class='list-inline'>
+            {% if driver.parsed_object.md_school %}
+                <li>
+                    {{ driver.parsed_object.md_school.get_md_education_level_display }}
+                </li>
+            {% endif %}
+            {% if driver.parsed_object.md_school.ep_class %}
+                <li>
+                    Klasa {{ driver.parsed_object.md_school.ep_class }}
+                </li>
+            {% endif %}
+            {% if driver.parsed_object.md_subject %}
+                <li>
+                    {{ driver.parsed_object.md_subject.md_name|capfirst }}
+                </li>
+            {% endif %}
+            {% if not driver.parsed_object.md_school and not driver.parsed_object.md_school.ep_class and not driver.parsed_object.md_subject %}
+                <li>
+                    brak metadanych
+                </li>
+            {% endif %}
+        </ul>
+    </p>
+    {% endif %}
+{% endblock %}

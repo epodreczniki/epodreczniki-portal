@@ -1,0 +1,386 @@
+@import "common-variables";
+
+@standard-padding: 12px;
+@nav-button-size: 50px;
+
+.navigationButton {
+    display: block;
+    width: @nav-button-size;
+    height: @nav-button-size;
+    background-color: @button-bg;
+    background-size: 100% 100%;
+    outline: none;
+}
+
+.navigation {
+
+    &-left {
+        z-index: @highestZIndex - 200;
+        position: fixed;
+        top: 50%;
+        left: 0;
+        margin-top: -(@button-size/2);
+
+        button.active {
+            .navigationButton();
+            margin: 0;
+            //background-image: url('../../../img/reader-nav-left.svg');
+            background: url('../../../img/new/nav-arrows.svg') 0 0;
+
+            &:hover, &:focus {
+                background-position: 0 100%;
+            }
+        }
+
+        button.disabled {
+            .navigationButton();
+            margin: 0;
+            background-image: url('../../../img/reader-nav-left.svg');
+
+            &:hover, &:focus {
+                background-position: 0 25%;
+            }
+        }
+    }
+
+    &-right {
+        z-index: @highestZIndex - 200;
+        position: fixed;
+        top: 50%;
+        right: 0;
+        margin-top: -(@button-size/2);
+
+        button.active {
+            .navigationButton();
+            margin: 0;
+            background: url('../../../img/new/nav-arrows.svg') 100% 0;
+
+            &:hover, &:focus {
+                background: url('../../../img/new/nav-arrows.svg') 100% 100%;
+            }
+        }
+
+        button.disabled {
+            .navigationButton();
+            margin: 0;
+            background-image: url('../../../img/reader-nav-right.svg');
+
+            &:hover, &:focus {
+                background-color: @button-bg;
+            }
+        ;
+        }
+    }
+}
+
+@media (max-width: @mobileBreakpoint) {
+    .navigation {
+        &-left {
+          //  display: none;
+        }
+
+        &-right {
+          //  display: none;
+        }
+    }
+}
+
+.bottombar .disabled, .permanent-navigation .disabled {
+    color: #DEDEDE;
+}
+
+.bottombar .selected, .permanent-navigation .selected {
+    background: @nice-gray;
+    color: #fff;
+}
+
+.permanent-navigation {
+    position: fixed;
+    bottom: 0px;
+    right: 10px;
+
+    border-top: 1px solid #C1C1C1;
+    .bottom-shadow;
+}
+
+.permanent-navigation button {
+    display: none;
+    float: left;
+    width: 50px;
+    height: 40px;
+    background: #FFFFFF;
+    color: #4A4A4A;
+    border-right: 1px solid #C1C1C1;
+    text-align: center;
+    line-height: 38px;
+
+    @media (min-width: @mobileBreakpoint) {
+        display: block;
+    }
+}
+
+.permanent-navigation button:active {
+    .selected-gray;
+}
+
+.permanent-navigation button.font-prefs {
+    border-left: 1px solid #C1C1C1;
+}
+
+.bottombar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: @highestZIndex - 200;
+    overflow: visible;
+    background: @white;
+    border-top: 1px #c8c8c8 solid;
+    .bottom-shadow;
+}
+
+.bottombar .nav-button {
+    font-size: 22px;
+    background: @gray;
+    background-size: 100% 100%;
+    border: none;
+    border-left: 1px #C8C8C8 solid;
+    width: 35%;
+    height: 100%;
+    opacity: 0.9;
+    //float: right;
+    .unselectable();
+
+    &:hover {
+        background-color: @hover-color;
+    }
+;
+}
+
+.bottombar-inner {
+    //height: 42px;
+    height: @button-size;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    padding-left: 0.5%;
+}
+
+.next-btn {
+    float: right;
+    text-align: center;
+
+    .nav-icon-right {
+        .navigationButton();
+        width: @button-size;
+        height: @button-size;
+        margin: 0 auto;
+        background: none;
+        background-image: url('../../../img/reader-nav-right.svg');
+        background-size: 100% 100%;
+    }
+}
+
+#toggle-index {
+    margin: 0 auto;
+    overflow: hidden;
+    width: 29%;
+    text-align: center;
+
+    .nav-icon-toc {
+        .navigationButton();
+        margin: 0 auto;
+        background: none;
+        background-image: url('../../../img/reader-nav-table-of-contents.svg');
+        background-size: 100% 100%;
+    }
+}
+
+.prev-btn {
+    float: left;
+    text-align: center;
+
+    .nav-icon-left {
+        .navigationButton();
+        margin: 0 auto;
+        background: none;
+        background-image: url('../../../img/reader-nav-left.svg');
+        background-size: 100% 100%;
+    }
+}
+
+i.first {
+    font-size: 70%;
+    line-height: 70%;
+    margin-right: 3px;
+}
+
+.btn-inverse.disabled {
+    pointer-events: none;
+}
+
+// Fonts preferences window.
+.font-preferences-window {
+    display: none;
+    position: fixed;
+    z-index: @highestZIndex - 100;
+    bottom: 55px;
+    right: 5px;
+
+    @media (max-width: @mobileBreakpoint) {
+        bottom: 50px;
+        left: 5px;
+    }
+
+    width: 240px;
+    padding: 10px;
+
+    background: #fff;
+    border: 3px solid @nice-gray;
+    border-radius: 3px;
+    .topbar-menu-shadow();
+
+    h3 {
+        text-align: center;
+        margin: 0;
+        padding-bottom: 10px;
+        border-bottom: 2px solid @nice-gray;
+        color: #4A4A4A !important;
+    }
+
+    h4 {
+        text-align: center;
+        margin: 10px 0 0 0;
+        font-size: 90%;
+        color: #4A4A4A;
+        font-family: @sansLight;
+    }
+
+    .close-this {
+        float: right;
+        font-size: 90%;
+        color: @basicBlue;
+    }
+
+    div.button-group {
+        margin: 10px 0;
+        width: 100%;
+        border: 1px solid @basicBlue;
+        border-radius: 5px;
+
+        button {
+            width: 50%;
+            height: 100%;
+            padding: 5px 0;
+            color: @basicBlue;
+        }
+
+        button:active {
+            background: @basicBlue;
+            color: #fff;
+        }
+
+        button#decrease-font-size {
+            font-size: 100%;
+            line-height: 100%;
+        }
+
+        button#increase-font-size {
+            font-size: 100%;
+            line-height: 100%;
+            border-left: 1px solid @basicBlue;
+        }
+
+        button.disabled {
+            color: @nice-gray;
+        }
+
+        button.disabled:active {
+            background: none;
+        }
+    }
+
+    .select-group {
+        width: 100%;
+
+        #font-family-list {
+            width: 90%;
+            margin: 10px 0 20px 0;
+            display: inline-block;
+        }
+
+        #font-family-list-info {
+            width: 10%;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+
+            i {
+                color: @basicBlue;
+            }
+        }
+    }
+}
+
+.font-family-tooltip {
+    padding: 5px;
+    color: #303030;
+    background-color: #fff;
+    opacity: 1;
+    border: 3px solid #c8c8c8;
+    width: 200px;
+    font-size: 90%;
+    position: relative;
+    top: 30px;
+    left: 10px;
+    .topbar-menu-shadow;
+
+}
+
+.font-preferences-window:before {
+    content: "";
+    position: absolute;
+    bottom: -20px; /* value = - border-top-width - border-bottom-width */
+    left: 86px; /* controls horizontal position */
+    border-width: 20px 20px 0;
+    border-style: solid;
+    border-color: @nice-gray transparent;
+    /* reduce the damage in FF3.0 */
+    display: block;
+    width: 0;
+}
+
+.font-preferences-window:after {
+    content: "";
+    position: absolute;
+    bottom: -13px; /* value = - border-top-width - border-bottom-width */
+    left: 93px; /* value = (:before left) + (:before border-left) - (:after border-left) */
+    border-width: 13px 13px 0;
+    border-style: solid;
+    border-color: #fff transparent;
+    /* reduce the damage in FF3.0 */
+    display: block;
+    width: 0;
+}
+
+@media (max-width: 580px) {
+    .font-preferences-window:before {
+        bottom: -20px; /* value = - border-top-width - border-bottom-width */
+        left: 36px; /* controls horizontal position */
+        border-width: 20px 20px 0;
+    }
+
+    .font-preferences-window:after {
+        bottom: -13px; /* value = - border-top-width - border-bottom-width */
+        left: 43px; /* value = (:before left) + (:before border-left) - (:after border-left) */
+        border-width: 13px 13px 0;
+    }
+}
+
+@media (max-width: @mobileBreakpoint) {
+    .bottombar {
+        display: block;
+    }
+}

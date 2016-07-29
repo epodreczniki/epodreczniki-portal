@@ -1,0 +1,80 @@
+.reader-content {
+
+    .quote {
+        margin: 0;
+        margin-top: @space-D;
+        padding: 0;
+
+        &.expanding {
+
+            .quote-header {
+                padding-left: 1.5em;
+                background: transparent url("../../../img/new-icons/variants/uwr/icon-expanding.svg") no-repeat scroll left top / 22px 22px;
+            }
+        }
+
+        .quote-header {
+            margin: 0;
+            padding: 0;
+
+            .author {
+                display: block;
+                margin: 0;
+                padding: 0;
+                background: none;
+                font-family: @sansBold;
+            }
+
+            .title {
+                font-family: playfair-display-regular, Times, serif;
+                font-size: 1.62rem;
+            }
+        }
+
+        .quote-contents {
+
+            .para {
+                font-family: open_sansregular;
+
+                &:first-child {
+                    margin-top: @space-B;
+                }
+
+                .quote-line {
+                    margin: 0;
+                }
+            }
+
+            .enumerated {
+
+                .item {
+                    margin-left: 0;
+
+                    .item-decoration {
+                        position: inherit;
+                        right: inherit;
+                        margin-right: 0.5em;
+                    }
+                }
+            }
+
+        }
+
+        .source {
+            margin-top: @space-A;
+            padding-top: 0.5rem; // value from Content Plus mock-up
+            border-top: 1px solid #ddd;
+            color: #aaa;
+            font-size: 0.75rem; // value from Content Plus mock-up
+        }
+
+        .license {
+            color: #aaa;
+            font-size: 0.75rem; // value from Content Plus mock-up
+
+            .license-additional-info {
+                display: block;
+            }
+        }
+    }
+}

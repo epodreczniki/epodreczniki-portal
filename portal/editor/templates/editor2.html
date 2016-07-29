@@ -1,0 +1,184 @@
+{% extends 'editor_base.html' %}
+
+{% load compress staticfiles common_ext %}
+
+{% block stylesheets %}
+    {% compress css %}
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}editor/css/jquery-ui-1.10.4.custom.css">
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}editor/css/font-awesome.css">
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editor/less/new_layout.less">
+{#   uncomment for raw dialog styles     <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editcommon/less/womi_dialog/womi_dialog.less">#}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editcommon/less/jstree/default/style.less">
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editcommon/less/res_lister/main_lister.less">
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}editor/css/aciTree.css">
+    {% endcompress %}
+{% endblock %}
+
+{% block scripts_top %}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}editor/js/build/editor.js"></script>
+    {% endcompress %}
+
+{% endblock %}
+
+{% block content %}
+    <div id="upper_main">
+        <div id="main">
+            <div id="toolbar" class="">
+                <div>
+                    {% if request.user.is_authenticated %}
+
+                        <div class="box">
+                            <span class="" id="login">Zalogowany jako: {{ request.user }} (<a class="" href="{% host_url 'user' 'auth.views.epo_logout' %}">Wyloguj</a>)</span>
+                        </div>
+                        <div class="center">
+                            &NonBreakingSpace;
+                        </div>
+
+                    {% endif %}
+
+                    <div class="box">
+                        <a class="" href="{{ driver.editor_url }}">Strona zasobu</a>
+                    </div>
+                    <div class="center">
+                        &NonBreakingSpace;
+                    </div>
+                </div>
+                <div id="toolbar-tabs" data-role="toolbar-tabs">
+
+                    <div class="box">
+                        <ul class="tab-ul">
+                            <li><a href="#toolbar-tabs-3">
+                                <img class="icon-edit" src="{{ STATIC_URL }}editor/img/icons/tryb-edycji-siatki.png">
+                            </a></li>
+                            <li><a href="#toolbar-tabs-2">
+                                <img class="icon-edit" src="{{ STATIC_URL }}editor/img/icons/tryb-edycji-womi.png">
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div id="toolbar-tabs-1" data-role="toolbar-tab-grid-edit">
+                    </div>
+
+                    <div id="toolbar-tabs-2" data-role="toolbar-tab-module-edit">
+                        <div class="box">
+                            <p class="text-center">Edycja modułu</p>
+                        </div>
+                        <div class="box">
+                            <div data-role="attr-edit"></div>
+                        </div>
+                        <!--<div class="box">
+                            <p class="text-center">Szablon modułu XML</p>
+                            <button class="full-button" data-role="save-export-template">Zapisz</button>
+                        </div>-->
+                        <div class="box" data-role="epxml-import-export">
+                            <p class="text-center">EPXML</p>
+                            <button class="full-button" data-role="clean-epxml">Przywróć domyślne wartości</button>
+                            <button class="full-button" data-role="save-epxml">Zapisz</button>
+                            <button class="full-button" data-role="local-save-epxml">Eksportuj</button>
+                            <button class="full-button" data-role="load-epxml" style="display:none;">Wczytaj</button>
+                        </div>
+                        <div class="box">
+                            <button class="full-button" data-role="epxml-attributes">Atrybuty EPXML
+                                &gt;&gt;&gt;</button>
+                        </div>
+                        <div class="box" data-role="advanced-options" style="margin-top: 10px; margin-bottom: 10px;">
+                            <input type="checkbox" name="advanced_options" id="advanced_options" value="value"
+                                   data-role="show-advanced-options" style="margin-right: 5px">
+                            <label for="advanced_options">Zaawansowane</label>
+                            <div class="box" data-role="import-export" style="display: none">
+                                <p class="text-center">Preset</p>
+                                <button class="full-button" data-role="save">Zapisz preset</button>
+                                <button class="full-button" data-role="load">Wczytaj preset</button>
+                            </div>
+                            <div class="box" data-role="import-xml" style="display: none">
+                                <p class="text-center">Szablon modułu</p>
+                                <button class="full-button" data-role="load-template">Wczytaj</button>
+                                <button class="full-button" data-role="save-export-template">Zapis szablonu</button>
+                            </div>
+                        </div>
+                        <div class="box" data-role="module-name-div">
+                            <p class="text-center">Wczytany moduł</p>
+
+                            <p data-role="module-name">brak</p>
+                        </div>
+                    </div>
+                    <div id="toolbar-tabs-3" data-role="toolbar-tab-preview">
+                        <div class="box">
+                            <p class="text-center">Edycja siatki</p>
+                        </div>
+                        <div class="box" data-role="grid-properties">
+                            <div class="grid-size center">
+                                <input class="dimension-input" data-role="dimension-width"/>
+                                <span class="x-symbol">X</span>
+                                <input class="dimension-input" data-role="dimension-height"/>
+                            </div>
+                            <button class="full-button" data-role="save-grid">Uaktualnij</button>
+                            <button class="full-button" data-role="clear-grid">Czyść</button>
+                        </div>
+                        <div class="box">
+                            <p class="text-center">Podgląd</p>
+                        </div>
+                        <div class="preview-tools">
+                            <div class="btn-group">
+                                <button id="btn-open" class="full-button"><img
+                                        src="{% static "editor/img/icons/preview/open.png" %}"/>Wczytaj
+                                </button>
+                                <button id="btn-clear" class="full-button"><img
+                                        src="{% static "editor/img/icons/preview/clear.png" %}"/>Usuń
+                                </button>
+                            </div>
+                            <div class="btn-group">
+                                <button id="btn-move" class="full-button"><img
+                                        src="{% static "editor/img/icons/preview/move.png" %}"/>Przesuń tło
+                                </button>
+                                <button id="btn-lock" class="full-button"><img
+                                        src="{% static "editor/img/icons/preview/lock.png" %}"/>Zablokuj tło
+                                </button>
+                            </div>
+                            <div class="btn-group">
+                                <button id="btn-zoom-in" class="full-button"><img
+                                        src="{% static "editor/img/icons/preview/zoom-in.png" %}"/>Powiększ
+                                </button>
+                                <button id="btn-zoom-out" class="full-button"><img
+                                        src="{% static "editor/img/icons/preview/zoom-out.png" %}"/>Zmniejsz
+                                </button>
+                                <button id="btn-full-size" class="full-button"><img
+                                        src="{% static "editor/img/icons/preview/full-size.png" %}"/>Przywróć rozmiar
+                                </button>
+                                <button id="btn-reset" class="full-button"><img
+                                        src="{% static "editor/img/icons/preview/reset.png" %}"/>Reset położenia
+                                </button>
+                            </div>
+                            <div class="btn-group">
+                                <button id="btn-4-3" class="full-button"><img
+                                        src="{% static "editor/img/icons/preview/4-3.png" %}"/>Proporcja
+                                </button>
+                                <button id="btn-16-9" class="full-button"><img
+                                        src="{% static "editor/img/icons/preview/16-9.png" %}"/>Proporcja
+                                </button>
+                                <button id="btn-grid" class="full-button"><img
+                                        src="{% static "editor/img/icons/preview/grid.png" %}"/>Siatka
+                                </button>
+                                <button id="btn-buttons" class="full-button"><img
+                                        src="{% static "editor/img/icons/preview/show-hide.png" %}"/>Przyciski
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-role="info-box"></div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            <div id="board"></div>
+            <div id="uploadBox">
+                <form id="uploadBoxForm" runat="server" style="display: none;">
+                    <input type='file' id="uploadBoxInput"/>
+                </form>
+                <img id="uploadBoxImage" src="" style="display: none;"/>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

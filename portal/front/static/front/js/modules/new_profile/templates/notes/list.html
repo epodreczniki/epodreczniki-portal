@@ -1,0 +1,5 @@
+<ul>
+  <% _.each(notes, function(note){ %>
+   <li><a href='<%= note.get("url") %>'><%= note.get("title") %></a></li>
+  <% }); %>
+</ul>

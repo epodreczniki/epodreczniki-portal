@@ -1,0 +1,17 @@
+{% load staticfiles common_ext %}
+<form id="dialog_form" class="pure-form pure-form-stacked" aria-live="assertive">
+    <header id="dialog_form-header">Zgłoszenie uwagi</header>
+    {% block contact_form_additional %}
+
+    {% endblock %}
+    {% csrf_token %}
+
+    {{ form }}
+
+    <br />
+
+
+    <p class="contact-link">Przed wysłaniem zgłoszenia przeczytaj <a href="{% host_url 'www' 'wagtail_serve' 'faq/' %}" target="_blank">często zadawane pytania</a></p>
+    <button id="send_user_form">Wyślij</button>
+    <button id="close_modal_window">Zamknij</button>
+</form>

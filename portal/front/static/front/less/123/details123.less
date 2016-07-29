@@ -1,0 +1,837 @@
+/*
+The 'important' clauses in the stylesheet rules are needed as jQuery UI elements have been used.
+Styling these elements requires sometimes the 'important' clause as they tend to ignore normal rules.
+The clauses may be removed when jQuery UI is no longer used.
+*/
+
+@details123TopbarImageContainerWidth: 14.286%;
+@details123TopbarTitleContainerWidth: 41%;
+@details123TopbarDescriptionContainerWidth: 51%;
+@detailsTabWidth: 240px;
+@detailsTopbarHeight: 240px;
+@detailsTabsMinHeight: 200px;
+@detailsTabsMinTocColumnWidth: 175px;
+
+@details123margin: 120px;
+@detailsMarginBetweenTabs : 10px;
+@detailsTopbarPadding: 30px;
+@detailsTabsPadding: 10px;
+@detailsLiPadding: 30px;
+@detailsLiPaddingBottom: 35px;
+
+@detailsColorLight: #d3f1f1;
+@detailsColorMiddle: #bedadb;
+@detailsColorDark: #b0c8ca;
+@detailsFontColor: #405278;
+
+@detailsBorderRadius: 10px;
+
+@detailsHeading1FontSize: 48px;
+@detailsHeading2FontSize: 30px;
+@detailsHeading5FontSize: 25px;
+@detailsFontSize : 25px;
+
+@mediumScreenMaxWidth: 1200px;
+@smallScreenMaxWidth: 700px;
+@navigationBorderWidth: 1200px;
+@tocTwoColumnsMinWidth: 810px;
+
+@tocIconSize: 40px;
+@backButtonSize: 75px;
+
+@borderWidth: 5px;
+
+/* padding adjusted as requested by GE*/
+@details123TopbarContainerPadding: 48px;
+@details123TopbarContainerPaddingRight: 141px;
+@details123TopbarContainerPaddingBottom: 71px;
+
+@import "belfer";
+@import "infobars123";
+
+body {
+  min-width: 480px;
+  width: 100%;
+  background-color: @detailsColorDark;
+  background: linear-gradient(to right, @detailsColorDark, @detailsColorLight 50%, @detailsColorDark);
+  margin: 0px;
+}
+
+.wrapper {
+  position: relative;
+  background-color: transparent;
+  max-width: 1680px;
+  width: calc(~"87.5% + 21px");
+  margin: 0 auto;
+  padding: 0px;
+  font-family: 'Belfer', arial, sans-serif;
+  font-size: @detailsFontSize;
+  color: @detailsFontColor;
+
+  @media all and (max-width: 1100px) {
+    width: 95%;
+  }
+}
+
+h1 {
+  font-size: @detailsHeading1FontSize;
+  line-height: 58px;
+  font-weight: bolder;
+  margin: 0px;
+}
+
+h5 {
+  line-height: 29px;
+  margin: 0px;
+  font-size: @detailsHeading5FontSize;
+  font-weight: normal;
+}
+
+.back-button-container {
+  position: fixed;
+  top: 2.315%;
+  left: 1.04%;
+  z-index: 1000;
+  height: @backButtonSize;
+  width: @backButtonSize;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.back-button {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-size: 300% 100%;
+  background-position: 0% 0%;
+
+  &:hover {
+    background-position: 50% 0%;
+  }
+
+  &:active {
+    background-position: 100% 0%;
+  }
+}
+
+.details123-topbar-container {
+
+  position: relative;
+  height: 100%;
+  margin: 0 auto;
+  margin-top: @details123margin*0.5;
+  margin-bottom: 30px;
+  padding: @details123TopbarContainerPadding;
+  padding-bottom: @details123TopbarContainerPaddingBottom;
+  padding-right: @details123TopbarContainerPaddingRight;
+
+  border-radius: @detailsBorderRadius;
+  background-color: white;
+  text-indent: 0px;
+
+  @media all and (max-width: @mediumScreenMaxWidth) {
+    padding-right: @details123TopbarContainerPadding;
+  }
+
+  .book_authors_h2 {
+    font-size: 25px;
+    margin: 33.25px 0;
+  }
+
+  .book_details_h3 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 400;
+    height: 29px;
+  }
+}
+
+.details123-topbar-common {
+  margin: 0px;
+  padding: 0px;
+  float: left;
+  background-color: white;
+  display: inline-block;
+}
+
+.details123-bookcover {
+  width: 100%;
+  .details123-topbar-common;
+}
+
+.details123-image-container {
+  .details123-topbar-common;
+  width: 12.07%;
+  min-width: 100px;
+  max-width: 180px;
+  border-radius: @detailsBorderRadius 0px 0px @detailsBorderRadius;
+  margin-right: 45px;
+  padding: 0px;
+
+  @media all and (max-width: @mediumScreenMaxWidth) {
+    width: 30%;
+    max-width: 30%;
+    margin-bottom: @details123TopbarContainerPadding;
+  }
+
+  @media all and (max-width: @smallScreenMaxWidth) {
+    float: none;
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: @details123TopbarContainerPadding;
+    margin-right: 0px;
+    border-radius: @detailsBorderRadius;
+  }
+}
+
+.details123-title-container {
+  .details123-topbar-common;
+  width: 36.22%;
+  min-width: 270px;
+  max-width: 540px;
+  padding: 0;
+  margin-right: 45px;
+
+  h1 {
+    margin: 0px;
+  }
+
+  @media all and (max-width: 1400px) {
+    width: 33%;
+  }
+
+  @media all and (max-width: @mediumScreenMaxWidth) {
+    width: 60%;
+    max-width: 60%;
+    margin-bottom: @details123TopbarContainerPadding;
+    margin-right: 0px;
+  }
+
+  @media all and (max-width: @smallScreenMaxWidth) {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    border-radius: 0px;
+    margin-right: 0px;
+    height: auto;
+    min-height: @detailsTopbarHeight;
+  }
+}
+
+.details123-description-container {
+  .details123-topbar-common;
+  border-radius: 0px @detailsBorderRadius @detailsBorderRadius 0px;
+  margin: 0px;
+  width: 43%;
+  min-width: 270px;
+  max-width: 680px;
+
+  @media all and (max-width: @mediumScreenMaxWidth) {
+    width: 100%;
+    border-radius: 0px 0px @detailsBorderRadius @detailsBorderRadius;
+    height: auto;
+    max-width: 100%;
+  }
+}
+
+#details-tabs {
+  border: none;
+  border-radius: @detailsBorderRadius;
+  background-color: @detailsColorLight;
+  background-image: none;
+  font-family: 'Belfer', arial, sans-serif;
+  font-size: @detailsFontSize;
+  color: @detailsFontColor;
+  padding: @detailsTabsPadding;
+  padding-bottom: 1.5*@detailsTabsPadding;
+  margin: 0px;
+  margin-bottom: @detailsTopbarPadding;
+
+  ul:not(.details123-app-list) {
+    border: none;
+    background-image: none;
+    background-color: @detailsColorLight;
+    margin: 0px;
+    list-style-type: none;
+    padding: 0px;
+  }
+
+  ul.details123-app-list {
+    list-style-type: square;
+    margin: 0;
+  }
+
+  div {
+    background-color: white;
+    color: @detailsFontColor;
+    border: none;
+  }
+
+}
+
+.details123-nav-element {
+  float: left;
+  border: none;
+  background-image: none;
+  border-radius: @detailsBorderRadius @detailsBorderRadius 0px 0px;
+  background-color: @detailsColorMiddle;
+  margin-right: @detailsMarginBetweenTabs;
+  width: @detailsTabWidth;
+  text-align: center;
+  font-size: 25px;
+  padding: 0px;
+  letter-spacing: -1px;
+  position: relative;
+
+  a {
+    position: relative;
+    float: left;
+    width: 100%;
+    margin: 0px;
+    background-color: @detailsColorMiddle;
+    padding: 0px !important;
+    padding-top: @detailsLiPadding !important;
+    padding-bottom: @detailsLiPaddingBottom !important;
+    color: @detailsFontColor;
+    border: none;
+    border-radius: @detailsBorderRadius @detailsBorderRadius 0px 0px;
+    text-decoration: none;
+
+    &:hover {
+      background-color: white !important;
+      outline: none;
+    }
+
+    @media all and (max-width: @navigationBorderWidth) {
+      border-radius: @detailsBorderRadius;
+      padding-top: 0.5*@detailsLiPadding !important;
+      padding-bottom: 0.5*@detailsLiPadding !important;
+    }
+  }
+
+  @media all and (max-width: @navigationBorderWidth) {
+    width: 100%;
+    margin: 0px;
+    margin-bottom: @detailsMarginBetweenTabs;
+    border-radius: @detailsBorderRadius;
+  }
+}
+
+.details123-content {
+  .flexbox-display();
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+
+  p {
+    margin: 0px !important;
+    padding: @detailsTabsPadding;
+  }
+}
+
+/* Flexbox mixins etc. */
+.flexbox-display {
+  display: -webkit-flex;
+  display: flex;
+}
+
+.flexbox-container(@direction, @wrap) {
+  .flexbox-display();
+  -webkit-flex-direction: @direction;
+  flex-direction: @direction;
+  -webkit-flex-wrap: @wrap;
+  flex-wrap: @wrap;
+}
+
+#details123-toc-tab {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+
+  .details123-toc-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .flexbox-display();
+
+    @media all and (max-width: (@mediumScreenMaxWidth)) {
+      .flexbox-container(row, wrap);
+    }
+  }
+}
+
+.details123-toc-column {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex: 1;
+  flex: 1;
+  padding: 0;
+  margin: 0px;
+
+  &:first-of-type {
+    width: 250px;
+    -webkit-flex: none;
+    flex: none;
+  }
+
+  ul {
+    position: relative;
+    width: 100%;
+    list-style-type: none;
+    padding: 0px !important;
+    margin: 0px !important;
+    background-color: white !important;
+    border-right: 5px solid @detailsColorLight !important;
+  }
+
+  @media (max-width: (@mediumScreenMaxWidth)) {
+    &:nth-of-type(3) {
+      position: relative;
+      width: 100%;
+      min-width: 100%;
+      -webkit-flex: 1 1 100%;
+      flex: 1;
+    }
+  }
+
+  @media (max-width: @tocTwoColumnsMinWidth) {
+    &:first-of-type, &:nth-of-type(2), &:nth-of-type(3) {
+      position: relative;
+      width: 100%;
+      min-width: 100%;
+      -webkit-flex: 0 0 100%;
+      flex: 0;
+    }
+  }
+}
+
+#details123-toc-column1 {
+  @media (max-width: @tocTwoColumnsMinWidth) {
+    ul {
+      border-right: none !important;
+    }
+  }
+}
+
+#details123-toc-column2 {
+  @media (max-width: (@mediumScreenMaxWidth)) {
+    ul {
+      border-right: none !important;
+    }
+  }
+
+  @media (max-width: @tocTwoColumnsMinWidth) {
+    border-top: 5px solid @detailsColorLight !important;
+  }
+}
+
+#details123-toc-column3 {
+  ul {
+    border-right: none !important;
+  }
+
+  @media (max-width: (@mediumScreenMaxWidth)) {
+    ul {
+      border-top: 5px solid @detailsColorLight !important;
+    }
+  }
+}
+
+.details123-toc-nav-element, .details123-toc-nav-element-module {
+  min-height: 40px;
+  border-radius: 0px !important;
+  background-color: white !important;
+  padding: 7px;
+  padding-left: 24px;
+  margin: 0px !important;
+
+  &:hover, &:active {
+    background-color: @detailsColorLight !important;
+  }
+
+  &.empty-toc-nav {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  &.details123-toc-column1 > ul > li > a > div {
+    background-size: 400% 100%;
+    background-position: 300% 0%;
+  }
+
+  div, a, span {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0px !important;
+  }
+
+  a {
+
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    padding: 0px;
+
+    &:link, &:visited, &:hover, &:active {
+      color: @detailsFontColor;
+    }
+
+    div {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-shrink: 0;
+      flex-shrink: 0;
+      padding: 0px;
+      height: @tocIconSize;
+      width: @tocIconSize;
+      background: transparent;
+      background-size: 300% 100%;
+      background-position: 0% 0%;
+      border-radius: 50%;
+
+      &:hover {
+        background: @detailsColorLight;
+        background-size: 300% 100%;
+        background-position: 0% 0%;
+      }
+
+    }
+  }
+
+  span {
+    margin-left: 15px !important;
+  }
+
+}
+
+#details123-toc-column1 {
+  .details123-toc-nav-element {
+    a {
+      div {
+        background-size: 400% 100%;
+        background-position: 33.3333333% 0%;
+      }
+    }
+  }
+}
+
+.details123-season {
+  font-size: @detailsHeading2FontSize;
+}
+
+.details123-tab-content {
+  display: none;
+}
+
+.active {
+  background-color: white !important;
+  outline: none;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.details-info-container, .details123-info-authors {
+  position: relative;
+  width: 100%;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+}
+
+.details-info-container {
+  .flexbox-container(row, nowrap);
+}
+
+
+
+.details123-info-authors {
+  margin-top: 22px;
+
+  .pull-left {
+    padding-left: 0 !important;
+    line-height: 31px;
+    font-size: 25px;
+
+    strong {
+      font-size: 31px;
+    }
+  }
+}
+
+.info-column {
+  float: left;
+  max-width: 689px;
+  position: relative;
+  display: inline-block;
+
+  &:first-of-type {
+    margin-right: 90px;
+  }
+}
+
+.details123-app-buttons {
+  .flexbox-display();
+  width: 100%;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+
+
+  .info-column {
+    width: 50%;
+  }
+
+}
+
+#details123-info-tab, #details123-download-tab, #details123-authors-tab {
+  position: relative;
+  padding: 44px 141px 69px 47px;
+  text-indent: 0px;
+  .flexbox-container(row, wrap);
+}
+
+@media all and (max-width: 1000px) {
+  #details123-info-tab, #details123-download-tab, #details123-authors-tab {
+    .flexbox-container(row, wrap);
+    padding-right: 47px;
+    width: 100%;
+  }
+
+  .details-info-container, .details123-app-buttons {
+    .flexbox-container(row, wrap);
+  }
+
+  .info-column {
+    position: relative;
+    width: 100%;
+    min-width: 100%;
+    -webkit-flex: 0 0 100%;
+    flex: 0 0 100%;
+    margin: 0 !important;
+    margin-bottom: 32px !important;
+  }
+}
+
+.details-download-container {
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+.download-section {
+  position: relative;
+  width: 100%;
+
+  &:first-of-type {
+    border-bottom: 2px solid #405278;
+    padding-bottom: 1.5em;
+  }
+
+  &:nth-of-type(2) {
+    h2 {
+      margin-top: 1.5em;
+    }
+  }
+
+  h2 {
+    margin-bottom: 1.5em;
+  }
+}
+
+.details123-download-header {
+
+  a {
+    .flexbox-display();
+    margin-bottom: 22px;
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  a:link, a:visited, a:hover, a:active, a:focus {
+    text-decoration: none;
+
+  }
+
+  a:hover, a:focus {
+    .details123-download-icon {
+      background-position: center center;
+    }
+
+    .book-download-icon {
+      background-position: 66.67% center;
+    }
+  }
+
+  a:active {
+    .details123-download-icon {
+      background-position: 100% center;
+    }
+  }
+
+}
+
+.details123-download-label {
+  .flexbox-display();
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.details123-download-icon {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  margin-right: 23px;
+  background-repeat: no-repeat;
+  background-position: 0% center;
+  .flexbox-display();
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+}
+
+.app-download-icon {
+  background-image: url('../../img/one2three/icon_download-03.svg');
+  background-size: 300% 100%;
+
+  &:hover {
+    background-position: center center;
+  }
+
+  &:active {
+    background-position: 100% center;
+  }
+}
+
+.book-download-icon {
+  background-size: 400% 100%;
+  background-position: 33.33% center;
+
+  &:hover, &:focus {
+    background-position: 66.67% center;
+  }
+
+  &:active {
+    background-position: 100% center;
+  }
+}
+
+.book-download-spring {
+  background-image: url('../../img/one2three/icon_spring_RES.svg');
+}
+
+.book-download-summer {
+  background-image: url('../../img/one2three/icon_summer_RES.svg');
+}
+
+.book-download-autumn {
+  background-image: url('../../img/one2three/icon_autumn_RES.svg');
+}
+
+.book-download-winter {
+  background-image: url('../../img/one2three/icon_winter_RES.svg');
+}
+
+.curriculum-download-icon {
+  .app-download-icon();
+  background-image: url('../../img/one2three/icon-podstawa-programowa.svg');
+}
+
+@-moz-document url-prefix() {
+
+  #details123-info-tab {
+    padding-left: 48px !important;
+    padding-top: 44px !important;
+    padding-bottom: 69px !important;
+
+    h3 {
+      margin-bottom: 0px !important;
+    }
+  }
+
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+
+  #details123-info-tab {
+    padding-top: 45px !important;
+    padding-bottom: 67px !important;
+
+    h3 {
+      margin-bottom: 0px !important;
+    }
+  }
+
+}
+
+//IE fixes
+@media all and (max-width: 1400px) and (-ms-high-contrast: active) {
+  .details-download-container {
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  .info-column {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media all and (max-width: 1400px) and (-ms-high-contrast: none) {
+  .details-download-container {
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  .info-column {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+em.bold {
+  font-family: 'Belfer', arial, sans-serif;
+  font-weight: bold;
+  font-style: normal;
+}
+
+em.italic {
+  font-family: 'Belfer', arial, sans-serif;
+  font-weight: normal;
+  font-style: italic;
+}
+
+em.bolditalic {
+  font-family: 'Belfer', arial, sans-serif;
+  font-weight: bold;
+  font-style: italic;
+}
+
+//Authors tab
+//
+.details123-authors-section {
+  .authors-group {
+    margin-bottom: 80px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  h3, p {
+    padding-left: 20px;
+  }
+}

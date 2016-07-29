@@ -1,0 +1,164 @@
+.reader-content {
+
+    .exercise {
+        margin-top: @space-D;
+        padding: 0;
+        padding-left: @space-B;
+        border: none;
+        border-left: 1px solid red;
+        border-radius: 0;
+
+        &.expanding {
+
+            .exercise-header {
+
+                .label:before {
+                    content: "";
+                    display: inline-block;
+                    vertical-align: bottom;
+                    width: 22px;
+                    height: 22px;
+                    margin-right: 0.5em;
+                    background: url('../../../img/new-icons/variants/uwr/icon-expanding.svg') center center/100% auto no-repeat;
+                }
+            }
+        }
+
+        &.pair-work {
+
+            .exercise-header:before {
+                content: "";
+                display: block;
+                float: left;
+                vertical-align: bottom;
+                width: 22px;
+                height: 22px;
+                margin-left: -64px;
+                background: url('../../../img/new-icons/variants/uwr/icon-pair-work.svg') center center/100% auto no-repeat;
+            }
+        }
+
+        &.groupwork {
+
+            .exercise-header:before {
+                content: "";
+                display: block;
+                float: left;
+                vertical-align: bottom;
+                width: 22px;
+                height: 22px;
+                margin-left: -64px;
+                background: url('../../../img/new-icons/variants/uwr/icon-groupwork.svg') center center/100% auto no-repeat;
+            }
+        }
+
+        &.full-width {
+            margin-left: 48px;
+            margin-right: 48px;
+        }
+
+        .exercise-header {
+            margin: 0;
+            padding-bottom: @space-A;
+            border: 0;
+            background: inherit;
+            color: red;
+            font-size: 14px;
+
+            .label {
+                display: inline;
+                margin: 0;
+                padding: 0;
+                background: none;
+                color: red;
+            }
+
+            .numbering {
+                padding: 0;
+                background: inherit;
+                color: inherit;
+
+                .numbering-end-character {
+                    display: none;
+                }
+            }
+        }
+
+        .para:first-child {
+            margin-top: 0;
+        }
+
+        .exercise-buttons {
+
+            button.check {
+                width: auto;
+                height: auto;
+                padding: 4px 1.5em;
+                border: 1px solid #7c8486;
+                border-radius: 3px;
+                color: #303333;
+                text-transform: uppercase;
+                font-size: 16px;
+            }
+        }
+
+        .solution-toggles,
+        .commentary-toggles {
+            margin: 0;
+            padding: 0;
+
+            input[value='Pokaż odpowiedź'],
+            input[value='Ukryj odpowiedź'],
+            input[value='Pokaż rozwiązanie'],
+            input[value='Ukryj rozwiązanie'],
+            input[value='Pokaż przykład rozwiązania'],
+            input[value='Ukryj przykład rozwiązania'] {
+                width: auto;
+                height: auto;
+                padding: 4px 1.5em;
+                border: 1px solid #7c8486;
+                border-radius: 3px;
+                color: #303333;
+                text-transform: uppercase;
+                font-size: 16px;
+            }
+        }
+
+        .commentary {
+            margin-top: @space-B;
+        }
+
+        .drag-and-drop-table .draggable-element-content {
+          width: 69%;
+        }
+
+        .drag-drop-arrows .column-one {
+          margin-right: 6%;
+        }
+
+        .drag-drop-arrows .column {
+          width: 47%;
+        }
+
+        .womi-container.womi-audio-container {
+
+            .audio-container:before {
+                display: none;
+            }
+        }
+    }
+
+    .extended-width {
+
+      &.exercise, .exercise {
+
+        .drag-drop-arrows .column-one {
+          margin-right: 4%;
+        }
+
+        .drag-drop-arrows .column {
+          width: 48%;
+        }
+      }
+    }
+}

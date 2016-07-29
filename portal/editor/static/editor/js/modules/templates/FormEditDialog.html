@@ -1,0 +1,24 @@
+<div class="type-role-dialog">
+    <form action="#">
+        <ul class="no-ul">
+            <% _.each(attrs, function(attr) { %>
+            <% if(attr.name != 'authors-comment' && attr.name != 'firstname' && attr.name != 'surname' && attr.name != 'fullname' && attr.name != 'email'){%>
+            <li class="">
+                <label class="input-label text-center" for="<%= attr.id %>"><%= attr.label %></label>
+                <input class="full-input" readonly id="<%= attr.id %>" data-attr="<%= attr.name %>" value="<%= attr.value %>">
+            </li>
+            <% }else if(attr.name == 'firstname' || attr.name == 'surname' || attr.name == 'fullname' || attr.name == 'email'){ %>
+            <li class="">
+                <label class="input-label text-center" for="<%= attr.id %>"><%= attr.label %></label>
+                <input class="full-input" id="<%= attr.id %>" data-attr="<%= attr.name %>" value="<%= attr.value %>">
+            </li>
+            <% }else{ %>
+            <li class="">
+                <label class="input-label text-center" for="<%= attr.id %>"><%= attr.label %></label>
+                <textarea class="full-input" id="<%= attr.id %>" data-attr="<%= attr.name %>" value="<%= attr.value %>"/>
+            </li>
+            <% } %>
+            <% }); %>
+        </ul>
+    </form>
+</div>

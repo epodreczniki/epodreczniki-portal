@@ -1,0 +1,79 @@
+.reader-content {
+
+    .command {
+        margin-top: @space-B;
+        padding: 0 @space-B;
+        padding-right: 0;
+        border-left: 1px solid red;
+
+        .command-header {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: inherit;
+            color: red;
+            font-size: 14px;
+
+            .label {
+                display: inline;
+                margin: 0;
+                padding: 0;
+                background: none;
+                color: red;
+
+                .numbering-end-character {
+                    display: none;
+                }
+            }
+        }
+
+        .command-contents {
+            margin: 0;
+            margin-top: @space-B;
+            padding: 0;
+        }
+
+        &.debate { // Debata
+            padding: 0;
+            padding-left: @space-B;
+            border: none;
+            border-left: 1px solid red;
+            border-radius: 0;
+
+            .command-contents {
+                margin-top: 0;
+
+                .note-important {
+                    margin-top: 0;
+                    padding: 0;
+                    background: inherit;
+                    border: none;
+
+                    .note-header {
+                        display: none;
+                        margin: 0;
+                        padding: 0;
+                        font-size: inherit;
+
+                        .label {
+                            margin: 0;
+                            padding: 0;
+                            background: none;
+                        }
+                    }
+
+                    .note-contents {
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
+            }
+
+            .problem {
+                margin: 0;
+                margin-top: @space-B;
+                padding: 0;
+            }
+        }
+    }
+}

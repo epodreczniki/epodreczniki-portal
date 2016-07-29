@@ -1,0 +1,184 @@
+{% extends "front/base_front_with_navbar.html" %}
+
+{% load compress requirejs staticfiles version front_utils %}
+
+{% block container %}
+
+    <div class="row">
+        <div class="span12">
+            <div class="stats_background">
+
+                {% if show_tracking_statistics %}
+                    <div class="map-section">
+                        <section>
+                            <span class="province"></span>
+                            <section style="text-align: left">
+                                <span class="visits-label">Liczba odwiedzin:&nbsp;</span>
+                                <span class="visits"></span>
+
+                                <div class="statistics-reset" title="Resetuj filtr statystyk"></div>
+                            </section>
+                        </section>
+                        <iframe id="embed_map" type="image/svg+xml" alt="Mapa Polski"
+                                frameborder="0">
+                        </iframe>
+                    </div>
+                {% endif %}
+
+                <div class="browser-section">
+
+                    <ul>
+                        <p class="section-label">Udział przeglądarek:</p>
+                        <li class="firefox">
+                            <img src="{% static "front/img/logo_browser_firefox.png" %}" alt="Logo Firefox"/>
+
+                            <p></p>
+                        </li>
+                        <li class="chrome">
+                            <img src="{% static "front/img/logo_browser_chrome.png" %}" alt="Logo Chrome"/>
+
+                            <p></p>
+                        </li>
+                        <li class="safari">
+                            <img src="{% static "front/img/logo_browser_safari.png" %}" alt="Logo Safari"/>
+
+                            <p></p>
+                        </li>
+                        <li class="ie">
+                            <img src="{% static "front/img/logo_browser_ie.png" %}" alt="Logo Internet Explorer"/>
+
+                            <p></p>
+                        </li>
+                        <li class="other">
+                            <img src="{% static "front/img/logo_browser_other.png" %}"
+                                 alt="Symbol innych przeglądarek"/>
+
+                            <p></p>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div class="device-section">
+                    <p class="section-label">Urządzenia:</p>
+                    <ul>
+                        <li class="desktop">
+                            <img src="{% static "front/img/devices-desktop.svg" %}" alt="Urządzenia stacjonarne"/>
+
+                            <p>70%</p>
+                        </li>
+                        <li class="mobile">
+                            <img src="{% static "front/img/devices-mobile.svg" %}" alt="Urządzenia mobilne"/>
+
+                            <p>30%</p>
+                        </li>
+                    </ul>
+
+                </div>
+
+                {% comment %}
+                    any change in following header 'Statystyki platformy' must be synchronized
+                    with analoguous change in fabric task placing the version number here
+                    during deployment
+                {% endcomment %}
+
+                <div class="book_statistics">
+                    <p class="section-label">Statystyki platformy
+                    </p>
+                    <ul>
+                        <li>
+                            <div class="statistics-icon icon-book"></div>
+                            <div class="statistics-label"><span>{{ statistics.collection }}</span>
+
+                                <p class="two-lines">
+                                    {% pluralize 'Fragment' statistics.collection '' 'y' 'ów' %}
+                                    {% pluralize 'testow' statistics.collection 'y' 'e' 'ych' %}
+                                    <br/>e-podręczników
+                                </p>
+                            </div>
+
+                        </li>
+                        <li>
+                            <div class="statistics-icon icon-file-filled"></div>
+                            <div class="statistics-label"><span>{{ statistics.module }}</span>
+
+                                <p>
+                                    {% pluralize 'Moduł' statistics.module '' 'y' 'ów' %}
+                                </p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="statistics-icon icon-puzzle"></div>
+                            <div class="statistics-label"><span>{{ statistics.interactive }}</span>
+
+                                <p class="two-lines">
+                                    {% pluralize 'Obiekt' statistics.interactive '' 'y' 'ów' %}
+                                    <br>
+                                    {% pluralize 'interaktywn' statistics.interactive 'y' 'e' 'ych' %}
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="statistics-icon icon-film"></div>
+                            <div class="statistics-label"><span>{{ statistics.movie }}</span>
+
+                                <p>
+                                    {% pluralize 'Film' statistics.movie '' 'y' 'ów' %}
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="statistics-icon icon-music"></div>
+                            <div class="statistics-label"><span>{{ statistics.sound }}</span>
+
+                                <p>
+                                    {% pluralize 'Nagra' statistics.sound 'nie' 'nia' 'ń' %}
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="statistics-icon icon-picture"></div>
+                            <div class="statistics-label"><span>{{ statistics.graphics }}</span>
+
+                                <p>
+                                    {% pluralize 'Ilustacj' statistics.graphics 'a' 'e' 'i' %}
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="statistics-icon icon-resources"></div>
+                            <div class="statistics-label"><span>{{ statistics.kzd }}</span>
+
+                                <p>
+                                    {% pluralize 'Zas' statistics.kzd 'ób' 'oby' 'obów' %}
+                                    {% pluralize 'dodatkow' statistics.kzd 'y' 'e' 'ych' %}
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts_bottom %}
+{{ block.super }}
+
+{% compress js %}
+    <script type="text/requirejs" src="{{ STATIC_URL }}front/js/build/statistics.js"></script>
+{% endcompress %}
+
+{% autoescape off %}
+<script>
+    $('body').data('statisticsapi', {{ statistics_api }});
+    $('body').data('imagepath', '{% static "front/img/mapa.svg" %}');
+</script>
+{% endautoescape %}
+
+{% endblock %}
+

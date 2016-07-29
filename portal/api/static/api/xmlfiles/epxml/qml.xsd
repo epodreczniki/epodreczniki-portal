@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 sp2 (x64) (http://www.altova.com) by Tomasz Kuczynski (Instytut Chemii Bioorganicznej PAN - Poznanskie Centrum Superkomputerowe) -->
+<xs:schema xmlns:ep="http://epodreczniki.pl/" xmlns:cnxml="http://cnx.rice.edu/cnxml" xmlns:q="http://cnx.rice.edu/qml/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" targetNamespace="http://cnx.rice.edu/qml/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://cnx.rice.edu/cnxml" schemaLocation="cnxml_epeditor.xsd"/>
+	<xs:import namespace="http://epodreczniki.pl/" schemaLocation="epXML.xsd"/>
+	<xs:import namespace="http://epodreczniki.pl/editor" schemaLocation="epeditor.xsd"/>
+	<xs:include schemaLocation="common_epeditor.xsd"/>
+	<xs:element name="key">
+		<xs:annotation>
+			<xs:documentation>UWAGA: Dopuszczalne jest zawarcie w q:key dwóch elementów q:feedback (jeden z correct ustawionym na yes, drugi na no). Taki zabieg może być zastosowany tylko i wyłącznie w przypadku zadań z losowaniem odpowiedzi (exercise/@ep:interactivity='random_quiz')</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="feedback" minOccurs="0" maxOccurs="2">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="cnxml:qmlSectionContainerType">
+								<xs:attribute name="correct" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="yes"/>
+											<xs:enumeration value="no"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="answer" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>UWAGA: atrybut ten zawiera oddzielone przecinkiem (bez dodatkowych spacji) identyfikatory poprawnych odpowiedzi (q:answer). Dla zadania na kolejność odpowiedzi q:item/@type='ordered-response' kolejność identyfikatorów w tym atrybucie to poprawna kolejność odpowiedzi.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="feedback">
+		<xs:annotation>
+			<xs:documentation>Element wyjaśnienie (EPQ Wyjaśnienie).</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cnxml:qmlSectionContainerType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="hint" type="cnxml:qmlSectionContainerType">
+		<xs:annotation>
+			<xs:documentation>Element wskazówka. Może być zastosowany zarówno w stosunku do całego pytania quizowego (EPQ Wskazówka) jak i błędnej odpowiedzi, ale tylko w zadaniu z losową odpowiedzią (exercise/@ep:interactivity='random_quiz') i to w pytaniu z jednokrotną odpowiedzią  (q:item/@type='single-response') (EPQ Podpowiedź)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="response" type="cnxml:qmlSectionContainerType">
+		<xs:annotation>
+			<xs:documentation>Element zawierający treść odpowiedzi</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="answerType">
+		<xs:annotation>
+			<xs:documentation>Typ dla odpowiedź w quizie.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="q:response"/>
+			<xs:element ref="q:hint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Element wskazówka. Może być zastosowany zarówno w stosunku do całego pytania quizowego (EPQ Wskazówka) jak i błędnej odpowiedzi (wewnątrz q:answer), ale tylko w zadaniu z losową odpowiedzią (exercise/@ep:interactivity='random_quiz') i to w pytaniu z jednokrotną odpowiedzią  (q:item/@type='single-response') (EPQ Podpowiedź)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="q:idType" use="required"/>
+		<xs:attributeGroup ref="ep:qmlAnswerAttributesGroup"/>
+	</xs:complexType>
+	<xs:element name="answer" type="q:answerType">
+		<xs:annotation>
+			<xs:documentation>Element odpowiedź w quizie (EPQ Odpowiedź - poprawna, EPQ Odpowiedź - błędna)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="question" type="cnxml:qmlSectionContainerType">
+		<xs:annotation>
+			<xs:documentation>Element pytanie w quizie (EPQ Pytanie).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="typeType">
+		<xs:annotation>
+			<xs:documentation>Typ quizu</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="single-response"></xs:enumeration>
+			<xs:enumeration value="multiple-response"></xs:enumeration>
+			<xs:enumeration value="ordered-response"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="itemType">
+		<xs:annotation>
+			<xs:documentation>Typ pytanie quizowe</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="q:question"/>
+			<xs:choice>
+				<xs:element ref="q:answer" minOccurs="2" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:element ref="q:hint" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="q:feedback" minOccurs="0"/>
+			<xs:element ref="q:key"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="q:idType" use="required"/>
+		<xs:attribute name="type" type="q:typeType" use="required"/>
+	</xs:complexType>
+	<xs:element name="item">
+		<xs:annotation>
+			<xs:documentation>Element pytanie quizowe</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="q:itemType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

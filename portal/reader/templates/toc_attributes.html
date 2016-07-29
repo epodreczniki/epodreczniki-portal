@@ -1,0 +1,7 @@
+{% load extensions %}
+{% comment %} TODO: the attribute.value here should be sanitized {% endcomment %}
+data-toc-path="{{ content.technical_toc_path }}"
+{% if content.parent %}
+data-toc-parent-path="{{ content.parent.technical_toc_path }}"
+{% endif %}
+{% include "common/snippets/data_attributes.html" with content=content %}

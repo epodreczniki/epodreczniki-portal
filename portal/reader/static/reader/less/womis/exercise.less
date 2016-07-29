@@ -1,0 +1,1147 @@
+// TODO: Make variables of correct/incorrect colors.
+@dragAndDropLinesMaxWidth: 940px;
+@icon-correct: url('../../../img/correct.png');
+@icon-incorrect: url('../../../img/incorrect.png');
+//if a max width will be needed - see eppcss-51
+
+.womi-exercise-container {
+    div.MathJax_MathML, div.MathJax_Display, .MJXc-display math {
+        //solving EPPCSS-171, EPPCSS-277, EPPCSS-509
+        display: inline !important;
+        // ET-2068
+        width: auto;
+        margin: 0 3px 0 3px !important;
+    }
+
+    .exercise-content {
+        //.ui-draggable,
+        //.ui-droppable,
+        .ui-sortable {
+            cursor: pointer;
+        }
+
+        .ui-draggable,
+        .ui-droppable {
+            position: relative;
+        }
+
+        .draggable-collection, .droppable-collection {
+            position: relative;
+        }
+
+        img {
+            max-height: 300px;
+            width: inherit;
+        }
+
+        input.answer,
+        select.answer {
+            padding-left: 3px;
+            border: 1px solid #aaa;
+        }
+
+        .answer-container {
+            background-color: #f2f2f2;
+            border-radius: 3px;
+            border-top: 2px solid #e1e1e1;
+            color: #606060;
+            display: inline-block;
+            padding: 0.2em;
+            position: relative;
+            transition: background-color 500ms ease 0s;
+            margin-bottom: -8px;
+            margin-top: 4px;
+
+            input.answer {
+                background-color: rgba(255, 255, 255, 0);
+                border: 0 none;
+                color: #353535; // EPP-7448 rgb(87, 87, 87);
+                display: inline-block;
+                float: left;
+                font-weight: normal;
+            }
+
+            .input-error-message {
+
+            }
+
+            input.correct-answer {
+                background: @kolor-zadania-tak;
+                border-color: @kolor-zadania-tak;
+            }
+
+            input.wrong-answer {
+                background: @kolor-zadania-nie;
+                border-color: @kolor-zadania-nie;
+            }
+        }
+
+        .answer-list li {
+            border-top: 1px solid #d9d9d9;
+            border-bottom: none;
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+            margin-top: 0;
+
+            .answer:focus {
+                box-shadow: 0 0 1px 1px @kolor-motywu-ciemny;
+            }
+        }
+
+        .answer-list{
+            .set-header{
+                border-bottom: none;
+            }
+
+            .quiz-answer-correct {
+                background-image: @icon-correct;
+                background-size: 100% 100%;
+                width: 22px;
+                height: 20px;
+                margin-right: 10px;
+            }
+
+            .quiz-answer-incorrect {
+                background-image: @icon-incorrect;
+                background-size: 100% 100%;
+                width: 22px;
+                height: 20px;
+                margin-right: 10px;
+            }
+        }
+
+        .preInputText,
+        .input-error-message,
+        .postInputText {
+            line-height: 180%;
+        }
+
+        .answer-container .input-error-message {
+            color: white;
+            display: block;
+            font-size: small;
+            background: red;
+            bottom: 100%;
+            margin-bottom: 15px;
+            opacity: 0;
+            padding: 6px 12px 5px 15px;
+            left: -25px;
+            pointer-events: none;
+            position: absolute;
+            width: 100px;
+            height: 35px;
+        }
+
+        .answer-container .input-error-message:before {
+            bottom: -20px;
+            content: " ";
+            display: block;
+            height: 20px;
+            left: 0;
+            position: absolute;
+            width: 100%;
+        }
+
+        .answer-container .input-error-message:after {
+            border-left: solid transparent 10px;
+            border-right: solid transparent 10px;
+            border-top: solid red 10px;
+            bottom: -10px;
+            content: " ";
+            height: 0;
+            left: 50%;
+            margin-left: -13px;
+            position: absolute;
+            width: 0;
+        }
+    }
+
+    .exercise-description {
+        .exercise-title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+    }
+
+    .womi-container {
+        .title {
+            display: none;
+        }
+    }
+
+    .interactive-exercise-content {
+        max-width: 900px;
+        //margin: 5px auto;
+        padding-bottom: 18px;
+    }
+
+    .image-inside-exercise {
+    }
+
+}
+
+.drag-and-drop-table {
+    .ui-draggable,
+    .ui-droppable,
+    .ui-sortable {
+        //            display: -webkit-box;
+        //            display: -moz-box;
+        //            display: -ms-flexbox;
+        //            display: -webkit-flex;
+        //        display: flex;
+        //            -webkit-box-align: center;
+        //            -moz-box-align: center;
+        //            -webkit-align-items: center;
+        //            -ms-flex-align: center;
+        //        align-items: center;
+        //            -webkit-flex-wrap: wrap;
+        //            -ms-flex-wrap: wrap;
+        //        flex-wrap: wrap;
+        vertical-align: top;
+    }
+
+    .drag-and-drop-table {
+        .dragging {
+            opacity: 0.3;
+        }
+    }
+
+    .separator {
+        border-bottom-style: dotted;
+        border-color: #d7d7d7;
+        border-width: 2px;
+        margin-top: 15px;
+    }
+
+    .draggable-element {
+        display: inline-block;
+        min-width: 150px;
+        //height: 150px;
+        min-height: 30px;
+        margin: 10px;
+        padding: 3px;
+        //background: @kolor-zadania-inne;
+        color: #222;
+        // border: 1px solid @kolor-zadania-inne;
+        border: 1.5px solid #d7d7d7;
+        line-height: 25px;
+        text-align: center;
+        font-size: 80%;
+        //cursor: pointer;
+        cursor: move !important;
+        -ms-touch-action: none;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+
+        background: -webkit-linear-gradient(top, #ebebeb, rgb(255,255,255)); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(top, #ebebeb, rgb(255,255,255)); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(top, #ebebeb, rgb(255,255,255)); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to top, #ebebeb, rgb(255,255,255)); /* Standard syntax */
+
+    }
+
+    .draggable-element-background {
+        background: url('../../../img/border_move_M4.svg');
+        background-size: 50px 43px;
+        background-position: left;
+        width: 37px;
+        height: 30px;
+        float: right;
+    }
+
+    .draggable-element-background-exit {
+        background: url('../../../img/exit.png');
+        background-repeat: no-repeat;
+        background-size: 20px 20px;
+        background-position: right;
+        width: 37px;
+        height: 30px;
+        float: right;
+    }
+
+    .draggable-element-content {
+        float: left;
+        margin-left: 7px;
+        margin-top: 3px;
+        width: 60%;
+        line-height: 18px;
+//        position: absolute;
+//        top: 0;
+//        bottom: 0;
+//        span {
+//            position: absolute;
+//            top: 0;
+//            bottom: 0;
+//        }
+    }
+
+    .droppable-collection {
+        /* border: 1px solid #888; */
+        clear: both;
+        text-align: center;
+
+        .title {
+            //float: left;
+            margin: 5px;
+            //text-transform: uppercase;
+        }
+    }
+
+    .droppable-element {
+        height: 100%;
+        width: 100%;
+        min-height: 100px;
+
+        margin: 10px 0;
+        padding: 10px;
+
+        background: white;
+        border: 1.5px solid #d9d9d9;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+
+        text-align: left;
+
+        display: block;
+
+        -ms-touch-action: none;
+
+        .draggable-element {
+           // background: @kolor-zadania-inne;
+            //background: #f0f0f0;
+            color: #222;
+            z-index: 100000;
+            -ms-touch-action: none;
+        }
+    }
+
+    .moving-helper {
+        background: #007fff;
+        color: #fff;
+        opacity: 0.7;
+    }
+
+    .draggable-collection {
+        min-height: 58px;
+    }
+}
+
+.drag-and-drop-fill {
+    .exercise-body {
+        padding: 10px 0;
+        line-height: 20px;
+        margin-left: 12px;
+    }
+
+    .separator {
+        border-bottom-style: dotted;
+        border-color: #d7d7d7;
+        border-width: 2px;
+        margin-top: 15px;
+    }
+
+    .draggable-collection {
+        //border: 1px solid #eee;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding: 10px;
+    }
+
+    .draggable-element {
+        // padding: 2px 5px;
+        padding: 6px 8px 2px 8px;
+        //background-color: #049CDB;
+        //background-color: @kolor-zadania-inne;
+        border: 1.5px solid #d7d7d7;
+        border-radius: 3px;
+       -moz-border-radius: 3px;
+        //border: 1px solid @kolor-zadania-inne;
+        //border-radius: 3px;
+        color: #222;
+        display: inline-block;
+        //cursor: pointer;
+        cursor: move !important;
+        -ms-touch-action: none;
+
+        background: -webkit-linear-gradient(top, #ebebeb, rgb(255,255,255)); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(top, #ebebeb, rgb(255,255,255)); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(top, #ebebeb, rgb(255,255,255)); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to top, #ebebeb, rgb(255,255,255)); /* Standard syntax */
+
+        &.dragged-element {
+            cursor: default !important;
+        }
+    }
+
+    .draggable-element-background {
+        background: url('../../../img/border_move_M4.svg');
+        background-size: 50px 43px;
+        background-position: left;
+        width: 37px;
+        height: 30px;
+        float: right;
+    }
+
+    .draggable-element-background-exit {
+        background: url('../../../img/exit.png');
+        background-repeat: no-repeat;
+        background-size: 20px 20px;
+        background-position: right;
+        width: 37px;
+        height: 30px;
+        float: right;
+        cursor: pointer;
+    }
+
+    .draggable-element-content {
+        float: left;
+        margin-top: 3px;
+        margin-bottom: 5px;
+    }
+
+    .drop-placeholder {
+        min-width: 60px;
+        height: 33px;
+      //  border-bottom: 1px solid #049CDB;
+        border: 1.5px solid #d7d7d7;
+        background: white;
+        display: inline-block;
+        vertical-align: bottom;
+        text-align: center;
+        margin: 8px 5px -2px 5px;
+        border-radius: 3px;
+    }
+
+    .drop-placeholder.filled {
+        border: none;
+    }
+
+    .drop-placeholder .dragged-element {
+        //background: #049CDB;
+       // background: @kolor-zadania-inne;
+        color: #222;
+    }
+}
+
+.drag-and-drop-match {
+    .womi-container {
+        padding: 0;
+        margin: 0;
+    }
+
+    .exercise-answers {
+        float: left;
+        width: 33%;
+        padding: 10px;
+
+        @media (max-width: 479px) {
+            padding: 0;
+        }
+
+        .answer-element {
+            display: inline-block;
+            padding: 8px 12px;
+            margin: 12px;
+            margin-right: 0;
+            min-width: 90px;
+            color: #222;
+            border: 1.5px solid #d7d7d7;
+            line-height: 25px;
+            text-align: center;
+            font-size: 80%;
+            cursor: move !important;
+            -ms-touch-action: none;
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            background: -webkit-linear-gradient(top, #ebebeb, #ffffff);
+            background: -o-linear-gradient(top, #ebebeb, #ffffff);
+            background: -moz-linear-gradient(top, #ebebeb, #ffffff);
+            background: linear-gradient(to top, #ebebeb, #ffffff);
+
+            @media (max-width: 479px) {
+                min-width: 0;
+                font-size: 65%;
+                padding: 0 0;
+            }
+        }
+
+        .answer-element-background {
+            background: url('../../../img/border_move_M4.svg');
+            background-size: 50px 43px;
+            background-position: left;
+            width: 37px;
+            height: 30px;
+            float: right;
+
+            @media (max-width: 479px) {
+                background-size: 30px 30px;
+                width: 27px;
+                height: 20px;
+            }
+        }
+
+        .answer-element-content {
+            float: left;
+            margin-left: 7px;
+            margin-top: 3px;
+
+            @media (max-width: 479px) {
+                margin-left: 0;
+                margin-top: 0;
+                width: 27px;
+                height: 20px;
+                font-size: 65%;
+            }
+        }
+    }
+
+    .exercise-background {
+        position: relative;
+        float: left;
+        width: 66%;
+
+        img {
+            width: 100%;
+            max-height: none;
+            height: auto;
+        }
+
+        .exercise-map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+        }
+
+        .point {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+            background: red;
+
+            .answer-container {
+                min-width: 100px;
+                min-height: 30px;
+                background: #f0f0f0;
+                border: 2px solid #6F6F6F;
+                margin-top: 7px;
+                display: inline-block;
+
+                @media (max-width: 479px) {
+                    min-width: 60px;
+                    min-height: 20px;
+                }
+
+                &.left {
+                    float: left;
+                    margin-left: 7px;
+                }
+
+                &.right {
+                    float: right;
+                    margin-right: 7px;
+                }
+
+                .answer-element {
+                    background: @basicBlue;
+                    color: @white;
+                    text-align: center;
+                    border: 1px solid @white;
+                    min-height: 30px;
+                    height: 100%;
+                    display: inline-block;
+
+                    &[data-correct="incorrect"] {
+                        background: @kolor-zadania-nie !important;
+                    }
+
+                    &[data-correct="correct"] {
+                        background: @kolor-zadania-tak !important;
+                    }
+
+                    &.ui-draggable-dragging {
+                        width: 100px;
+                        min-height: 30px;
+                        border: 1px solid @white;
+                        border-radius: 2px;
+                        opacity: 0.6;
+                        z-index: 9999;
+                    }
+
+                    &.ui-draggable {
+                        width: 100%;
+                    }
+
+                    @media (max-width: 479px) {
+                        min-height: 20px;
+                        font-size: 65%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.drag-and-drop-lines {
+    position: relative;
+    background: transparent;
+    //max-width: @dragAndDropLinesMaxWidth;
+    margin: 0 auto;
+    -ms-touch-action: none;
+
+    // Need changes for some more elegant solution that changing position only for this exercise type.
+    .draggable-collection, .droppable-collection {
+        position: static !important;
+        .unselectable;
+    }
+
+    img {
+        max-width: 150px;
+        max-height: 150px;
+        width: auto;
+        height: auto;
+    }
+
+    .ui-draggable {
+        .unselectable;
+    }
+
+    .draggable-collection {
+        padding: 0 10px;
+        border: 1px solid #eee;
+        float: left;
+        max-width: 35%;
+    }
+
+    .draggable-element {
+        padding: 10px;
+        //background-color: @kolor-zadania-inne;
+        //border: 1px solid #049CDB;
+        //border: 1px solid @kolor-zadania-inne;
+        border: 1.5px solid #d7d7d7;
+        //border-radius: 3px;
+        margin: 10px 0;
+        text-align: center;
+        -ms-touch-action: none;
+        cursor: move !important;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        background: -webkit-linear-gradient(top, #ebebeb, #ffffff);
+        background: -o-linear-gradient(top, #ebebeb, #ffffff);
+        background: -moz-linear-gradient(top, #ebebeb, #ffffff);
+        background: linear-gradient(to top, #ebebeb, #ffffff);
+    }
+
+    .droppable-collection {
+        padding: 0 10px;
+        border: 1px solid #eee;
+        float: right;
+        max-width: 35%;
+    }
+
+    .droppable-element {
+        padding: 10px;
+        //background: @kolor-zadania-inne;
+        //border: 1px solid #049CDB;
+        //border: 1px solid @kolor-zadania-inne;
+        border: 1.5px solid #d7d7d7;
+        cursor: move !important;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        background: -webkit-linear-gradient(top, #ebebeb, #ffffff);
+        background: -o-linear-gradient(top, #ebebeb, #ffffff);
+        background: -moz-linear-gradient(top, #ebebeb, #ffffff);
+        background: linear-gradient(to top, #ebebeb, #ffffff);
+        color: #222;
+        margin: 10px 0;
+        //border-radius: 3px;
+        text-align: center;
+        -ms-touch-action: none;
+    }
+
+    .ui-droppable-disabled {
+        //background: #049CDB;
+        background: @kolor-zadania-inne;
+        color: #222;
+    }
+
+    .dragged-element {
+        display: none;
+    }
+
+    .dragged-archer {
+        //background: #049CDB;
+        background: @kolor-zadania-inne;
+        color: #222;
+    }
+
+    .svg-draw-area {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        border: solid 0px #484;
+        z-index: -100;
+    }
+
+    .droppable-element.correct {
+        //background: #93E150;
+        background: @kolor-zadania-tak;
+        //border-color: #93E150;
+        border-color: @kolor-zadania-tak;
+        color: #222;
+    }
+
+    .droppable-element.wrong {
+        //background: #DF4313;
+        background: @kolor-zadania-nie;
+        //border-color: #DF4313;
+        border-color: @kolor-zadania-nie;
+        color: #222;
+    }
+
+    .draggable-element.correct {
+        //background: #93E150;
+        //border-color: #93E150;
+        background: @kolor-zadania-tak;
+        border-color: @kolor-zadania-tak;
+    }
+
+    .draggable-element.wrong {
+        //background: #DF4313;
+        //border-color: #DF4313;
+        background: @kolor-zadania-nie;
+        border-color: @kolor-zadania-nie;
+    }
+}
+
+.drag-and-drop-fill, .drag-and-drop-table {
+    .draggable-element.correct {
+        //background: #93E150;
+        //border-color: #93E150;
+        background: @kolor-zadania-tak;
+        border-color: @kolor-zadania-tak;
+    }
+
+    .draggable-element.wrong {
+        //background: #DF4313;
+        //border-color: #DF4313;
+        background: @kolor-zadania-nie;
+        border-color: @kolor-zadania-nie;
+    }
+}
+
+.drag-and-drop-sortable {
+    height: 100%;
+
+    .sortable-container {
+        width: 100%;
+        height: 100%;
+    }
+    .sortable-container {
+        .sortable-element {
+//            width: 100%;
+            min-height: 50px;
+            // border: 1px solid @kolor-zadania-inne;
+            // background: @kolor-zadania-inne;
+            cursor: move !important;
+            border: 1.5px solid #d7d7d7;
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            background: -webkit-linear-gradient(top, #ebebeb, #ffffff);
+            background: -o-linear-gradient(top, #ebebeb, #ffffff);
+            background: -moz-linear-gradient(top, #ebebeb, #ffffff);
+            background: linear-gradient(to top, #ebebeb, #ffffff);
+            float: left;
+            margin: 5px;
+            //display: table;
+            -ms-touch-action: none;
+            div.wrapper {
+                width: inherit;
+                min-height: 50px;
+                display: table;
+                table-layout: fixed;
+                text-align: center;
+                div.content {
+                    vertical-align: middle;
+                    display: table-cell;
+                    font-size: 16px;
+                    //color: #049CDB;
+                    word-wrap: break-word;
+                    color: #000;
+                    padding: 3px;
+                }
+            }
+        }
+        .sortable-placeholder {
+            width: 100%;
+            height: 50px;
+            margin: 10px;
+            float: left;
+            border: 1px solid #9B9B9B;
+            -ms-touch-action: none;
+        }
+        &.horizontal {
+            .background {
+                background: url('../../../img/border_move-x_M1.svg') no-repeat;
+                background-size: 50px 43px;
+                background-position: 35%;
+                width: 37px;
+                height: 30px;
+                float: right;
+            }
+
+            .sortable-element, .sortable-placeholder {
+//                width: 115px;
+                width: auto;
+                min-width: 115px;
+                min-height: 110px;
+                -ms-touch-action: none;
+                div.wrapper {
+                    //height: 100px;
+                    min-height: 50px;
+                    display: table;
+                    table-layout: fixed;
+                    text-align: center;
+                    //margin-left: 25px;
+                    position: relative;
+                    div.content {
+//                        width: 115px;
+                        display: table-cell;
+                        width: auto;
+                        min-width: 115px;
+                        width: auto;
+                        font-size: 14px;
+                        top: 50%;
+                        left: 50%;
+                    }
+                }
+            }
+        }
+        &.vertical {
+            .sortable-element {
+                width: 100%;
+                margin-left: 0;
+            }
+            .background {
+                background: url('../../../img/border_move-y_M1.svg') no-repeat;
+                background-size: 50px 43px;
+                background-position: right;
+                width: 37px;
+                height: 30px;
+                float: right;
+                margin-top: 8px;
+            }
+            .wrapper {
+                //max-width: 900px;
+                width: 90% !important;
+                min-height: 40px;
+                height: auto;
+                text-align: center;
+                padding: 4px;
+                margin-top: 5px;
+            }
+            .content {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
+    .sortable-element.correct {
+        //background: #93E150;
+        //border-color: #93E150;
+        background: @kolor-zadania-tak;
+        border-color: @kolor-zadania-tak;
+        .title {
+            //color: #fff;
+            color: #000;
+        }
+    }
+    .sortable-element.wrong {
+        //background: #DF4313;
+        //border-color: #DF4313;
+        background: @kolor-zadania-nie;
+        border-color: @kolor-zadania-nie;
+        .title {
+            //color: #fff;
+            color: #000;
+        }
+    }
+}
+
+.crossword-exercise {
+    .crossword-table {
+        width: auto;
+        table-layout: auto;
+        margin: 10px 5px;
+
+        td {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            //border: 2px solid #049cdb;
+            padding: 3px;
+            text-align: center;
+            color: #049cdb;
+            font-size: 1.2em;
+            text-transform: uppercase;
+
+            &.cap, &.index {
+                background-color: transparent !important;
+                border: none;
+            }
+
+            &.index {
+                 // font-size: 0.9em;
+                font-weight: bold; //EPPCSS-273
+                color: #353535;// EPP-7448  #575757;
+                text-align: right;
+                padding: 0 5px 0 0;
+                // vertical-align: bottom;
+            }
+
+            &.letter {
+                width: 40px;
+            }
+
+            &.solution-letter {
+                 //background: #abe9fb;
+                font-weight: bold;
+
+                input {
+                    font-weight: bold;
+                    background: rgb(255, 244, 222);
+                }
+
+                &.solution-letter-focused input {
+                    background: darkorange;
+                }
+            }
+
+            input {
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                font-size: 1.2em;
+                text-transform: uppercase;
+                background: none;
+                //color: #049cdb;
+                color: #353535;// EPP-7448  #575757;
+                text-align: center;
+                border: 1px solid #707070;
+            }
+        }
+    }
+
+    .clues-list {
+        margin-top: 20px;
+    }
+
+    tr.wrong td.letter {
+        //background: #DF4313;
+        background: @kolor-zadania-nie !important;
+    }
+
+    tr.correct td.letter {
+        //background: #93E150;
+        background: @kolor-zadania-tak !important;
+    }
+
+    .quiz-answer-correct, .quiz-answer-incorrect {
+        background-size: 100% 100%;
+        width: 30px;
+        height: 30px;
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+
+    .quiz-answer-correct {
+        background-image: @icon-correct;
+    }
+
+    .quiz-answer-incorrect {
+        background-image: @icon-incorrect;
+    }
+}
+
+.quiz-memorygame {
+
+    img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .card-container {
+        float: left;
+        position: relative;
+
+        -webkit-perspective: 800px;
+        -moz-perspective: 800px;
+        -o-perspective: 800px;
+        perspective: 800px;
+
+        width: 120px;
+        height: 120px;
+        margin: 5px;
+        text-align: center;
+
+        .front {
+            cursor: pointer;
+        }
+    }
+
+    .card {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        -webkit-transition: -webkit-transform 1s;
+        -moz-transition: -moz-transform 1s;
+        -o-transition: -o-transform 1s;
+        transition: transform 1s;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+
+    .card.flipped {
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+
+    .card .side {
+        //display: table;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 100%;
+        width: 100%;
+        color: #000;
+        text-align: center;
+        font-size: 13px; //20px; changed to smaller as it was too big in a container of 120px -> eppcss-426
+        line-height: 16px;
+        overflow: hidden;
+        position: absolute;
+        //border: 1px solid @basicBlue;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -o-backface-visibility: hidden;
+        backface-visibility: hidden;
+
+        .MathJax, big { //what else can be on the card?
+            display: table-cell!important; //there is inline styling that overrides on IE
+            vertical-align: middle;
+            text-align: center;
+        }
+    }
+
+    .card .front {
+        //background: @basicBlue;
+        border: 1.5px solid #d7d7d7;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        background: -webkit-linear-gradient(top, #ebebeb, rgb(255,255,255)); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(top, #ebebeb, rgb(255,255,255)); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(top, #ebebeb, rgb(255,255,255)); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to top, #ebebeb, rgb(255,255,255)); /* Standard syntax */
+    }
+
+    .card .back {
+        background: #fff;
+        border: 1.5px solid #d7d7d7;
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+
+    .card .backMS {
+        border: 1.5px solid #d7d7d7;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        background: -webkit-linear-gradient(top, #ebebeb, rgb(255,255,255)); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(top, #ebebeb, rgb(255,255,255)); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(top, #ebebeb, rgb(255,255,255)); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to top, #ebebeb, rgb(255,255,255)); /* Standard syntax */
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+        -webkit-backface-visibility: visible;
+        -moz-backface-visibility: visible;
+        -o-backface-visibility: visible;
+        backface-visibility: visible;
+    }
+
+    .card.wrong .back {
+        background: #DF4313;
+        color: #fff;
+    }
+
+    .card.wrong .backMS {
+        background: #DF4313;
+        color: #fff;
+    }
+
+    .card.correct .back {
+        background: #93E150;
+    }
+
+    .card.correct .backMS {
+        background: #93E150;
+    }
+
+}
+
+.table-quiz {
+
+    .exercise-table {
+        border-spacing: 0;
+        border-left: 1px solid #d9d9d9;
+        border-bottom: 1px solid #d9d9d9;
+
+        tr {
+            &[data-correct="incorrect"] {
+                background: @kolor-zadania-nie;
+            }
+            &[data-correct="correct"] {
+                background: @kolor-zadania-tak;
+            }
+        }
+
+        td, th {
+            border-right: 1px solid #d9d9d9;
+            border-top: 1px solid #d9d9d9;
+            text-align: center;
+            margin: 0;
+            padding: 5px;
+            .quiz-answer-correct {
+                background-image: @icon-correct;
+                background-size: 100% 100%;
+                width: 22px;
+                height: 20px;
+            }
+            .quiz-answer-incorrect {
+                background-image: @icon-incorrect;
+                background-size: 100% 100%;
+                width: 22px;
+                height: 20px;
+            }
+
+            input[type="radio"]:focus {
+                box-shadow: 0 0 1px 1px @kolor-motywu-ciemny;
+            }
+        }
+    }
+
+}
+
+.fullwidth-label {
+    position: relative;
+    width: 100%;
+}
+
+@import "dgl2";

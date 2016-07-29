@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="40"
+   height="40"
+   id="svg3315">
+  <defs
+     id="defs3317" />
+  <metadata
+     id="metadata3320">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="matrix(0.990079,0,0,0.99009902,-9.1519544,-4.0677975)"
+     id="g3394">
+    <path
+       d="m 29.443661,44.508475 c -11.2,0 -20.2000003,-9.1 -20.2000003,-20.2 0,-11.2 9.1000003,-20.1999995 20.2000003,-20.1999995 11.1,0 20.2,9.0999995 20.2,20.1999995 0.1,11.1 -9,20.2 -20.2,20.2 z m 0,-36.4999995 c -9,0 -16.2,7.2999995 -16.2,16.1999995 0,8.9 7.3,16.2 16.2,16.2 9,0 16.2,-7.3 16.2,-16.2 0,-8.9 -7.2,-16.1999995 -16.2,-16.1999995 z"
+       id="path65"
+       style="fill:#585858" />
+    <g
+       transform="translate(-33.356339,-1397.8915)"
+       id="miu_1_">
+      <path
+         d="m 66.4,1427 2.3,2.3 5.2,-5.2 -2.3,-2.3 -5.2,5.2 z m 6.5,-6.5 -1,1 2.3,2.3 1,-1 c 0.3,-0.3 0,-0.7 0,-0.7 l -1.6,-1.6 c -0.1,0 -0.4,-0.3 -0.7,0 z m -6.8,6.8 -0.5,2.8 2.8,-0.5 -2.3,-2.3 z"
+         id="editor_pencil_pen_edit_write_glyph_1_"
+         style="fill:#585858" />
+    </g>
+    <rect
+       width="5.0999999"
+       height="5.0999999"
+       x="28.243658"
+       y="14.108476"
+       id="rect69"
+       style="fill:none;stroke:#585858;stroke-miterlimit:10" />
+    <rect
+       width="5.0999999"
+       height="5.0999999"
+       x="28.243658"
+       y="21.908524"
+       id="rect71"
+       style="fill:none;stroke:#585858;stroke-miterlimit:10" />
+    <rect
+       width="5.0999999"
+       height="5.0999999"
+       x="28.243658"
+       y="29.70845"
+       id="rect73"
+       style="fill:none;stroke:#585858;stroke-miterlimit:10" />
+    <rect
+       width="8.5"
+       height="1.8"
+       x="17.943659"
+       y="15.808427"
+       id="rect75"
+       style="fill:#585858" />
+    <rect
+       width="8.5"
+       height="1.8"
+       x="18.043661"
+       y="23.408524"
+       id="rect77"
+       style="fill:#585858" />
+    <rect
+       width="8.5"
+       height="1.8"
+       x="18.043661"
+       y="31.308426"
+       id="rect79"
+       style="fill:#585858" />
+    <rect
+       width="1.9"
+       height="1.9"
+       x="29.84366"
+       y="15.708451"
+       id="rect81"
+       style="fill:#585858" />
+    <rect
+       width="1.9"
+       height="1.9"
+       x="29.84366"
+       y="23.508499"
+       id="rect83"
+       style="fill:#585858" />
+  </g>
+</svg>

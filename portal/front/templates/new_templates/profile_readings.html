@@ -1,0 +1,72 @@
+{% load staticfiles compress requirejs extensions common_ext collection_cover %}
+
+<section class="readings-content-wrap profile-content-wrap" xmlns="http://www.w3.org/1999/html">
+    <aside>
+        <section class="aside-toolbar readings-aside">
+            <section class="aside-filters-toggle">
+                <div class="aside-filters-toggle-button">
+                    <span>pokaż filtry wyszukiwania</span>
+                </div>
+            </section>
+            <section class="aside-filters-foldable">
+                <section class="aside-filters-content">
+                    <section class="aside-filters-single-column">
+
+                        <p class="aside-header">
+                            Kolejność:
+                        </p>
+
+                        <div class="profile-dropdown order-dropdown">
+                            <select name="order_select" id="book_order_select">
+                                <option value="oldest">Od najstarszych</option>
+                                <option value="latest">Od najnowszych</option>
+                                <option value="asc">A - Z</option>
+                                <option value="desc">Z - A</option>
+                            </select>
+                        </div>
+
+                    </section>
+                </section>
+
+                {% comment %}
+                    <section class="aside-filters-buttons">
+                        <!--button class="filter-button" id="do-filtering">Filtruj</button-->
+                        <button class="filter-button" id="clear-filter">Wyczyść filtr</button>
+                    </section>
+                {% endcomment %}
+
+              </section>
+            </section>
+    </aside>
+
+    <section class="readings-container profile-container">
+
+        <section class="readings-header">
+            <h2>Ostatnio czytane podręczniki</h2>
+        </section>
+
+        {% comment %}
+            <section class="readings-tabs">
+                <nav class="readings-list-tabs">
+                    <ul>
+                        <li class="readings-list-tab">
+                            <span>Ostatnio czytane</span>
+
+                            <div class="readings-tabs-triangle"></div>
+                        </li>
+                        <li class="readings-list-tab">
+                            <span>Ulubione</span>
+
+                            <div class="readings-tabs-triangle"></div>
+                        </li>
+                    </ul>
+
+                </nav>
+                <div class="edit-readings-list"><span>edytuj listę</span></div>
+            </section>{% endcomment %}
+
+        <section class="readings-list">
+            {# books are generated from the model #}
+        </section>
+    </section>
+</section>

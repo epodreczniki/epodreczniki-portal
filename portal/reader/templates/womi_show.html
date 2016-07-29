@@ -1,0 +1,8 @@
+{% extends "front/universal_details.html" %}
+
+{% block main_content %}
+<h1>{{ presentation.content.md_title }}</h1>
+
+<iframe width="600" height="340" src={% url presentation.config.womi_embed_view presentation.identifier presentation.version %}></iframe>
+
+{% endblock %}

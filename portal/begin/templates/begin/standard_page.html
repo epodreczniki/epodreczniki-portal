@@ -1,0 +1,33 @@
+{% extends "begin/base.html" %}
+
+{% block content %}
+    {#    {% include "begin/includes/intro.html" with intro=self.intro only %}#}
+    {##}
+    {#    {% include "begin/includes/carousel.html" with carousel_items=self.carousel_items.all only %}#}
+    {##}
+    {#    {% include "begin/includes/body.html" with body=self.body only %}#}
+    {##}
+    {#    {% include "begin/includes/related_links.html" with related_links=self.related_links.all only %}#}
+
+    {% include "begin/includes/page_header.html" with page=self request=request only %}
+
+
+    <div class="content-wrapper page-content-wrapper clearfix">
+
+        <!-- BEGIN .main-content -->
+        <div class="main-content-full page-content">
+
+            <!-- BEGIN .inner-content-wrapper -->
+            <div class="inner-content-wrapper">
+
+                {% include "begin/includes/body.html" with body=self.body only %}
+
+                <!-- END .inner-content-wrapper -->
+            </div>
+
+            <!-- END .main-content -->
+        </div>
+
+        <!-- END .content-wrapper -->
+    </div>
+{% endblock %}

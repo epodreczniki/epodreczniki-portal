@@ -1,0 +1,79 @@
+#main-header {
+    margin-top: @topbar-height + @contentbar-height;
+
+    .module-title { // EPUW-208
+        line-height: 1.2;
+        font-family: playfair-display-regular, Times, serif;
+        font-weight: 500;
+        font-size: 50.3833px; // value from Content Plus mock-up (50.3833px = 3.14928rem from mock-up)
+    }
+
+    &.no-header-image {
+
+        #header-title {
+            padding-top: 1em;
+            margin: 0;
+        }
+    }
+
+    &.with-header-image {
+
+        #header-title {
+            transform: translateX(+50%);
+            width: 100%;
+        }
+
+        #contentbar {
+
+            .title-page-num {
+                display: inline;
+            }
+        }
+
+        #header-image {
+
+            &.no-background {
+
+                .module-title {
+                    color: #000;
+                }
+            }
+        }
+    }
+}
+
+.module-header-caption { // EPUW-168
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: (@space-A - 2) (@space-A + 2);
+    background: rgba(255, 255, 255, 0.9); // value from UWR mockup
+    z-index: 9999;
+
+    .title,
+    .caption {
+        margin: 0;
+        padding: 0;
+        font-family: @sansRegular;
+        font-size: 0.75rem; // value from Content Plus mock-up
+
+        .label {
+            font-family: inherit;
+            font-size: inherit;
+        }
+    }
+
+    .title {
+        font-size: 0.875rem; // EPUW-159
+    }
+
+    .caption {
+        color: #aaa;
+    }
+
+    li { // temporary solution
+        list-style-type: none;
+    }
+}
+
+

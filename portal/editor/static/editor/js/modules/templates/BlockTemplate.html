@@ -1,0 +1,19 @@
+<div class="block-element"
+     style="width: <%= width %>px; height: <%= height %>px; top: <%= y %>px; left: <%= x %>px;">
+    <ul class="ui-menu">
+        <% if(typeof attrs != 'undefined') { _.each(attrs, function(attr) { %>
+        <li class="ui-state-default attr-li">
+            <%= attr.prettyName %>: <%= attr.value %>
+        </li>
+        <% }); } %>
+        <li>
+        	<!--<button class="edit-attrs-button full-button" style="display:none;">Edycja atrybutów</button>-->
+        </li>
+    </ul>
+    <div class="block-buttons-container">
+    	<div class="clear-media-button remove-womi-image" style="display: block"></div>
+    	<div class="add-media-button add-womi-image" style="display: block"></div>
+    	<div class="edit-attrs-button attrs-womi-image" style="display: block"></div>
+    	<div class="edit-media-button change-womi-image" style="display: block"></div>
+    </div>
+</div>

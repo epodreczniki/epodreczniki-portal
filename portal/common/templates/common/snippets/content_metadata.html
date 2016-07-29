@@ -1,0 +1,7 @@
+<div id="{{ content.category }}-metadata" style="display: none"
+    data-{{ content.category }}-identifier="{{ content.identifier }}"
+    data-{{ content.category }}-version="{{ content.version }}"
+    {% include "common/snippets/womi_references.html" with content=content only %}
+    {% include "common/snippets/data_attributes.html" with content=content only %}
+>
+</div>

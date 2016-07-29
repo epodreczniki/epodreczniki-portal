@@ -1,0 +1,169 @@
+// LEGEND
+
+.reader-content .table .table-of-mark-tasks td {
+    width: auto;
+}
+
+// ICONS
+
+@packagePath: "icons/standard-2-matematyka";
+
+.reader-content {
+
+    .revisal { // Już wiesz
+        .revisal-header {
+            .label {
+                background-image: url('@{packagePath}/icon-revisal.svg');
+            }
+        }
+    }
+
+    .concept {
+        .concept-header {
+            .label {
+                background-image: url('@{packagePath}/icon-concept-and-definition.svg');
+            }
+        }
+    }
+
+    .definition {
+        .definition-header {
+            .label {
+                background-image: url('@{packagePath}/icon-concept-and-definition.svg');
+            }
+        }
+    }
+
+    .example {
+        .example-header {
+            .label {
+                background-image: url('@{packagePath}/icon-example.svg');
+            }
+        }
+    }
+
+    .exercise {
+
+        &.on-paper {
+            .exercise-header {
+                .label {
+                    background-image: url('@{packagePath}/icon-exercise-on-paper.svg');
+                }
+            }
+        }
+
+        .exercise-header {
+
+            .label {
+                background-image: url('@{packagePath}/icon-exercise.svg');
+            }
+        }
+
+        .exercise-contents {
+
+            .solution-toggles,
+            .commentary-toggles,
+            .note-toggle {
+                input[value='Pokaż odpowiedź'],
+                input[value='Ukryj odpowiedź'] {
+                    background-image: url('@{packagePath}/icon-exercise-answer.svg');
+                }
+                input[value='Pokaż rozwiązanie'],
+                input[value='Ukryj rozwiązanie'] {
+                    background-image: url('@{packagePath}/icon-exercise-solution.svg');
+                }
+                input[value='Pokaż wskazówkę'],
+                input[value='Ukryj wskazówkę'] {
+                    background: #fff url('@{packagePath}/icon-exercise-hint.svg') center center/100% auto no-repeat !important;
+                }
+            }
+
+            .exercise-buttons {
+                button.check { // Sprawdź
+                    background-color: #fff;
+                    background-image: url('@{packagePath}/icon-exercise-check.svg') !important;
+                }
+                button.recreate { // Nowy przykład
+                    background: #fff url('@{packagePath}/icon-exercise-new.svg') center center/100% auto no-repeat !important;
+                }
+                button.defaults { // Ustawienia domyślne
+                    background-image: url('@{packagePath}/icon-exercise-default.svg') !important;
+                }
+                input[value='Sprawdź'] {
+                    background-image: url('@{packagePath}/icon-exercise-check.svg') !important;
+                }
+                input[value='Wskazówka'] {
+                    background-image: url('@{packagePath}/icon-exercise-hint.svg') !important;
+                }
+            }
+        }
+
+        .womi-exercise-3rd-party-container {
+
+            .exercise-buttons {
+                button.check { // Sprawdź
+                    background: #fff url('@{packagePath}/icon-exercise-check.svg') center center/100% auto no-repeat !important;
+                }
+                button.recreate { // Nowy przykład
+                    background: #fff url('@{packagePath}/icon-exercise-new.svg') center center/100% auto no-repeat !important;
+                }
+                button.defaults { // Ustawienia domyślne
+                    background: #fff url('@{packagePath}/icon-exercise-default.svg') center center/100% auto no-repeat !important;
+                }
+            }
+        }
+
+        .womi-exercise-container {
+
+            .exercise-buttons {
+                button.check { // Sprawdź
+                    background: #fff url('@{packagePath}/icon-exercise-check.svg') center center/100% auto no-repeat !important;
+                }
+                button.hint { // Podpowiedź
+                    background: #fff url('@{packagePath}/icon-exercise-hint.svg') center center/100% auto no-repeat !important;
+                }
+                button.recreate { // Nowy przykład
+                    background: #fff url('@{packagePath}/icon-exercise-new.svg') center center/100% auto no-repeat !important;
+                }
+                button.defaults { // Ustawienia domyślne
+                    background: #fff url('@{packagePath}/icon-exercise-default.svg') center center/100% auto no-repeat !important;
+                }
+                button.save { // Zapisz stan
+                    background: #fff url('@{packagePath}/icon-exercise-save.svg') center center/100% auto no-repeat !important;
+                }
+            }
+        }
+    }
+
+    .note-tip { // Wskazówka
+        .note-header {
+            .label {
+                background-image: url('@{packagePath}/icon-note-hint.svg');
+            }
+        }
+    }
+
+    .note-important { // Ważne
+        .note-header {
+            .label {
+                background-image: url('@{packagePath}/icon-note-important.svg');
+            }
+        }
+    }
+
+    .note-warning { // Uwaga/Ostrzeżenie
+        .note-header {
+            .label {
+                background-image: url('@{packagePath}/icon-note-warning.svg');
+            }
+        }
+    }
+
+    .rule { // Reguła
+        .rule-header {
+            .label {
+                background-image: url('@{packagePath}/icon-rule.svg');
+            }
+        }
+    }
+}

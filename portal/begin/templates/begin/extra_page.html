@@ -1,0 +1,63 @@
+{% extends "begin/base.html" %}
+{% load wagtailcore_tags begin_tags %}
+
+
+{% if self.date %}
+    {% block heading %}
+        <div class="page-header">
+            <h2>{{ self.title }} {{ self.date }}</h2>
+        </div>
+    {% endblock %}
+{% endif %}
+
+{% block content %}
+    {% include "begin/includes/page_header.html" with page=self request=request only %}
+
+    <div class="content-wrapper page-content-wrapper clearfix">
+
+        <!-- BEGIN .main-content -->
+        <div class="main-content page-content">
+
+            <!-- BEGIN .inner-content-wrapper -->
+            <div class="inner-content-wrapper">
+                <div class="gallery">
+
+                    {% if self.extra %}
+                        {% with items_tuple=self.extra.items_by_group %}
+                            {% if items_tuple.0 %}
+                                {% for group in items_tuple.0 %}
+                                    <h2>{{ group.name }}</h2>
+                                    {% for item in group.items %}
+                                        {% include 'begin/includes/extra_item_render.html' with item=item %}
+                                    {% endfor %}
+                                {% endfor %}
+
+                            {% endif %}
+
+                            {% if items_tuple.0 and items_tuple.1 %}
+                            <h2>Pozostałe elementy</h2>
+
+                            {% endif %}
+
+                            {% if items_tuple.1 %}
+                                {% for item in items_tuple.1 %}
+                                    {% include 'begin/includes/extra_item_render.html' with item=item %}
+                                {% endfor %}
+                            {% endif %}
+
+
+                        {% endwith %}
+                    {% endif %}
+                    <br style="clear: both;">
+                </div>
+
+
+            </div>
+
+            <!-- END .main-content -->
+        </div>
+
+        {% include "begin/includes/sidebar.html" with page=self side="right" %}
+        <!-- END .content-wrapper -->
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'topbar_base.html' %}
+
+{% load common_ext %}
+
+{% comment %} Template for KZD-like topbar: base without the search button {% endcomment %}
+
+{% block topbar_title %}
+    <div id="topbar-title" class="title title-link"><a href="{% host_url 'www' 'kzd_main' %}">Katalog Zasobów Dodatkowych</a></div>
+{% endblock %}
+
+{% block search_button %}
+{% endblock %}

@@ -1,0 +1,252 @@
+.reader-content {
+    .exercise {
+        .exercise-contents {
+            .womi-container {
+//                padding: 0;
+            }
+
+            .solution {
+                padding: @space-B;
+                background-color: #f0f5fa;
+            }
+
+            .commentary {
+                background-color: #f0f5fa;
+            }
+
+            .equation {
+                overflow-x: auto;
+                overflow-y: hidden;
+                &::-webkit-scrollbar {
+                    width:5px;
+                    height: 5px;
+                    opacity: 0.5;
+                }
+                &::-webkit-scrollbar-thumb {
+                    border-radius: 10px;
+                }
+            }
+
+            .note-tip {
+                margin: 0;
+                margin-top: @space-A;
+            }
+
+            .solution-toggles,
+            .commentary-toggles,
+            .note-toggle {
+                margin: 0;
+                padding: 0;
+
+                input[value='Pokaż odpowiedź'],
+                input[value='Ukryj odpowiedź'] {
+                    width: 32px;
+                    height: 32px;
+                    margin: 0;
+                    margin-top: @space-A;
+                    padding: 0;
+                    border: 0;
+                    border-radius: 0;
+                    background-image: url('../../../img/new-icons/variants/matematyka/answer.svg');
+                    background-repeat: no-repeat;
+                    background-size: 100% auto;
+                    background-position: center center;
+                    color: rgba(255, 255, 255, 0);
+
+                    &:hover, &:focus {
+                        background-color: #fff;
+                        border: #3b99fc solid 2px;
+                        width: 36px;
+                        height: 36px;
+                        margin: 14px -2px -2px 0;
+                    }
+                }
+
+                input[value='Pokaż rozwiązanie'],
+                input[value='Ukryj rozwiązanie'] {
+                    width: 32px;
+                    height: 32px;
+                    margin: 0;
+                    margin-top: @space-A;
+                    padding: 0;
+                    border: 0;
+                    border-radius: 0;
+                    background-image: url('../../../img/new-icons/variants/matematyka/solution.svg');
+                    background-repeat: no-repeat;
+                    background-size: 100% auto;
+                    background-position: center center;
+                    color: rgba(255, 255, 255, 0);
+
+                    &:hover, &:focus {
+                        background-color: #fff;
+                        border: #3b99fc solid 2px;
+                        width: 36px;
+                        height: 36px;
+                        margin: 14px -2px -2px 0;
+                    }
+                }
+
+                input[value='Pokaż wskazówkę'],
+                input[value='Ukryj wskazówkę'] {
+                    width: 32px;
+                    height: 32px;
+                    margin: 0;
+                    margin-top: @space-A;
+                    padding: 0;
+                    border: 0;
+                    border-radius: 0;
+                    color: rgba(255,255,255,0);
+                    background: #fff url('../../../img/new-icons/variants/matematyka/hint.svg') center center/100% auto no-repeat !important;
+
+                    &:hover, &:focus {
+                        background-color: #fff;
+                    }
+                }
+            }
+
+            .exercise-buttons {
+                clear: both;
+                height: 32px;
+                margin-right: 5px;
+
+                &:empty {
+                    display: none;
+                }
+
+                button {
+                    float: right;
+                    width: 32px;
+                    height: 32px;
+                    padding: 0;
+                    border: 0;
+                    border-radius: 0;
+                    background-repeat: no-repeat;
+                    background-size: 100% auto;
+                    background-position: center center;
+                    color: rgba(255, 255, 255, 0);
+
+                    &:hover, &:focus {
+                        overflow: hidden;
+                        outline: #3b99fc solid 2px;
+                        background-color: #fff;
+                        -moz-outline: #3b99fc auto 5px;
+                    }
+                }
+
+                button.check { // Sprawdź
+                    background-image: url('../../../img/new-icons/variants/matematyka/check.svg') !important;
+                }
+
+                button.recreate { // Nowy przykład
+                    background: #fff url('../../../img/new-icons/variants/matematyka/new.svg') center center/100% auto no-repeat !important;
+                }
+
+                button.defaults { // Ustawienia domyślne
+                    background-image: url('../../../img/new-icons/variants/matematyka/default.svg') !important;
+                }
+
+                input[value='Sprawdź'], input[value='Wskazówka'] {
+                    float: right;
+                    width: 32px;
+                    height: 32px;
+                    padding: 0;
+                    border: 0;
+                    border-radius: 0;
+                    background-color: #fff;
+                    background-repeat: no-repeat;
+                    background-size: 100% auto;
+                    background-position: center center;
+                    color: rgba(255, 255, 255, 0);
+
+                    &:hover, &:focus {
+                        background-color: #fff;
+                    }
+                }
+
+                input[value='Sprawdź'] {
+                    background-image: url('../../../img/new-icons/variants/matematyka/check.svg') !important;
+                }
+
+                input[value='Wskazówka'] {
+                    background-image: url('../../../img/new-icons/variants/matematyka/hint.svg') !important;
+                }
+            }
+        }
+
+        .womi-exercise-3rd-party-container { // Temporary overwrite, TODO: clean this up.
+            .exercise-buttons {
+
+                button {
+                    float: right;
+                    width: 32px;
+                    height: 32px;
+                    margin: 0 0 0 @space-A;
+                    padding: 0;
+                    border: 0;
+                    border-radius: 0;
+                    color: rgba(255, 255, 255, 0);
+
+                    &:hover {
+                        background-color: #fff;
+                    }
+                }
+
+                button.check { // Sprawdź
+                    background: #fff url('../../../img/new-icons/variants/matematyka/check.svg') center center/100% auto no-repeat !important;
+                }
+
+                button.recreate { // Nowy przykład
+                    background: #fff url('../../../img/new-icons/variants/matematyka/new.svg') center center/100% auto no-repeat !important;
+                }
+
+                button.defaults { // Ustawienia domyślne
+                    position: relative;
+                    bottom: 0;
+                    background: #fff url('../../../img/new-icons/variants/matematyka/default.svg') center center/100% auto no-repeat !important;
+                }
+            }
+        }
+
+        .womi-exercise-container { // Temporary overwrite, TODO: clean this up.
+            .exercise-buttons {
+
+                button {
+                    float: right;
+                    width: 32px;
+                    height: 32px;
+                    margin-left: @space-A;
+                    padding: 0;
+                    border: 0;
+                    border-radius: 0;
+                    color: rgba(255, 255, 255, 0);
+
+                    &:hover {
+                        background-color: #fff;
+                    }
+                }
+
+                button.check { // Sprawdź
+                    background: #fff url('../../../img/new-icons/variants/matematyka/check.svg') center center/100% auto no-repeat !important;
+                }
+
+                button.hint { // Podpowiedź
+                    background: #fff url('../../../img/new-icons/variants/matematyka/hint.svg') center center/100% auto no-repeat !important;
+                }
+
+                button.recreate { // Nowy przykład
+                    background: #fff url('../../../img/new-icons/variants/matematyka/new.svg') center center/100% auto no-repeat !important;
+                }
+
+                button.defaults { // Ustawienia domyślne
+                    position: relative;
+                    bottom: 0;
+                    background: #fff url('../../../img/new-icons/variants/matematyka/default.svg') center center/100% auto no-repeat !important;
+                }
+
+                button.save { // Zapisz stan
+                    background: #fff url('../../../img/new-icons/variants/matematyka/save.svg') center center/100% auto no-repeat !important;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,67 @@
+{% extends "editres/base.html" %}
+{% load editres_general %}
+
+{% block main_panel %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <span>Dostępnych przestrzeni: {{ space_drivers|length }}</span>
+                </div>
+                <div class='col-sm-3 col-xs-6'>
+                    <button
+                        data-cascade-forms-container-id="operations-section"
+                        data-cascade-forms-provider-url="{% url 'editstore_create_space' %}"
+                        data-cascade-forms-list-prepend-id="editres-spaces"
+                        class="cascade-forms-initializer btn btn-success  btn-sm"
+                        autocomplete='off'
+                    >
+                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Dodaj nową przestrzeń
+                    </button>
+                </div>
+
+                <div class='col-sm-3 col-xs-6'>
+                    <button
+                        class="btn btn-info btn-sm"
+                        autocomplete='off'
+                        onclick="$('#general-description').toggle('fast')"
+                    >
+                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> O edycji online...
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body" id="operations-section" style="display: none">
+
+        </div>
+        <div class="panel-body" id='general-description' style="{% if space_drivers %}display: none; {% endif %}">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="welcome-page-description">
+
+                        <h2 class="welcome-page-description-header">Witaj w systemie edycji online platformy epodreczniki.pl!</h2>
+
+                        <p>System edycji treści pozwala na tworzenie i&nbsp;modyfikację podręczników.</p>
+                        <p>Wykorzystaj istniejące treści bądź stwórz własne.</p>
+                        <p>Dostarczamy narzędzia do tworzenia podręczników, pojedynczych lekcji (modułów) i&nbsp;ćwiczeń interaktywnych.</p>
+                        <p>Nasze edytory nie wymagają od użytkownika specjalistycznej wiedzy - każdy może zostać autorem swojego podręcznika. </p>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock main_panel %}
+
+{% block following_panels %}
+
+<div class="row" id='editres-spaces'>
+    {% for space_driver in space_drivers %}
+        {% space_tile space_driver=space_driver %}
+    {% empty %}
+        <h4>Brak przestrzeni!</h4>
+    {% endfor %}
+</div>
+
+{% endblock following_panels %}

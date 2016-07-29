@@ -1,0 +1,35 @@
+<div class="extended-kzd-description-inner">
+
+    <div class="kzd-middle">
+        <h3><%= attributes.title %></h3>
+        <br/>
+        <span class="kzd-title">Opis:</span>
+        <p>
+        <%= attributes.extended.description %>
+        </p>
+        <br/>
+        <span class="kzd-title">Autorzy:</span>
+        <p>
+        <%= attributes.author %>
+        </p>
+        <span class="kzd-title">Poziom:</span>
+        <p>
+            <%= nameEduLevel %>
+        </p>
+        <br/>
+        <span class="kzd-title">Kategoria:</span>
+        <p>
+            <%= attributes.extended.category %>
+        </p>
+        <br/>
+        <span class="kzd-title">Licencja:</span>
+        <p>
+            <%= f.resolveLicense(attributes.license, 'id').name %>
+        </p>
+        <br/>
+        <span class="kzd-title">Słowa kluczowe:</span>
+        <br/>
+        <div class="kzd-tags">
+        </div>
+    </div>
+</div>

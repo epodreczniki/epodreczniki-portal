@@ -1,0 +1,310 @@
+//Colours for classes in one education level:
+@class-first: #214785;
+@class-second: #ca252c;
+@class-third: #f78320;
+@class-fourth: #1e991c;
+
+@class-first-hover: #315a92;
+@class-second-hover: #b12027;
+@class-third-hover: #df7b26;
+@class-fourth-hover: #297a38;
+
+// spis podręczników
+
+.content {
+    width: 100%;
+    max-width: 980px;
+    height: calc(~"100% - " @footer-height ~" - " 3*@standard-padding+@button-size);
+    margin: 0 auto;
+    padding-top: @topbar-height; //3*@standard-padding+@button-size; // topbar height
+
+}
+
+.content.fullscreen-bubbles {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+
+    .level-box {
+        width: 100%;
+        max-width: 980px;
+        margin: 0 auto;
+    }
+}
+
+
+#filters {
+    padding: 16px 30px 116px+@standard-padding 30px;
+    text-align: center;
+    display: -ms-flexbox;
+    display: -webkit-flex; // safari
+    display: flex;
+    -ms-flex-pack: start;
+    -webkit-justify-content: flex-start; // safari
+    justify-content: flex-start;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 690px;
+    margin: 0 auto;
+
+    button {
+        width: 180px;
+        margin: 0;
+        padding: 8px;
+        border: 1px solid #fff;
+        color: #fff;
+        text-align: center;
+        line-height: 32px;
+        font-family: arial, sans-serif;
+        font-weight: bold;
+        font-size: 14px;
+        cursor: pointer;
+
+        &:hover, &:focus {
+            background-color: #fff;
+            border: 1px solid #3d71b8;
+        }
+    }
+
+    .btn-group {
+        margin: 4px;
+        display: inline;
+    }
+
+    @media (max-width: 639px) {
+        padding: 16px 0 16px+@standard-padding 0;
+
+        button {
+            &:last-child {
+                margin-top: 8px;
+            }
+        }
+    }
+
+    @media (max-width: 400px) {
+        padding: 12px 0 12px+@standard-padding 0;
+
+        button {
+            margin: 0;
+            margin-top: 8px;
+        }
+    }
+}
+.books-container {
+    position: relative;
+    width: 100%;
+
+}
+
+.book-holder {
+    float: left;
+    width: 200px;
+    margin: 15px;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    height: 255px;
+
+    &:last-child {
+        margin-bottom: @standard-padding + @footer-height;
+    }
+
+    .book-title {
+        box-sizing: border-box;
+        overflow: hidden;
+        height: 65px;
+        padding: 6px 2px;
+        color: #fff;
+        background-color: #3d71b8;
+        display: inline-block;
+        vertical-align: middle;
+        position: absolute;
+        top: 195px;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 500;
+        -webkit-transition: top 0.1s;
+        -moz-transition: top 0.1s;
+        -o-transition: top 0.1s;
+        -ms-transition: top 0.1s;
+    }
+
+    .book-title-text {
+        line-height: 1.2;
+        font-family: open_sanssemibold, sans-serif;
+        font-weight: 300;
+        font-size: 14px;
+        text-align: center;
+        display: inline-block;
+        vertical-align: middle;
+        padding-top: 13px;
+        &.with-title {
+            display: block;
+            padding-top: 3px;
+        }
+    }
+
+    .book-cover {
+        box-sizing: border-box;
+        overflow: hidden;
+        width: 100%;
+        height: 255px;
+        background: white;
+        position: relative;
+        -webkit-transition: height 0.1s, margin 0.1s;
+        -moz-transition: height 0.1s, margin 0.1s;
+        -o-transition: height 0.1s, margin 0.1s;
+        -ms-transition: height 0.1s, margin 0.1s;
+
+        img {
+            width: 100%;
+            position: relative;
+            z-index: 200;
+        }
+
+        &.white-appl {
+            -webkit-transition: none;
+            -moz-transition: none;
+            -o-transition: none;
+            -ms-transition: none;
+
+            img {
+                opacity: 0.5;
+            }
+        }
+    }
+
+    &:hover, &:focus {
+
+        .book-title {
+            top: 225px;
+            background-color: @class-first-hover;
+        }
+
+        .book-cover {
+            margin: -30px 0 0 0;
+            height: 285px;
+        }
+    }
+
+    &.dummy {
+        &:hover, &:focus {
+
+            .book-title {
+                top: 195px;
+            }
+
+            .book-cover {
+                margin: 0;
+                height: 255px;
+            }
+        }
+    }
+}
+
+a:focus .book-holder {
+  .book-title {
+    top: 215px;
+    background-color: @class-first-hover;
+  }
+
+  .book-cover {
+    margin: -20px 0 0 0;
+    height: 275px;
+  }
+}
+
+[data-active-ep-class='1'], [data-active-ep-class='4'] {
+    .book-title {
+        background-color: #3d71b8;
+    }
+
+    .book-cover:hover {
+        .book-title {
+            background-color: @class-first-hover;
+        }
+    }
+
+  a:focus > .book-holder {
+    .book-title {
+      background-color: @class-first-hover;
+    }
+  }
+}
+
+[data-active-ep-class='2'], [data-active-ep-class='5'] {
+    .book-title {
+        background-color: @class-second;
+    }
+
+    .book-cover:hover {
+        .book-title {
+            background-color: @class-second-hover;
+        }
+    }
+  a:focus > .book-holder {
+    .book-title {
+      background-color: @class-second-hover;
+    }
+  }
+}
+
+[data-active-ep-class='3'], [data-active-ep-class='6'] {
+    .book-title {
+        background-color: @class-third;
+    }
+
+    .book-cover:hover {
+        .book-title {
+            background-color: @class-third-hover;
+        }
+    }
+  a:focus > .book-holder {
+    .book-title {
+      background-color: @class-third-hover;
+    }
+  }
+}
+
+//high school can have four classes and styling should be different than for class 4 of primary school
+[data-active-ep-class='4'][data-active-level-id='4'] {
+    .book-title {
+        background-color: @class-fourth;
+    }
+
+    .book-cover:hover {
+      .book-title {
+        background-color: @class-fourth-hover;
+      }
+    }
+  a:focus > .book-holder {
+        .book-title {
+            background-color: @class-fourth-hover;
+        }
+    }
+}
+
+
+
+.no-collections {
+    font-family: arial, sans-serif;
+    width: 100%!important;
+
+}
+
+@media (max-width: 939px) {
+    #filters, #filters-123 {
+        position: relative;
+        padding-top: 120px !important;
+    }
+}
+
+@media (max-width: 689px) {
+    #filters, #filters-123 {
+        -ms-flex-pack: center;
+        -webkit-justify-content: center; // safari
+        justify-content: center;
+    }
+}

@@ -1,0 +1,33 @@
+{% extends "front/details_root.html" %}
+
+{% block preview_diagnostics_section %}
+
+{% if collection.is_source %}
+<div>
+
+    {% if collection.get_number_of_modules == 0 %}
+    <h3>Podgląd kolekcji nie jest dostępny.</h3>
+    <p>Kolekcja nie zawiera żadnych modułów.</p>
+    {% elif not collection.transformation_notifications %}
+    <h3>Podgląd kolekcji nie jest jeszcze dostępny.</h3>
+    <p>Spróbuj ponownie później.</p>
+    {% for n in notifications %}
+        {% if n.comment %}
+            <p>{{ n.comment }}</p>
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+</div>
+{% endif %}
+
+{% if collection.transformation_notifications %}
+<div class="collection-notifications">
+    {% for n in collection.transformation_notifications %}
+        <div class="collection-notification collection-notification-{{ n.type }}">
+            {{ n.message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

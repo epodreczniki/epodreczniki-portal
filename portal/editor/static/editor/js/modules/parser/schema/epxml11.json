@@ -1,0 +1,367 @@
+{
+    "root": {
+
+        "children": [
+            {
+                "namespace": "",
+                "tag": "document",
+                "attrs": ["id", "module-id", "cnxml-version"],
+                "children": [
+                    {
+                        "namespace": "",
+                        "tag": "title"
+                    },
+                    {
+                        "namespace": "",
+                        "tag": "comment",
+                        "type": "comment"
+                    },
+                    {
+                        "namespace": "",
+                        "tag": "metadata",
+                        "attrs": ["mdml-version"],
+                        "children": [
+                            {
+                                "namespace": "md",
+                                "tag": "content-id"
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "repository"
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "version"
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "created"
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "revised"
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "title"
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "language"
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "license",
+                                "attrs": ["url"]
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "actors",
+                                "type": "object",
+                                "related": "person",
+                                "children": [
+                                    {
+                                        "namespace": "md",
+                                        "tag": "person",
+                                        "attrs": ["userid"],
+                                        "children": [
+                                            {
+                                                "namespace": "md",
+                                                "tag": "firstname",
+                                                "label": "imię"
+                                            },
+                                            {
+                                                "namespace": "md",
+                                                "tag": "surname",
+                                                "label": "nazwisko"
+                                            },
+                                            {
+                                                "namespace": "md",
+                                                "tag": "fullname",
+                                                "label": "pełna nazwa"
+                                            },
+                                            {
+                                                "namespace": "md",
+                                                "tag": "email"
+                                            }
+                                        ]
+
+                                    }
+                                ]
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "roles",
+                                "type": "object",
+                                "children": [
+                                    {
+                                        "namespace": "md",
+                                        "tag": "role",
+                                        "attrs": ["type"]
+                                    }
+                                ]
+                            },
+                            {
+                                "namespace": "ep",
+                                "tag": "e-textbook-module",
+                                "type": "object",
+                                "attrs": ["ep:version", "ep:recipient", "ep:content-status"],
+                                "children": [
+                                	{
+                                		"namespace": "ep",
+                                        "tag": "presentation",
+                                        "type": "object",
+                                        "children": [
+                                        	{
+                                        		"namespace": "ep",
+                                        		"tag": "width"
+                                    		},
+		                                    {
+        		                                "namespace": "ep",
+                		                        "tag": "height"
+                        		            },
+                                		    {
+                                        		"namespace": "ep",
+		                                        "tag": "type"
+        		                            },
+                		                    {
+                        		                "namespace": "ep",
+                                		        "tag": "template"
+                                    		},
+                                    		{
+                                        		"namespace": "ep",
+                                        		"tag": "fixed-tile-layout"
+                                    		}
+                                        ]
+                                	},
+                                    {
+                                        "namespace": "ep",
+                                        "tag": "core-curriculum-entries",
+                                        "type": "object",
+                                        "children": [
+                                            {
+                                                "namespace": "ep",
+                                                "tag": "core-curriculum-entry",
+                                                "children": [
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "core-curriculum-stage",
+                                                        "label": "poziom edukacyjny",
+                                                        "attrs":["ep:key"]
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "core-curriculum-school",
+                                                        "label": "szkoła",
+                                                        "attrs":["ep:key"]
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "core-curriculum-subject",
+                                                        "label": "przedmiot",
+                                                        "attrs":["ep:key"]
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "core-curriculum-version",
+                                                        "label": "wersja",
+                                                        "attrs":["ep:key"]
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "core-curriculum-ability",
+                                                        "label": "umiejętności",
+                                                        "attrs":["ep:key"]
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "authors-comment",
+                                                        "label" : "komentarz"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "namespace": "",
+                        "tag": "content",
+                        "type": "object",
+                        "children": [
+                            {
+                                "namespace": "",
+                                "tag": "section",
+                                "attrs": ["id"],
+                                "children": [
+                                    {
+                                        "namespace": "ep",
+                                        "tag": "parameters",
+                                        "children": [
+                                            {
+                                                "namespace": "ep",
+                                                "tag": "tile"
+                                            },
+                                            {
+                                                "namespace": "ep",
+                                                "tag": "role"
+                                            },
+                                            {
+                                                "namespace": "ep",
+                                                "tag": "left"
+                                            },
+                                            {
+                                                "namespace": "ep",
+                                                "tag": "top"
+                                            },
+                                            {
+                                                "namespace": "ep",
+                                                "tag": "width"
+                                            },
+                                            {
+                                                "namespace": "ep",
+                                                "tag": "height"
+                                            },
+                                            {
+                                                "namespace": "ep",
+                                                "tag": "margin-left"
+                                            },
+                                            {
+                                                "namespace": "ep",
+                                                "tag": "margin-right"
+                                            },
+                                            {
+                                                "namespace": "ep",
+                                                "tag": "margin-top"
+                                            },
+                                            {
+                                                "namespace": "ep",
+                                                "tag": "margin-bottom"
+                                            }
+
+
+                                        ]
+                                    },
+                                    {
+                                        "namespace": "",
+                                        "tag": "para",
+                                        "attrs": ["id", "ep:role"],
+                                        "children": [
+                                            {
+                                                "namespace": "ep",
+                                                "tag": "reference",
+                                                "attrs": ["ep:id"],
+                                                "children": [
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "width"
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "type"
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "context"
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "reading-room"
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "hide-caption"
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "zoomable"
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "embedded"
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "autoplay"
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "transparent"
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "avatar"
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "content",
+                                                        "attrs": ["ep:id", "ep:format"]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "namespace": "ep",
+                                                "tag": "gallery",
+                                                "attrs": ["ep:start-on", "ep:thumbnails", "ep:titles", "ep:format-contents", "ep:miniatures-only", "ep:view-width", "ep:view-height"],
+                                                "children": [
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "reference",
+                                                        "attrs": ["ep:id", "ep:instance-id"],
+                                                        "children":[
+                                                            { 
+                                                                "namespace": "ep",
+                                                                "tag": "zoomable"
+                                                            },
+                                                            { 
+                                                                "namespace": "ep",
+                                                                "tag": "magnifier"
+                                                            },
+                                                            { 
+                                                                "namespace": "ep",
+                                                                "tag": "content",
+                                                                "attrs": ["ep:id", "ep:format"]
+                                                            },
+                                                            { 
+                                                                "namespace": "ep",
+                                                                "tag": "related",
+                                                                "children":[
+                                                                     { 
+                                                                        "tag": "reference",
+                                                                        "attrs": ["ep:id", "ep:instance-id"]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "namespace": "cnxml",
+                                                        "tag": "title"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                            	"namespace": "",
+                                        		"tag": "list",
+                                        		"attrs": ["id", "list-type"],
+                                        		"children": [
+                                                    {
+                                                    	"namespace": "",
+                                                    	"tag": "item"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+
+                    }
+                ]
+            }
+        ]
+    }
+}

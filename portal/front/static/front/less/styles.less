@@ -1,0 +1,768 @@
+// --------- -= GRADIENT PATTERN =-  --------- //
+
+//    @color1: #78bced;
+//    @color2: #3899e4;
+//    background-color: mix(@color1, @color2, 60%);
+//    background-image: -moz-linear-gradient(top, @color1, @color2); // FF 3.6+
+//    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@color1), to(@color2)); // Safari 4+, Chrome 2+
+//    background-image: -webkit-linear-gradient(top, @color1, @color2); // Safari 5.1+, Chrome 10+
+//    background-image: -o-linear-gradient(top, @color1, @color2); // Opera 11.10
+//    background-image: linear-gradient(to bottom, @color1, @color2); // Standard, IE10
+//    background-repeat: repeat-x;
+//    filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr=@color1, endColorStr=@color2);
+
+html, body {
+    height: 100%;
+}
+
+body {
+    overflow-y: scroll; // wyświetla pasek przewijania dla treści nie wypełniających długości strony
+    background: @body-bg url('../img/background.svg') no-repeat fixed center 100%;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    @media (max-width: 979px) {
+        padding-top: 0;
+    }
+
+}
+
+*, div, div:active, a, a:active, a:focus {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.nav {
+    margin: 0;
+}
+
+.nav-pills {
+    font-size: 18px;
+
+    .nav-header {
+        margin: 0 0 3px 0;
+        padding: 16px;
+
+        @color1: #e8e8e8;
+        @color2: #d8d8d8;
+        background-color: mix(@color1, @color2, 60%);
+        background-image: -moz-linear-gradient(top, @color1, @color2); // FF 3.6+
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@color1), to(@color2)); // Safari 4+, Chrome 2+
+        background-image: -webkit-linear-gradient(top, @color1, @color2); // Safari 5.1+, Chrome 10+
+        background-image: -o-linear-gradient(top, @color1, @color2); // Opera 11.10
+        background-image: linear-gradient(to bottom, @color1, @color2); // Standard, IE10
+        background-repeat: repeat-x;
+        filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr=@color1, endColorStr=@color2);
+
+        color: @grayDarker;
+        font-size: 18px;
+        font-weight: 300;
+        text-shadow: none; // ??? nie dziala ???
+        text-transform: none;
+        cursor: default;
+
+        i {
+            font-size: 12px;
+        }
+
+    }
+
+    &.nav-stacked > li:last-child > a {
+        margin-bottom: 3px;
+    }
+
+    li > a {
+        margin-top: 0;
+        padding: 16px;
+        background-color: @grayLighter; // kolor tla menu -- stan normalny
+        color: #7f7f7f;
+        line-height: 115%;
+    }
+
+    li > a:hover,
+    li > a:focus {
+        background-color: #e6e6e6; // kolor tla menu -- hover
+        color: #000;
+    }
+
+}
+
+.nav-pills > .active > a,
+.nav-pills > .active > a:hover,
+.nav-pills > .active > a:focus {
+    position: relative;
+    @color1: #ffd000;
+    @color2: #ffaa00;
+    background-color: mix(@color1, @color2, 60%);
+    background-image: -moz-linear-gradient(top, @color1, @color2); // FF 3.6+
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@color1), to(@color2)); // Safari 4+, Chrome 2+
+    background-image: -webkit-linear-gradient(top, @color1, @color2); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient(top, @color1, @color2); // Opera 11.10
+    background-image: linear-gradient(to bottom, @color1, @color2); // Standard, IE10
+    background-repeat: repeat-x;
+    color: #000;
+
+    i {
+        position: absolute;
+        right: 16px;
+        color: #aa7700;
+        font-size: 12px;
+    }
+
+}
+
+.mock-alert {
+
+    h2 {
+        padding: 32px;
+        border: 1px solid;
+    }
+
+    a {
+        padding: 0px 4px;
+        background-color: @mock-alert-a-bg;
+        color: @mock-alert-a;
+    }
+
+}
+
+// --------- -= NAVBAR =-  --------- //
+
+.navbar {
+
+    .nav {
+
+        li {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+
+            a {
+                padding: 26px 0;
+            }
+
+        }
+
+    }
+
+    a.navbar-logo {
+        display: inline-block;
+        margin: 0;
+        padding: 16px 0;
+
+        &:hover, &:active, &:focus {
+            text-decoration: none;
+        }
+
+        @media (max-width: 979px) {
+            padding: 16px 0 16px 20px;
+        }
+
+    }
+
+}
+
+.navbar .navbar-logo {
+    color: @navbar-logo;
+    font-size: 24px;
+    font-weight: 300;
+    text-shadow: none;
+
+    img {
+        height: 42px;
+        width: 36px; // podaję szerokość ze wzg. na bug(?) zw. z renderowaniem svg w safari
+        margin-right: 8px;
+        opacity: 0.4;
+    }
+
+    @media (max-width: 479px) {
+        padding: 24px 0;
+        font-size: 16px;
+    }
+
+}
+
+.navbar.navbar-static-top .nav li a {
+    padding-right: 12px;
+    padding-left: 12px;
+    color: @navbar-nav-li-a;
+    text-shadow: none;
+
+    i {
+        font-size: 20px;
+    }
+
+    &:hover, &:focus {
+        color: @navbar-nav-li-a-hover;
+        background-color: @navbar-nav-li-a-hover-bg;
+    }
+
+}
+
+.navbar .nav {
+
+    @media (max-width: 979px) {
+        margin-right: 20px;
+    }
+
+}
+
+@topbar-height: 42px;
+@topbar-top-margin: 64px;
+
+.topbar-tools {
+    display: block;
+    position: relative;
+    padding: 16px 0;
+
+    ul {
+        padding: 0;
+        margin: 0;
+        float: left;
+        list-style: none;
+    }
+
+    ul.settings {
+
+        ul {
+            display: none;
+            position: absolute;
+            top: @topbar-top-margin;
+            min-width: 198px;
+            width: auto;
+            right: 10px;
+            margin: 0;
+            background: @topbar-tools-settings-bg;
+            border: 3px solid @topbar-tools-settings-border;
+            border-radius: 3px;
+            z-index: @highestZIndex - 100;
+            .topbar-menu-shadow;
+
+            li {
+                padding: 8px 12px;
+            }
+
+            li:hover {
+                background: @topbar-tools-settings-li-hover-bg;
+
+                a {
+                    color: @topbar-tools-gray;
+
+                    i {
+                        // color: @topbar-tools-i;
+                    }
+
+                }
+
+            }
+
+            a {
+                cursor: pointer;
+                color: @topbar-tools-settings-a;
+                text-decoration: none;
+                font-size: 16px;
+                font-family: @sansRegular;
+            }
+
+        }
+
+        ul:before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            right: 0px;
+            border-width: 0 10px 10px;
+            border-style: solid;
+            border-color: @topbar-tools-settings-ul-before transparent;
+            /* reduce the damage in FF3.0 */
+            display: block;
+            width: 0;
+        }
+
+        ul:after {
+            content: "";
+            position: absolute;
+            top: -6px;
+            right: 4px;
+            border-width: 0 6px 6px;
+            border-style: solid;
+            border-color: @topbar-tools-settings-ul-after transparent;
+            /* reduce the damage in FF3.0 */
+            display: block;
+            width: 0;
+        }
+
+    }
+
+    i {
+        //color: @topbar-tools-i;
+        vertical-align: 0;
+    }
+
+    button {
+        background: none;
+        width: 50px;
+        font-size: 20px;
+        height: @topbar-height;
+        line-height: @topbar-height;
+    }
+
+    button.selected {
+        background: @topbar-tools-button-selected-bg;
+
+        i {
+            color: @topbar-tools-button-i;
+        }
+
+    }
+
+    @search-form-width: 250px;
+
+    form.search-form {
+        display: none;
+        position: absolute;
+        top: 64px;
+        right: 4px;
+        margin: 0;
+        border: 3px solid @topbar-tools-search-form-border;
+        border-radius: 3px;
+        height: @topbar-height;
+        width: @search-form-width;
+        z-index: @highestZIndex - 100;
+        .topbar-menu-shadow;
+
+        input {
+            height: @topbar-height;
+            z-index: @highestZIndex;
+            width: @search-form-width - 10;
+            border: 0;
+            border-radius: 0;
+            padding: 0 5px;
+            background: @topbar-tools-search-form-input-bg;
+            color: @topbar-tools-gray;
+            outline: none;
+        }
+
+        @media (max-width: 320px) {
+            width: 220px;
+        }
+
+    }
+
+    form.search-form:before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        right: 10px;
+        border-width: 0 10px 10px;
+        border-style: solid;
+        border-color: @topbar-tools-search-form-before-border transparent;
+        /* reduce the damage in FF3.0 */
+        display: block;
+        width: 0;
+    }
+
+    form.search-form:after {
+        content: "";
+        position: absolute;
+        top: -6px;
+        right: 14px;
+        border-width: 0 6px 6px;
+        border-style: solid;
+        border-color: @topbar-tools-search-form-after-border transparent;
+        /* reduce the damage in FF3.0 */
+        display: block;
+        width: 0;
+    }
+
+    #contact_form {
+        padding-left: 24px;
+    }
+}
+
+// --------- -= INDEX =- --------- //
+
+@color06: #ffd9d9;
+@color07: #ffe8d9;
+@color08: #ffefd9;
+@color09: #fff7d9;
+@color10: #ffffd9;
+@color11: #eef7d9;
+@color12: #dbf3d9;
+@color13: #d9f2f7;
+@color01: #d9e8f4;
+@color02: #d9dcf2;
+@color03: #e8d9f2;
+@color04: #f7d9ec;
+@color05: #fff;
+@color14: #fff;
+
+.mixin_lgbt (@lgbt) {
+    background-color: (@lgbt) !important;
+
+    & a:hover {
+        background-color: (@lgbt) !important;
+    }
+
+}
+
+.matematyka {
+    .mixin_lgbt (@color01);
+}
+
+.fizyka {
+    .mixin_lgbt (@color02);
+}
+
+.informatyka {
+    .mixin_lgbt (@color03);
+}
+
+.przyroda {
+    .mixin_lgbt (@color04);
+}
+
+.jezyk_polski {
+    .mixin_lgbt (@color05);
+}
+
+.chemia {
+    .mixin_lgbt (@color06);
+}
+
+.biologia {
+    .mixin_lgbt (@color07);
+}
+
+.geografia {
+    .mixin_lgbt (@color08);
+}
+
+.edukacja_wczesnoszkolna {
+    .mixin_lgbt (@color09);
+}
+
+.historia_i_spoleczenstwo {
+    .mixin_lgbt (@color10);
+}
+
+.historia {
+    .mixin_lgbt (@color11);
+}
+
+.wiedza_o_spoleczenstwie {
+    .mixin_lgbt (@color12);
+}
+
+.edukacja_dla_bezpieczenstwa {
+    .mixin_lgbt (@color13);
+}
+
+.zajecia_komputerowe {
+    .mixin_lgbt (@color14);
+}
+
+.navigation_section {
+    margin-bottom: 20px;
+
+    a.btn {
+        display: block;
+        margin-top: 16px;
+        padding: 16px;
+        background-color: @navigation-section-btn-bg;
+        color: @navigation-section-btn;
+        font-size: 18px;
+        text-align: left;
+
+        i {
+            margin-right: 16px;
+            padding-bottom: 6px;
+            color: @navigation-section-btn-i;
+            font-size: 12px;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 320px) {
+            font-size: 16px;
+        }
+
+    }
+
+    li i {
+        font-size: 48px;
+        margin: 5px 0 0 0;
+        vertical-align: middle;
+    }
+
+    .test-collections {
+        //    display: block;
+        float: right;
+        //margin-left: 8px;
+        margin-right: 12px; //margin to fit the icon to remove filter
+        padding: 0 5px;
+        background-color: @navigation-section-test-collections-bg;
+        color: @navigation-section-test-collections;
+        font-size: 12px;
+        text-transform: uppercase;
+        vertical-align: 15%;
+        white-space: nowrap;
+    }
+
+}
+
+.booklist {
+    margin-bottom: 144px;
+    padding: 0;
+}
+
+.book {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 16px 0;
+    padding-right: 10px;
+    background-color: @book-bg;
+    border: 1px solid @book-border;
+
+    h3 {
+        margin: 8px 0 0 0;
+        padding: 0;
+        line-height: 28px;
+        font-size: 26px;
+
+        a {
+            word-wrap: break-word;
+        }
+
+        @media (max-width: 480px) {
+            margin-top: 8px;
+            line-height: 20px;
+            font-size: 19px;
+        }
+
+        @media (max-width: 400px) {
+            margin-top: 8px;
+            line-height: 15px;
+            font-size: 15px;
+        }
+
+    }
+
+    h4 {
+        color: @book-h4;
+        font-size: 100%;
+        line-height: 100%;
+        margin-top: 4px;
+
+        @media (max-width: 480px) {
+            font-size: 75%;
+        }
+
+    }
+
+    p.authors {
+        color: @book-authors;
+        line-height: 100%;
+        font-size: 95%;
+
+        @media (max-width: 480px) {
+            font-size: 75%;
+        }
+
+    }
+
+    .authors {
+        margin-top: 4px;
+    }
+
+    a.details_link {
+        display: inline-block;
+        position: absolute;
+        right: 6px;
+        bottom: 6px;
+        padding: 5px 12px;
+        background-color: @book-details-link-bg;
+        color: @book-details-link;
+        line-height: 20px;
+        font-size: 14px;
+
+        &:hover, &:focus {
+            color: @book-details-link-hover;
+            background-color: @book-details-link-bg-hover;
+            text-decoration: none;
+        }
+
+        i {
+            margin: 0;
+            padding-left: 8px;
+            padding-bottom: 4px;
+            vertical-align: middle;
+        }
+
+    }
+
+    .hover-icon {
+        opacity: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        &:hover {
+            opacity: 1;
+            background-color: @book-hover-icon-hover-bg;
+        }
+
+    }
+
+}
+
+.imgplaceholder {
+    float: left;
+    width: 102px;
+    height: 144px; // 144px = 3x li + margins between height
+    margin: 0 12px 0 0;
+}
+
+.placeholder {
+
+    img {
+        opacity: 0.35;
+    }
+
+    h3 {
+        margin-top: 8px;
+        color: @placeholder-h3;
+        font-size: 26px;
+        line-height: 28px;
+
+        @media (max-width: 480px) {
+            margin-top: 8px;
+            line-height: 20px;
+            font-size: 19px;
+        }
+
+        @media (max-width: 400px) {
+            margin-top: 8px;
+            line-height: 15px;
+            font-size: 15px;
+        }
+
+    }
+
+    .authors {
+        color: @placeholder-authors;
+    }
+
+}
+
+.empty {
+    height: 144px;
+    background-color: @empty-bg;
+    line-height: 100%;
+
+    h3 {
+        margin: 0;
+        padding: 16px 26px 8px 26px;
+        color: @empty-h3;
+    }
+
+    P {
+        padding: 0 26px;
+        line-height: 125%;
+        color: @empty-p;
+    }
+
+}
+
+// --------- -= OTHERS =-  --------- //
+
+#cookies-alert {
+    display: none;
+    width: 100%;
+
+    p {
+        display: block;
+        overflow: auto;
+        margin: 0;
+        padding: 18px;
+        background-color: @cookies-alert-p-bg;
+        color: @cookies-alert-p;
+        font-size: 20px;
+        line-height: 24px;
+
+        @media (max-width: 767px) {
+            margin-left: -20px;
+            margin-right: -20px;
+        }
+
+    }
+
+    a {
+        padding-left: 8px;
+        color: @cookies-alert-a;
+        font-size: 24px;
+        text-shadow: none;
+        opacity: 1;
+    }
+
+}
+
+.about_background, .terms_background, .stats_background {
+    margin-bottom: 16px;
+    padding: 16px;
+    background-color: @others-background-bg;
+    color: @others-background;
+    border: 1px solid @others-background-border;
+    border-bottom: 1px solid @others-background-border-bottom;
+
+    h2, h4 {
+        color: @others-background-headers;
+    }
+
+    p {
+        margin: 0 auto 16px;
+        max-width: 75%;
+        font-size: 18px;
+        line-height: 125%;
+
+        @media (max-width: 767px) {
+            max-width: 100%;
+        }
+
+    }
+
+}
+
+.clean {
+    clear: both;
+}
+
+.hidden-text {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.changelog-section {
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        list-style-type: none;
+        list-style-position: inside;
+
+        &:before {
+            margin-right: 10px;
+            content: "-";
+        }
+
+    }
+
+}

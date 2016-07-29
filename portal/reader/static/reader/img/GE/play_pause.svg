@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Warstwa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="248px" height="62px" viewBox="0 -1.5 248 62" enable-background="new 0 -1.5 248 62" xml:space="preserve">
+<g>
+	<g>
+		<circle fill="#F15A24" cx="31" cy="29.5" r="26"/>
+		<path fill="#C74B1E" d="M26.31,43.818l10.923,10.924c6.99-1.721,12.865-6.268,16.347-12.361L35.673,24.473L26.31,43.818z"/>
+		
+			<polygon fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.8125" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			26.531,43.328 40.359,29.5 26.531,15.671 		"/>
+	</g>
+	<g>
+		<path fill="#FFFFFF" d="M31,3.5c14.359,0,26,11.641,26,26c0,14.357-11.641,26-26,26S5,43.857,5,29.5C5,15.141,16.641,3.5,31,3.5
+			 M31-1.5c-17.093,0-31,13.906-31,31s13.907,31,31,31s31-13.906,31-31S48.093-1.5,31-1.5L31-1.5z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<ellipse fill="#1B1464" cx="92.934" cy="29.5" rx="25.994" ry="26"/>
+		
+			<polygon fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.8124" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			88.466,43.328 102.291,29.5 88.466,15.672 		"/>
+	</g>
+	<g>
+		<path fill="#FFFFFF" d="M93,3.5c14.357,0,25.994,11.639,25.994,26c0,14.361-11.637,26-25.994,26
+			c-14.355,0-25.995-11.639-25.995-26C67.005,15.139,78.645,3.5,93,3.5 M93-1.5c-17.093,0-31,13.906-31,31s13.907,31,31,31
+			c17.093,0,31-13.906,31-31S110.093-1.5,93-1.5L93-1.5z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<circle fill="#379B68" cx="155" cy="29.5" r="26.441"/>
+		<path fill="#2D8A5C" d="M180.496,36.508L163.04,19.052l-2.649,10.655l-10.781-10.782l-2.821,20.714l15.326,15.325
+			C171.031,52.478,178.045,45.439,180.496,36.508z"/>
+		
+			<line fill="none" stroke="#FFFFFF" stroke-width="4.1313" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1" x1="147.976" y1="20.411" x2="147.976" y2="38.589"/>
+		
+			<line fill="none" stroke="#FFFFFF" stroke-width="4.1313" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1" x1="162.023" y1="20.411" x2="162.023" y2="38.589"/>
+	</g>
+	<g>
+		<path fill="#FFFFFF" d="M155,3.059c14.603,0,26.441,11.838,26.441,26.441c0,14.603-11.839,26.441-26.441,26.441
+			S128.559,44.103,128.559,29.5C128.559,14.897,140.397,3.059,155,3.059 M155-1.5c-17.094,0-31,13.906-31,31s13.906,31,31,31
+			s31-13.906,31-31S172.094-1.5,155-1.5L155-1.5z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<ellipse fill="#1B1464" cx="216.933" cy="29.5" rx="26.436" ry="26.441"/>
+		
+			<line fill="none" stroke="#FFFFFF" stroke-width="4.131" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1" x1="209.91" y1="20.411" x2="209.91" y2="38.589"/>
+		
+			<line fill="none" stroke="#FFFFFF" stroke-width="4.131" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1" x1="223.954" y1="20.411" x2="223.954" y2="38.589"/>
+	</g>
+	<g>
+		<path fill="#FFFFFF" d="M217,3.059c14.602,0,26.437,11.838,26.437,26.441c0,14.603-11.835,26.441-26.437,26.441
+			c-14.6,0-26.437-11.839-26.437-26.441C190.563,14.897,202.4,3.059,217,3.059 M217-1.5c-17.095,0-31,13.906-31,31s13.905,31,31,31
+			s31-13.906,31-31S234.095-1.5,217-1.5L217-1.5z"/>
+	</g>
+</g>
+</svg>

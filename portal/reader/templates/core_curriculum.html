@@ -1,0 +1,120 @@
+{% extends 'info_base.html' %}
+
+{% load compress staticfiles extensions %}
+
+{% block content %}
+    <div class="meta-reader-info cc-box">
+         {% comment %} <header>
+           {{ block.super }}
+        </header> {% endcomment %}
+        {% if module.md_content_id != 'title' %}
+        <div class="cc-title-container">
+            <div class="cc-main-title">Informacje dotyczące treści edukacyjnych</div>
+        </div>
+        <br>
+        <div class="cc-title">Przedmiot i tytuł podręcznika:</div>
+        <div class="cc-section"><div class="cc-section-info"><b>{{ collection.md_subject }}</b> | {{ collection.md_title }}</div></div>
+        <br>
+        <div class="cc-title">Rozdział i opis:</div>
+        <div class="cc-section"><div class="cc-section-info">
+            <b>{{ module.md_title }}</b><br>
+            <ul>
+                {% for cc in module.core_curriculum_entries %}
+                    {% if cc.ability.value %}
+                        <li>{{ cc.ability.value }}</li>
+                    {% endif %}
+                {% empty %}
+                    <p>Nie podano poziomu edukacyjnego</p>
+                {% endfor %}
+            </ul>
+        </div></div>
+        <br>
+        <div class="cc-title">Poziom edukacyjny:</div>
+        <div class="cc-section">
+            <div class="cc-section-info">
+                <ul>
+                    {% for cc in module.core_curriculum_entries|distinct_cc %}
+                        <li>{{ cc }}</li>
+                    {% empty %}
+                        <p>Nie podano poziomu edukacyjnego</p>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="cc-title">Odnośnik:</div>
+        <div class="cc-section"><div class="cc-section-info">
+            {% for cc in module.core_curriculum_entries %}
+                <a href="http://uspp.pl/ability/{{ cc.ability.key }}">{{ cc.ability.key }}</a><br>
+                {% empty %}
+                    <p>Nie podano odnośnika</p>
+            {% endfor %}
+        </div></div>
+
+        {% endif %}
+
+        {% comment %}
+        <h2>Podstawa programowa modułu: <em>{{ module.md_title }}</em></h2>
+
+         <h3>{{ module.md_school.get_simple_form }} - {{ module.md_subject }}</h3> {% endcomment %}
+
+        {% comment %} that needs styling
+        {% for cc in module.core_curriculum_entries %}
+        <h3>Poziom edukacyjny: {{ cc.stage.value }}</h3>
+        <h3>Przedmiot podstawy programowej: {{ cc.subject.value}}</h3>
+        <h3>Kod podstawy programowej: {{ cc.ability.key }}</h3>
+        <div class="content"><em>{{ cc.ability.value}}</em></div>
+        {% if cc.authors_comment %}
+        <div class="content"><em>{{ cc.authors_comment }}</em></div>
+        {% endif %}
+        {% endfor %}{% endcomment %}
+        {% comment %}
+        <p>więcej informacji pod adresem:
+            {% with 'I II' as list %}
+                {% if module.md_school.md_education_level in list.split %}
+                    <a href="http://bip.men.gov.pl/men_bip/akty_prawne/rozporzadzenie_20081223_zal_2.pdf">Akty prawne</a>
+                {% endif %}
+            {% endwith %}
+            {% with 'III IV' as list %}
+                {% if module.md_school.md_education_level in list.split %}
+                    <a href="http://bip.men.gov.pl/men_bip/akty_prawne/rozporzadzenie_20081223_zal_4.pdf">Akty prawne</a>
+                {% endif %}
+            {% endwith %}
+        </p>
+        {% endcomment %}
+        {% comment %}
+        {% endif %}
+
+        <h2>Podstawa programowa podręcznika: <em>{{ collection.md_title }}</em></h2>
+
+        {% if collection.md_school %}
+            {% if collection.md_subject %}
+                <h3>{{ collection.md_school.get_simple_form }} - {{ collection.md_subject }}</h3>
+            {% else %}
+                <h3>{{ collection.md_school.get_simple_form }}</h3>
+            {% endif %}
+        {% else %}
+            {% if collection.md_subject %}
+                <h3>{{ collection.md_subject }}</h3>
+            {% endif %}
+        {% endif %}
+        {% endcomment %}
+        {% comment %}
+        <p>więcej informacji pod adresem:
+            {% with 'I II' as list %}
+                {% if collection.md_school.md_education_level in list.split %}
+                    <a href="http://bip.men.gov.pl/men_bip/akty_prawne/rozporzadzenie_20081223_zal_2.pdf">Akty prawne</a>
+                {% endif %}
+            {% endwith %}
+            {% with 'III IV' as list %}
+                {% if collection.md_school.md_education_level in list.split %}
+                    <a href="http://bip.men.gov.pl/men_bip/akty_prawne/rozporzadzenie_20081223_zal_4.pdf">Akty prawne</a>
+                {% endif %}
+            {% endwith %}
+        </p>
+        {% endcomment %}
+
+    </div>
+{% endblock %}

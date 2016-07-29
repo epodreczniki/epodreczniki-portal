@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load compress staticfiles requirejs extensions common_ext collection_cover %}
+
+{% block head %}
+    {{ block.super }}
+
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ block.super }}
+    {% compress css %}
+    <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}front/less/front.less">
+    {% endcompress %}
+{% endblock %}
+
+{% block scripts_bottom %}
+    {{ block.super }}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}front/js/build/common.js"></script>
+    {% endcompress %}
+{% endblock %}
+

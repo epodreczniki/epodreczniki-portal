@@ -1,0 +1,15 @@
+{
+  "name": "education level",
+  "filter": {
+    "operator": "and",
+    "operands": [
+      {
+        "field": "educationLevels",
+        "value": ["E4"],
+        "mode": "exact",
+        "fixed": true
+      }
+    ]
+  },
+  "fields": ["identifier", "attributes.educationLevels"]
+}

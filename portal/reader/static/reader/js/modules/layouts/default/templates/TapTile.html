@@ -1,0 +1,23 @@
+<div class="tile-flippy" style="height: 100%">
+    <% if((skinType==TYPES.titleGallery || skinType==TYPES.titleIcon) && slideshow){ %>
+        <div class="tile-slideshow">
+            <div class="scroll-slideshow">
+            <% _.each(slideshow, function(slide){ %>
+                <div class="tile-slideshow-slide<% if(slide.iconClass) { %> <%= slide.iconClass %> <% } %>"
+                     <% if(slide.url) { %>
+                     style="background-image: url('<%= slide.url %>')"
+                     <% }%> ></div>
+            <% }); %>
+            </div>
+        </div>
+    <% } %>
+    <% if(skinType==TYPES.titleLead){ %>
+        <!-- <div style="display: table; height: 100%; overflow: hidden;">
+            <div style="display: table-cell; vertical-align: middle;">-->
+                <div class="tap-lead"><%= lead %></div>
+        <!--    </div>
+        </div>-->
+    <% } %>
+
+    <span class="tap-title"><%= title %></span>
+</div>

@@ -1,0 +1,26 @@
+{% extends "admin/delete_confirmation.html" %}
+{% load i18n admin_urls %}
+{% load staticfiles %}
+{% block extrahead %}
+    {{ block.super }}
+    <script src="{{ STATIC_URL }}common/js/libs/jquery-2.0.3.min.js"></script>
+{% endblock %}
+{% block content %}
+    {% if perms_lacking or protected %}
+
+    {% else %}
+        <script>
+            $(document).ready(function () {
+                var div = $('form').find('div');
+                div.prepend("<label for=\"del_i\">usuń także moduły</label><input id=\"del_i\" name=\"delete_modules\" type=\"checkbox\" value=\"false\" /><br />");
+                var extra = $('#extra-l');
+                $(div.parent()).prepend(extra);
+            });
+        </script>
+
+    {% endif %}
+
+    <ul id="extra-l">{{ extra_list|unordered_list }}</ul>
+    {{ block.super }}
+
+{% endblock %}

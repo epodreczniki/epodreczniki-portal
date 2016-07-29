@@ -1,0 +1,16 @@
+ <li aria-labelledby="<%= cid%>_label">
+     <span id="<%= cid%>_label" class="question content"></span>
+     <form data-id="<%= cid %>" class="question-set" role="radiogroup">
+{% comment %}
+        <div class="radio-simulator" id="ans_true_<%= id %>" tabindex="0" role="radio" title="Prawda" aria-required="true" aria-checked="false">
+        </div>
+        <span class="radio-simulator-label" title="Prawda" style="display: none">Prawda</span>
+        <div class="radio-simulator" id="ans_false_<%= id %>" tabindex="0" role="radio" title="Fałsz" aria-required="true" aria-checked="false">
+        </div>
+        <span class="radio-simulator-label" title="Fałsz" style="display: none">Fałsz</span>
+{% endcomment %}
+        <input type="radio" id="<%= cid %>_ans_true_<%= id %>" data-id="<%= id %>" name="<%= name %>" value="true" aria-label=" Prawda" role="radio">
+        <input type="radio" id="<%= cid %>_ans_false_<%= id %>" data-id="<%= id %>" name="<%= name %>" value="false" aria-label=" Fałsz" role="radio">
+
+    </form>
+</li>

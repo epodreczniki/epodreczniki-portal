@@ -1,0 +1,276 @@
+// HEADERS
+
+.reader-content {
+
+    h1.module-header {
+        position: relative;
+        display: block !important; // important overwriting pagination.less
+        max-width: 100% !important;
+        width: 100%;
+        border: 0;
+
+        .label {
+            span.numbering {
+                display: none;
+            }
+        }
+
+        span.title {
+            display: block;
+            padding: 1em 0.5em;
+            background-color: #fff;
+            color: #000;
+            text-align: center;
+            line-height: 1.2;
+            font-family: playfair-display-regular, Times, serif;
+            font-weight: 500;
+            font-size: 50.3833px; // value from Content Plus mock-up (50.3833px = 3.14928rem from mock-up)
+        }
+
+        .module-header-image {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        &.title-above-header {
+
+            .module-header-image {
+                height: 480px;
+            }
+        }
+
+        &.title-on-header {
+
+            .module-header-title {
+
+                .title {
+                    display: inline-block;
+                    position: absolute;
+                    top: 50%;
+                    right: 50%;
+                    transform: translate(+50%,-50%);
+                    -webkit-transform: translate(+50%,-50%);
+                    padding: 20px 36px;
+                    background-color: rgba(0,0,0, 0.5);
+                    color: #fff;
+                    text-align: center;
+                    line-height: 1.2;
+                    font-family: playfair-display-regular, Times, serif;
+                    font-weight: 500;
+                    font-size: 50.3833px; // value from Content Plus mock-up (50.3833px = 3.14928rem from mock-up)
+                }
+            }
+
+            .module-header-image {
+                height: 640px;
+            }
+        }
+    }
+}
+
+.module-header-caption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: (@space-A - 2) (@space-A + 2);
+    background: rgba(255, 255, 255, 0.9); // value from UWR mockup
+    line-height: 1;
+    font-size: 0.875rem; // EPUW-159
+    z-index: 9999;
+
+    .title,
+    .caption {
+        margin: 0;
+        padding: 0;
+        font-family: @sansRegular;
+        font-size: 0.75rem; // value from Content Plus mock-up
+
+        .label {
+            font-family: inherit;
+            font-size: inherit;
+        }
+    }
+
+    .title {
+        font-size: 0.875rem; // EPUW-159
+    }
+
+    .caption {
+        color: #aaa;
+    }
+
+    li { // temporary solution
+        list-style-type: none;
+    }
+}
+
+// WOMI-ASIDE
+
+@spaceLeft: @default-width - 150px; // 150px for womi-aside image container width
+
+.womi-aside {
+    clear: both;
+    position: relative;
+    width: 100%;
+    text-align: left;
+
+    &[data-aside='left'],
+    &[data-aside='right'] {
+        float: none;
+    }
+
+    .womi-caption {
+        position: absolute;
+        top: 0;
+        right: 0;
+        float: left;
+        width: @spaceLeft;
+        padding-left: @space-A;
+    }
+
+    @media (max-width: 979px) {
+        .image-container {
+            max-width: 150px;
+        }
+    }
+}
+
+.reader-content { // have to put this nasty selector here because fixing womi-aside in a hurry and someone else did this before in universal mobile.less file... :|
+    .womi-container {
+
+        &.womi-aside {
+            .mobile_app {
+                .image-container {
+                    img {
+                        @media (min-width: 1000px) {
+                            height: auto;
+                            max-width: 150px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .mobile_app {
+            .image-container {
+                img {
+                    @media (min-width: 1000px) {
+                        height: auto;
+                        max-width: 100%; // Specjalnie dla Micza :)
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ICONS
+
+@packagePath: "icons/standard-2-uwr";
+
+.reader-content {
+
+    .womi-container.womi-audio-container .audio-container:before {
+        background: url('@{packagePath}/icon-audio-container.svg') center center/100% auto no-repeat;
+    }
+    .exercise {
+        &.expanding .exercise-header .label:before {
+            background: url('@{packagePath}/icon-expanding.svg') center center/100% auto no-repeat;
+        }
+        &.pair-work .exercise-header:before {
+            background: url('@{packagePath}/icon-pair-work.svg') center center/100% auto no-repeat;
+        }
+        &.groupwork .exercise-header:before {
+            background: url('@{packagePath}/icon-groupwork.svg') center center/100% auto no-repeat;
+        }
+    }
+    .foldable {
+       .additional-image {
+           background: url('@{packagePath}icon-foldable-red.svg') center bottom/100% auto no-repeat;
+       }
+       .folded {
+           background: url('@{packagePath}/icon-foldable-red.svg') center top/100% auto no-repeat;
+       }
+    }
+    .note-tip.teacher .label:before {
+        background: url('@{packagePath}/icon-teacher.svg') center center/100% auto no-repeat;
+    }
+
+    .note-for-interested .label:before {
+        background: url('@{packagePath}/icon-expanding.svg') center center/100% auto no-repeat;
+    }
+
+    .quote.expanding .quote-header {
+        background: transparent url("@{packagePath}/icon-expanding.svg") no-repeat scroll left top / 22px 22px;
+    }
+
+    span.recipient-teacher:before {
+        background: url('@{packagePath}/icon-teacher.svg') center center/100% auto no-repeat;
+    }
+
+    @media all and (max-width: 479px) {
+
+        .womi-container.womi-audio-container .audio-container:before {
+            background: none;
+        }
+
+        .exercise {
+            &.pair-work .exercise-header:before,
+            &.groupwork .exercise-header:before {
+                background-image: none;
+            }
+        }
+    }
+}
+
+// OTHERS
+
+:not(.zebra-module) .reader-content {
+    margin: 0 !important;
+    padding: 0 0 @space-D 0 !important;
+}
+
+textarea.work-area {
+    width: 100%;
+    margin-top: @space-A;
+}
+
+:not(.zebra-module) .para.extended-width .media-player img { // temporary fix!
+    width: auto;
+    max-height: 8% !important;
+}
+
+.reader-content {
+
+    .biography,
+    .event {
+        overflow: inherit;
+    }
+}
+
+// LEGENDA
+
+.reader-content .table .table-of-mark-tasks td {
+    width: auto;
+}
+
+.label-exercise {
+    width: 24px;
+    height: 24px;
+    color: rgba(255,255,255, 0);
+
+    &-expanding {
+        background: transparent url("@{packagePath}/icon-expanding.svg") no-repeat scroll left top / 24px 24px;
+    }
+    &-groupwork {
+        background: url('@{packagePath}/icon-groupwork.svg') center center/100% auto no-repeat;
+    }
+    &-pairwork {
+        background: url('@{packagePath}/icon-pair-work.svg') center center/100% auto no-repeat;
+    }
+}
+
+.second_page_status_content {
+    display: none;
+}

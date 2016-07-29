@@ -1,0 +1,210 @@
+@import "common-variables";
+
+//@_bookIndexButtonColor1: @white;
+// @_bookIndexButtonColor2: #D6D6D6;
+//@_bookIndexButtonActive: @kolor-motywu-ciemny;
+//@_bookIndexButtonColor2: mix(@kolor-motywu-ciemny, #D6D6D6, 50%);
+// @_bookIndexButtonColor2: @kolor-motywu-posredni;
+
+
+// these are other experiments with @sidebarColor setting
+// @sidebarColor: hsla(hue(@kolor-motywu-jasny), saturation(@kolor-motywu-jasny), 100%, 80%);
+// @sidebarColor: contrast(@kolor-motywu-jasny, 15%);
+// @sidebarColor: contrast(#0000FF, 15%);
+// @sidebarColor: @kolor-motywu-jasny;
+
+.bookIndexButtonBorder {
+    //border: 1px solid #C1C1C1;
+    border: none;
+}
+
+.scrollable-area {
+    width: 100%;
+    height: 98%;
+
+    overflow-y: scroll;
+    overflow-x: none;
+
+    // Shoud disable outline in webkit
+    outline: none;
+    // Prevent default scrolling in webkit
+    -webkit-overflow-scrolling: touch;
+    //border-right: 1px solid @_bookIndexButtonColor2;
+    -moz-box-shadow: 2px 2px 4px -2px rgba(0, 0, 0, 0.50);
+    -webkit-box-shadow: 2px 2px 4px -2px rgba(0, 0, 0, 0.50);
+    box-shadow: 2px 2px 4px -2px rgba(0, 0, 0, 0.50);
+}
+
+.book-index-content {
+    padding: 20px 20px 20px 35px;
+    margin-bottom: 30px;
+}
+
+#index-menu {
+    line-height: 1.2;
+}
+
+a, a:hover, a:active, a:focus {
+    outline: 0;
+}
+
+input::-moz-focus-inner {
+    border: 0;
+}
+
+.modules-list {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    padding: 0;
+    margin: 0;
+    color: @navyBlack;
+
+    ul {
+        .list-no-indent;
+    }
+
+    a {
+        .plain-links;
+        .bookIndexButtonBorder;
+
+        font-size: @smallerFontSize;
+        color: @navyBlack;
+
+        display: block;
+        cursor: pointer;
+        padding: 6px;
+        .unselectable;
+    }
+
+    a.module-a {
+        background: @_bookIndexButtonColor1;
+    }
+
+    a.accordion-toggle {
+        background: @_bookIndexButtonColor2;
+        position: relative;
+    }
+
+    a.link-active {
+        background-color: @_bookIndexButtonActive;
+        color: @white;
+    }
+
+    a.accordion-toggle:after {
+
+        display: inline-block;
+        position: absolute;
+        top: 2px;
+        right: 10px;
+        float: right;
+        //display: block;
+        padding: 0 8px 0 0;
+        // background: #d6d6d6;
+        width: 12px;
+        content: "\f107";
+        font-family: FontAwesome;
+        font-size: 150%;
+        line-height: 18px;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: inherit;
+    }
+
+    a.collapsed:after {
+        content: "\f105";
+        right: 5px;
+    }
+
+    li {
+        margin-top: 4px;
+    }
+
+    li li {
+        padding-left: 15px;
+    }
+}
+
+.toggle-sidebar-bar {
+    display: block;
+    position: fixed;
+    top: 40px;
+    left: 30%;
+    bottom: 0;
+    width: 8px;
+    z-index: 101;
+    padding: 0;
+    background: @sidebarColor;
+    cursor: pointer;
+    -moz-box-shadow: 2px 2px 4px -2px rgba(0, 0, 0, 0.50);
+    -webkit-box-shadow: 2px 2px 4px -2px rgba(0, 0, 0, 0.50);
+    box-shadow: 2px 2px 4px -2px rgba(0, 0, 0, 0.50);
+}
+
+.toggle-sidebar-bar-hidden {
+    left: 0;
+}
+
+button.toggle-sidebar-button {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    bottom: 0;
+    width: 10px;
+    z-index: 102;
+    padding: 0;
+    height: 50px;
+    margin-top: -50px;
+    //border-right: 1px #C1C1C1 solid;
+    background: @sidebarColor;
+    border: 1px solid @_bookIndexButtonColor2;
+    border-left: none;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 2px;
+    -moz-box-shadow: 2px 0px 4px -2px rgba(0, 0, 0, 0.50);
+    -webkit-box-shadow: 2px 0px 4px -2px rgba(0, 0, 0, 0.50);
+    box-shadow: 2px 0px 4px -2px rgba(0, 0, 0, 0.50);
+}
+
+.toggle-sidebar-button i {
+    color: #4A4A4A;
+}
+
+// Full screen mode
+@media (max-width: @mobileBreakpoint) {
+    .book-index-content {
+        padding: 20px;
+    }
+
+    .modules-list {
+        a {
+            padding: 8px;
+            font-size: @baseFontSize;
+        }
+
+        li li {
+            padding-left: 40px;
+        }
+    }
+
+    .toggle-sidebar-bar {
+        display: none;
+    }
+}
+
+// Phone view
+@media (max-width: @phoneBreakpoint) {
+    .book-index-content {
+        padding: 0 0 20px 0;
+    }
+
+    .modules-list {
+        a {
+            border-right: none;
+            font-size: @smallerFontSize;
+        }
+
+        li li {
+            padding-left: 10px;
+        }
+    }
+}

@@ -1,0 +1,12 @@
+<div class='cascade-forms-group'>
+{% for action in actions %}
+    <div class="cascade-forms-source"
+        data-action-url="{{ action.url }}"
+        data-action-checked="{{ action.checked }}"
+        data-action-optional="{{ action.optional }}"
+        data-action-finish="{{ action.finish }}"
+    >
+    {% include "editres/cascade_form.html" with form=action.form %}
+    </div>
+{% endfor %}
+</div>

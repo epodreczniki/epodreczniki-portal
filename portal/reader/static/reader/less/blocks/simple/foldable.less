@@ -1,0 +1,39 @@
+.reader-content {
+    .foldable {
+        padding: @space-B @space-B 0;
+
+        .foldable-header,
+        .note-header {
+            cursor: pointer;
+        }
+
+        .foldable-header {
+            margin: 0 0 6px;
+            padding: 0 0 18px;
+        }
+
+        .foldable-contents {
+            padding-bottom: @space-B;
+        }
+
+        .additional-image {
+            float: right;
+            width: 16px;
+            height: 16px;
+            position: relative;
+            top: 10px;
+            background-image: url("../../../img/awesome-icons/angle-down.svg");
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-size: auto 100%;
+
+            &:focus {
+                border: 2px solid #3e69FF; // @kolor-motywu-ciemny; //WCAG2.0 CR >4.5
+            }
+        }
+
+        .folded {
+            background-image: url("../../../img/awesome-icons/angle-up.svg");
+        }
+    }
+}

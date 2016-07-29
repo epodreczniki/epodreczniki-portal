@@ -1,0 +1,41 @@
+<reference-table collection-id="{{ collection.identifier }}" collection-version="{{ collection.version }}" collection-title="{{ collection.md_title }}">
+    <bookmarks>
+    {% for module in refs.bookmarks %}
+        <module id="{{ module.identifier }}" title="{{ module.md_title }}"{% if module.generated_type %} type="generated"{% endif %}>
+        {% for bookmark in module.bookmarks %}
+            <bookmark id="{{ bookmark.id }}" name="{{ bookmark.name }}" />
+        {% endfor %}
+        </module>
+    {% endfor %}
+    </bookmarks>
+    <bibliographies>
+    {% for bib in refs.bibliographies %}
+        <bibliography id="{{ bib.id }}" name="{{ bib.name }}" sorting-key="{{ bib.key }}" module="{{ bib.module_id }}" />
+    {% endfor %}
+    </bibliographies>
+    <biographies>
+    {% for biography in refs.biographies %}
+        <biography id="{{ biography.id }}" name="{{ biography.name }}" sorting-key="{{ biography.key }}" module="{{ biography.module_id }}" />
+    {% endfor %}
+    </biographies>
+    <concepts>
+    {% for concept in refs.concepts %}
+        <concept id="{{ concept.id }}" name="{{ concept.name }}" sorting-key="{{ concept.key }}" module="{{ concept.module_id }}" />
+    {% endfor %}
+    </concepts>
+    <definitions>
+    {% for definition in refs.definitions %}
+        <definition id="{{ definition.id }}" name="{{ definition.name }}" sorting-key="{{ definition.key }}" module="{{ definition.module_id }}" />
+    {% endfor %}
+    </definitions>
+    <events>
+    {% for event in refs.events %}
+        <event id="{{ event.id }}" name="{{ event.name }}" sorting-key="{{ event.key }}" module="{{ event.module_id }}" />
+    {% endfor %}
+    </events>
+    <rules>
+    {% for rule in refs.rules %}
+        <rule id="{{ rule.id }}" name="{{ rule.name }}" sorting-key="{{ rule.key }}" module="{{ rule.module_id }}" />
+    {% endfor %}
+    </rules>
+</reference-table>

@@ -1,0 +1,52 @@
+setuptools>=12.1
+Fabric==1.10.2
+Django==1.7.5
+django-compressor==1.4
+django-debug-toolbar==0.9.4
+django-extensions==1.5.3
+django-health-check==0.2
+django-jenkins==0.14.1
+djangorestframework==2.4.4
+djangorestframework-jwt==1.4.0
+python-dateutil==2.1
+#sunburnt==0.6
+-e git+https://github.com/lugensa/sunburnt.git@0.8lu#egg=sunburnt-0.8lu-py2.7
+pytz==2013b
+httplib2==0.8
+django-hosts==1.1
+mock==1.0.1
+requests==2.8.1
+oauthlib==0.6.3
+requests_oauthlib==0.4.0
+jira==0.47
+django-ipware==0.0.1
+pyelasticsearch==0.7.1
+elasticsearch==1.2.0
+django_haystack==2.1.0
+django_bootstrap_toolkit==2.15
+django-model-mixins==1.0.4
+PyExecJs==1.0.4
+compressor_requirejs==1.5
+django-decorator-include==0.1
+pylint==1.1.0
+celery==3.1.12
+# django-celery==3.1.16
+-e git+https://github.com/celery/django-celery.git@master#egg=django-celery
+supervisor==3.0
+pika
+mr.laforge==0.6
+django-url-tools==0.0.8
+six==1.9.0
+django-cassandra-engine==0.3.3
+#wagtail==0.8.5
+-e git+https://github.com/dresiu/wagtail.git@master#egg=wagtail
+django-modelcluster==0.6.2
+# newest willow for better GIF support in wagtail
+willow==0.2.1
+django-taggit==0.12.3
+Pillow>=2.6.1
+pyjwt==1.3.0
+cryptography==0.9.2
+ipython==2.1.0
+django-surround==1.0.0
+pylibmc==0.9.2

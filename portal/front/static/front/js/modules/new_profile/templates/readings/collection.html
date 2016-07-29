@@ -1,0 +1,22 @@
+<article class="profile-book" data-book-handbook-id="<%= model.handbook_id %>">
+    <a href="<%= model.related_object__Collection.link %>">
+        <div class="profile-cover-container">
+            <img src="<%= model.related_object__Collection.cover_thumb %>"> {# replace with cover #}
+            <div class="profile-book-subject"><span>
+            <%= model.related_object__Collection.md_subject !== null ? model.related_object__Collection.md_subject.md_name : 'Nie podano' %>
+            </span>
+            </div>
+        </div>
+        <div class="profile-book-title">
+            <p><%= model.related_object__Collection.md_title %>
+            </p>
+        </div>
+        <div class="profile-book-tools">
+                    <div class="spinner">
+                      <div class="bounce1"></div>
+                      <div class="bounce2"></div>
+                      <div class="bounce3"></div>
+                    </div>
+                </div>
+    </a>
+</article>

@@ -1,0 +1,302 @@
+html {
+    background-color: #000; //for cachets
+}
+
+.womi-gallery .pika-stage-fullscreen, .fullscreen-gallery .pika-stage-fullscreen {
+    width: 32px;
+    height: 32px;
+    background-size: contain;
+}
+
+.womi-gallery {
+    .previous, .next {
+        visibility: hidden;
+    }
+}
+
+.loading .womi-gallery {
+    visibility: hidden;
+}
+
+div.tile {
+    padding: 0 !important;
+    background-color: transparent;
+    border: none;
+}
+
+.womi-container {
+    margin: 0;
+    padding: 0;
+}
+
+.reader-content .womi-gallery .gallery-container .womi-title {
+    margin: 0;
+    display: none;
+}
+
+.play-div .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    background: #fff;
+    background: url('../../../img/GE/play_pause.svg') no-repeat;
+    width: 44px;
+    height: 44px;
+    z-index: 1000;
+    &hover {
+        background-position: -44px 0;
+    }
+}
+
+.play-div .play-button-classic {
+    width: 64px;
+    height: 64px;
+    margin-left: -32px;
+    margin-top: -32px;
+}
+
+.anchor-padding {
+    display: none;
+}
+
+.womi-avatar {
+    left: 0;
+    //z-index: 2000;/*@highestZIndex - 100;*/
+    z-index: 0;
+}
+
+.womi-avatar-max {
+    z-index: 90000000;
+}
+
+.fullscreen-gallery {
+    .stage-navi {
+        width: 35px;
+        height: 72px;
+        position: absolute;
+        cursor: pointer;
+        background-size: cover;
+
+        &:hover, &:focus {
+            background-position: -36px 0;
+        }
+
+        @media all and (min-width: 1280px) and (max-width: 1440px) {
+            width: 25.5px;
+            height: 52px;
+
+            &:hover, &:focus {
+                background-position: -26px 0;
+            }
+        }
+
+        @media all and (min-width: 1024px) and (max-width: 1279px) {
+            width: 19.3px;
+            height: 40px;
+
+            &:hover, &:focus {
+                background-position: -20px 0;
+            }
+        }
+    }
+
+    .stage-prev-wrap, .stage-next-wrap {
+        top: 50%;
+        left: 0;
+        position: absolute;
+    }
+
+    .stage-next-wrap {
+        right: 0;
+    }
+
+    .stage-prev {
+        .stage-navi;
+        top: -20px;
+        background-image: url('../../../img/GE/nav-back.svg');
+    }
+
+    .stage-next {
+        .stage-navi;
+        top: -20px;
+        right: 0;
+        background-image: url('../../../img/GE/nav-next.svg');
+    }
+
+    .close-gallery {
+        float: right;
+        background: url('../../../img/GE/zamknij.svg') no-repeat;
+        border-radius: 5px;
+        background-size: cover;
+        width: 44px;
+        height: 44px;
+
+        &:hover, &:focus {
+            background: url('../../../img/GE/zamknij.svg') no-repeat;
+            background-position: -42px 0;
+            background-size: cover;
+        }
+    }
+
+    .top-toggle {
+        float: left;
+        background: url('../../../img/GE/play_pause.svg') no-repeat;
+        background-size: cover;
+        border-radius: 5px;
+        width:44px;
+        height: 44px;
+
+        &:hover, &:focus {
+            background-position: -44px 0;
+            background-size: cover;
+        }
+
+        &.paused {
+            background-position: -88px 0;
+
+            &:hover {
+                background-position: -132px 0;
+                background-size: cover;
+            }
+        }
+    }
+
+    .fullscreen-gallery-top {
+        height: none;
+        display: inline;
+        overflow: visible;
+    }
+
+    .play-audio-wrap {
+        height: auto;
+    }
+
+    .play-audio {
+        width: 43px;
+        height: 43px;
+        background-image: url('../../../img/GE/dzwiek_galeria.svg');
+        //float: left;
+        display: block;
+        background-size: cover;
+        &:hover, &:focus {
+            background-position: -43px;
+        }
+    }
+
+    .play-audio + .descr-wrap {
+        margin-top: -43px;
+        margin-left: 60px;
+        min-height: 30px;
+    }
+
+    .play-audio[playing] {
+        .play-audio;
+        background-position: -86px;
+
+        &:hover {
+            background-position: -129px;
+        }
+    }
+
+    .fs-wrap {
+        border-radius: 18px;
+        background-color: rgba(200, 200, 200, 0.4);
+        width: 90%;
+        margin: 0 auto;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .wrap-stage {
+        padding: 20px;
+        border: 0;
+    }
+
+    .wrap-descr {
+        font-family: 'Belfer';
+        font-weight: bold;
+        text-align: left;
+        overflow: hidden;
+        padding: 0 20px 20px 20px;
+        border: 0;
+        //max-height: 30%;
+    }
+
+    .thumbs-container {
+        margin-top: 10px;
+        position: absolute;
+        bottom: 20px;
+        background-color: rgba(200, 200, 200, 0.4);
+        .pika-thumbs {
+            border-spacing: 0;
+            li {
+                opacity: 1;
+                padding-left: 1px;
+                padding-right: 1px;
+                //border-left: #d3d3d3 1px solid;
+                //border-right: #939393 1px solid;
+                width: 120px;
+                height: 120px;
+                &.active {
+                    background-color: rgba(200, 200, 200, 0.8);
+                }
+                &:hover {
+                    background-color: rgba(200, 200, 200, 0.1);
+                }
+                background-color: rgba(200, 200, 200, 0.44);
+
+                border-width: 3px 3px 3px 0;
+                border-style: solid;
+                @fromGradientColor: #919191;
+                -webkit-border-image: -webkit-gradient(linear, 0 0, 100% 0, from(@fromGradientColor), to(rgba(0, 0, 0, 0))) 1 100%;
+                -webkit-border-image: -webkit-linear-gradient(left, @fromGradientColor, rgba(0, 0, 0, 0)) 1 100%;
+                -moz-border-image: -moz-linear-gradient(left, @fromGradientColor, rgba(0, 0, 0, 0)) 1 100%;
+                -o-border-image: -o-linear-gradient(left, @fromGradientColor, rgba(0, 0, 0, 0)) 1 100%;
+                border-image: linear-gradient(to left, @fromGradientColor, rgba(0, 0, 0, 0)) 1 100%;
+                &:first-child {
+                    border-width: 3px 3px 3px 3px;
+                }
+                img {
+                    max-height: 120px;
+                }
+            }
+        }
+    }
+    .thumbs-container::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+
+    [data-role="gallery-nav"] {
+        display: none;
+    }
+
+    .alternative-nav {
+        display: none;
+    }
+}
+
+.invisible-tmp-text {
+    visibility: hidden;
+    .fullscreen-gallery.wrap-descr;
+    .play-audio {
+        .fullscreen-gallery.play-audio;
+
+    }
+
+    .play-audio + .descr-wrap {
+        margin-top: -43px;
+        margin-left: 60px;
+    }
+}
+
+.alttext,.alt-text-container {
+    display: none;
+}
+
+.bottom-content-navigation, .authors-mailto {
+    display: none;
+}

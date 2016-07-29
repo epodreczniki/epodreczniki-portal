@@ -1,0 +1,45 @@
+{% extends "edittext.html" %}
+
+{% load compress %}
+
+{% block below_bars_section %}
+    <div class="container-fluid adjusted-height">
+        <div class='row'>
+            <div class='col-md-7'>
+                {% block editor_section %}
+                {{ block.super }}
+                {% endblock editor_section %}
+            </div>
+            <div class='col-md-5'>
+                <div class="panel panel-default">
+                    <div class="panel-body" id='editor-panel'>
+                        <iframe id="previewarea" src="{% url 'preview_womi_technical' driver.identifier driver.version %}">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock below_bars_section %}
+
+
+{% block scripts_bottom %}
+    {{ block.super }}
+
+<script>
+    var preview = document.getElementById('previewarea');
+
+
+    var thisWindow = window;
+
+    window.addEventListener('message', function (event) {
+        console.log(event);
+        if (event.data.message == 'back') {
+            thisWindow.location.href = "{{ driver.editor_url }}";
+        }else if(event.data.message == 'saved'){
+            preview.contentWindow.location.reload();
+        }
+    }, false);
+
+</script>
+{% endblock scripts_bottom %}

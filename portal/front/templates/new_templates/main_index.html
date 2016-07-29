@@ -1,0 +1,38 @@
+{% extends "new_templates/base_front_with_navbar.html" %}
+{% load staticfiles compress requirejs extensions common_ext %}
+
+{% block content %}
+    {{ block.super }}
+
+    <div id="front">
+            <div class="theme1 theme-main">
+                <a href="/front/123" class="education-level">Edukacja wczesnoszkolna 1-3</a>
+                <img alt="" id="robot" src="{% static "front/img/new_front/theme1image.png" %}">
+            </div>
+            <div class="theme2 theme-main">
+                <a href='{% url 'front.views.new_index' education_level=2 %}' class="education-level">Szkoła podstawowa 4-6</a>
+            </div>
+            <div class="theme3 theme-main">
+                <a href='{% url 'front.views.new_index' education_level=3 %}' class="education-level">Gimnazjum</a>
+            </div>
+            <div class="theme4 theme-main">
+                <a href='{% url 'front.views.new_index' education_level=4 %}' class="education-level">Szkoła ponadgimnazjalna</a>
+            </div>
+
+
+    {% comment %}{% include 'new_templates/footer.html' %}{% endcomment %}
+    <footer class="frontpage-footer">
+        <div class="footer-content"></div>
+    <ul>
+        <li><a href="{% url 'front.views.about' %}">O nas</a></li>
+        <li><a href="{% url 'front.views.terms' %}">Regulamin</a></li>
+        <li><a href="http://blog.epodreczniki.pcss.pl">Blog</a></li>
+        <li><a href="{% host_url 'dev' 'dev_root' %}">Developers</a></li>
+        <li><a href="{% url 'front.views.terms' %}#cookies">Cookies</a></li>
+        <li><a href="{% url 'front.views.statistics' %}">Statystyki</a></li>
+    </ul>
+</footer>
+    </div>
+
+{% endblock %}
+

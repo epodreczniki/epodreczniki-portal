@@ -1,0 +1,74 @@
+//IMPORTANT styles for node inserted events
+/* TODO EPP-2100 this is probably rather environment element, not variant */
+@-webkit-keyframes nodeInserted {
+    0% {
+        opacity: 0.0
+    }
+    100% {
+        opacity: 1.0
+    }
+}
+
+@-moz-keyframes nodeInserted {
+    0% {
+        opacity: 0.0
+    }
+    100% {
+        opacity: 1.0
+    }
+}
+
+@-ms-keyframes nodeInserted {
+    0% {
+        opacity: 0.0
+    }
+    100% {
+        opacity: 1.0
+    }
+}
+
+@-o-keyframes nodeInserted {
+    0% {
+        opacity: 0.0
+    }
+    100% {
+        opacity: 1.0
+    }
+}
+
+@keyframes nodeInserted {
+    0% {
+        opacity: 0.0
+    }
+    100% {
+        opacity: 1.0
+    }
+}
+
+@duration-timeout: 1s;
+
+#module-content > div {
+    animation-duration: @duration-timeout;
+    -o-animation-duration: @duration-timeout;
+    -ms-animation-duration: @duration-timeout;
+    -moz-animation-duration: @duration-timeout;
+    -webkit-animation-duration: @duration-timeout;
+    animation-name: nodeInserted;
+    -o-animation-name: nodeInserted;
+    -ms-animation-name: nodeInserted;
+    -moz-animation-name: nodeInserted;
+    -webkit-animation-name: nodeInserted;
+}
+
+#module-content > .stop-loading-animation {
+    animation-duration: none;
+    -o-animation-duration: none;
+    -ms-animation-duration: none;
+    -moz-animation-duration: none;
+    -webkit-animation-duration: none;
+    animation-name: none;
+    -o-animation-name: none;
+    -ms-animation-name: none;
+    -moz-animation-name: none;
+    -webkit-animation-name: none;
+}

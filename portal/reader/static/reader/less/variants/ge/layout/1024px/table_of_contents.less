@@ -1,0 +1,122 @@
+@sidebarPanelWidth: 62px;
+@sidebarBorderWidth: 3px;
+
+.toc-ie-expanded {
+    width: calc( (2 * @sidebarPanelWidth) + 46 ) !important;
+}
+
+.toc-ge-ie-wrapper-expanded {
+    width: calc(2 * @sidebarPanelWidth);
+}
+
+.table-of-contents-ge {
+    padding: 9px;
+    padding-top: 18px;
+    margin: 0;
+    width: @sidebarPanelWidth;
+
+    .home-btn-ie {
+        top: 5px !important;
+        position: absolute !important;
+        left: 5px !important;
+    }
+
+    .home-btn {
+        position: relative;
+        top: -6px;
+        left: -4px;
+        width: 51px;
+        height: 51px;
+    }
+
+    a.accordion-toggle {
+        margin: 17px 0;
+    }
+
+    .index-menu-ie {
+        padding-top: 55px !important;
+    }
+
+    ul#index-menu {
+        li.accordion-group {
+            width: 100%;
+
+            ul.accordion-body {
+                width: calc(@sidebarPanelWidth~" + "@sidebarBorderWidth);
+                position: absolute;
+                top: 0;
+                left: @sidebarPanelWidth;
+                background: @green2;
+                padding: 9px;
+                padding-right: 8px;
+                padding-top: 73px;
+                border-right: 3px solid #fff;
+                z-index: 6;//-10;
+            }
+        }
+    }
+
+    .table-of-content-ge-toggle {
+        opacity: 1.0 !important;
+        width: 44px;
+        height: 44px;
+
+        position: absolute;
+        top: 87px;
+        left: calc(2*@sidebarPanelWidth);
+        z-index: 4;
+        &:hover {
+            background-position: 50% 0%;
+        }
+
+        &:active {
+            left: calc(2*@sidebarPanelWidth);
+            background-position: 100% 0%;
+        }
+
+    }
+
+    .temp-icons {
+        width: 45px;
+        height: 45px;
+    }
+
+    [data-module-id="title"] {
+        display: none;
+    }
+
+    [data-target*="#table_of_contents"] {
+        .temp-icons();
+    }
+}
+
+.hidden-ge-toc {
+    position: absolute;
+    left: calc(-2*@sidebarPanelWidth~" - "@sidebarBorderWidth);
+}
+
+@-moz-document url-prefix() {
+    .table-of-contents-ge {
+        padding-top: 22px;
+    }
+
+    .home-btn {
+        top: -10px !important;
+    }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .table-of-contents-ge {
+        padding-top: 16px;
+
+        .accordion-group {
+            ul {
+                padding-top: 72px !important;
+            }
+        }
+    }
+
+    .home-btn {
+        top: -5px !important;
+    }
+}

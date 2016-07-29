@@ -1,0 +1,134 @@
+@sidebarPanelWidth: 79px;
+@sidebarBorderWidth: 4px;
+
+.toc-ie-expanded {
+    width: calc( (2 * @sidebarPanelWidth) + 56 ) !important;;
+}
+
+.toc-ge-ie-wrapper-expanded {
+    width: calc(2 * @sidebarPanelWidth);
+}
+
+.table-of-contents-ge {
+    padding: 15px;
+    padding-left: 17px;
+    padding-top: 17px;
+    margin: 0;
+    width: @sidebarPanelWidth;
+
+    .home-btn-ie {
+        top: 15px !important;
+        position: absolute !important;
+        left: 15px !important;
+    }
+
+    .home-btn {
+        position: relative;
+        top: -6px;
+        left: -3px;
+
+        width: 53px;
+        height: 53px;
+    }
+
+    a.accordion-toggle {
+        margin: 19px 0;
+    }
+
+    .index-menu-ie {
+        padding-top: 55px !important;
+    }
+
+    ul#index-menu {
+        li.accordion-group {
+            width: 100%;
+
+            ul.accordion-body {
+                width: calc(@sidebarPanelWidth~" + "@sidebarBorderWidth);
+                position: absolute;
+                top: 0;
+                left: @sidebarPanelWidth;
+                background: @green2;
+                padding: 15px;
+                padding-left: 17px;
+                padding-top: 74px;
+                border-right: 4px solid #fff;
+                z-index: 6;//-10;
+            }
+        }
+    }
+
+    .table-of-content-ge-toggle {
+        opacity: 1.0 !important;
+        width: 54px;
+        height: 54px;
+        z-index: 4;
+        position: absolute;
+        top: 103px;
+        left: calc(2*@sidebarPanelWidth);
+
+        &:hover {
+            background-position: 50% 0%;
+        }
+
+        &:active {
+            background-position: 100% 0%;
+        }
+
+    }
+    .temp-icons {
+        width: 46px;
+        height: 46px;
+    }
+
+    [data-module-id="title"] {
+        display: none;
+    }
+
+    [data-target*="#table_of_contents"] {
+        .temp-icons();
+    }
+}
+
+.hidden-ge-toc {
+    position: absolute;
+    left: calc(-2*@sidebarPanelWidth~" - "@sidebarBorderWidth);
+}
+
+@-moz-document url-prefix() {
+    .table-of-contents-ge {
+        padding-top: 21px;
+
+        .accordion-group {
+            ul {
+                padding-top: 74px !important;
+            }
+        }
+    }
+
+    .home-btn {
+        top: -10px !important;
+    }
+
+    .table-of-content-ge-toggle {
+        &:hover {
+            background-position: 50%;
+        }
+    }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .table-of-contents-ge {
+        padding-top: 15px;
+
+        .accordion-group {
+            ul {
+                padding-top: 73px !important;
+            }
+        }
+    }
+
+    .home-btn {
+        top: -5px !important;
+    }
+}

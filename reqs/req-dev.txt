@@ -1,0 +1,8 @@
+-r req-common.txt
+-r preview.txt
+-r dev-and-deployment.txt
+flake8==2.0
+gitpython==0.2.0-beta1
+kombu==3.0.30
+# it is in version 0.1.6 on production
+django-rest-framework-docs==0.1.7

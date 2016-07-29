@@ -1,0 +1,11 @@
+<div class="womi-item">
+    <ul style="">
+        <li><b>Poziom:</b> <%= item.stages[0].name + '('+ item.stages[0].code +')'%></li>
+        <li><b>Szkoła:</b> <%= item.schools[0].name + '('+ item.schools[0].code +')'%></li>
+        <li><b>Przedmiot:</b> <%= item.subject.name + '(' + item.subject.code + ')' %></li>
+        <% _.each(item.versions, function(version){ %>
+        	<li><b>Wersja:</b> <%= version.code + '(' + version.doc_reference + ')' %></li>
+        <% }) %>
+        <li><b>Umiejętności:</b> <%= item.name + '(' + item.summary_code + ')' %></li>
+    </ul>
+</div>

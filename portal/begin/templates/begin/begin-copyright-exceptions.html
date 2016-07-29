@@ -1,0 +1,68 @@
+{% extends "begin/base.html" %}
+
+{% load static begin_tags wagtailimages_tags wagtailembeds_tags wagtailcore_tags %}
+{% get_site_root as site_root %}
+{% block menu %}
+{% endblock %}
+
+{% block body_class %}template-{{ self.get_verbose_name|slugify }} home page page-id-8 page-template
+    page-template-page-templatestemplate-homepage-php loading{% endblock %}
+
+
+{% block content %}
+    {% comment %}{% include "begin/includes/page_header.html" with page=self request=request only %}{% endcomment %}
+    <div class="page-header clearfix"
+         style="background:url({% static 'begin/images/epo/library_.jpg' %}); background-size: cover;">
+
+        <div class="page-header-inner clearfix">
+            <div class="page-title">
+                <h2>Wyjątki lub ograniczenia prawa autorskiego</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-wrapper page-content-wrapper clearfix">
+
+        <!-- BEGIN .main-content -->
+        <div class="main-content page-content">
+
+            <!-- BEGIN .inner-content-wrapper -->
+            <div class="inner-content-wrapper justified-content">
+                <p>Pierwsze z&nbsp;tych ograniczeń dotyczy korzystania z&nbsp;twórczości i&nbsp;odtwórczości dla&nbsp;dobra
+                    osób
+                    niepełnosprawnych. W&nbsp;tym&nbsp;zakresie ustawa o&nbsp;prawie autorskim i&nbsp;prawach pokrewnych
+                    zezwala skorzystać
+                    z&nbsp;każdego legalnie rozpowszechnionego utworu, w&nbsp;tym&nbsp;z&nbsp;utworu muzycznego w&nbsp;postaci
+                    nut,&nbsp;płyty&nbsp;CD,&nbsp;w&nbsp;internecie itd.,&nbsp;„jeżeli to&nbsp;korzystanie odnosi się&nbsp;bezpośrednio
+                    do&nbsp;ich&nbsp;upośledzenia, nie&nbsp;ma&nbsp;zarobkowego charakteru i&nbsp;jest podejmowane w&nbsp;rozmiarze
+                    wynikającym z&nbsp;natury upośledzenia”.</p>
+
+                <p>Drugie ze&nbsp;zwolnień dotyczy korzystania z&nbsp;utworów i&nbsp;artystycznych wykonań w&nbsp;związku
+                    z&nbsp;prezentacją lub&nbsp;naprawą sprzętu. Sklep RTV&nbsp;lub&nbsp;punkt naprawy takiego sprzętu
+                    nie&nbsp;jest zobowiązany do&nbsp;uzyskania zezwolenia twórcy lub&nbsp;reprezentującej go&nbsp;organizacji
+                    zbiorowego zarządzania prawami autorskimi (np.&nbsp;ZAiKS), jeśli podczas prezentacji uruchomi
+                    sprzęt RTV&nbsp;w&nbsp;celu zaprezentowania klientowi jego
+                    możliwości.</p>
+
+                <p>Trzecie ze&nbsp;zwolnień obejmuje zgodę na&nbsp;korzystanie z&nbsp;egzemplarzy utworów już&nbsp;rozpowszechnionych
+                    w&nbsp;celu
+                    reklamy wystawy publicznej lub&nbsp;publicznej sprzedaży utworów, w&nbsp;zakresie uzasadnionym
+                    promocją
+                    wystawy lub&nbsp;sprzedaży, z&nbsp;wyłączeniem innego handlowego wykorzystania.</p>
+
+                <p>Zgodnie z&nbsp;ustawą o&nbsp;prawie autorskim i&nbsp;prawach pokrewnych wolno także korzystać z&nbsp;utworów
+                    dla&nbsp;celów
+                    bezpieczeństwa publicznego lub&nbsp;na&nbsp;potrzeby postępowań administracyjnych, sądowych lub&nbsp;prawodawczych,
+                    sprawozdań z&nbsp;tych postępowań, a&nbsp;także zezwala na&nbsp;wykorzystanie utworu
+                    architektonicznego we&nbsp;wszystkich jego postaciach (obiekt, rysunek, plan&nbsp;etc.) w&nbsp;celu
+                    odbudowy lub&nbsp;remontu obiektu
+                    budowlanego.</p>
+            </div>
+
+            <!-- END .main-content -->
+        </div>
+
+        {% include "begin/includes/sidebar.html" with page=self side="right" %}
+        <!-- END .content-wrapper -->
+    </div>
+{% endblock %}

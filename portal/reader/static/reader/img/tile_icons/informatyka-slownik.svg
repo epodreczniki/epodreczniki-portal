@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="320"
+   height="320"
+   id="svg2">
+  <metadata
+     id="metadata14">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4" />
+  <g
+     transform="matrix(2.406015,0,0,2.406015,-140.75188,-140.75187)"
+     id="g6">
+    <path
+       d="m 106.75,147.45 5.95,11.25 q -9.05,4.3 -22.65,-1.8 -3.25,4.8 -15.1,18.3 m 15.1,-18.3 1.1,-1.45 Q 79.6,134.75 94.7,118.4 l 9.3,11.85 -4.8,-16.3 2.7,-2.1 Q 119.6,98.3 137.85,93.7 156,89.05 175.05,74.8 m -83.9,80.65 q 12.8,-18.6 23.55,-31.8 l 1.45,-1.75 7.4,-8.65 q 9.65,-10.7 24.25,-16"
+       id="path8"
+       style="fill:none;stroke:#ffffff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round" />
+    <path
+       d="m 98.05,150.8 11.8,4.1 q 2.1,-3.2 3.85,-7.35 3.75,-9.15 10.35,-18.95 l -5.3,-3.6 m 5.3,3.6 q 10.4,-15.8 27.9,-33.45"
+       id="path10"
+       style="fill:none;stroke:#ffffff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round" />
+  </g>
+</svg>

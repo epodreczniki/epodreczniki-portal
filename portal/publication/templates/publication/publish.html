@@ -1,0 +1,108 @@
+{% extends "publication/base.html" %}
+
+{% load common_ext %}
+
+{% block topbar %}
+    {% include "publication/topbars/publish.html" %}
+{% endblock %}
+
+{% block inner_content_header %}
+    {{ block.super }}
+
+    {% include "editres/object_info_bar.html" with driver=publication.driver.repo_driver %}
+
+    <div class="panel panel-default" id="main-section"
+        data-has-administration-permissions="{{ publication.has_administration_persmissions|yesno:"true,false" }}"
+        data-publication-root-path="{{ publication.full_descriptor.path }}"
+        data-action-url="{% url 'publication.views.publication_execute' publication.driver.category publication.driver.identifier publication.driver.version publication.driver.aspect %}"
+        >
+        <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-2">
+                <button class="btn btn-primary disabled" id='publish-button'>{{ publication.driver.aspect_command }}</button>
+            </div>
+            <div class="col-xs-4">
+                {% if publication.has_administration_persmissions %}
+                <div class="btn-group" role="group">
+                    <button class="btn btn-primary disabled" id='restart-button'>Restart</button>
+                    <button class="btn btn-primary disabled" id='cancel-button'>Anuluj</button>
+                    <button class="btn btn-primary disabled" id='forget-button'>Zapomnij</button>
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-xs-2">
+                {% if publication.object_status == 'edited' and publication.edition_find_url %}
+                    <a target="_blank" class="btn btn-danger" id="edition-button" style='display: none'
+                        href="{{ publication.edition_find_url }}">Edycja
+                    </a>
+                {% endif %}
+            </div>
+            <div class="col-xs-2">
+                {% with publication.driver.preview_url as preview_url %}
+                    {% if preview_url %}
+                        <a target="_blank" class="btn btn-primary"
+                            href="{{ publication.driver.preview_url }}">Podgląd
+                        </a>
+                    {% else %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="col-xs-2">
+                {% if publication.driver.published_url %}
+                <a class="btn btn-primary disabled pull-right" id='published-url-button'
+                    href="{{ publication.driver.published_url }}">Opublikowane
+                </a>
+                {% endif %}
+            </div>
+
+        </div>
+        </div>
+    </div>
+
+
+{% endblock inner_content_header %}
+
+{% block inner_content %}
+    {% if publication.has_administration_persmissions %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Ostatnia funkcja</h3>
+            </div>
+            <div class="panel-body">
+                <code>{{ publication.publication_obj.last_function }}</code>
+            </div>
+        </div>
+        {% if publication.publication_obj.last_exception %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Ostatni problem</h3>
+            </div>
+            <div class="panel-body">
+                <pre>{{ publication.publication_obj.last_exception }}
+                </pre>
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+
+    {{ block.super }}
+
+    {% if publication.has_administration_persmissions and publication.driver.has_files %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class='panel-title'>Pliki</h2>
+            </div>
+            <ul class="list-group">
+                {% if publication.driver.are_files_ready %}
+                    {% for file in publication.driver.publication_files %}
+                    <li class="list-group-item"><a href="{{ file.preview_url }}">{{ file.filename }} (podgląd)</a> <a href="{{ file.content_url }}">(opublikowany)</a></li>
+                    {% endfor %}
+                {% else %}
+                    <li class="list-group-item">nie gotowe</li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+
+{% endblock inner_content %}
+

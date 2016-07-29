@@ -1,0 +1,73 @@
+// @media print {
+
+//     body,html {
+//         overflow: visible
+//         width: 100%;
+//     }
+    
+//     .reader-content {
+//         width: 100%;
+//         max-width: 500px;
+//     }
+
+//     div{
+//         page-break-inside: avoid;
+//     }
+    
+//     .womi-container {
+//     }
+//     img {
+//     }
+
+//     div.perf, div.bottom-content-navigation, div.watermark,
+//     header#main-header  #topbar, 
+//     header#main-header #contentbar,
+//     .bottombar-navigation
+//     { display: none }
+
+// }
+
+
+
+@media print {
+
+    img {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    div.perf, div.bottom-content-navigation, div.watermark,
+    header#main-header  #topbar, 
+    header#main-header #contentbar,
+    .bottombar-navigation
+    { display: none }
+
+    .module-title {
+        color: black!important;
+        display: block!important;
+    }
+
+    #header-image {
+        opacity: 1!important;
+        height: auto!important;
+    }
+
+    .womi-audio-container {
+        dislay: none!important;
+        margin: 0;
+    }
+
+    #main-header {
+        height: auto!important;
+    }
+
+    .movie-container {
+        display: none!important;
+    }
+
+    .womi-audio-container:after {
+        display: block;
+        content: "Materiał niedostępny w wersji do druku";
+    }
+
+}

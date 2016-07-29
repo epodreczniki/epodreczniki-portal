@@ -1,0 +1,86 @@
+// domieszki
+
+.button {
+  display: block;
+  width: @button-size;
+  height: @button-size;
+  background-color: @button-background;
+  background-size: 100% 100%;
+  border-radius: @button-shape;
+
+  &:hover, &:focus {
+    background-color: @button-hover-color;
+  }
+}
+
+.flex-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-content: stretch;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+}
+
+.flex-display {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.flex-align(@alignment) {
+  -webkit-align-items: @alignment;
+  align-items: @alignment;
+}
+
+.flex-justify(@alignment) {
+  -webkit-justify-content: @alignment;
+  justify-content: @alignment;
+}
+
+.flex-wrap(@direction, @wrap) {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: @direction;
+  flex-direction: @direction;
+  -ms-flex-wrap: @wrap;
+  -webkit-flex-wrap: @wrap;
+  flex-wrap: @wrap;
+}
+
+.flex-keep-size {
+  -webkit-flex-grow: 0;
+  flex-grow: 0;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+}
+
+//Word-break for some elements
+.profile-word-break {
+  word-break: normal;
+  //Webkit
+  word-break: break-word;
+
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}

@@ -1,0 +1,40 @@
+{% load extensions collections common_ext %}
+{# TODO: EPP-2503 #}
+{% if parent_content.is_root %}
+    {% counter "id_collection_counter" %}
+{% endif %}
+{% with children=parent_content.get_all_children_ordered %}
+{% if children %}
+<ol class="" style='list-style-type:none;'>
+    {% for content in children %}
+        {% if content.is_module %}
+            {% if not content.is_title %}
+                <li>{{ content.title_toc_path }}<a class="title"
+                    href="{% get_presentation_module_occurrence_url presentation content %}"
+                    {# more data attributes should not be rather not placed here, but if needed JS should reference to the real TOC with data-module-id #}
+                    data-module-id="{{ content.module.md_content_id }}"
+                    data-module-recipient="{{ content.module.ep_recipient }}"
+                    >  {{ content.md_title }}
+                        {%  if content.module.ep_content_status == 'expanding' %}
+                            <span class="content-status-expanding" title="Treść rozszerzająca"></span>
+                        {% endif %}
+                        {%  if content.module.ep_content_status == 'supplemental' %}
+                            <span class="content-status-supplemental" title="Treść uzupełniająca"></span>
+                        {% endif %}
+                        {%  if content.module.ep_recipient == 'teacher' %}
+                            <span class="recipient-teacher" title="Treść dla nauczyciela"></span>
+                        {% endif %}
+                    </a>
+                </li>
+            {% endif %}
+        {% else %}
+            {{ id_collection_counter.increment }}
+            <li class="chapter">
+                {{ content.title_toc_path }}<a class="chapter-link">  {{ content.md_title }}</a>
+                {% details_toc_iteration presentation content %}
+            </li>
+        {% endif %}
+    {% endfor %}
+</ol>
+{% endif %}
+{% endwith %}

@@ -1,0 +1,8 @@
+{% extends "publication/topbars/aspects.html" %}
+
+{% block topbar_content %}
+{{ block.super }}
+<li class="">
+    <a href="{{ publication.view_url }}" class='navbar-brand'>{{ publication.driver.aspect_title|truncatechars:20 }}</a>
+</li>
+{% endblock %}

@@ -1,0 +1,85 @@
+// Admin messages styling
+
+@admin-messages-bg-color: #eeeeee;
+@admin-messages-z-index: 1;
+@admin-messages-margin-left: 10px;
+@admin-messages-bar-height: 30px;
+@admin-messages-line-height: 200%;
+@admin-messages-font-size: 16px;
+@admin-messages-padding: (@admin-messages-bar-height - @admin-messages-font-size) / 2;
+
+.left {
+    float: left;
+}
+
+#admin-message-bar {
+    background-color: @admin-messages-bg-color;
+    height: @admin-messages-bar-height;
+    padding: @admin-messages-padding;
+    padding-bottom: 0px;
+}
+
+#admin-message-bar-indicator {
+    .left;
+    margin-left: @admin-messages-margin-left;
+    -webkit-animation: flash 4s infinite; /* Chrome, Safari, Opera */
+    animation: flash 4s infinite;
+
+    i {
+        color: red;
+        vertical-align: baseline;
+    }
+
+    // Chrome, Safari, Opera
+    @-webkit-keyframes flash {
+        .flash
+    }
+
+    // Standard syntax
+    @keyframes flash {
+        .flash
+    }
+}
+
+.flash {
+    0% {
+        opacity: 1.0;
+    }
+    25% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.0;
+    }
+    75% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}
+
+#admin-message-bar-messages {
+    .left;
+    position: relative;
+    overflow: hidden;
+    width: 80%;
+    height: inherit;
+    margin-left: 50px;
+}
+
+#admin-message-toggle {
+    .left;
+}
+
+.admin-message {
+    margin-left: @admin-messages-margin-left;
+    width: 100%;
+}
+
+.scrollable-text {
+    white-space: nowrap;
+    position: absolute;
+    cursor: pointer;
+    //margin-left: 50px;
+}

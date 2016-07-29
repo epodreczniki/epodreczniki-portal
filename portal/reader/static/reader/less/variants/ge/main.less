@@ -1,0 +1,205 @@
+body {
+    overflow: hidden;
+    position: fixed;
+}
+
+[data-component="grid"] {
+    overflow: hidden;
+}
+
+[data-role="polecenie-uzupelniajace"] {
+    display: none;
+}
+
+.table-of-contents-ge {
+    display: none;
+}
+
+.section:not([data-tile="tile"]) {
+    display: none;
+}
+
+.loading-image {
+    position: absolute;
+    width: 50px;
+    background-size: 100%;
+    left: 45%;
+    top: 20%;
+    background: url('../../../img/GE/progress_loader.gif') no-repeat;
+}
+
+#loading-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0 auto;
+    pointer-events: auto;
+    background: rgba(0, 0, 0, 0.33);
+    z-index: @highestZIndex;
+}
+
+.loading-indicator-background {
+    background: rgba(0, 0, 0, 1);
+}
+
+.license {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(151, 151, 151, 0.7);
+
+    .copyright {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 100%;
+        max-height: 64px;
+        text-align: center;
+
+        a {
+            .link-no-style();
+            color: @green1;
+            font-size: 25px;
+            position: relative;
+        }
+
+        .icon {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 64px;
+            max-height: 64px;
+            margin-right: 13px;
+
+            vertical-align: middle;
+            display: inline-block;
+            background-image: url("../../../img/GE/copyright-single.svg");
+
+            background-repeat: no-repeat;
+            background-position: 0% 0%;
+            background-size: contain;
+        }
+    }
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px !important;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+.watermark {
+    div {
+        transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        writing-mode: lr-tb;
+
+        width: 120px;
+    }
+    bottom: 50px;
+    left: -50px;
+    z-index: 0;
+}
+
+#ge-preloading-screen {
+    background-color: #1abc9c;
+    color: #ffffff;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: @highestZIndex;
+    text-align: center;
+    & > p {
+        position: absolute;
+        top: -60px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        height: 20px;
+    }
+
+    .spinner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 50px;
+        height: 40px;
+        text-align: center;
+        font-size: 10px;
+    }
+
+    .spinner > div {
+        background-color: #fff;
+        height: 100%;
+        width: 6px;
+        display: inline-block;
+
+        -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+        animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    }
+
+    .spinner .rect2 {
+        -webkit-animation-delay: -1.1s;
+        animation-delay: -1.1s;
+    }
+
+    .spinner .rect3 {
+        -webkit-animation-delay: -1.0s;
+        animation-delay: -1.0s;
+    }
+
+    .spinner .rect4 {
+        -webkit-animation-delay: -0.9s;
+        animation-delay: -0.9s;
+    }
+
+    .spinner .rect5 {
+        -webkit-animation-delay: -0.8s;
+        animation-delay: -0.8s;
+    }
+
+    @-webkit-keyframes sk-stretchdelay {
+        0%, 40%, 100% {
+            -webkit-transform: scaleY(0.4)
+        }
+        20% {
+            -webkit-transform: scaleY(1.0)
+        }
+    }
+
+    @keyframes sk-stretchdelay {
+        0%, 40%, 100% {
+            transform: scaleY(0.4);
+            -webkit-transform: scaleY(0.4);
+        }
+        20% {
+            transform: scaleY(1.0);
+            -webkit-transform: scaleY(1.0);
+        }
+    }
+}
+
+.res-limit-rotate-icon {
+    background-size: contain;
+    background-image: url("../../../img/GE/rotatescreen.png");
+    width: 32px;
+    height: 32px;
+    margin: 10px;
+    float: left;
+}

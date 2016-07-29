@@ -1,0 +1,286 @@
+@border-thick: 3px;
+@topbar-ge-height: 80px;
+
+.topbar-ge {
+    .topbar-ge-inner {
+        .topbar-ge-inner-mixin(@topbar-ge-height, 0 15px, @border-thick);
+    }
+
+    ul.breadcrumbs-buttons {
+
+        li:first-of-type {
+            margin-right: 30px;
+        }
+
+        li:last-of-type {
+            margin-right: 16px;
+        }
+
+        button {
+            .breadcrumbs-button-mixin(50px, 30px, 3px);
+        }
+    }
+
+    .main-navigation-tabs {
+        button {
+            .main-navigation-tabs-button-mixin(73px, 160px, 6px, 6px, 22px, 7px);
+        }
+
+        .dropdown-content {
+            //.main-navigation-tabs-dropdown-mixin(@topbar-ge-height, 325px, 15px, 24px, 7px);
+            .main-navigation-tabs-dropdown-mixin(@topbar-ge-height, 326px, 39px, 24px, 7px);
+            padding-top: 35px;
+            font-size: 16px;
+            line-height: 19px;
+        }
+
+        .supplementary-tasks-content {
+            margin: 0px !important;
+            padding-top: 36px;
+            padding-bottom: 34px;
+
+            li {
+                text-indent: 0px;
+                min-height: 19px !important;
+                height: auto !important;
+                line-height: 19px;
+                padding: 0px !important;
+                margin: 0px;
+                margin-bottom: 19px;
+
+                &:last-of-type {
+                    margin-bottom: 0px;
+                }
+            }
+        }
+
+        #licenses-content {
+            padding-top: 36px;
+            padding-bottom: 21px;
+        }
+
+        .copyright {
+            margin-top: 27px;
+        }
+
+        .exercise-list-content {
+            padding-bottom: 33px;
+            overflow-y: auto;
+
+            p {
+                line-height: 20px;
+            }
+
+            li {
+                line-height: 20px;
+                margin: 0px;
+                margin-bottom: 20px;
+
+                &:first-of-type {
+                    margin-top: 21px;
+                }
+
+                &:last-of-type {
+                    margin-bottom: 0px;
+                }
+            }
+
+            .print-card-module {
+                height: 40px !important;
+
+                a {
+                    position: absolute;
+                    top: -2px;
+                    right: 0px;
+                    z-index: 500;
+                }
+            }
+        }
+    }
+    .core-curriculum-content {
+        padding-top: 28px !important;
+        padding-bottom: 34px !important;
+    }
+
+    .one-cc-item {
+        padding-top: 6px;
+        padding-bottom: 23px;
+
+        &:last-of-type {
+            padding-bottom: 0px;
+        }
+
+        p {
+            margin-bottom: 21px !important;
+
+            &:last-of-type {
+                margin-bottom: 0px !important;
+            }
+        }
+    }
+
+    ul.additional-navigation-buttons {
+        button.help, button.search {
+            width: 48px;
+            height: 48px;
+            .rounded(50px, #fff, 3px);
+            margin-right: 12px;
+        }
+    }
+
+    ul.additional-navigation-buttons {
+        padding: 0px !important;
+        //margin-right: 0px!important;
+
+        li {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        button.help {
+            background-image: url("../../../img/GE/help.svg");
+            background-size: cover;
+            color: transparent;
+            margin-right: 15px;
+
+            &:hover {
+                background-position: 50%;
+            }
+        }
+    }
+
+    .topbar-ge-inner-hidden {
+        top: -@topbar-ge-height - @border-thick;
+    }
+
+    .toggle-topbar {
+        background-repeat: no-repeat;
+        width: 56px; //55px; added 1px for symmetry - needed for hover effects
+        height: 83px;
+        top: 64px;
+        right: 52px;
+    }
+
+    .toggle-topbar-up {
+        top: -16px;
+    }
+
+    //
+    .contact-form-trigger {
+        background-repeat: no-repeat;
+        width: 140px; 
+        height: 50px;
+        right: 150px;
+        top: 84px;
+    }
+
+    .contact-form-trigger-up {
+        top: 0;
+    }
+    //
+
+    .module-print-card-link {
+        width: 43px;
+        height: 43px;
+    }
+
+    #licenses-content {
+        .copyright {
+            /*a {
+                font-size: 17px;
+            }*/
+
+            .icon {
+                width: 43px;
+                height: 43px;
+                margin-right: 8px;
+            }
+        }
+    }
+}
+
+@-moz-document url-prefix() {
+    * {
+        outline: 0 !important;
+    }
+
+    .topbar-ge {
+        .topbar-ge-inner {
+            .topbar-ge-inner-mixin(@topbar-ge-height, 0 12px, @border-thick) !important;
+        }
+    }
+
+    .main-navigation-tabs {
+        button {
+            .main-navigation-tabs-button-mixin(73px, 160px, 6px, 6px, 22px, 7px) !important;
+
+        }
+    }
+
+    .additional-navigation-buttons {
+        button.help {
+            margin-right: 3px !important;
+        }
+    }
+
+    /*fix to address an issue in Firefox - to be removed when no longer needed */
+    .module-print-card-link {
+        &:hover {
+            background-position: calc(~"50% - 1px") 0% !important;
+        }
+    }
+
+    .exercise-list-content {
+        padding-bottom: 34px !important;
+        overflow-y: auto;
+    }
+
+    .core-curriculum-content {
+        padding-bottom: 33px !important;
+    }
+
+    .toggle-topbar {
+        height: 82px !important;
+    }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .topbar-ge-inner {
+        .topbar-ge-inner-mixin(@topbar-ge-height, 0 12px, @border-thick) !important;
+    }
+
+    .main-navigation-tabs {
+        margin-left: 0px !important;
+
+        .dropdown-menu {
+            margin-right: 6px !important;
+        }
+
+        button {
+            .main-navigation-tabs-button-mixin(73px, 160px, 7px, 6px, 22px, 7px) !important;
+            border: none;
+        }
+    }
+
+    .supplementary-tasks-content {
+        padding-top: 37px !important;
+        padding-bottom: 33px !important;
+    }
+
+    .core-curriculum-content {
+        padding-bottom: 33px !important;
+    }
+
+    #licenses-content {
+        padding-top: 37px !important;
+
+        .copyright {
+            margin-top: 26px !important;
+        }
+    }
+
+    button.help {
+        margin-right: 3px !important;
+    }
+
+}

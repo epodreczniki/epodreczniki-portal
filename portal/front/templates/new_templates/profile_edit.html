@@ -1,0 +1,192 @@
+{% load staticfiles %}
+
+{% block content %}
+
+    <section class="edit-profile-wrap profile-content-wrap" xmlns="http://www.w3.org/1999/html">
+        <aside>
+            <section class="photos-container">
+                <div class="edit-profile-photo-view">
+                    <section class="aside-filters-toggle">
+                        <div class="aside-filters-toggle-button">
+                            <span>pokaż edycję avatara</span>
+                        </div>
+                    </section>
+                    <section class="aside-filters-foldable">
+                        <section class="aside-filters-content">
+                            <section class="aside-filters-column">
+                                <div class="selected-avatar"
+                                     style="background-image: url( {% static "front/img/profile/avatar-blank01.jpg" %} )">
+                                </div>
+                            </section>
+                            <section class="aside-filters-column">
+                                <div class="avatars-list">
+                                    <div class="avatars-container">
+
+                                        <div class="avatar-image" data-avatarid="1">
+                                            <div class="avatar" data-uuid="158f8050-6615-11e5-9d70-feff819cdc9f"
+                                                 style="background-image: url({% static "front/img/profile/avatars/chlopiec.png" %})"></div>
+                                        </div>
+                                        <div class="avatar-image" data-avatarid="2">
+                                            <div class="avatar" data-uuid="158f841a-6615-11e5-9d70-feff819cdc9f"
+                                                 style="background-image: url({% static "front/img/profile/avatars/dziewczynka.png" %})"></div>
+                                        </div>
+                                        <div class="avatar-image" data-avatarid="3">
+                                            <div class="avatar" data-uuid="158f862c-6615-11e5-9d70-feff819cdc9f"
+                                                 style="background-image: url({% static "front/img/profile/avatars/kocisko.png" %})"></div>
+                                        </div>
+
+
+                                        <div class="avatar-image" data-avatarid="4">
+                                            <div class="avatar" data-uuid="158f8820-6615-11e5-9d70-feff819cdc9f"
+                                                 style="background-image: url({% static "front/img/profile/avatars/dziewczynka2.png" %})"></div>
+                                        </div>
+                                        <div class="avatar-image" data-avatarid="5">
+                                            <div class="avatar" data-uuid="158f8eba-6615-11e5-9d70-feff819cdc9f"
+                                                 style="background-image: url({% static "front/img/profile/avatars/niedzwiadek.png" %})"></div>
+                                        </div>
+                                        <div class="avatar-image" data-avatarid="6">
+                                            <div class="avatar" data-uuid="158f90cc-6615-11e5-9d70-feff819cdc9f"
+                                                 style="background-image: url({% static "front/img/profile/avatars/ninja.png" %})"></div>
+                                        </div>
+
+
+                                        <div class="avatar-image" data-avatarid="8">
+                                            <div class="add-avatar-wrapper">
+                                                <form>
+                                                    <input type="file" name="avatarfile" id="avatarfile"
+                                                           accept="image/*"/>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="add-photo-btn-container">
+                                    <button class="add-photo-button">+ DODAJ ZDJECIE</button>
+                                </div>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+            </section>
+        </aside>
+        <section class="profile-data-container profile-container">
+            <span id="predefined-levels" style="display:none;">
+                <span data-id="0" data-name="Wybierz poziom nauczania"></span>
+                {% for level in education_levels %}
+                    <span data-id="{{ level.id }}" data-name="{{ level.name }}"></span>
+                {% endfor %}
+            </span>
+            <span id="predefined-subjects" style="display:none;">
+                <span data-id="0" data-name="Wybierz przedmiot"></span>
+                {% for subject in subjects %}
+                    <span data-id="{{ subject.id }}" data-name="{{ subject.name }}"></span>
+                {% endfor %}
+            </span>
+            <div class="edit-profile">
+                <div class="edit-profile-buttons">
+                    <button class="cancel-button">Anuluj</button>
+                    <button class="edit-profile-button">Zapisz</button>
+                </div>
+                <div class="about">
+                    <div class="about-label">O mnie</div>
+                    <div class="user-name user-field">
+                        <div class="fields-label">NAZWA UŻYTKOWNIKA</div>
+                        <input class="field-value user-name-input" type="text">
+                    </div>
+                    <div class="user-home user-field">
+                        <div class="fields-label">SKĄD JESTEM</div>
+                        <input class="field-value user-home-input" type="text">
+                    </div>
+                    <div class="user-school user-field">
+                        <div class="fields-label">NAZWA SZKOŁY</div>
+                        <input class="field-value user-school-input" type="text">
+                    </div>
+                    <div class="user-bio user-field">
+                        <div class="fields-label">BIO</div>
+                        <div class="textarea-wrap">
+                            <div class="resize-textarea"></div>
+                            <textarea class="field-area-value user-bio-input" type="text"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="account-info">
+                    <div class="edit-account-container">
+                        <div class="account-info-label">Dane konta</div>
+                        <div class="account-edit-button">edytuj</div>
+                    </div>
+                    <div class="firstname user-field">
+                        <div class="fields-label">IMIĘ</div>
+                        <input class="field-value first-input account-field disabled-field" type="text" disabled>
+                    </div>
+                    <div class="surname user-field">
+                        <div class="fields-label">NAZWISKO</div>
+                        <input class="field-value surname-input account-field disabled-field" type="text" disabled>
+                    </div>
+                    <div class="gender user-field">
+                        <div class="fields-label">PŁEĆ</div>
+                        <input class="field-value gender-input account-field disabled-field" type="text" disabled>
+
+                        <div class="gender-group" style="display:none;">
+                            <input type="radio" name="gender_gr" data-present-value="Męska" value="1">Męska<br>
+                            <input type="radio" name="gender_gr" data-present-value="Żeńska" value="2">Żeńska<br>
+                        </div>
+                    </div>
+                    <div class="type user-field">
+                        <div class="fields-label">TYP KONTA</div>
+                        <input class="field-value account-type-input account-field disabled-field" type="text" disabled>
+
+                        <div class="type-group" style="display:none;">
+                            <input type="radio" name="type_gr" value="1"
+                                   data-present-value="Uczniowskie">Uczniowskie<br>
+                            <input type="radio" name="type_gr" value="2" data-present-value="Nauczycielskie">Nauczycielskie<br>
+                        </div>
+                    </div>
+                </div>
+{#                <div class="teachers">#}
+{#                    <div class="teacher-label">Moi Nauczyciele</div>#}
+{#                    <section class="teachers-list-edit">#}
+{##}
+{#                        <div class="teachers-list">#}
+{##}
+{#                        </div>#}
+{#                        <section class="teachers-add">#}
+{#                            <div class="new-teacher" style="display:none;">#}
+{#                                <div class="level-select-box">#}
+{#                                    <div class="profile-dropdown">#}
+{#                                        <select name="teacher_level_select" id="teacher_level_select">#}
+{#                                            <option value="select_level">Wybierz poziom nauczania</option>#}
+{#                                            {% for level in education_levels %}#}
+{#                                                <option value="{{ level.id }}">{{ level.name }}</option>#}
+{#                                            {% endfor %}#}
+{#                                        </select>#}
+{#                                        <select name="teacher_subject_select" id="teacher_subject_select"#}
+{#                                                style="display:none;">#}
+{#                                            <option value="select_subject">Wybierz przedmiot</option>#}
+{#                                            {% for subject in subjects %}#}
+{#                                                <option value="{{ subject.id }}">{{ subject.name }}</option>#}
+{#                                            {% endfor %}#}
+{#                                        </select>#}
+{#                                        <input class="field-value new-teacher-email" id="new-teacher-email"#}
+{#                                               placeholder="Adres email" type="text" style="display: none;">#}
+{#                                    </div>#}
+{#                                    <div class="close-level-select">x</div>#}
+{#                                </div>#}
+{#                                <div class="teacher-buttons-box" style="display:none;">#}
+{#                                    <!-- <button class="remove-teacher-button">Usuń</button> -->#}
+{#                                    <button class="add-teacher-button">Dodaj</button>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                            <div class="add-subject">#}
+{#                                <div class="add-subject-sign">+</div>#}
+{#                                <div class="add-subject-button">Dodaj przedmiot</div>#}
+{#                            </div>#}
+{#                        </section>#}
+{#                    </section>#}
+{#                </div>#}
+            </div>
+        </section>
+    </section>
+
+{% endblock %}

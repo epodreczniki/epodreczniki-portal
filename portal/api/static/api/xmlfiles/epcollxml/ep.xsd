@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 sp2 (x64) (http://www.altova.com) by Tomasz Kuczynski (Instytut Chemii Bioorganicznej PAN - Poznanskie Centrum Superkomputerowe) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://epodreczniki.pl/" xmlns:ep="http://epodreczniki.pl/" xmlns:md="http://cnx.rice.edu/mdml" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" targetNamespace="http://epodreczniki.pl/" elementFormDefault="qualified" vc:minVersion="1.1">
+	<xs:import namespace="http://cnx.rice.edu/mdml" schemaLocation="mdml.xsd"/>
+	<xs:include schemaLocation="common.xsd"/>
+	<xs:element name="root-id" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>An element that represents main root id of collection.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="origin-id" type="xs:string"/>
+	<xs:element name="origin-version" type="xs:string"/>
+	<xs:attribute name="id" type="type-not-empty-string">
+		<xs:annotation>
+			<xs:documentation>An attribute that represent id of element.</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="numbering" type="type-string-skip-include">
+		<xs:annotation>
+			<xs:documentation>An attribute that specifies if a module numbering should be included or skipped in Table Of Content.</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="toc" type="type-string-skip-include">
+		<xs:annotation>
+			<xs:documentation>An attribute that specifies if a module declaration should be included (default value) or skipped in the Table Of Contents.</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:element name="editor">
+		<xs:annotation>
+			<xs:documentation>Cut off flag which means that detailed validation is not required in throw collection to RT or import to EO.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="external-in-progress">
+					<xs:annotation>
+						<xs:documentation>Version was thrown from outer editor. The next versions will be throw from outer editor also.</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="external-final">
+					<xs:annotation>
+						<xs:documentation>Last version was thrown from outer editor. There will not be next versions.</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="edition-online">
+					<xs:annotation>
+						<xs:documentation>Version was thrown (sealed) from EO.</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:attributeGroup name="group-attr-status-and-recipient">
+		<xs:attribute name="content-status" form="qualified">
+			<xs:annotation>
+				<xs:documentation>An atrribute that specifies type of content in e-textbook.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="canon">
+						<xs:annotation>
+							<xs:documentation>It declares content that needs to be included.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="expanding">
+						<xs:annotation>
+							<xs:documentation>It declares expanding content that are optional and covering more than canon.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="supplemental">
+						<xs:annotation>
+							<xs:documentation>It declares supplemental content that are mainly for recipients with disabilities.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="recipient" form="qualified">
+			<xs:annotation>
+				<xs:documentation>An atrribute that specifies a recipient of content in e-textbook.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="student">
+						<xs:annotation>
+							<xs:documentation>It declares that content are ordinary.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="teacher">
+						<xs:annotation>
+							<xs:documentation>It declares that content are teacher-oriented.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:complexType name="type-link-reference">
+		<xs:sequence>
+			<xs:element name="link" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>An element that contains link reference for related table of content and module.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="toc-id" type="type-not-empty-string" form="qualified">
+						<xs:annotation>
+							<xs:documentation>An attribute specifies id of related table of content.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="module-id" type="type-not-empty-string" form="qualified">
+						<xs:annotation>
+							<xs:documentation>An attribute specifies id of related module.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="id"/>
+	</xs:complexType>
+	<xs:element name="cover">
+		<xs:annotation>
+			<xs:documentation>An element that repressent information about collection cover.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="cover-type" type="xs:string" form="qualified">
+						<xs:annotation>
+							<xs:documentation>An attribute that declares the format of the cover image (sample value: "png").</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="view-attributes">
+		<xs:annotation>
+			<xs:documentation>Main element for collection-specific presentation attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="view-attribute" minOccurs="1" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>An element that specifies a collection-specific WOMI.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute ref="id">
+							<xs:annotation>
+								<xs:documentation>An identifier for a WOMI used in collection's presentation attribute.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="type" type="xs:string" form="qualified">
+							<xs:annotation>
+								<xs:documentation>An attribute that represents type of the collection's presentation attribute (sample value: "panorama").</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="value" type="xs:string" form="qualified">
+							<xs:annotation>
+								<xs:documentation>An attribute that represents value of the collection's presentation attribute (sample value: "#ABCDEF").</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<!--<xs:assert test="@ep:type and (@ep:id or @ep:value)"/>-->
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="collection-header">
+		<xs:annotation>
+			<xs:documentation>An element that specifies womi to be used on details page of e-textbook on epodreczniki.pl portal.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="reference" type="type-link-reference">
+					<xs:annotation>
+						<xs:documentation>An element that specifies womi to be used in ep:collection-header.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:all>
+			<xs:attribute name="title-presentation">
+				<xs:annotation>
+					<xs:documentation>An attribute that specifies title theme color.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="dark"/>
+						<xs:enumeration value="light"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="references">
+		<xs:annotation>
+			<xs:documentation>An element contains list of womis associated with the e-textbook; allowed child element: "ep:collection-header".</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="collection-header" minOccurs="0"/>
+				<xs:element name="collection-toc" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>An element that contains special toc of collection.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="reference" type="type-link-reference">
+								<xs:annotation>
+									<xs:documentation>An element specifies womi to be used in ep:collection-toc.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="learning-objectives">
+		<xs:annotation>
+			<xs:documentation>An element that contains list of learning objective.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="learning-objective" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="learning-objective-stage" type="type-elem-string-attr-key-qualified">
+								<xs:annotation>
+									<xs:documentation>An element that declares the education level of the learning objective.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="learning-objective-school" type="type-elem-string-attr-key-qualified">
+								<xs:annotation>
+									<xs:documentation>An element that declares the school type of the learning objective.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="learning-objective-version" type="type-elem-string-attr-key-qualified">
+								<xs:annotation>
+									<xs:documentation>An element that declares the version of the learning objective.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="learning-objective-subject" type="type-elem-string-attr-key-qualified" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>An element that declares the subject of the learning objective.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="learning-objective-scope" type="type-elem-string-attr-key-qualified" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>An element that declares the scope of the learning objective (e.g. elementary, expanding).</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="learning-objective-text" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>An element that contains detailed text description of the learning objective (sample value: "A student interprets mathematical text. After solving an exercise, he interprets the result").</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="learning-objective-name" type="type-elem-string-attr-key-qualified">
+								<xs:annotation>
+									<xs:documentation>An element that represents general text description of the learning objective (sample value: "Creating and using information").</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="e-textbook">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="references" minOccurs="0"/>
+				<xs:element name="class" type="type-string-min-lenght-one" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>An element that declares the class the e-textbook's content is intended for (sample value: "1").</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="volume" type="type-not-empty-positive-integer" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>An element that declares the volume (single e-textbook) that is part of a larger e-textbook.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="cover" minOccurs="0"/>
+				<xs:element name="publication-date" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>An element that declares the official publication date of the e-textbook (sample value: "1 września 2015").</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="signature" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>An element that represents formal number declaring the e-textbook's conformance with core curriculum.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="stylesheet" type="type-string-min-lenght-one" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>An element to hold name of used stylesheet.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="environment-type" type="type-string-min-lenght-one" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>An element that defines a special mode for displaying e-textbooks, e.g. for early school education.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="show-technical-remarks" type="xs:boolean">
+					<xs:annotation>
+						<xs:documentation>An element indicates that technical remarks (e.g. WOMI verification status) should be included after transformations in the e-textbook's output formats.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="learning-objectives" maxOccurs="unbounded"/>
+				<xs:element ref="editor" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" default="1.5" form="qualified">
+				<xs:annotation>
+					<xs:documentation>An attribute speciefies formats' schema version.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="group-attr-status-and-recipient"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

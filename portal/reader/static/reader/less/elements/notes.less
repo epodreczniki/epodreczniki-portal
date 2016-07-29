@@ -1,0 +1,435 @@
+@import "common-variables";
+
+.ep-note-marker {
+  width: 10px;
+  height: 10px;
+  background: red;
+}
+
+.ep-note-with-value {
+  width: 20px;
+  height: 20px;
+  background: red;
+}
+
+.note-all-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: @highestZIndex - 10;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+}
+
+.note-dialog-window {
+  width: 490px;
+  //min-height: 300px;
+  margin: 0 auto;
+  background: white;
+  border: 1px solid #d9d9d9;
+  padding: 5px;
+  position: fixed;
+  top: 100px;
+  left: 35%;
+  z-index: @highestZIndex;
+  -webkit-box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.25);
+  h4 {
+    margin: 5px 0 20px 0;
+    display: inline-block;
+  }
+  #note-title {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #686868;
+  }
+  input#note-title {
+    padding: 5px;
+  }
+  div#note-title {
+    padding: 5px 0;
+  }
+  #note-content {
+    min-height: 150px;
+    background: #5da5d9;
+  }
+  div#note-content {
+    margin: 10px 0;
+  }
+  textarea#note-content {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    padding: 5px;
+    margin: 10px 0;
+    border: none;
+    background: #5da5d9;
+  }
+  .top-controls {
+    button#delete, button#switch-editable {
+      float: right;
+      margin: 5px 0 20px 0;
+    }
+  }
+  .bottom-controls {
+    padding: 5px 5px;
+    text-align: right;
+    font-family: @sansLight;
+    button {
+      padding: 0 5px;
+    }
+    button:hover {
+      color: @m-blue
+    }
+  }
+  #switch-editable, #delete {
+    width: 32px;
+    height: 32px;
+  }
+  #switch-editable {
+    background-image: url('../../../img/notes/editable.svg');
+    &.selected {
+      background-image: url('../../../img/notes/editable_blue.svg');
+    }
+  }
+  #delete {
+    background-image: url('../../../img/notes/delete.svg');
+  }
+  .note-dialog-body {
+    width: 400px;
+    margin: 35px auto;
+  }
+;
+}
+
+;
+
+// Notatki
+@note-type0: #ffcdcf;
+// red
+@note-type1: #fff29d;
+// yellow
+@note-type2: #b4e7f8;
+// blue
+@note-type3: #b1f7ac;
+// green
+@note-type4: #e0cef2;
+// violet
+//@note-type5: red;
+//
+//@note-black: #999;
+//@note-white: #fff;
+
+@note-type-underline0: rgb(255, 0, 0);
+@note-type-underline1: rgb(243, 233, 26);
+@note-type-underline2: rgb(0, 156, 255);
+@note-type-underline3: rgb(0, 217, 0);
+@note-type-underline4: rgb(195, 130, 238);
+
+@note-black: #999;
+@note-white: #fff;
+
+.highlight-inside(@color) {
+  &[note-with-value='true'] {
+    box-shadow: inset 0 -7px 0 @color;
+  }
+}
+
+;
+
+.note-type0 {
+  background-color: @note-type0;
+  border-color: @note-type0;
+  .highlight-inside(@note-type0)
+}
+
+.note-type1 {
+  background-color: @note-type1;
+  border-color: @note-type1;
+  .highlight-inside(@note-type1)
+}
+
+.note-type2 {
+  background-color: @note-type2;
+  border-color: @note-type2;
+  .highlight-inside(@note-type2)
+}
+
+.note-type3 {
+  background-color: @note-type3;
+  border-color: @note-type3;
+  .highlight-inside(@note-type3)
+}
+
+.note-type4 {
+  background-color: @note-type4;
+  border-color: @note-type4;
+  .highlight-inside(@note-type4)
+}
+
+[note-with-value='true'] {
+  background: none;
+  //border-bottom: 1px solid black;
+  //border-color: rgb(255,106,0);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.note-types {
+  display: table-cell;
+  padding: 5px;
+  .note-type0 {
+    border-bottom: 3px solid @note-type0;
+  }
+  .note-type1 {
+    border-bottom: 3px solid @note-type1;
+  }
+  .note-type2 {
+    border-bottom: 3px solid @note-type2;
+  }
+  .note-color-btn {
+    margin-right: 10px;
+    background: #f0f0f0;
+  }
+}
+
+.note-color-btn {
+  width: 18px;
+  height: 18px;
+  line-height: 24px;
+  vertical-align: middle;
+  &.selected {
+    width: 24px;
+    height: 24px;
+    border-width: 4px;
+  }
+}
+
+.ep-note {
+  cursor: pointer;
+}
+
+.ep-note-popup {
+  display: none;
+  position: absolute;
+  width: 120px;
+  height: 32px;
+  background: #0372BA;
+  opacity: 0.97;
+  text-align: center;
+  .add-note, .add-bookmark, .delete-note {
+    //width: 42px; height: 36px;
+    width: 28px;
+    height: 32px;
+    margin: 0 3px;
+  }
+  .add-note {
+    //background-image: url('../../../img/notes/notatka_white.svg');
+    background-image: url('../../../img/notes/note_white.svg');
+    margin-right: 2px;
+  }
+  .add-bookmark {
+    background-image: url('../../../img/notes/bookmark_white.svg');
+  }
+  .delete-note {
+    background-image: url('../../../img/notes/delete_white.svg');
+    width: 28px;
+    height: 32px;
+  }
+  .ep-note-popup-inner.edit .add-bookmark {
+    background-image: url('../../../img/notes/bookmark_edit.svg');
+
+  }
+  .ep-note-popup-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0 9px;
+  }
+  .note-color-btn {
+    width: 18px;
+    height: 18px;
+    margin: 7px 6px;
+  }
+  .ep-note-popup-inner:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 10px 10px 0;
+    border-color: #0372BA transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+    bottom: -10px;
+    left: 50px;
+  }
+  // When bubble is wider it gets .more
+  .ep-note-popup-inner.more:after {
+    left: 75px;
+  }
+}
+
+.note-bubble-dialog {
+  position: absolute;
+  width: 280px;
+  height: 180px;
+  z-index: @highestZIndex;
+  background: #fff29d;
+  button.settings {
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    width: 23px;
+    height: 22px;
+    background-image: url('../../../img/notes/dialog_settings_black.svg');
+  }
+
+}
+//scrollbar for Safari
+::-webkit-scrollbar {
+    width: 7px;
+}
+::-webkit-scrollbar-track {
+  visibility: hidden;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: rgba(0,0,0,0.3);
+}
+
+
+
+.note-bubble-dialog-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  padding-bottom: 25px;
+  #note-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    color: black;
+    resize: none;
+    outline: none;
+    border: none;
+    padding: 5px;
+    overflow: auto;
+
+
+    div.thumbnail {
+      background-color: rgba(255, 255, 255, 0.3);
+      height: 90px;
+      border-radius: 5px;
+    }
+    div#thumbnail-image {
+      position: relative;
+      width: 40%;
+      height:: 90px;
+      float: left;
+      padding-left: 5px;
+    }
+    div#thumbnail-title {
+      position: relative;
+      width: 60%;
+      height: 70px;
+      color: #888;
+      font-size: 90%;
+      align: center;
+      padding-top: 20px;
+      float: right;
+    }
+    #close-thumbnail {
+      position: relative;
+      height: 20px;
+      width: 60%;
+      float: right;
+      text-align: right;
+      color: rgba(0, 0, 0, 0.6);
+      padding-right: 5px;
+    }
+    div#thumbnail-title > a {
+      margin-top: -20px;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      color: #808080;
+      text-decoration: none;
+
+    }
+    img {
+      position: inherit;
+      top: 5px;
+      max-width: 100%;
+      height: 80px;
+      padding: 2px;
+    }
+  }
+
+}
+
+[data-note-type='0'] {
+  background-color: @note-type0;
+  border-color: @note-type0;
+  color: @note-black;
+  .note-bubble-dialog-inner:after {
+    border-color: @note-type0 transparent;
+  }
+}
+
+[data-note-type='1'] {
+  background: @note-type1;
+  color: @note-black;
+  .note-bubble-dialog-inner:after {
+    border-color: @note-type1 transparent;
+  }
+}
+
+[data-note-type='2'] {
+  background: @note-type2;
+  color: @note-black;
+  .note-bubble-dialog-inner:after {
+    border-color: @note-type2 transparent;
+  }
+}
+
+[data-note-type='3'] {
+  background: @note-type3;
+  color: @note-black;
+  .note-bubble-dialog-inner:after {
+    border-color: @note-type3 transparent;
+  }
+}
+
+[data-note-type='4'] {
+  background: @note-type4;
+  color: @note-black;
+  .note-bubble-dialog-inner:after {
+    border-color: @note-type4 transparent;
+  }
+}
+
+[data-note-type='5'] {
+  background: #f0f0f0;
+  color: @note-black;
+  .note-bubble-dialog-inner:after {
+    border-color: #f0f0f0 transparent;
+  }
+}
+
+.note-bubble-dialog-inner:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 15px 15px 0;
+  display: block;
+  width: 0;
+  z-index: 1;
+  bottom: -15px;
+  left: 125px;
+}

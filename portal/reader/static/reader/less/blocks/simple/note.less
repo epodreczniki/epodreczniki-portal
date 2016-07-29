@@ -1,0 +1,135 @@
+// this import here looks like a hack - without it, static compilation failures
+@import "../detail";
+@import "detail";
+
+.reader-content {
+    .note {
+        ._typical-note(@svg;) {
+            .common-spacing();
+            .contents-cleaner();
+
+            .note-header {
+                .simple-block-header();
+                margin-bottom: @space-A;
+                padding-bottom: 0;
+
+                .label {
+                    background-image: url(@svg);
+                }
+            }
+
+            .note-contents {
+                margin: 0 @side-space;
+            }
+
+            .bottom-cleaner();
+        }
+
+        &-tip { // Wskazówka
+            ._typical-note('../../../img/new-icons/ic-wskazowka.svg');
+        }
+
+        &-curiosity { // Ciekawostka
+            ._typical-note('../../../img/new-icons/ic-ciekawostka.svg');
+        }
+
+        &-remember { // Zapamiętaj
+            ._typical-note('../../../img/new-icons/ic-zapamietaj.svg');
+        }
+
+        &-important { // Ważne
+            ._typical-note('../../../img/new-icons/ic-wazne.svg');
+        }
+
+        &-warning { // Uwaga/Ostrzeżenie
+            ._typical-note('../../../img/new-icons/ic-uwaga.svg');
+        }
+
+        &-see-also { // Zobacz także
+            ._typical-note('../../../img/new-icons/ic-zobacz-takze.svg');
+        }
+
+        &-good-to-know { // Warto wiedzieć
+            ._typical-note('../../../img/new-icons/ic-zobacz-takze.svg');
+        }
+
+        &-time-capsule { // Kapsuła czasu (UWR)
+            ._typical-note('../../../img/new-icons/ic-zapamietaj.svg'); // svg just for mixin purpose, it's cleared by another mixin in variant
+        }
+
+        &-consider { // Zastanów się
+            margin: 50px 0;
+            border-radius: 7px;
+            padding: 32px 22px 1px;
+            background-color: #f1ccd1;
+
+            .label {
+                background-image: none;
+                position: relative;
+                bottom: 15px;
+                left: 51px;
+                font-family: @sansLight;
+                font-size: 11px;
+                line-height: 18px; // --> convert to 1.3
+            }
+
+            .content {
+                margin-left: -67px;
+                padding: 10px 0 10px 50px;
+                background-image: url('../../../img/new-icons/ic-zastanow-sie.svg');
+                background-repeat: no-repeat;
+                background-position: 0 75%;
+                font-size: 24px;
+                line-height: 23px; // --> convert to 1.65
+
+                .para {
+                    margin: 0 40px 0 0;
+                    position: relative;
+                    bottom: 18px;
+                    left: 51px;
+                    text-align: left;
+                    font-family: @sansRegular;
+                    font-size: 14px;
+                    line-height: 21px; // ---> conver to 1.5
+
+                    .list {
+                        .bullet {
+                            .item {
+                                margin-left: 13px;
+
+                                .para {
+                                    bottom: 0;
+                                    left: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .note-toggle {
+        .typical-toggles();
+        padding: 10px 0;
+        line-height: 100%;
+
+        input[type='button'] {
+            background: none repeat scroll 0 0 #ffffff !important;
+            border: 1px solid #3d71b8;
+            border-radius: 6px;
+            color: #3d71b8;
+            cursor: pointer;
+            font-family: "open_sansregular";
+            font-size: 1em;
+            height: 2.75em;
+            text-decoration: none !important;
+            text-align: center;
+            width: 14em;
+
+            &:hover {
+                background: none repeat scroll 0 0 #eeeeee !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,12 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% if page %}
+    <div class="widget content-block">
+        <h3 class="block-title"><a href="{% pageurl page %}">Ekstra</a></h3>
+        <a href="{% pageurl page %}" tabindex="-1" role="button">
+            {% image page.feed_image width-210 as feed_img %}
+            <img src="{{ feed_img.url }}" alt="{{ page.title }}"/>
+        </a>
+    </div>
+
+{% endif %}

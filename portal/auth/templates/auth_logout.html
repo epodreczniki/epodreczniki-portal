@@ -1,0 +1,29 @@
+{% extends 'auth_base.html' %}
+{% load common_ext %}
+
+{% block content %}
+    <div class="login-main">
+        <div class="relative-form">
+            <div class="login-header">
+                <p class="centered-line">Poprawnie wylogowano z&nbsp;systemu</p>
+            </div>
+
+        <span class="centered-line">
+         <a class="login-button epo-login"
+            href="{% host_url 'user' 'auth.views.epo_login' %}{% if next %}?next={{ next }}{% endif %}">Zaloguj
+             ponownie</a>
+        </span>
+        </div>
+    </div>
+{% endblock %}
+
+{% block bottom_scripts %}
+    <script src="{{ STATIC_URL }}common/js/universal_logout.js"></script>
+
+    <script>
+        if (window.universal_logout) {
+            console.log('logged out');
+            window.universal_logout.logout();
+        }
+    </script>
+{% endblock %}

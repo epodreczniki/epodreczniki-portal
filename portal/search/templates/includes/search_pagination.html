@@ -1,0 +1,17 @@
+{% if solr_metric.num_pages > 1 %}
+<div class="search-pagination">
+    {% if solr_metric.prev_page %}
+        <div class="previous"><a href="?q={{ query }}&p={{ solr_metric.prev_page }}{% if level %}&level={{ level }}{% endif %}{% if class %}&class={{ class }}{% endif %}"><span class="wcag-hide">Poprzednia strona</span></a></div>
+    {% else %}
+        <div class="previous disabled"><a href="#"><span class="wcag-hide">Poprzednia strona niedostępna</span></a></div>
+    {% endif %}
+
+    <div class="pagination-text">Strona {{ solr_metric.page }} z {{ solr_metric.num_pages }}</div>
+
+    {% if solr_metric.next_page %}
+        <div class="next"><a href="?q={{ query }}&p={{ solr_metric.next_page }}{% if level %}&level={{ level }}{% endif %}{% if class %}&class={{ class }}{% endif %}"><span class="wcag-hide">Następna strona</span></a></div>
+    {% else %}
+        <div class="next disabled"><a href="#"><span class="wcag-hide">Następna strona niedostępna</span></a></div>
+    {% endif %}
+</div>
+{% endif %}

@@ -1,0 +1,19 @@
+<form class="form-horizontal" role="form">
+	<div class="form-group">
+		<div class="col-sm-7">
+			<!--<p><input type="text" class="form-control" id="roleValue-input" placeholder="Rola"></p>-->
+            <p><label for="roleValue-list" class="control-label">Osoba/organizacja:</label>
+                <select class="form-control" id="roleValue-list" multiple></select></p>
+			<p><input type="text" class="form-control" id="roleType-input" placeholder="Typ"></p>
+            <p><button type="button" class="btn btn-default" id="addRoleButton">Dodaj nową rolę</button></p>
+		</div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <p><label for="roleslist" class="control-label">Istniejące role:</label>
+            <select class="form-control" id="roleslist" multiple class="form-control">
+            </select></p>
+            <p><button type="button" class="btn btn-default" id="deleteRoleButton">Usuń zaznaczoną</button></p>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,58 @@
+@import "detail";
+
+.reader-content {
+    .command {
+        .common-spacing();
+        .contents-cleaner();
+
+        + .command {
+            margin-top: @space-B;
+        }
+
+        .command-header {
+            .simple-block-header();
+            margin-bottom: @space-A;
+            padding: 0;
+
+            .label {
+                background-image: url('../../../img/new-icons/ic-polecenie.svg');
+
+                .numbering {
+                    clear: both;
+
+                    .numbering-prefix {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .problem {
+            .contents-cleaner();
+
+            .problem-header {
+                .label {
+                    display: none;
+                    clear: both;
+                }
+
+                .numbering {
+                    float: left;
+                    margin-right: 6px;
+                    padding: 0 6px;
+                }
+            }
+        }
+
+        .note-tip {
+            margin: @space-B 17px 0;
+            border: 1px solid #d9d9d9;
+            padding: 24px 24px 16px;
+
+            .note-header {
+                border: none;
+                padding: 0;
+            }
+        }
+    }
+}

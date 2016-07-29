@@ -1,0 +1,25 @@
+{% load begin_tags wagtailcore_tags %}
+
+{% if links %}
+    <div id="main-menu-wrapper" class="clearfix">
+
+        <ul id="main-menu">
+            <li class="menu-item menu-item-type-post_type menu-item-object-page page_item promoted-static">
+                    <a>POLECAMY:</a>
+            </li>
+            {% for child in links.promoted_items.all %}
+                <li class="menu-item menu-item-type-post_type menu-item-object-page  page_item promoted-item">
+                    <a href="{{ child.link }}">
+                        <p class="promoted-caption">
+                            <span class="promoted-title">{{ child.title }}</span>
+                            {# hidden to match new mockup, can be reverted #}
+                            {% comment %}{% autoescape off %}{{ child.subtitle }}{% endautoescape %}{% endcomment %}
+                        </p>
+                    </a>
+                </li>
+                <li class="li-promoted-link-separator"><span class="promoted-link-separator"></span></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endif %}

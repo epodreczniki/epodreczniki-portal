@@ -1,0 +1,7 @@
+<referenceable-collections>
+    {% for id, metadata in collections %}
+    <collection id="{{ id }}">
+        {{ metadata|safe }}
+    </collection>
+    {% endfor %}
+</referenceable-collections>

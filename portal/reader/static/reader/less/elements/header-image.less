@@ -1,0 +1,162 @@
+@import "common-variables";
+
+#main-header {
+  margin-top: @topbar-height;
+  position: relative;
+
+  .module-title {
+    text-align: center;
+  }
+
+  &.no-header-image {
+
+    #header-title {
+      margin: 1em 0;
+    }
+
+    #header-image {
+      display: none;
+      height: 0;
+    }
+  }
+
+  &.with-header-image {
+
+    #contentbar {
+      .title-page-num {
+        display: none;
+      }
+    }
+
+    #header-title {
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      right: 50%;
+      transform: translate(+50%, -50%);
+      -webkit-transform: translate(+50%, -50%);
+      color: #fff;
+      z-index: 1;
+
+      .module-title {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    #header-image {
+      display: block;
+      height: 256px;
+      margin: 0;
+      padding: 0;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    &.above-header {
+
+      #header-title {
+        position: relative;
+        margin: 0 auto;
+        padding: 0;
+        background: #fff;
+        color: #000;
+        text-align: center;
+        //font-family: @sansSemiBold; //@sansLight;
+        //font-size: 16px;
+
+        .module-title {
+          margin: 0;
+          padding: 1em 0.5em;
+        }
+
+        @media all and (max-width: 1149px) {
+          //font-size: 28px;
+        }
+
+        @media all and (max-width: 767px) {
+          //font-size: 20px;
+        }
+
+        @media all and (max-width: 519px) {
+          //font-size: 14px;
+        }
+      }
+
+      #header-image {
+        display: block;
+        height: 640px;
+        margin: 0;
+        padding: 0;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+
+        @media all and (min-height: 980px) {
+          height: 768px;
+        }
+
+        @media all and (max-height: 768px) {
+          height: 480px;
+        }
+      }
+    }
+
+    &.on-header {
+
+      #header-title {
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        transform: translate(+50%, -50%);
+        -webkit-transform: translate(+50%, -50%);
+        width: auto;
+        padding: 20px 36px;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+
+        .module-title {
+          margin: 0;
+          padding: 0;
+        }
+      }
+
+      #header-image {
+        display: block;
+        height: 640px;
+        margin: 0;
+        padding: 0;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+
+        @media all and (min-height: 980px) {
+          height: 768px;
+        }
+
+        @media all and (max-height: 768px) {
+          height: 480px;
+        }
+      }
+    }
+  }
+}
+
+
+//options for dark header color scheme
+.with-header-image.dark {
+  .module-title {
+    color: #000;
+  }
+
+  .contentbar-inner {
+    .icon-title {
+      color: #000;
+    }
+
+    .icon-20 {
+      background-position: 0% center !important;
+    }
+  }
+}

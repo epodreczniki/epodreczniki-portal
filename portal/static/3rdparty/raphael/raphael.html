@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style id="raphael_css" type="text/css"></style>
+    </head>
+
+	<body>
+        <script src="../epo/frame_script.js"></script>
+		<script src="url-params.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./raphael-min.js" type="text/javascript" charset="utf-8"></script>
+		<div id="canvas_container"></div>
+		<script id="raphael_script"></script>
+
+		<script>
+            if(getUrlVars()["css"] != undefined) {
+                document.getElementById("raphael_css").innerHTML = decodeURIComponent(getUrlVars()["css"]);
+            } else if (getUrlVars()["style_url"] != undefined){
+
+                var head = document.head || document.getElementsByTagName('head')[0];
+                var link = document.createElement('link');
+
+                link.type = 'text/css';
+                link.rel = "stylesheet";
+                link.href = getUrlVars()["style_url"];
+
+                head.appendChild(link);
+            }
+
+            if(getUrlVars()["code"] != undefined) {
+                document.getElementById("raphael_script").innerHTML = decodeURIComponent(getUrlVars()["code"]);
+	        } else if (getUrlVars()["url"] != undefined){
+                document.getElementById("raphael_script").src = getUrlVars()["url"];
+            } else{
+	            document.getElementById("raphael_script").innerHTML = "var paper = Raphael(document.getElementById(\"canvas_container\"), 320, 320); paper.circle(120, 120, 60).animate({fill: \"#223fa3\", stroke: \"#000\", \"stroke-width\": 80, \"stroke-opacity\": 0.5}, 2000);";
+        	}
+
+
+		</script>
+
+	</body>
+</html>
+
+

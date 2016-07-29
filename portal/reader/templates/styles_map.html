@@ -1,0 +1,37 @@
+{% load compress %}
+
+{% with s=collection.normalized_ep_stylesheet e=collection.ep_environment_type %}
+<!-- using stylesheet '{{ s }}' -->
+<!-- using environment type '{{ e }}' -->
+
+{% if s == 'ge' %}
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}reader/less/variants/ge/all-portal.less">
+    {% endcompress %}
+{% elif s == 'standard-2' %}
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}reader/less/variants/standard-2/all-portal.less">
+    {% endcompress %}
+{% elif s == 'standard-2-matematyka' %}
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}reader/less/variants/standard-2-matematyka/all-portal.less">
+    {% endcompress %}
+{% elif s == 'standard-2-przyroda' %}
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}reader/less/variants/standard-2-przyroda/all-portal.less">
+    {% endcompress %}
+{% elif s == 'standard-2-uwr' %}
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}reader/less/variants/standard-2-uwr/all-portal.less">
+    {% endcompress %}
+{% elif s == 'standard-2-tutorial' %}
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}reader/less/variants/standard-2-tutorial/all-portal.less">
+    {% endcompress %}
+<!-- default variant below -->
+{% else %}
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}reader/less/variants/standard-2/all-portal.less">
+    {% endcompress %}
+{% endif %}
+{% endwith %}

@@ -1,0 +1,371 @@
+$main-colour: #3d71b8;
+$secondary-colour-blue: #85b4ec;
+$secondary-color-navy: #284972;
+
+$promoted-static-colour: rgb(182,26,29);
+
+/* -----------------------------------------------------------
+	Top bar in header background colour
+----------------------------------------------------------- */
+#header-top {
+	background: $main-colour;
+}
+
+/* -----------------------------------------------------------
+	Logo text colour
+----------------------------------------------------------- */
+#logo h1 span {
+	color: $main-colour;
+}
+
+
+/* -----------------------------------------------------------
+	Top right social icon background hover colour
+----------------------------------------------------------- */
+.social-icons {
+  a:focus {
+	outline: none;
+  }
+  .active-icon:hover, a:focus > .active-icon {
+	background-color: $main-colour;
+  }
+}
+
+/* -----------------------------------------------------------
+	5 colour blocks on homepage, 1 = left, 5 = right
+----------------------------------------------------------- */
+.header-block-style-1 {
+	background: $main-colour;
+}
+
+.header-block-style-2 {
+	background: #2e5c9c;
+}
+
+.header-block-style-3 {
+	background: #234a86;
+}
+
+.header-block-style-4 {
+	background: #1b3a69;
+}
+
+.header-block-style-5 {
+	background: #034b29;
+}
+
+/* -----------------------------------------------------------
+	Border colour for current/hover main menu items
+----------------------------------------------------------- */
+#main-menu li.current_page_item,
+#main-menu li:hover {
+	border-color: $main-colour;
+}
+
+/* -----------------------------------------------------------
+	Homepage slideshow arrow colour
+----------------------------------------------------------- */
+.slider .flex-direction-nav .flex-prev {
+	border-color: $main-colour;
+	background-color: $main-colour;
+}
+
+.slider .flex-direction-nav .flex-next {
+	border-color: $main-colour;
+	background-color: $main-colour;
+}
+
+/* -----------------------------------------------------------
+	Page slideshow arrow colour
+----------------------------------------------------------- */
+.page-slider .flex-direction-nav .flex-prev {
+	border-color: $main-colour;
+	background-color: $main-colour;
+}
+
+.page-slider .flex-direction-nav .flex-next {
+	border-color: $main-colour;
+	background-color: $main-colour;
+}
+
+/* -----------------------------------------------------------
+	Page content border colour
+----------------------------------------------------------- */
+.page-content-wrapper {
+	border-top-color: $secondary-color-navy;
+    top: -2px;
+}
+
+/* -----------------------------------------------------------
+	Blockquote border colour
+----------------------------------------------------------- */
+.page-content blockquote {
+	border-color: $main-colour;
+}
+
+/* -----------------------------------------------------------
+	Table head colour
+----------------------------------------------------------- */
+.page-content table th {
+	background: $main-colour;
+}
+
+/* -----------------------------------------------------------
+	Table text link colour
+----------------------------------------------------------- */
+table tr a {
+	color: $main-colour;
+}
+
+/* -----------------------------------------------------------
+	Tab border colour
+----------------------------------------------------------- */
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected {
+	border-color: $main-colour;
+}
+
+/* -----------------------------------------------------------
+	Content block title background colour
+----------------------------------------------------------- */
+.block-title, #reply-title {
+	background: $main-colour;
+}
+
+/* -----------------------------------------------------------
+	Event month background colour
+----------------------------------------------------------- */
+.event-m {
+    background: $secondary-color-navy;
+}
+
+/* -----------------------------------------------------------
+	Event title link colour
+----------------------------------------------------------- */
+.event-info h4 a {
+	/*color: $main-colour;*/
+   color: #2b4b74;
+}
+
+/* -----------------------------------------------------------
+	Blog title link colour
+----------------------------------------------------------- */
+.news-content h4 a {
+	/*color: $main-colour;*/
+  color: #2b4b74;
+}
+
+/* -----------------------------------------------------------
+	Blog date background colour
+----------------------------------------------------------- */
+.blog-entry .blog-info .blog-date {
+	background: $secondary-color-navy;
+}
+
+/* -----------------------------------------------------------
+	Blog title link colour
+----------------------------------------------------------- */
+.blog-entry .blog-content h3 a {
+	color: $secondary-color-navy;
+}
+
+/* -----------------------------------------------------------
+	Pagination hover/current colour
+----------------------------------------------------------- */
+.pagination-wrapper .selected,
+.pagination-wrapper a:hover,
+.wp-pagenavi .current,
+.wp-pagenavi a:hover {
+	background: $main-colour;
+	border-color: $main-colour;
+}
+
+/* -----------------------------------------------------------
+	Course finder background colour
+----------------------------------------------------------- */
+.course-finder-full .course-finder-icon {
+	background-color: $main-colour;
+}
+
+/* -----------------------------------------------------------
+	Teacher title background colour
+----------------------------------------------------------- */
+.teacher-4 li h3.teacher-title {
+	background: $main-colour;
+}
+
+/* -----------------------------------------------------------
+	Twitter widget link colour
+----------------------------------------------------------- */
+.sidebar-right #twitter_update_list li a,
+.sidebar-right #twitter_update_list li a {
+	color: $main-colour;
+}
+
+/* -----------------------------------------------------------
+	Latest post title colour
+----------------------------------------------------------- */
+.widget .latest-posts-list li .lpl-content h6 a {
+	color: $main-colour;
+}
+
+.widget .menu-quick-links-container a {
+  color: #424242;
+}
+
+/* -----------------------------------------------------------
+	Footer background colour
+----------------------------------------------------------- */
+#footer-wrapper {
+	//background: #034b29;
+  background: #fff;
+}
+
+/* -----------------------------------------------------------
+	Slide caption background colour, must be in RGBA format 
+	if you want to keep it transparent. You can use this
+	website to convert a regular hex colour to RGBA:
+	http://hex2rgba.devoth.com/
+----------------------------------------------------------- */
+.page-slider .slides .flex-caption p {
+	background: rgba(52, 118, 255, 0.60);
+}
+
+.slider .slides .flex-caption p {
+	background: rgba(52, 118, 255, 0.6);
+}
+
+/* -----------------------------------------------------------
+	Slide caption background colour for IE8, change the two
+	"70209B60" values, it's just a regular six digit hex
+	colour but with transparency percentage added before e.g.
+	
+	70209B60 = The hex colour $main-colour @ 70% transparency
+	
+----------------------------------------------------------- */
+.ie8 .flex-caption p {
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#70209B60,endColorstr=#70209B60);
+}
+
+/* -----------------------------------------------------------
+	Colour of links separators in the top left navigation
+----------------------------------------------------------- */
+.top-left-nav li span {
+	//color: #62c997;
+}
+
+/* -----------------------------------------------------------
+	Hover colour of links in the top left navigation
+----------------------------------------------------------- */
+#header-top a:hover {
+	//color: #62C997;
+}
+
+/* -----------------------------------------------------------
+	Widget title border/block colour
+----------------------------------------------------------- */
+.widget-title-block {
+	//background: #198752;
+}
+
+/* -----------------------------------------------------------
+	Tag widget background colour
+----------------------------------------------------------- */
+.wp-tag-cloud li {
+	//background: #198752;
+}
+
+/* -----------------------------------------------------------
+	Background colour of footer bottom bar
+----------------------------------------------------------- */
+#footer-bottom {
+	//background: #198752;
+}
+
+/* -----------------------------------------------------------
+	Page title border/block colour
+----------------------------------------------------------- */
+.page-title .page-title-block {
+	background: #3168cf;
+}
+
+/* -----------------------------------------------------------
+	Course finder background colour
+----------------------------------------------------------- */
+.course-finder-full .course-finder-full-form {
+	//background: #198752;
+}
+
+/* -----------------------------------------------------------
+	Page title border/block colour
+----------------------------------------------------------- */
+.title1 h4 a {
+	color: #198752;
+}
+
+.title-block {
+	background: #198752;
+}
+
+/* -----------------------------------------------------------
+	Twitter widget link colour
+----------------------------------------------------------- */
+#twitter_update_list li a,
+#footer .widget .latest-posts-list li .lpl-content h6 span,
+.tp_recent_tweets .twitter_time,
+.tp_recent_tweets a {
+	color: $main-colour;
+}
+
+#footer #twitter_update_list li a,
+#footer .tp_recent_tweets .twitter_time,
+#footer .tp_recent_tweets a {
+	color: #9de4c2;
+}
+
+/* -----------------------------------------------------------
+	Footer bottom bar text colour
+----------------------------------------------------------- */
+#footer-bottom p {
+	color: #94c9b0;
+}
+
+/* -----------------------------------------------------------
+	Extra link and extra caption colours
+----------------------------------------------------------- */
+.extra-link p, .extra-caption, .extra-caption-container {
+      background-color: $main-colour;
+      color: #fff;
+}
+
+/* -----------------------------------------------------------
+	Search buttons colours
+----------------------------------------------------------- */
+.search-epodreczniki {
+    background-color: #1b3a69;
+}
+
+.search-kzd {
+    background-color: #3d71b8;
+}
+
+/* -----------------------------------------------------------
+	Promoted links colours - changed version
+----------------------------------------------------------- */
+.promoted-static-mockup {
+  color: $promoted-static-colour;
+}
+
+.promoted-static {
+  a {
+    color: $promoted-static-colour;
+  }
+}
+
+.promoted-title {
+  color: $main-colour;
+}
+
+.rich-text a, .event-list a {
+  color: $main-colour;
+}
+

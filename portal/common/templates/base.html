@@ -1,0 +1,122 @@
+<!doctype html>
+{% load compress staticfiles common_ext trackers %}
+<html class="ie-zoom" lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <title>{% block title %}epodreczniki.pl{% endblock %}</title>
+    <link rel="shortcut icon" href="{% static 'basics/root/favicon.ico' %}">
+
+    <meta name="description"
+          content="{% block description %}epodreczniki.pl - nowoczesna platforma edukacyjna do tworzenia i udostępniania e-podręczników na zasadach pełnej otwartości{% endblock %}">
+
+    <meta name="apple-mobile-web-app-title" content="Epodręczniki">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <meta name="application-name" content="Epodręczniki">
+    <meta name="msapplication-TileColor" content="#0f82f5">
+    <meta name="msapplication-square70x70logo" content="">
+    <meta name="msapplication-square150x150logo" content="{% static 'basics/img/square.png' %}">
+    <meta name="msapplication-wide310x150logo" content="">
+    <meta name="msapplication-square310x310logo" content="">
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'basics/img/touch-icon-144x144.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'basics/img/touch-icon-114x114.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'basics/img/touch-icon-72x72.png' %}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'basics/img/touch-icon-57x57.png' %}">
+
+    {# TODO: is hardcoded domain ok here? is it ok on test? #}
+    <link rel="search" type="application/opensearchdescription+xml" title="epodreczniki.pl"
+          href="{% host_url 'www' 'common.views.opensearch' %}">
+
+    <style>
+        @-ms-viewport{
+            width: device-width;
+        }
+    </style>
+
+    {% compress js %}
+        <script src="{{ STATIC_URL }}common/js/libs/cookie.js"></script>
+        <script src="{{ STATIC_URL }}common/js/badbrowser.js"></script>
+    {% endcompress %}
+
+    {% block head %}
+    {% endblock %}
+
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}common/less/opensans.less">
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}common/less/common.less">
+    {% endcompress %}
+
+    {% block stylesheets %}
+    {% endblock %}
+
+    {% compress js inline %}
+
+        <script>
+            var epGlobal = {};
+        </script>
+
+        {# safar-web-app.js is here because someone might want to click on a link before the page has loaded completely #}
+        <script src="{{ STATIC_URL }}common/js/safari-web-app.js"></script>
+    {% endcompress %}
+
+    {% block scripts_top %}
+    {% endblock %}
+
+    {% block tracker_block %}
+        {% tracker %}
+    {% endblock %}
+
+</head>
+<body {% block body_class %}{% endblock %}>
+{% block first_in_body %}{% endblock %}
+{% include "cookies.html" %}
+{% include "user_type.html" %}
+{% include "noscript.html" %}
+
+<div id="content-wrap" aria-live="polite">
+    <div id="contact-form-data" data-contact-form-absolute-path="{% host_url 'www' 'common.views.contact_form' %}"></div>
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+{% compress js %}
+
+    <script src="{{ STATIC_URL }}common/js/libs/modernizr.custom.js"></script>
+    <script src="{{ STATIC_URL }}common/js/libs/require.js"></script>
+
+    <script src="{{ STATIC_URL }}common/js/polyfills.js"></script>
+    <script src="{{ STATIC_URL }}common/js/hide-addressbar.js"></script>
+
+    <script src="{{ STATIC_URL }}common/js/libs/qrcode.js"></script>
+
+{% endcompress %}
+
+{% if SURROUND_SENTRY_JS_ENABLE %}
+    {% compress js %}
+        <script src="{{ STATIC_URL }}common/js/libs/raven.js"></script>
+        <script src="{{ STATIC_URL }}common/js/libs/raven_plugins/native.js"></script>
+        <script src="{{ STATIC_URL }}common/js/libs/raven_plugins/require.js"></script>
+    {% endcompress %}
+{% endif %}
+
+{% compress js %}
+    <script type="text/requirejs" src="{{ STATIC_URL }}common/js/build/common.js"></script>
+{% endcompress %}
+
+{% if SURROUND_SENTRY_JS_ENABLE %}
+    <script>
+        Raven.config('{{ RAVEN_CONFIG.dsn_js }}', {fetchContext: true}).install();
+    </script>
+{% endif %}
+
+{% block scripts_bottom %}
+{% endblock %}
+
+</body>
+</html>

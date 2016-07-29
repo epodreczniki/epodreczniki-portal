@@ -1,0 +1,8 @@
+{% extends "editstore/response_success.html" %}
+{% block content %}
+<span>Zmieniono uprawnienia</span>
+{% endblock content %}
+
+{% block list_prepend %}
+    {% include "editres/snippets/user_permissions.html" %}
+{% endblock list_prepend %}

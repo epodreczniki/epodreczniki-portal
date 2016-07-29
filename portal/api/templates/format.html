@@ -1,0 +1,42 @@
+{% extends "index_base.html" %}
+{% load staticfiles cms_utils %}
+{% block title %}
+    <div>
+
+        <img style="vertical-align: baseline; padding-top: 5px; padding-right: 5px;"
+             src="{% static "front/img/epodreczniki.svg" %}"
+             data-fallback="{% static "front/img/epodreczniki.png" %}"
+             alt="Logo epodreczniki.pl"/>
+
+        <h1 style="display: inline;">{{ title }}</h1>
+    </div>
+{% endblock %}
+
+{% block main_page %}
+    There are two methods for determinig format of response output. First approach is not strictly REST solution but
+    simplier for using with straightforward requests.
+    <h2>Format Param</h2> <p>For quick changeing response format use query parameter <code>format</code>.</p>
+    <p>Currently
+        <code>JSON</code> and <code>XML</code> formats are supported.</p> <h4>Example Usage</h4>
+    <pre class="prettyprint lang-py">http://api.epodreczniki.pl/collections?format=json</pre>
+    <h2>Determining the accepted
+        renderer</h2>
+    <p>REST framework uses a simple style of content negotiation to determine which media type should be
+        returned to a client, based on the available renderers, the priorities of each of those renderers, and the
+        client's
+        <code>Accept:</code> header. The style used is partly client-driven, and partly server-driven.</p>
+    <ol>
+        <li>More specific media types are given preference to less specific media types.</li>
+        <li>If multiple media types have the same specificity, then preference is given to based on the ordering of the
+            renderers configured for the given view.
+        </li>
+    </ol> <p>For example, given the following <code>Accept</code> header:</p>
+    <pre class="prettyprint lang-py"><code>application/json; indent=4, application/json, application/xml, text/html,
+        */* </code></pre> <p>The priorities for each of the given media types would be:</p>
+    <ul>
+        <li><code>application/json; indent=4</code></li>
+        <li><code>application/json</code>, <code>application/xml</code> and <code>text/html</code></li>
+        <li><code>*/*</code></li>
+    </ul> <p>For more information on the <code>HTTP Accept</code> header, see <a
+        href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">RFC 2616</a>.</p>
+{% endblock %}

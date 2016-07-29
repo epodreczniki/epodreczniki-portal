@@ -1,0 +1,515 @@
+@backgroundColorDark: #00777f;
+@backgroundColorLight: #00969f;
+
+@detailsColorLight: #d3f1f1;
+@detailsColorMiddle: #bedadb;
+@detailsColorDark: #b0c8ca;
+@detailsFontColor: #405278;
+
+@minTopbarHeight: calc(~"22.41%");
+@minFooterHeight: 11.11%;
+
+@bigIconSize: 130px;
+@smallIconSize: 69px;
+@iconsHorizontalOffset: 20px;
+@iconsVerticalOffset: 25px;
+
+@topbarLogoHeight: 84px;
+@topbarLogoWidth: 450px;
+@topbarLogoVerticalOffset: 100px;
+
+@front123TextColor: #424f79;
+
+@bookViewHeight: 480px;
+@bookViewWidth: 430px;
+@centralCircleSize: 210px;
+@chapterCircleRadius: 115px;
+@detailsCircleRadius: 88px;
+@bookViewPadding: 15px;
+@detailsOffset: 27px;
+@chapterOffset: 23px;
+@scale: 1.1;
+@borderWidth: 5px;
+@bookViewMargin: @chapterCircleRadius*@scale - @borderWidth + 2*@bookViewPadding;
+
+@threeColumnsMinWidth: 1550px;
+@mediumScreenMaxWidth: 1190px;
+@smallScreenMaxWidth: 600px;
+
+//@import "belfer";
+@import "infobars123";
+
+@-ms-viewport {
+    width: device-width !important;
+}
+
+html {
+    height: 100% !important;
+    width: 100% !important;
+    background-color: transparent;
+    overflow-y: auto;
+}
+
+#main-div-123 {
+    display: block;
+    background-color: transparent;
+    width: 100%;
+    padding: 0px !important;
+    margin: 50px 0px !important;
+    text-align: center;
+}
+
+#book-list {
+    background-color: transparent;
+    position: relative;
+    min-height: @bookViewHeight;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 0px !important;
+    margin: 0 auto !important;
+    display: inline-block;
+}
+
+.chapter-list {
+    z-index: 100;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.book-view {
+    position: relative;
+    display: inline-block;
+    width: @bookViewWidth - 2 * @bookViewPadding;
+    min-height: 480px;
+    text-align: center;
+    padding: @bookViewPadding;
+    margin: 0;
+}
+
+.on-top {
+    z-index: 1000;
+    position: relative;
+}
+
+.details {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 50%;
+    display: none;
+    background: #00FF33 url("../../img/epodreczniki.png") no-repeat center;
+}
+
+.details:hover {
+    transform: scale(@scale);
+}
+
+.central-circle {
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 556;
+    width: @centralCircleSize;
+    height: @centralCircleSize;
+    margin: auto;
+    margin-top: @bookViewMargin;
+    padding: 0px;
+    background-size: 300% 100%;
+    background-position: center 0%;
+    cursor: pointer;
+
+    &:hover {
+        z-index: 666;
+        background-position: center 0%;
+    }
+
+    &.active {
+        background-position: 100% 0%;
+        width: @centralCircleSize*1.25;
+        height: @centralCircleSize*1.25;
+        padding-top: @centralCircleSize*-0.25;
+        margin-top: @bookViewMargin*0.625;
+    }
+}
+
+.chapter-circle {
+    position: absolute;
+    border-radius: 50%;
+    width: @chapterCircleRadius;
+    height: @chapterCircleRadius;
+    overflow: hidden;
+    float: left;
+    z-index: 300;
+
+    .active {
+        width: @chapterCircleRadius*1.25 !important;
+        height: @chapterCircleRadius*1.25 !important;
+
+        span {
+            width: @chapterCircleRadius*1.25 !important;
+            height: @chapterCircleRadius*1.25 !important;
+        }
+
+    }
+
+    &.disabled-circle {
+        opacity: 0.3;
+    }
+
+    //cztery moduły - jesień, zima, wiosna, lato; potem pozycje powinny być obliczane względem book-view
+    &:first-of-type {
+        left: 0.5*@bookViewWidth - @chapterCircleRadius - @borderWidth - 0.5*@chapterOffset;
+        top: @bookViewMargin + @chapterOffset + @borderWidth;
+    }
+
+    &:nth-of-type(2) {
+        left: 0.5*@bookViewWidth - @chapterCircleRadius - 0.5*@borderWidth + @chapterOffset;
+        top: @bookViewMargin - @chapterOffset + @borderWidth + @bookViewPadding;
+    }
+
+    &:nth-of-type(3) {
+        left: 0.5*@bookViewWidth - 2*@borderWidth - @chapterOffset;
+        top: @bookViewMargin - @chapterOffset + @borderWidth + @bookViewPadding;
+    }
+
+    &:nth-of-type(4) {
+        left: 0.5*@bookViewWidth - 2*@borderWidth + @chapterOffset;
+        top: @bookViewMargin + @chapterOffset + @borderWidth;
+    }
+
+    a {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    span {
+        position: relative;
+        display: block;
+        width: @chapterCircleRadius;
+        height: @chapterCircleRadius;
+        border-radius: 50%;
+        background-size: 400% 100%;
+
+        &:active {
+            background-position: 66.666666% 0%;
+        }
+    }
+
+    span.active {
+        background-position: 33.333333% 0%;
+    }
+
+    &:hover {
+        transform: scale(@scale);
+
+        span {
+            //background-position: 66.6666666% 0%;
+        }
+
+        span.active {
+           // background-position: 66.6666666% 0%;
+        }
+    }
+
+}
+
+.details-circle {
+    position: absolute;
+    top: @centralCircleSize + @bookViewMargin - @detailsCircleRadius + @detailsOffset + 2*@borderWidth;
+    left: calc(~"50% - "0.5*@detailsCircleRadius);
+    width: @detailsCircleRadius;
+    height: @detailsCircleRadius;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    z-index: 300;
+
+    span {
+        position: relative;
+        display: block;
+        width: @detailsCircleRadius !important;
+        height: @detailsCircleRadius !important;
+        border-radius: 50%;
+        background-size: 300% 100%;
+
+        background-position: 100% 0%;
+        &:active {
+            background-position: 100% 0%;
+        }
+    }
+
+
+    span.active {
+        background-position: 0% 0%;
+
+        &:active {
+            background-position: 100% 0% !important;
+        }
+    }
+
+    &:hover {
+        transform: scale(@scale);
+
+        span.active {
+            background-position: 100% 0%;
+        }
+
+    }
+
+}
+
+.chapter-details {
+    .details-circle;
+    position: absolute;
+    top: 100px;
+    right: 10px;
+    border-radius: 0;
+    span.active {
+        width: 72px !important;
+        height: 72px !important;
+    }
+
+}
+
+.navigation-right {
+    z-index: 999;
+    position: absolute;
+    right: 32px;
+    bottom: 32px;
+    width: 64px;
+    height: 64px;
+    background-color: #0f82f5;
+    background-image: url("../../img/one2three/prawo.png");
+    background-size: 100% 100%;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+}
+
+.navigation-right:hover {
+    transform: scale(1.25);
+}
+
+.navigation-left {
+    z-index: 999;
+    position: absolute;
+    left: 32px;
+    bottom: 32px;
+    width: 64px;
+    height: 64px;
+    background-color: #0f82f5;
+    background-image: url("../../img/one2three/lewo.png");
+    background-size: 100% 100%;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+}
+
+.navigation-left:hover {
+    transform: scale(1.25);
+}
+
+.topbar {
+    position: relative;
+    min-width: @bookViewWidth;
+    width: 100%;
+    background-color: transparent;
+    padding-bottom: 10px;
+    margin: 0px !important;
+
+    #camera {
+        cursor: pointer; // EPP-3853
+    }
+}
+
+.topbar-tools {
+    position: absolute;
+    right: @iconsHorizontalOffset;
+    top: @iconsVerticalOffset;
+    width: calc(2 * @smallIconSize~" + 40px");
+    height: calc(@smallIconSize~" + 10px");
+    padding: 0px !important;
+
+    @media all and (max-width: @mediumScreenMaxWidth) {
+        right: @iconsHorizontalOffset*0.5;
+        top: @iconsVerticalOffset*0.5;
+    }
+
+    display: none; //tymczasowo, na życzenie GE
+}
+
+.topbar-tools-img {
+    position: relative;
+    border-radius: 50%;
+    //.elements-border;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-image: url("../../img/one2three/pomoc_ikony.svg") !important;
+    background-size: 300% 100%;
+    width: @smallIconSize;
+    height: @smallIconSize;
+    float: left;
+
+    &:first-of-type {
+        margin-right: 20px !important;
+        background-image: url("../../img/one2three/szukaj_ikony.svg") !important;
+    }
+
+    &:hover {
+        background-position: 50% 0%;
+    }
+
+    &:active, &.active {
+        background-position: 100% 0%;
+    }
+}
+
+.topbar-nav {
+    position: relative;
+    height: @bigIconSize;
+    width: @bigIconSize;
+    min-height: @bigIconSize*0.5;
+    min-width: @bigIconSize*0.5;
+    float: left;
+    margin: 0px;
+    margin-left: 2.706%;
+    margin-top: 2.407%;
+    padding: 0px;
+    border-radius: 50%;
+    background-size: 3*@bigIconSize @bigIconSize;
+    background-image: url("../../img/one2three/film_ikony.svg") !important;
+
+    @media all and (max-width: @mediumScreenMaxWidth) {
+        position: absolute;
+        left: @iconsHorizontalOffset*0.5;
+        top: @iconsVerticalOffset*0.5;
+        width: @smallIconSize;
+        height: @smallIconSize;
+        background-image: url("../../img/one2three/film_ikony_male.svg") !important;
+        background-size: 3*@smallIconSize @smallIconSize;
+        margin: 0px;
+
+    }
+
+    &:hover {
+        background-position: 50% 0%;
+    }
+
+    &:active, &.active {
+        background-position: 100% 0%;
+    }
+}
+
+.topbar-logo {
+    text-align: center;
+    margin: 0 auto;
+    padding: 0px;
+    padding-top: 60px;
+
+    div {
+        position: relative;
+        text-align: center;
+        width: @topbarLogoWidth;
+        margin: 0 auto;
+        padding: 0px;
+    }
+
+    @media all and (max-width: @mediumScreenMaxWidth) {
+        padding-top: @topbarLogoVerticalOffset;
+        width: 100%;
+
+        div {
+            max-width: 100%;
+        }
+    }
+}
+
+.logo-123 {
+    margin: 0 auto;
+    padding: 0 !important;
+    background-image: url("../../img/one2three/ep-logotyp-short.png");
+    background: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    height: 88px;
+    margin-bottom: 30px;
+
+    @media all and (max-width: @mediumScreenMaxWidth) {
+        margin-bottom: 10px;
+        min-height: 44px;
+        background-size: calc(~"100% - 30px") !important;
+    }
+
+    a {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+    }
+
+}
+
+.primary-education {
+    font-size: 44px;
+}
+
+.content-author {
+    font-size: 32px;
+    line-height: 0.8;
+
+    @media all and (max-width: @smallScreenMaxWidth) {
+        font-size: 24px;
+    }
+}
+
+#footer-welcome {
+    bottom: 0px !important;
+    min-width: @bookViewWidth - 2*@bookViewPadding;
+    width: 100%;
+    margin: 0 auto !important;
+    background-color: #fff !important;
+    padding: 0px;
+    padding-bottom: 11px;
+    padding-top: 16px;
+
+    @media all and (max-width: @mediumScreenMaxWidth) {
+        width: calc(~" 100% - 32px");
+        min-width: 600px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+.container {
+    width: calc(~"77.08% + 15px");
+    padding: 0px;
+    margin: 0 auto;
+    padding-left: 0.833%;
+
+    @media all and (max-width: @mediumScreenMaxWidth) {
+        width: 100%;
+        margin: 0px;
+        margin-right: 0px !important;
+        padding-left: 0;
+        padding-right: 0;
+
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.clearfix {
+    clear: both;
+}
+
+.elements-border {
+    border: @borderWidth solid white;
+}
+
+.hidden-showcase {
+    display: none;
+}

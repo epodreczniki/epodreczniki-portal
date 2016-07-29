@@ -1,0 +1,62 @@
+@import "../detail";
+
+.simple-block-base(@name) {
+
+    .@{name}-header {
+        .simple-block-header();
+    }
+
+    .bottom-cleaner();
+}
+
+.typical-simple-block(@name, @svg) {
+    .simple-block-base(@name);
+    border: none;
+
+    .@{name}-header {
+        border: none;
+
+        .label {
+            background-image: url(@svg);
+        }
+    }
+}
+
+.typical-nested-example() {
+
+    .example { // Przykład zagnieżdżony
+        margin: 16px 16px 0;
+        border: 1px solid #d9d9d9;
+        padding: 24px 24px 16px;
+
+        .example-header {
+            padding: 0;
+            border: none;
+
+            .label {
+                .numbering {
+                }
+            }
+        }
+
+        .example-contents {
+        }
+    }
+}
+
+.typical-toggles() {
+    text-align: right;
+
+    a, input {
+        margin-top: @space-B;
+        border: none;
+        background-color: @kolor-motywu-jasny;
+        color: @kolor-tekst-przycisk;
+        text-decoration: none;
+
+        &:hover {
+            background-color: @kolor-motywu-ciemny;
+            color: @kolor-tekst-przycisk-hover;
+        }
+    }
+}

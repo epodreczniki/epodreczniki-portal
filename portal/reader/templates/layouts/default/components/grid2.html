@@ -1,0 +1,24 @@
+{% load extensions common_ext %}
+
+
+<div class="grid" data-component="grid" style="visibility: hidden;">
+    <div class="col-main">
+        <div class="reader-content {{ collection.transformation_switches|join:" " }}" role="main">
+            <div id="loading-indicator"></div>
+            <div id="font-family" class="opensans-font">
+                <div id="module-content" data-component="module-content">
+                    {% block module_content_div %}
+                        {% if not use_static_ge %}
+                            {% esi_link module_occurrence.html_url %}
+                        {% endif %}
+                    {% endblock %}
+                </div>
+                {% include "layouts/default/components/bottom_content_nav.html" %}
+                <!-- end #module-content -->
+            </div>
+            <!-- end .elena-font -->
+        </div>
+        <!-- end .reader-content -->
+    </div>
+    <!-- end .col-main -->
+</div><!-- end .grid -->

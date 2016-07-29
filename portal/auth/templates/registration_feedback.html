@@ -1,0 +1,22 @@
+{% extends 'auth_base.html' %}
+
+{% load common_ext %}
+
+{% block content %}
+
+    <div class="login-main">
+        <div class="relative-form">
+            <div class="login-header">
+                <p class="centered-line">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </p>
+                <a class="login-button epo-login" href="{% host_url 'user' 'auth.views.epo_login' %}">Formularz logowania</a>
+                <a class="login-button epo-login" href="{% url 'auth-register-user' %}">Formularz rejestracji</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

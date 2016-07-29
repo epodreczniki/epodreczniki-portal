@@ -1,0 +1,349 @@
+#kzd-welcome-box {
+    position: relative;
+    margin: 0 auto;
+    width: 940px;
+
+    @media all and (max-width: 939px) {
+        width: 100%;
+    }
+
+    #kzd-edulevel-list {
+        margin: 0 auto;
+        margin-top: -122px;
+        .edu-level-switcher {
+            display: inline-block;
+            //margin: 20px;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 14px;
+            font-family: 'open_sansregular';
+            text-decoration: none;
+            //color: rgb(119, 119, 119);
+            color: white;
+            position: relative;
+
+            .img-level {
+                width: 110px;
+                height: 110px;
+                margin: 20px 40px;
+                margin-top: 0;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                display: block;
+                border: 2px solid white; //#17C7FF; //rgba(61, 113, 184, 0.35);;
+                border-radius: 100px;
+                background-color: white;
+            }
+
+            .categories-type-box {
+                display: none;
+
+                position: absolute;
+                background: white;
+                top: 100%;
+                left: 0;
+                width: 99%;
+                border: 1px solid #ccc;
+                border-top: none;
+                li {
+                    color: #000;
+                    text-align: left;
+                    padding: 3px;
+                    text-indent: 3px;
+                    border-top: 1px solid #ccc;
+                    font-size: 11px;
+                }
+                li:hover {
+                    background-color: #84DA93!important;
+                    font-family: 'open_sanssemibold';
+                    color: #fff;
+                }
+            }
+
+            &:hover, &:focus {
+
+                font-family: 'open_sanssemibold';
+                padding-top: 60px;
+                margin-top: -142px;
+                background-color: #008532!important;
+                .img-level {
+                    background-size: 100px 100px;
+                    //border-color: #33659A;
+                }
+                .categories-type-box {
+                    display: block;
+                }
+            }
+
+            &[data-level-id="E1"] {
+                background-color: #3B8627;//#80BE37;
+                .img-level {
+                    // background-image: url('../img/kzd/edulevel-icons/E1.svg');
+                    background-image: url('../img/kzd/faces/E1.png');
+                }
+            }
+            &[data-level-id="E2"] {
+                background-color: #307816;//#6aa12a;
+                .img-level {
+                    // background-image: url('../img/kzd/edulevel-icons/E2.svg');
+                    background-image: url('../img/kzd/faces/E2.png');
+                }
+            }
+            &[data-level-id="E3"] {
+                background-color: #256A05;//#558A1E;
+                .img-level {
+                    // background-image: url('../img/kzd/edulevel-icons/E3.svg');
+                    background-image: url('../img/kzd/faces/E3.png');
+                }
+            }
+            &[data-level-id="E4"] {
+                background-color: #145910;//#426C18;
+                .img-level {
+                    // background-image: url('../img/kzd/edulevel-icons/E4.svg');
+                    background-image: url('../img/kzd/faces/E4.png');
+                }
+            }
+
+        }
+    }
+
+    .categories {
+        margin-top: 32px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid #ccc;
+        overflow: auto;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+
+        //at least for now
+        @media all and (max-width: 939px) {
+            width: 705px;
+            margin: 32px auto;
+        }
+
+        @media all and (max-width: 704px) {
+            width: 470px;
+        }
+
+        @media all and (max-width: 469px) {
+            width: 100%;
+        }
+    }
+
+    .categories .category {
+        display: -webkit-flex;
+        display: flex;
+
+        width: 235px; //25%;
+        min-width: 235px;
+        height: 72px;
+        //background-image: url('../img/kzd/category-icons/icon.svg');
+        //background-size: auto 100%;
+        //background-repeat: no-repeat;
+        color: #777;
+        font-size: 14px;
+        cursor: pointer;
+
+        @media all and (max-width: 550px) {
+            width: 100%;
+        }
+
+        &:hover, &:focus {
+            background-color: #eee;
+            color: #444;
+            font-weight: bold;
+        }
+    }
+
+    p {
+        margin-top: 12px;
+        width: 200px;
+        text-transform: lowercase;
+    }
+
+    p:first-letter {
+        text-transform: uppercase;
+    }
+
+    .category-icon {
+        display: -webkit-flex;
+        display: flex;
+        width: 72px;
+        height: 72px;
+        background-repeat: no-repeat;
+        background-size: 48px 48px;
+        background-position: 50% 50%;
+    }
+
+    .epodreczniki {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/epodreczniki.svg');
+    }
+    .podreczniki {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/podreczniki.svg');
+    }
+    .multimedia-edukacyjne {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/multimedia-edukacyjne.svg');
+    }
+    .poradniki-dla-nauczycieli {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/poradniki-dla-nauczycieli.svg');
+    }
+    .mapy {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/mapy.svg');
+    }
+    .programy-nauczania {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/programy-nauczania.svg');
+    }
+    .karty-pracy {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/karty-pracy.svg');
+    }
+    .scenariusze-lekcji {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/scenariusze-lekcji.svg');
+    }
+    .lektury-szkolne {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/lektury-szkolne.svg');
+    }
+    .zdjecia-i-ilustracje {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/zdjecia-i-ilustracje.svg');
+    }
+    .czcionka {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/czcionka.svg');
+    }
+    .nagrania-edukacyjne {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/nagrania-edukacyjne.svg');
+    }
+    .generator-kart-pracy {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/generator-kart-pracy.svg');
+    }
+    .podstawa-programowa {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/podstawa-programowa.svg');
+    }
+    .nasz-elementarz {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/nasz-elementarz.svg');
+    }
+    .uklad-okresowy-pierwiastkow {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/nasz-elementarz.svg');
+    }
+    .gry-edukacyjne {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/gry-edukacyjne.svg');
+    }
+    .e-learning {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/e-learning.svg');
+    }
+    .testy-i-sprawdziany {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/testy-i-sprawdziany.svg');
+    }
+    .wirtualne-wycieczki {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/wirtualne-wycieczki.svg');
+    }
+    .doswiadczenia {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/doswiadczenia.svg');
+    }
+    .prezentacje {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/prezentacje.svg');
+    }
+    .olimpiady {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/olimpiady.svg');
+    }
+    .uklad-okresowy-pierwiastkow {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/uklad-okresowy-pierwiastkow.svg');
+    }
+    .zabytki-architektury-europejskiej {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/zabytki-architektury-europejskiej.svg');
+    }
+    .promocja-epodrecznikow {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/promocja-epodrecznikow.svg');
+    }
+
+    .materialy-filmowe-wos {
+        .category-icon();
+        background-image: url('../img/kzd/category-icons/materialy-video-wos.svg');
+        + p {
+            text-transform: none;
+        }
+    }
+
+    .columns {
+        padding-top: 32px;
+        -webkit-column-count: 3;
+        /* Chrome, Safari, Opera */
+        -moz-column-count: 3;
+        /* Firefox */
+        column-count: 3;
+        font-size: 14px;
+        color: #777;
+        margin-bottom: 256px;
+
+        @media all and (max-width: 939px) {
+            margin: 0 auto;
+            width: 705px;
+            -webkit-column-count: 2;
+            /* Chrome, Safari, Opera */
+            -moz-column-count: 2;
+            /* Firefox */
+            column-count: 2;
+        }
+
+        @media all and (max-width: 704px) {
+            margin: 0 auto;
+            width: 470px;
+            padding-left: 16px;
+            padding-right: 16px;
+            -webkit-column-count: 1;
+            /* Chrome, Safari, Opera */
+            -moz-column-count: 1;
+            /* Firefox */
+            column-count: 1;
+        }
+
+        @media all and (max-width: 704px) {
+            width: 470px;
+        }
+
+        @media all and (max-width: 469px) {
+            width: calc(~"100% - 32px");
+        }
+    }
+    /*footer {
+      display: block;
+      margin: 0 auto;
+      width: 980px;
+      background-color: #ccc;
+      height: 96px;
+
+    }*/
+}
+
+.gray-text {
+    color: rgb(119, 119, 119);
+}

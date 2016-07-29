@@ -1,0 +1,13 @@
+{% extends 'editstore/objects/new_module.xml' %}
+
+{% block presentation %}
+    <ep:presentation>
+        <ep:template>linear</ep:template>
+    </ep:presentation>
+{% endblock %}
+
+{% block standard_content %}
+    <section id="{{ module_id }}_1">
+            <para id="{{ module_id }}_12">Treść.</para>
+    </section>
+{% endblock %}

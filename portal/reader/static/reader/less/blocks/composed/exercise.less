@@ -1,0 +1,195 @@
+@import "detail";
+
+.exercise {
+    .frame();
+    .contents-cleaner();
+    .bottom-cleaner();
+    margin-top: @space-D;
+
+    & + & {
+        margin-top: @space-B;
+    }
+
+    &.on-paper {
+        .exercise-header {
+            .label {
+                background-image: url('../../../img/new-icons/ic-zadanie-do-zeszytu.svg');
+            }
+        }
+    }
+
+    .exercise-header {
+        .simple-block-header();
+        margin-bottom: @space-B;
+        padding: 0;
+        border: none;
+
+        .label {
+            background-image: url('../../../img/new-icons/ic-zadanie.svg');
+
+            @media screen and (-ms-high-contrast: active) {
+                background-image: none;
+                background-color: transparent;
+            }
+
+            .numbering {
+                display: inline;
+
+                .numbering-prefix {
+                    display: none;
+                }
+
+                .numbering-element {
+                    display: inline;
+                }
+            }
+        }
+
+
+        .effect-of-education {
+            font-size: 0.75em;
+            position: relative;
+        }
+
+        .difficulty-level {
+            color: black;
+            text-align: center;
+        }
+
+        .selected {
+            background: green;
+        }
+
+        .effect-of-education .effect-of-education-info {
+            display: block;
+            font-size: small;
+            background: white;
+            bottom: 100%;
+            margin-bottom: 15px;
+            opacity: 0;
+            right: -20px;
+            pointer-events: none;
+            position: absolute;
+            border: 1px solid rgba(61, 113, 184, 1);
+            width: 50px;
+            height: 135px;
+        }
+
+        .effect-of-education .effect-of-education-info:before {
+            bottom: -20px;
+            content: " ";
+            display: block;
+            height: 20px;
+            left: 0;
+            position: absolute;
+            width: 100%;
+        }
+
+        .effect-of-education .effect-of-education-info:after {
+            border-left: solid transparent 12px;
+            border-right: solid transparent 12px;
+            border-top: solid rgba(61, 113, 184, 1) 10px;
+            bottom: -10px;
+            content: " ";
+            height: 0;
+            left: 50%;
+            margin-left: -12px;
+            position: absolute;
+            width: 0;
+        }
+
+        .effect-of-education:hover .effect-of-education-info {
+            opacity: 1;
+        }
+
+        .title {
+            margin-bottom: -20px;
+        }
+    }
+
+    .exercise-contents {
+        .typical-nested-example();
+
+        .solution-toggles {
+            input[type='button'] {
+                width: 12em;
+                height: 2.75em;
+                border: 1px solid #3d71b8;
+                border-radius: 6px;
+                background: none repeat scroll 0 0 #ffffff;
+                color: #3d71b8;
+                text-decoration: none;
+                font-family: "open_sansregular";
+                font-size: 1em;
+                cursor: pointer;
+                outline: none;
+
+                &:hover, &:focus {
+                    background: none repeat scroll 0 0 #eeeeee;
+                }
+            }
+        }
+
+        .solution-toggles,
+        .commentary-toggles {
+            padding: 0 0 18px;
+            text-align: right;
+        }
+
+        .commentary,
+        .note-tip {
+            margin: 0 0 28px;
+            padding: 30px 44px 20px;
+            background-color: #d6ebff;
+
+            .note-header {
+                display: none;
+            }
+        }
+
+        .commentary-contents,
+        .solution-contents,
+        .problem-contents {
+            .para {
+                margin-top: @space-B;
+            }
+        }
+    }
+}
+
+.reader-content {
+    .section-contents {
+        .exercise {
+            .womi-container {
+                margin: 0;
+                padding: 0 0 @space-B;
+
+                .womi-exercise-container {
+                    .womi-container {
+                        margin: @space-B 0;
+                        padding: 0;
+                    }
+
+                    .exercise-content {
+                        .crossword-exercise {
+                            .crossword-table {
+                                tbody > tr:last-child {
+                                    border: transparent;
+                                }
+
+                                tbody {
+                                    tr:nth-child(2n) {
+                                            background-color: transparent;
+                                        td {
+                                            background-color: #f8f8f8;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

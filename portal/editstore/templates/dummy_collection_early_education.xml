@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<col:collection xmlns:col="http://cnx.rice.edu/collxml" xmlns:cnxsi="http://cnx.rice.edu/system-info" xmlns:ep="http://epodreczniki.pl/" xmlns:md="http://cnx.rice.edu/mdml">
+    <col:metadata mdml-version="1.2">
+        <md:content-id>{{ collection_id }}</md:content-id>
+        <md:repository>https://epodreczniki.pcss.pl/repo</md:repository>
+        <md:version>{{ collection_version }}</md:version>
+        <md:created>2014-06-20 13:08 CEST</md:created>
+        <md:revised>2014-06-27 19:50 CEST</md:revised>
+        <md:language>pl</md:language>
+        <md:license url="http://creativecommons.org/licenses/by/3.0/pl/legalcode"/>
+        <md:title>Wirtualna kolekcja dla modułu {{ module_id }}</md:title>
+        <md:education-levellist>
+        </md:education-levellist>
+        <md:subjectlist>
+        </md:subjectlist>
+        <md:abstract>To jest wirtualna kolekcja przeznaczona wyłącznie do podglądu modułu {{ module_id }}</md:abstract>
+        <ep:e-textbook ep:content-status="canon" ep:recipient="student" ep:version="1.1">
+            <ep:stylesheet>ge</ep:stylesheet>
+            <ep:environment-type>ee</ep:environment-type>
+            <ep:signature/>
+        </ep:e-textbook>
+        <md:actors>
+            <md:person userid="1">
+                <md:fullname>Edycja Online</md:fullname>
+                <md:firstname>Edycja</md:firstname>
+                <md:surname>Online</md:surname>
+                <md:email>kontakt@epodreczniki.pl</md:email>
+            </md:person>
+        </md:actors>
+        <md:roles>
+            <md:role type="author">1</md:role>
+        </md:roles>
+    </col:metadata>
+    <col:content>
+        <col:subcollection>
+            <md:title>Pora roku</md:title>
+            <ep:view-attributes>
+                <ep:view-attribute ep:id="29258" ep:type="icon"/>
+            </ep:view-attributes>
+            <col:content>
+                <col:subcollection>
+                    <md:title>Rozdział</md:title>
+                    <ep:view-attributes>
+                        <ep:view-attribute ep:id="29260" ep:type="icon"/>
+                    </ep:view-attributes>
+                    <col:content>
+                        <col:subcollection>
+                            <md:title>Podrozdział</md:title>
+                            <ep:view-attributes>
+                                <ep:view-attribute ep:id="29959" ep:type="panorama"/>
+                                <ep:view-attribute ep:id="29301" ep:type="icon"/>
+                            </ep:view-attributes>
+                            <col:content>
+                                <col:module cnxsi:version-at-this-collection-version="{{ module_version }}" document="{{ module_id }}" repository="https://epodreczniki.pcss.pl/repo/module/" version="{{ module_version }}">
+                                    <md:title>Moduł {{ module_id }}</md:title>
+                                </col:module>
+                            </col:content>
+                        </col:subcollection>
+                    </col:content>
+                </col:subcollection>
+            </col:content>
+        </col:subcollection>
+    </col:content>
+</col:collection>

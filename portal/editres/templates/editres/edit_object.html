@@ -1,0 +1,278 @@
+{% extends "editres/space.html" %}
+
+{% block title_block %}{{ category_driver.nice_single|capfirst }} {{ driver.title|capfirst }}{% endblock title_block %}
+
+{% block topbar %}
+    {% include "editres/topbars/object.html" %}
+{% endblock %}
+
+{% block main_panel_heading %}
+    {% include "editres/object_info_bar.html" %}
+{% endblock main_panel_heading %}
+
+{% block main_panel_body %}
+        <div class="row">
+            <div class="col-lg-2 col-sm-3 col-xs-6">
+                <a class="btn btn-primary" href="{{ driver.leading_editor.presentation_url }}">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edytor
+                </a>
+            </div>
+
+            <div class="col-lg-2 col-sm-3 col-xs-6">
+                {% if driver.preview_url %}
+                    <a target="_blank" class="btn btn-primary"
+                    href="{{ driver.preview_url }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Podgląd
+                    </a>
+                {% else %}
+                    Podgląd nie jest dostępny
+                {% endif %}
+            </div>
+
+            <div class="col-lg-2 col-sm-3 col-xs-6">
+                <button
+                    data-cascade-forms-container-id="edit-operations-container"
+                    data-cascade-forms-provider-url="{% url 'editres.views.seal_wizard' driver.spaceid driver.category driver.identifier driver.version %}"
+                    class="cascade-forms-initializer btn btn-primary {% if not driver.is_sealable %} disabled {% endif %}"
+                    autocomplete='off'
+                    {% if not driver.is_sealable %}title="Pieczętowanie nie jest dostępne dla obiektów typu {{ driver.nice_name }} w repozytorium: {{ driver.repository.config.info.description}}" {% endif %}
+                    title="Trwały zapis wersji w repozytorium treści"
+                >
+                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Pieczętuj
+                </button>
+            </div>
+
+            <div class="col-lg-2 col-sm-3 col-xs-6">
+                <button
+                    data-cascade-forms-container-id="edit-operations-container"
+                    data-cascade-forms-provider-url="{% url 'editstore_clone_object' space.identifier driver.category driver.identifier driver.version %}"
+                    class="cascade-forms-initializer btn btn-primary"
+                    autocomplete='off'
+                >
+                    <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span> Sklonuj
+                </button>
+            </div>
+
+            <div class="col-lg-2 col-sm-3 col-xs-6">
+                <button
+                    data-cascade-forms-container-id="edit-operations-container"
+                    data-cascade-forms-provider-url="{% url 'editstore_rename_object' space.identifier driver.category driver.identifier driver.version %}"
+                    class="cascade-forms-initializer btn btn-primary"
+                    autocomplete='off'
+                >
+                    <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Przenieś
+                </button>
+            </div>
+
+            <div class="col-lg-2 col-sm-3 col-xs-6">
+                <button
+                    data-cascade-forms-container-id="edit-operations-container"
+                    data-cascade-forms-provider-url="{% url 'editstore_delete_object' space.identifier driver.category driver.identifier driver.version %}"
+                    class="cascade-forms-initializer btn btn-danger"
+                    autocomplete='off'
+                >
+                    <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Usuń
+                </button>
+            </div>
+        </div>
+
+    <div class="well" id="edit-operations-container" style="display: none">
+
+    </div>
+
+    <div class="well">
+        <div>
+        <span>Lista plików</span>
+            <button class="btn btn-primary pull-right btn-sm" onclick="$('#files-uploader-section').toggle();"> Wczytaj pliki
+            </button>
+        </div>
+        <table class="table table-striped table-hover ">
+            <thead>
+            <tr>
+                <th>nazwa</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for file in driver.files %}
+                <tr>
+                    <td><code>{{ file.filename }}</code></td>
+                    <td>
+                        {% if file.text_editor %}
+                            <a class='btn btn-primary btn-xs' href="{{ file.text_editor.presentation_url}}"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> edytuj</a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if file.is_removeable %}
+                            <form style="display: none" method="post"
+                                    action="{% url 'editres.views.edit' driver.spaceid driver.category driver.identifier driver.version %}">
+                                <input type="hidden" name="file_to_delete"
+                                        value="{{ file.filename }}"/>
+                            </form>
+                            <a class='btn btn-danger btn-xs' href="{% url 'editres.views.edit' driver.spaceid driver.category driver.identifier driver.version %}"
+                                onclick="$(this).prev().submit(); return false;"><span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Usuń</a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if file.specialized_editor %}
+                            <a class='btn btn-primary btn-xs' href="{{ file.specialized_editor.presentation_url }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> {{ file.specialized_editor.presentation_label }}</a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a class='btn btn-primary btn-xs' target="_blank" href="{{ file.preview_url }}"><span class="glyphicon glyphicon-share" aria-hidden="true"></span> otwórz</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div id="files-uploader-section" style="display: none">
+            Uaktualnij zasób (maksymalny rozmiar jednego pliku: {{ file_limit }} bajtów
+            [{{ file_limit_user_friendly }} MB])
+
+            {% if driver.category == 'womi' %}
+                <form class="form-horizontal" method="post" enctype="multipart/form-data">
+
+
+                    <div class="input-group">
+                <span class="input-group-btn">
+                    <span class="btn btn-primary btn-file">
+                        Wybierz pliki...&hellip; <input type="file" name="files" id="files"
+                                                        multiple="" directory=""
+                                                        webkitdirectory="" mozdirectory="">
+                    </span>
+                </span>
+                        <input type="text" class="form-control" readonly>
+                    </div>
+                <span class="help-block">
+                    wybierz folder z plikami WOMI
+                </span>
+                    <input class="btn btn-primary" type="submit" value="Załaduj"/>
+                </form>
+            {% else %}
+                <form class="well form-horizontal" method="post"
+                    enctype="multipart/form-data">
+                    <div class="input-group">
+                <span class="file-input btn btn-primary btn-file" style="margin-right: 8px;">
+                    Wybierz plik
+                <input type="file" name="files" id="files">
+                </span>
+                        <input type="text" class="form-control" readonly>
+                        <input class="btn btn-primary" type="submit" value="Załaduj"/>
+                    </div>
+                </form>
+            {% endif %}
+
+        </div>
+    </div>
+
+
+
+    {% comment %}
+    {% if driver.category == "collection" %}
+    <div class="well">
+        <form class="form-horizontal" method="post"
+                action="{% url 'editres.views.validate_object' driver.spaceid driver.category driver.identifier driver.version %}">
+            <input class="btn btn-primary" type="submit" value="Waliduj"/>
+        </form>
+    </div>
+    {% endif %}
+    {% endcomment %}
+
+    <div class="well">
+        <div class="row">
+            {% if driver.category == "womi" %}
+                <div class="col-lg-2 col-sm-3 col-xs-6">
+                    <form class="form-horizontal" method="get"
+                        action="{% url 'editres.views.generate_package' driver.category driver.identifier driver.version %}">
+                        <button class="btn btn-primary" type="submit">
+                            <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Pobierz paczkę
+                        </button>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock main_panel_body %}
+
+
+{% block scripts_bottom %}
+    {{ block.super }}
+    <script>
+        var maxFileSize = {{ file_limit }};
+
+        $(document).on('change', '.btn-file :file', function () {
+            var input = $(this),
+                    numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            var oversizedFiles = [];
+            for (var i = 0; i < numFiles; i++) {
+                if (input.get(0).files[i].size > maxFileSize) {
+                    oversizedFiles.push(input.get(0).files[i].name);
+                }
+            }
+            if (oversizedFiles.length > 0) {
+                alert('pliki przekraczają dopuszcalny rozmiar:\n' + oversizedFiles.join('\n'));
+                return false;
+            }
+            input.trigger('fileselect', [numFiles, label]);
+        });
+
+        $(document).ready(function () {
+            $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
+
+                var input = $(this).parents('.input-group').find(':text'),
+                        log = numFiles > 1 ? numFiles + ' wybranych plików' : label;
+
+                input.val(log);
+
+            });
+
+            {% if driver.category == "collection" or driver.category == "module" %}
+                $('#files-uploader-section').find('form').submit(function() {
+                    var form = $(this);
+                    var file = $('#files')[0].files[0];
+
+                    $('#file-upload-error').remove();
+                    if (!file) {
+                        form.append('<div id="file-upload-error" class="alert alert-danger">Wybierz plik do załadowania</div>');
+                    } else {
+                        var fr = new FileReader();
+                        fr.onload = function() {
+                            var parser = new DOMParser();
+                            try {
+                                var xmlDoc = parser.parseFromString(fr.result, 'text/xml');
+                            } catch (err) {
+                                form.append('<div id="file-upload-error" class="alert alert-danger">Wybierz poprawny plik xml</div>');
+                                return false;
+                            }
+
+                            if (xmlDoc.documentElement.nodeName == "parsererror") {
+                                form.append('<div id="file-upload-error" class="alert alert-danger">Wybierz poprawny plik xml</div>');
+
+                        {% if driver.category == "collection" %}
+                            } else if (xmlDoc.documentElement.nodeName != "col:collection") {
+                                form.append('<div id="file-upload-error" class="alert alert-danger">Wybierz poprawny plik collection.xml</div>');
+                        {% elif driver.category == "module" %}
+                            } else if (xmlDoc.documentElement.nodeName != "document") {
+                                form.append('<div id="file-upload-error" class="alert alert-danger">Wybierz poprawny plik module.xml</div>');
+                        {% endif %}
+
+                            } else {
+                                form[0].submit();
+                            }
+                        };
+                        fr.readAsText(file);
+                    }
+                    return false;
+                });
+            {% endif %}
+        });
+
+
+
+    </script>
+{% endblock %}

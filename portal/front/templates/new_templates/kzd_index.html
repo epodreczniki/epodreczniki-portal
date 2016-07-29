@@ -1,0 +1,215 @@
+{% extends 'new_templates/kzd_base.html' %}
+
+{% load staticfiles compress requirejs extensions common_ext collection_cover kzd_tools %}
+
+{% block maincontent %}
+
+    <div class="url-container" data-index-url="{% url 'kzd_index' %}"></div>
+    <div id="kzd-content-wrap">
+        <div class="kzd-content">
+            <div class="result-list">
+
+                {{ sorted_categories }}
+
+                <div class="no-results" style="display: none">
+                    <p class="no-results-header">Brak wyników wyszukiwania!</p>
+
+                    <p class="try-again">Spróbuj użyć innego hasła...</p>
+                </div>
+
+                {% for item in kzd_womis %}
+                    <div class="result-item"
+                         data-item-id="{{ item.metadata.customId }}"
+                         data-title="{{ item.title }}"
+                         data-category="{{ item.metadata.extended.category }}"
+                         data-description="{{ item.metadata.extended.description }}"
+                         data-author="{{ item.metadata.author }}"
+                         data-keywords="{{ item.metadata.keywords }}"
+                         onclick="window.location = '{% url show_view item.identifier item.version %}' ">
+
+                        {% with thumb=item|get_item_thumb:config %}
+                            <div class="image-container">
+
+                                {% if thumb %}
+                                    <img class="kzd-cover" src="{{ thumb }}"/>
+                                    {# category also needed thus code repetition, it is insisted that the icons are staying #}
+                                    {% if item.metadata.extended.category == "nagrania edukacyjne" %}
+                                        <div class="nagrania-edukacyjne"></div>
+                                    {% elif item.metadata.extended.category == "podręczniki" %}
+                                        <div class="podreczniki"></div>
+                                    {% elif item.metadata.extended.category == "multimedia edukacyjne" %}
+                                        <div class="multimedia-edukacyjne"></div>
+                                    {% elif item.metadata.extended.category == "poradniki dla nauczycieli" %}
+                                        <div class="poradniki-dla-nauczycieli"></div>
+                                    {% elif item.metadata.extended.category == "mapy" %}
+                                        <div class="mapy"></div>
+                                    {% elif item.metadata.extended.category == "programy nauczania" %}
+                                        <div class="programy-nauczania"></div>
+                                    {% elif item.metadata.extended.category == "karty pracy" %}
+                                        <div class="karty-pracy"></div>
+                                    {% elif item.metadata.extended.category == "scenariusze lekcji" %}
+                                        <div class="scenariusze-lekcji"></div>
+                                    {% elif item.metadata.extended.category == "lektury szkolne" %}
+                                        <div class="lektury-szkolne"></div>
+                                    {% elif item.metadata.extended.category == "zdjęcia i ilustracje" %}
+                                        <div class="zdjecia-i-ilustracje"></div>
+                                    {% elif item.metadata.extended.category == "czcionka pisanka szkolna" %}
+                                        <div class="czcionka"></div>
+                                    {% elif item.metadata.extended.category == "generator kart pracy" %}
+                                        <div class="generator-kart-pracy"></div>
+                                    {% elif item.metadata.extended.category == "podstawa programowa" %}
+                                        <div class="podstawa-programowa"></div>
+                                    {% elif item.metadata.extended.category == "literatura" %}
+                                        <div class="literatura"></div>
+                                    {% elif item.metadata.extended.category == "gry edukacyjne" %}
+                                        <div class="e-learning"></div>
+                                    {% elif item.metadata.extended.category == "e-learning" %}
+                                        <div class="e-learning"></div>
+                                    {% elif item.metadata.extended.category == "testy i sprawdziany" %}
+                                        <div class="testy-i-sprawdziany"></div>
+                                    {% elif item.metadata.extended.category == "wirtualne wycieczki" %}
+                                        <div class="wirtualne-wycieczki"></div>
+                                    {% else %}
+                                        <div class="epodreczniki"></div> {# default class #}
+                                    {% endif %}
+
+                                {% elif item.metadata.extended.category == "nagrania edukacyjne" %}
+                                    <img src="{% static "front/img/kzd/category-images/nagrania-edukacyjne.jpg" %}"/>
+                                    <div class="nagrania-edukacyjne"></div>
+                                {% elif item.metadata.extended.category == "podręczniki" %}
+                                    <img src="{% static "front/img/kzd/category-images/podreczniki.jpg" %}"/>
+                                    <div class="podreczniki"></div>
+                                {% elif item.metadata.extended.category == "multimedia edukacyjne" %}
+                                    <img src="{% static "front/img/kzd/category-images/default.jpg" %}"/>
+                                    <div class="multimedia-edukacyjne"></div>
+                                {% elif item.metadata.extended.category == "poradniki dla nauczycieli" %}
+                                    <img src="{% static "front/img/kzd/category-images/poradniki-dla-nauczycieli.jpg" %}"/>
+                                    <div class="poradniki-dla-nauczycieli"></div>
+                                {% elif item.metadata.extended.category == "mapy" %}
+                                    <img src="{% static "front/img/kzd/category-images/default.jpg" %}"/>
+                                    <div class="mapy"></div>
+                                {% elif item.metadata.extended.category == "programy nauczania" %}
+                                    <img src="{% static "front/img/kzd/category-images/default.jpg" %}"/>
+                                    <div class="programy-nauczania"></div>
+                                {% elif item.metadata.extended.category == "karty pracy" %}
+                                    <<img src="{% static "front/img/kzd/category-images/default.jpg" %}"/>
+                                    <div class="karty-pracy"></div>
+                                {% elif item.metadata.extended.category == "scenariusze lekcji" %}
+                                    <img src="{% static "front/img/kzd/category-images/default.jpg" %}"/>
+                                    <div class="scenariusze-lekcji"></div>
+                                {% elif item.metadata.extended.category == "lektury szkolne" %}
+                                    <img src="{% static "front/img/kzd/category-images/default.jpg" %}"/>
+                                    <div class="lektury-szkolne"></div>
+                                {% elif item.metadata.extended.category == "zdjęcia i ilustracje" %}
+                                    <img src="{% static "front/img/kzd/category-images/default.jpg" %}"/>
+                                    <div class="zdjecia-i-ilustracje"></div>
+                                {% elif item.metadata.extended.category == "czcionka pisanka szkolna" %}
+                                    <img src="{% static "front/img/kzd/category-images/default.jpg" %}"/>
+                                    <div class="czcionka"></div>
+                                {% elif item.metadata.extended.category == "generator kart pracy" %}
+                                    <img src="{% static "front/img/kzd/category-images/default.jpg" %}"/>
+                                    <div class="generator-kart-pracy"></div>
+                                {% elif item.metadata.extended.category == "podstawa programowa" %}
+                                    <img src="{% static "front/img/kzd/category-images/default.jpg" %}"/>
+                                    <div class="podstawa-programowa"></div>
+                                {% elif item.metadata.extended.category == "literatura" %}
+                                    <img src="{% static "front/img/kzd/category-images/default.jpg" %}"/>
+                                    <div class="literatura"></div>
+                                {% elif item.metadata.extended.category == "gry edukacyjne" %}
+                                    <img src="{% static "front/img/kzd/category-images/default.jpg" %}"/>
+                                    <div class="gry-edukacyjne"></div>
+                                {% elif item.metadata.extended.category == "e-learning" %}
+                                    <img src="{% static "front/img/kzd/category-images/default.jpg" %}"/>
+                                    <div class="e-learning"></div>
+                                {% elif item.metadata.extended.category == "testy i sprawdziany" %}
+                                    <img src="{% static "front/img/kzd/category-images/default.jpg" %}"/>
+                                    <div class="testy-i-sprawdziany"></div>
+                                {% elif item.metadata.extended.category == "wirtualne wycieczki" %}
+                                    <img src="{% static "front/img/kzd/category-images/default.jpg" %}"/>
+                                    <div class="wirtualne-wycieczki"></div>
+                                {% else %}
+                                    <img src="{% static "front/img/kzd/category-images/default.jpg" %}"/>
+                                    <div class="epodreczniki"></div> {# default class #}
+                                {% endif %}
+
+                            </div>
+                        {% endwith %}
+
+                        <div class="description">
+                            <section class="title">
+                                <a href="{% url show_view item.identifier item.version %}">
+                                    {% comment %}
+                                        <span class="result-item-label">Tytuł: </span>{% endcomment %}{{ item.title }}
+                                    {% comment %}{% if item.metadata.customId %}<br>
+                                        <span class="result-item-id">id: {{ item.metadata.customId }}</span>
+                                    {% endif %}{% endcomment %}
+                                </a>
+                            </section>
+
+                            <section class="description-inner">
+                                {% if item.metadata.extended.description %}
+                                    {% comment %}<span class="result-item-label">Opis: </span>{% endcomment %}
+                                    {{ item.metadata.extended.description }}{% endif %}
+                            </section>
+
+                            <section class="author">
+                                <p>
+                                    {% if item.metadata.author %}
+                                        {% comment %}<span class="result-item-label">Autor: </span>{% endcomment %}
+                                        {{ item.metadata.author }}
+                                    {% endif %}</p>
+                            </section>
+
+                            <section class="kzd-education-level">
+
+                                {% if item.metadata.extended.learningObjectives %}
+                                    {% comment %}<span class="result-item-label">Etap: </span>{% endcomment %}
+                                    {% if item.metadata.extended.learningObjectives|isempty_edu_level %}
+                                        <p>nie podano podstawy programowej</p>
+                                        <div class="color-code"></div> {# kolor domyślny #}
+                                    {% elif item.metadata.extended.learningObjectives|edu_level:'E1' %}
+                                        <p>Edukacja wczesnoszkolna</p>
+                                        <div class="color-code edu-level-1"></div>
+                                    {% elif item.metadata.extended.learningObjectives|edu_level:'E2' %}
+                                        <p>Szkoła podstawowa 4-6</p>
+                                        <div class="color-code edu-level-2"></div>
+                                    {% elif item.metadata.extended.learningObjectives|edu_level:'E3' %}
+                                        <p>Edukacja gimnazjalna</p>
+                                        <div class="color-code edu-level-3"></div>
+                                    {% elif item.metadata.extended.learningObjectives|edu_level:'E4' %}
+                                        <p>Edukacja ponadgimnazjalna</p>
+                                        <div class="color-code edu-level-4"></div>
+                                    {% elif item.metadata.extended.learningObjectives|edu_level:'ALL' %}
+                                        <p>wszystkie etapy edukacyjne</p>
+                                        <div class="color-code"></div>
+                                    {% else %}
+                                        <p>niepoprawny format podstawy programowej</p>
+                                    {% endif %}
+                                {% endif %}
+
+
+                            </section>
+
+                            {% comment %}
+                                <section class="preview">
+                                    <a href="{% url show_view item.identifier item.version %}" class="preview-button">
+                                        <span>Detale</span>
+                                    </a>
+                                    <a href="{% url show_view item.identifier item.version %}" class="preview-button">
+                                        <span>Podgląd</span>
+                                    </a>
+                                </section>{% endcomment %}
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+

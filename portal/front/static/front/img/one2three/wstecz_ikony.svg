@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Warstwa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="206.818px" height="69px" viewBox="0 0 206.818 69" enable-background="new 0 0 206.818 69" xml:space="preserve">
+<g>
+	<circle fill="#C83C78" cx="34.5" cy="34.5" r="32"/>
+	<path fill="#AA3264" d="M44.797,64.797c8.961-3.045,16.132-9.947,19.539-18.732L48.417,30.146l-2.372,4.685l-4.684-4.685
+		l-27.268,3.948L44.797,64.797z"/>
+	<g>
+		<path fill="#FFFFFF" d="M24.287,34.729h-8.62c-1.266,0-2.292-1.026-2.292-2.292s1.026-2.291,2.292-2.291h6.604h8.646h0.028
+			l-5.666-5.355c-0.919-0.869-0.959-2.319-0.09-3.238c0.869-0.92,2.318-0.961,3.238-0.091l12.934,8.685v16.48h-11.84L24.287,34.729z
+			"/>
+		<rect x="43.361" y="30.146" fill="#FFFFFF" width="5.056" height="16.48"/>
+		
+			<line fill="none" stroke="#C83C78" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="32.515" y1="34.729" x2="35.318" y2="34.729"/>
+		
+			<line fill="none" stroke="#C83C78" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="32.515" y1="38.385" x2="35.318" y2="38.385"/>
+		
+			<line fill="none" stroke="#C83C78" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="32.515" y1="42.043" x2="35.318" y2="42.043"/>
+	</g>
+	<circle fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" cx="34.5" cy="34.5" r="32"/>
+</g>
+<g>
+	<circle fill="#1B1464" cx="103.318" cy="34.5" r="32"/>
+	<g>
+		<path fill="#FFFFFF" d="M93.105,34.729h-8.62c-1.266,0-2.292-1.026-2.292-2.292s1.026-2.291,2.292-2.291h6.604h8.646h0.028
+			l-5.666-5.355c-0.919-0.869-0.959-2.319-0.09-3.238c0.869-0.92,2.318-0.961,3.238-0.091l12.934,8.685v16.48H98.34L93.105,34.729z"
+			/>
+		<rect x="112.18" y="30.146" fill="#FFFFFF" width="5.056" height="16.48"/>
+		
+			<line fill="none" stroke="#1B1464" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="101.333" y1="34.729" x2="104.137" y2="34.729"/>
+		
+			<line fill="none" stroke="#1B1464" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="101.333" y1="38.385" x2="104.137" y2="38.385"/>
+		
+			<line fill="none" stroke="#1B1464" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="101.333" y1="42.043" x2="104.137" y2="42.043"/>
+	</g>
+	<circle fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" cx="103.318" cy="34.5" r="32"/>
+</g>
+<g>
+	<circle fill="#FFFFFF" cx="172.318" cy="34.5" r="32"/>
+	<g>
+		<path fill="#1B1464" d="M162.105,34.729h-8.62c-1.266,0-2.292-1.026-2.292-2.292s1.026-2.291,2.292-2.291h6.604h8.646h0.028
+			l-5.666-5.355c-0.919-0.869-0.959-2.319-0.09-3.238c0.869-0.92,2.318-0.961,3.238-0.091l12.934,8.685v16.48h-11.84L162.105,34.729
+			z"/>
+		<rect x="181.18" y="30.146" fill="#1B1464" width="5.056" height="16.48"/>
+		
+			<line fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="170.333" y1="34.729" x2="173.137" y2="34.729"/>
+		
+			<line fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="170.333" y1="38.385" x2="173.137" y2="38.385"/>
+		
+			<line fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="170.333" y1="42.043" x2="173.137" y2="42.043"/>
+	</g>
+	<circle fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" cx="172.318" cy="34.5" r="32"/>
+</g>
+</svg>

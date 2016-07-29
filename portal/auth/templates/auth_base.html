@@ -1,0 +1,25 @@
+{% load compress common_ext %}
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>epodręczniki - uwierzytelnianie</title>
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}auth/less/auth.less">
+    {% endcompress %}
+    {% block additional_css %}
+    {% endblock %}
+</head>
+<body>
+
+{% include 'topbars/topbar_auth.html' %}
+
+{% block content %}
+
+{% endblock %}
+
+{% block bottom_scripts %}
+{% endblock %}
+</body>
+</html>

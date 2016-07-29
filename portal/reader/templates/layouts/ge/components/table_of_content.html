@@ -1,0 +1,16 @@
+{% load extensions common_ext %}
+
+<div class="table-of-contents-ge hidden-ge-toc" data-component="table-of-contents">
+    {% block col_sidebar %}
+        <div class="toc-scrollable-area" style="display: none">
+            <div class="toc-book-index-content">
+                <div id="table-of-contents" class="toc-modules-list accordion" data-component="table-of-contents">
+                    <button class="home-btn" onclick="location.href='{% host_url 'www' 'front.views.new_index' education_level=1 %}';"></button>
+                    {% esi_url 'www' presentation.config.TABLE_OF_CONTENTS_VIEW presentation.collection.identifier presentation.collection.version presentation.collection.variant %}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    <button class="table-of-content-ge-toggle" title="Spis treści"></button>
+</div>
+

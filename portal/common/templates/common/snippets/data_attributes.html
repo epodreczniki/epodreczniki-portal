@@ -1,0 +1,5 @@
+{% for attribute in content.attributes.all %}
+    {% if attribute.present_in_toc %}
+        data-attribute-{{ attribute.name }}="{{ attribute.value }}"
+    {% endif %}
+{% endfor %}

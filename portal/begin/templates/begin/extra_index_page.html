@@ -1,0 +1,26 @@
+{% extends "begin/base.html" %}
+{% load wagtailcore_tags begin_tags wagtailimages_tags %}
+
+{% block content %}
+    {% include "begin/includes/page_header.html" with page=self request=request only %}
+
+    <div class="content-wrapper page-content-wrapper clearfix">
+        <div class="main-content page-content extras-container">
+
+            <!-- BEGIN .inner-content-wrapper -->
+            <div class="inner-content-wrapper">
+                {% for extra in self.extras %}
+                    {% image extra.extra.lead_image fill-212x212 as feed_img %}
+
+                    <div class="extra-link">
+                    <a href="{% pageurl extra.extra.page.all.0 %}">
+                        <img src="{{ feed_img.url }}" alt="{{ extra }}">
+                        <p>{{ extra }}</p>
+                    </a>
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

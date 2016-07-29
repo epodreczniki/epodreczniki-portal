@@ -1,0 +1,19 @@
+{
+   "query": {
+      "filtered": {
+         "query": {
+            "match_all": {}
+         },
+         "filter": {
+            "nested": {
+               "path": "attributes",
+               "filter": {
+                  "term": {
+                     "title": "fajna"
+                  }
+               }
+            }
+         }
+      }
+   }
+}

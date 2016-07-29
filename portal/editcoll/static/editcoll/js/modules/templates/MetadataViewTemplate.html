@@ -1,0 +1,297 @@
+<div id="metadata-tabs">
+
+    <div class="panel panel-default">
+        <div class='panel-heading'>
+            <div class='row'>
+                <div class='col-xs-2'>
+                    <h6>Kolekcja</h6>
+                </div>
+
+                <div class='col-xs-10'>
+                    <ul class="nav nav-pills" role="tablist">
+                        <li class='active'><a href="#editcoll-basic-tab" role="tab" data-toggle="tab">Podstawowe</a></li>
+                        <li><a href="#editcoll-abstract-tab" role="tab" data-toggle="tab">Abstrakt</a></li>
+                        <li><a href="#editcoll-authors-tab" role="tab" data-toggle="tab">Autorzy</a></li>
+                        <li><a href="#editcoll-presentation-tab" role="tab" data-toggle="tab">Prezentacja</a></li>
+                        <li><a href="#editcoll-other-tab" role="tab" data-toggle="tab">Inne</a></li>
+                        <li class='pull-right'><a href="#editcoll-xml-tab" role="tab" data-toggle="tab"><span class='glyphicon glyphicon-wrench'></span> XML</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class='panel-body'>
+            <div class="tab-content editcoll-write-only">
+
+
+<div class="tab-pane active" id="editcoll-basic-tab">
+
+    <form class="form-horizontal" role="form">
+
+        <div class="form-group">
+            <label for="editcoll-title-input" class="col-sm-2 control-label">Tytuł</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="editcoll-title-input" placeholder="Tytuł">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="editcoll-content-id-input" class="col-sm-2 control-label">Identyfikator</label>
+            <div class="col-sm-6">
+                <input type="text" readonly class='form-control' id="editcoll-content-id-input" placeholder="Identyfikator">
+            </div>
+
+            <label for="editcoll-version-input" class="col-sm-2 control-label">Wersja</label>
+            <div class="col-sm-2">
+                <input type="text" readonly class='form-control' id="editcoll-version-input" placeholder="Wersja">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="editcoll-subtitle-input" class="col-sm-2 control-label">Podtytuł</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="editcoll-subtitle-input" placeholder="Podtytuł">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="editcoll-subjectlist-input" class="col-sm-2 control-label">Przedmiot</label>
+            <div class="col-sm-10">
+                <select class="form-control" id="editcoll-subjectlist-input" >
+                    <option value="edukacja dla bezpieczeństwa">Edukacja dla bezpieczeństwa</option>
+                    <option value="przyroda">Przyroda</option>
+                    <option value="wiedza o społeczeństwie">Wiedza o społeczeństwie</option>
+                    <option value="historia">Historia</option>
+                    <option value="historia i społeczeństwo">Historia i społeczeństwo</option>
+                    <option value="edukacja wczesnoszkolna">Edukacja wczesnoszkolna</option>
+                    <option value="geografia">Geografia</option>
+                    <option value="biologia">Biologia</option>
+                    <option value="chemia">Chemia</option>
+                    <option value="język polski">Język polski</option>
+                    <option value="zajęcia komputerowe">Zajęcia komputerowe</option>
+                    <option value="informatyka">Informatyka</option>
+                    <option value="fizyka">Fizyka</option>
+                    <option value="matematyka">Matematyka</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="editcoll-level-input" class="col-sm-2 control-label">Etap edukacji</label>
+            <div class="col-sm-6">
+                <select class="form-control" id="editcoll-level-input" >
+                    <option value="I">Wczesnoszkolna</option>
+                    <option value="II">Podstawowa</option>
+                    <option value="III">Gimnazjum</option>
+                    <option value="IV">Ponadgimnazjalna</option>
+                </select>
+            </div>
+            <label for="editcoll-class-input" class="col-sm-2 control-label">Klasa</label>
+            <div class="col-sm-2">
+                <select class="form-control" id="editcoll-class-input" >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="0">Brak</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="editcoll-volume-input" class="col-sm-2 control-label">Tom</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="editcoll-volume-input" placeholder="tom">
+            </div>
+        </div>
+</div>
+
+
+
+<div class="tab-pane" id="editcoll-abstract-tab">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <textarea class="form-control" id="editcoll-abstract-input" placeholder="Abstrakt" rows="15"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<div class="tab-pane" id="editcoll-authors-tab">
+
+    <form class="form-horizontal" role="form">
+
+        <div class="form-group">
+            <label for="editcoll-actors-list" class="col-sm-2 control-label">Autorzy</label>
+            <div class="col-sm-8">
+                <select class="form-control actors-roles" id="editcoll-actors-list" multiple>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-success" id="actorsEditButton">Edytuj</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="editcoll-organizations-list" class="col-sm-2 control-label">Organizacje</label>
+            <div class="col-sm-8">
+                <select class="form-control actors-roles" id="editcoll-organizations-list" multiple>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-success" id="organizationsEditButton">Edytuj</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="editcoll-roles-list" class="col-sm-2 control-label">Role</label>
+            <div class="col-sm-8">
+                <select class="form-control actors-roles" id="editcoll-roles-list" multiple>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-success" id="rolesEditButton">Edytuj</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+<div class="tab-pane" id="editcoll-presentation-tab">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="editcoll-environment-type-input" class="col-sm-3 control-label">Środowisko podręcznika</label>
+            <div class="col-sm-2">
+                <select class="form-control" id="editcoll-environment-type-input">
+                    <option value="ee">ee</option>
+                    <option value="normal" selected>normal</option>
+                    <option value="uwr">uwr</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="editcoll-show-technical-remarks-input" class="col-sm-3 control-label">Pokazuj uwagi techniczne</label>
+            <div class="col-sm-2">
+                <select class="form-control" id="editcoll-show-technical-remarks-input">
+                    <option value="true" selected>true</option>
+                    <option value="false">false</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="editcoll-stylesheet-input" class="col-sm-3 control-label">Arkusz stylów</label>
+            <div class="col-sm-5">
+                <!-- <input type="text" class="form-control" id="editcoll-stylesheet-input" placeholder="Arkusz stylów"> -->
+                <select class="form-control" id="editcoll-stylesheet-input">
+                </select>
+            </div>
+            <div class="col-sm-1">
+                <button type="button" class="btn btn-success" id="stylesheetAddBtn">Dodaj nowy styl</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="editcoll-cover-input" class="col-sm-3 control-label">Okładka</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="editcoll-cover-input" placeholder="Okładka">
+            </div>
+            <label for="editcoll-coverType-input" class="col-sm-1 control-label">Typ</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="editcoll-coverType-input" placeholder="Typ">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="editcoll-header-input" class="col-sm-3 control-label">Baner tytułowy</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="editcoll-header-input" placeholder="WOMI Id">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="editcoll-header-presentation-input" class="col-sm-3 control-label">Motyw banera tytułowego</label>
+            <div class="col-sm-2">
+                <select class="form-control" id="editcoll-header-presentation-input" >
+                    <option value="light">jasny</option>
+                    <option value="dark">ciemny</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="tab-pane" id="editcoll-other-tab">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="editcoll-language-input" class="col-sm-3 control-label">Język</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="editcoll-language-input" placeholder="Język">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="editcoll-license-list" class="col-sm-3 control-label">Licencja</label>
+            <div class="col-sm-9">
+                <select class="form-control" id="editcoll-license-list" >
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="editcoll-signature-input" class="col-sm-3 control-label">Sygnatura</label>
+            <div class="col-sm-5">
+                <!--<input type="text" class="form-control" id="editcoll-signature-input" placeholder="Sygnatura">-->
+                <textarea class="form-control" id="editcoll-signature-input" placeholder="Sygnatura" rows="6" maxlength="2000"></textarea>
+            </div>
+            <div class="col-sm-3">
+                <p><button type="button" class="btn btn-success" id="sygnatureBold">Pogrubienie</button></p>
+                <p><button type="button" class="btn btn-success" id="sygnatureItalic">Kursywa</button></p>
+                <p><button type="button" class="btn btn-success" id="sygnatureBoldItalic">Pogrubienie i Kursywa</button></p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="editcoll-epversion-input" class="col-sm-3 control-label">Wersja schematu</label>
+            <div class="col-sm-9">
+                <input readonly type="text" class="form-control" id="editcoll-epversion-input" placeholder="Wersja schematu">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="editcoll-repository-input" class="col-sm-3 control-label">Repozytorium</label>
+            <div class="col-sm-9">
+                <input readonly type="text" class="form-control" id="editcoll-repository-input" placeholder="Repozytorium">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="editcoll-revised-input" class="col-sm-3 control-label">Data modyfikacji</label>
+            <div class="col-sm-9">
+                <input readonly type="text" class="form-control" id="editcoll-revised-input" placeholder="Data modyfikacji">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="editcoll-created-input" class="col-sm-3 control-label">Data utworzenia</label>
+            <div class="col-sm-9">
+                <input readonly type="text" class="form-control" id="editcoll-created-input" placeholder="Data utworzenia">
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div class="tab-pane" id="editcoll-xml-tab">
+    <textarea class="editcoll-metadata form-control" id="editcoll-xml" rows="13" placeholder="xml" readonly></textarea>
+</div>
+
+            </div>
+        </div>
+    </div>
+</div>

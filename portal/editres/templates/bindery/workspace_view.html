@@ -1,0 +1,97 @@
+{% extends "bindery/item_context.html" %}
+
+{% comment %}{% block create_objects %}
+    <div class="create-objects">
+        <div class="create-objects-inner">
+            <div class="create-plus"></div>
+            <div class="create-collection">
+                <div class="create-object-icon"></div>
+                <span>Kolekcja</span>
+            </div>
+            <div class="create-module">
+                <div class="create-object-icon"></div>
+                <span>Moduł</span>
+            </div>
+            <div class="create-womi">
+                <div class="create-object-icon"></div>
+                <span>WOMI</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% endcomment %}
+
+{% block item_context_workarea_image %}
+    <div class="item-context-workarea-image foldable">
+        <div class="item-context-workarea-image-icon"></div>{# add background-image from data #}
+        <div class="item-context-workarea-image-edit"><span>Zmień ikonę przestrzeni</span></div>
+    </div>
+{% endblock %}
+
+{% block item_context_workarea_description_header_options %}
+    <div class="item-context-workarea-description-header-options">
+        <div class="item-context-workarea-description-header-edit">Edytuj dane przestrzeni</div>
+        <div class="item-context-workarea-description-header-options-icon icon"></div>
+    </div>
+{% endblock %}
+
+{% block item_context_workarea_container %}
+    <div class="item-context-workarea-description">
+
+        <div class="item-context-workarea-description-content">
+
+            <section class="item-context-workarea-description-header">
+                <div class="item-context-workarea-description-header-privacy icon private"></div>
+                {% block item-context-workarea-description-header-name %}
+                    <div class="item-context-workarea-description-header-name">
+                        <div class="item-context-workarea-description-header-name-label">
+                            <p>Nazwa przestrzeni</p>
+                        </div>
+                        <div class="item-context-workarea-description-header-name-value">
+                            <p>Jakaś długa nazwa przestrzeni</p>
+                        </div>
+                    </div>
+                {% endblock %}
+            </section>
+            <section class="item-context-workarea-description-text foldable">
+                <div class="item-context-workarea-section-header">
+                    <span>Opis</span>
+                    <a>więcej</a>
+                </div>
+                <section class="item-context-workarea-section">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin lorem
+                        commodo
+                        eros maximus, eget iaculis ligula rutrum. Etiam vestibulum augue vel diam placerat,
+                        id
+                        cursus
+                        neque tincidunt. Nulla gravida urna ut eros aliquet, sit amet commodo dolor mattis.
+                        Donec
+                        porta malesuada magna ac accumsan. Curabitur sit amet massa vitae risus porttitor
+                        vulputate.
+                        Sed sit amet pharetra ipsum. Nunc euismod vestibulum massa in accumsan. Fusce purus
+                        sapien,
+                        viverra sit amet placerat a, vehicula nec libero.</p>
+
+                    <p>
+                        Aliquam feugiat luctus vehicula. Nunc et nisl porttitor, tempus tellus id, euismod
+                        massa. Mauris vitae nibh et purus mollis consequat. Integer faucibus arcu eget quam
+                        interdum
+                        efficitur. In lacinia lobortis arcu semper lobortis. Mauris tincidunt libero nec
+                        lacus
+                        auctor posuere.
+                        Praesent in ante a urna lacinia sollicitudin vitae quis velit. Pellentesque posuere
+                        justo rhoncus sem fringilla, non luctus arcu bibendum. Etiam commodo, erat a gravida
+                        tincidunt, odio sapien semper tortor, nec dapibus justo massa sed nisl. Morbi luctus
+                        nibh mauris, vel
+                        dapibus nunc pellentesque vitae. Cras pellentesque, elit eget rutrum ullamcorper,
+                        sapien
+                        leo
+                        suscipit nibh, nec pulvinar mauris diam eget leo. Fusce pulvinar nec nisi at
+                        condimentum.
+                    </p>
+                </section>
+            </section>
+        </div>
+    </div>
+{% endblock %}
+

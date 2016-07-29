@@ -1,0 +1,21 @@
+{% load editres_general %}
+<div>
+<div class='cascade-forms-response-success'>
+{% block content %}
+<span>Wykonano</span>
+{% endblock %}
+</div>
+{% if api_response %}
+<script type='application/json' id='machine-response'>
+{{ api_response|safe }}
+</script>
+{% endif %}
+<div class='cascade-forms-list-prepend'>
+{% block list_prepend %}
+
+{% endblock %}
+</div>
+<div id='history-entries-append'>
+{% aggregated_history_entries %}
+</div>
+</div>

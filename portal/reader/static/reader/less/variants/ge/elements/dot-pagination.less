@@ -1,0 +1,54 @@
+@singleDotSize: 72px;
+//needed to be adjusted for new icons
+
+.dot-pagination-main {
+    position: fixed;
+    bottom: 1.85%; //3.75%;
+    left: 50%;
+}
+
+.dot-pagination-ul {
+    width: 100%;
+    position: relative;
+    left: -50%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        display: inline;
+        margin: 0 20px;
+        width: @singleDotSize;
+        height: @singleDotSize;
+        float: left;
+        text-align: center;
+        opacity: 1 !important;
+
+        .dot-icon {
+            cursor: pointer;
+            background-image: url("../../../img/GE/kolka_ikony.svg");
+            background-size: 300% 100%;
+            background-position: 0% 0%;
+            background-repeat: no-repeat;
+            display: inline-block;
+            border: none !important;
+            width: @singleDotSize; //40px; -> nowe ikony
+            height: @singleDotSize; //40px; -> nowe ikony
+            margin: 0 auto;
+            opacity: 1.0 !important;
+
+            &:hover, &:focus {
+                background-position: 50% 0%;
+            }
+
+            &.active {
+                background-position: 100% 0%;
+
+                &:focus {
+                    outline: black dotted thin !important;
+                }
+            }
+        }
+
+    }
+}

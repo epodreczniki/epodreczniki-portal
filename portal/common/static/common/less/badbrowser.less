@@ -1,0 +1,150 @@
+.badbrowser-content {
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  margin: 20px auto;
+  background-color: #fff;
+
+  @media all and (max-width: 999px) {
+    margin: 0;
+    padding: 20px;
+    padding-top: 0;
+  }
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
+.badbrowsermain {
+  height: auto;
+  margin: 20px auto;
+
+  h2, .badbrowser-header {
+    font-size: 1.5em;
+    font-family: 'open_sanssemibold';
+    color: #555555;
+  }
+
+  .go {
+    display: inline-block;
+    margin: 30px auto;
+    padding: 12px 31px 11px 31px;
+    background-color: #3d71b8;
+    border: 1px solid #3d71b8;
+
+    color: #ffffff;
+    text-align: center;
+    font-family: 'open_sansregular';
+    font-size: 23px;
+    text-transform: uppercase;
+
+    &:hover {
+      background: #ffffff;
+      border: 1px solid #3d71b8;
+      color: #3d71b8;
+    }
+  }
+
+  #logo-bad {
+    //padding: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 150px;
+    display: block;
+    margin: 0 auto 30px auto;
+
+    div {
+      font-size: 100%;
+      margin-top: 5px;
+    }
+
+    img {
+      width: 100%;
+      opacity: 0.3;
+    }
+  }
+
+  .span9 {
+    display: block;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+
+    .badbrowser-header {
+      width: 100%;
+      -webkit-flex-shrink: 0;
+      flex-shrink: 0;
+    }
+  }
+
+}
+
+.badbrowsercompatibility {
+  height: auto;
+  font-family: 'open_sansregular';
+
+  .badbrowserInfo {
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    font-family: 'open_sanssemibold';
+    border-bottom: 2px solid #3d71b8;
+
+    i {
+      color: #3d71b8;
+      font-size: 1.3em;
+    }
+
+    h4 {
+      margin: 5px 0 5px 0;
+      color: #3d71b8;
+      font-size: 1.5em;
+    }
+
+    .yourbrowser {
+      font-family: 'open_sanssemibold';
+      color: #3d71b8;
+    }
+  }
+
+  .row-fluid > p {
+    font-family: 'open_sanssemibold';
+    color: #555555;
+
+    &:first-of-type {
+      margin-bottom: 20px;
+    }
+  }
+
+  table {
+    width: 100%;
+    max-width: 480px;
+    margin: 30px auto;
+
+    thead {
+      background: #f0f0f0;
+      font-family: 'open_sanssemibold';
+    }
+
+    td {
+      padding: 5px 10px;
+    }
+
+    td.table-padded {
+      padding-left: 20px;
+    }
+  }
+}
+
+.table-rightaligned {
+  text-align: right;
+}
+
+

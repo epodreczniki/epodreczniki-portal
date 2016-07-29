@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="119px" height="119px" viewBox="0 0 119 119" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>Slice 1</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="119" height="119" rx="2"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Rectangle-1">
+            <use stroke="#F7F7F7" stroke-width="8" fill="#93E150" fill-rule="evenodd" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+            <use stroke="#979797" stroke-width="1" fill="none" xlink:href="#path-1"></use>
+        </g>
+        <path d="M22.5471484,68.5471484 L43.6442301,89.6442301" id="Line" stroke="#F7F7F7" stroke-width="9" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        <path d="M44.3717949,89.6282051 L101.748793,32.2512092" id="Line" stroke="#F7F7F7" stroke-width="9" sketch:type="MSShapeGroup"></path>
+    </g>
+</svg>

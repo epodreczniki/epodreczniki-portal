@@ -1,0 +1,32 @@
+{% extends 'front/base_front.html' %}
+
+{% load staticfiles compress requirejs extensions common_ext collection_cover collections %}
+
+{% block body_class %}class="theme-100percent" data-stylesheet="{{ collection.normalized_ep_stylesheet }}"{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+
+
+    {% block topbar_include %}
+        {% include 'topbar_base.html' %} {# default topbar #}
+    {% endblock %}
+
+
+    {% comment %}
+        TODO EPP-5244
+        {% include "front/admin_messages.html" with admin_messages=admin_messages %}
+    {% endcomment %}
+    {% block container %}
+
+    {% endblock %}
+
+
+{% endblock %}
+
+{% block scripts_bottom %}
+    {{ block.super }}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}front/js/build/new_front.js"></script>
+    {% endcompress %}
+{% endblock %}

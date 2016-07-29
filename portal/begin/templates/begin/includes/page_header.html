@@ -1,0 +1,28 @@
+{% load begin_tags wagtailcore_tags static %}
+
+<div class="page-header clearfix"
+     style="background:url({% static 'begin/images/epo/library_.jpg' %}); background-size: cover;">
+
+    <div class="page-header-inner clearfix">
+        <div class="page-title">
+            <h2>{{ page.title }}</h2>
+
+            {% comment %}<div class="page-title-block"></div>{% endcomment %}
+        </div>
+
+        {% bread_with_crumbs self=page as bc %}
+
+        {% comment %}<div class="breadcrumbs clearfix"><p>
+            {% if bc.ancestors %}
+                {% for ancestor in bc.ancestors %}
+                    {% if forloop.last %}
+                        {{ ancestor }}
+                    {% else %}
+                        <a href="{% pageurl ancestor %}">{{ ancestor }}</a> »
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </p></div>{% endcomment %}
+
+    </div>
+</div>

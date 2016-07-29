@@ -1,0 +1,165 @@
+{% extends "begin/base.html" %}
+
+{% load static begin_tags wagtailimages_tags wagtailembeds_tags common_ext wagtailcore_tags %}
+{% get_site_root as site_root %}
+
+{% block body_class %}template-{{ self.get_verbose_name|slugify }} home page page-id-8 page-template
+    page-template-page-templatestemplate-homepage-php loading{% endblock %}
+
+
+{% block content %}
+
+
+    <div class="slider clearfix">
+        <ul class="slides slide-loader">
+            {% for carousel_item in self.carousel_items.all %}
+                {% image carousel_item.image width-1920 as carouselimagedata %}
+                <li style="background:url({{ carouselimagedata.url }}) no-repeat center center">
+                    {% carousel_item_data item=carousel_item as ci %}
+                    <a class="carousel-clickable" {% if ci.url != '' %}href="{{ ci.url }}" {% endif %}>
+                    {% if ci.caption %}
+                        <div class="flex-caption-wrapper">
+                            <div class="flex-caption">
+                                <p>{{ ci.caption }}</p>
+                                {% if ci.subcaption %}
+                                    <div class="clearboth"></div>
+                                    <p class="subcaption">{{ ci.subcaption }}</p>
+                                    {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                    </a>
+                </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+
+
+    <div class="header-block-wrapper clearfix">
+        <div class="header-block-inner">
+            <a href="{% url 'front.views.new_index' education_level=1 %}" class="header-block-4 header-block-style-1 clearfix" role="button"><img
+                src="{% static 'begin/images/epo/schools/wczesnoszkolna-square-small.png' %}"
+                alt=""/>
+
+                <h2>Edukacja wczesnoszkolna</h2></a>
+
+            <a href="{% url 'front.views.new_index' education_level=2 %}" class="header-block-4 header-block-style-2 clearfix" role="button"><img
+                src="{% static 'begin/images/epo/schools/podstawowa-round-small.png' %}"
+                alt=""/>
+
+                <h2>Edukacja podstawowa 4&#8209;6</h2></a>
+
+            <a href="{% url 'front.views.new_index' education_level=3 %}" class="header-block-4 header-block-style-3 clearfix" role="button"><img
+                src="{% static 'begin/images/epo/schools/gimnazjum-round-small.png' %}"
+                alt=""/>
+
+                <h2>Edukacja gimnazjalna</h2></a>
+
+            <a href="{% url 'front.views.new_index' education_level=4 %}" class="header-block-4 header-block-style-4 clearfix" role="button"><img
+                src="{% static 'begin/images/epo/schools/ponadgimnazjalna-round-small.png' %}"
+                alt=""/>
+
+                <h2>Edukacja ponadgimnazjalna</h2></a>
+
+        </div>
+    </div>
+
+
+    <!-- BEGIN .content-wrapper -->
+    <div class="content-wrapper clearfix" role="main">
+
+        <!-- BEGIN .content-wrapper-inner -->
+        <div class="content-wrapper-inner clearfix">
+
+            <!-- BEGIN .sidebar-left -->
+            <div class="sidebar-left page-content">
+
+                <div class="widget content-block"><h3 class="block-title">Szukaj w zasobach</h3>
+
+                    <p>Przeszukaj zasoby edukacyjne i tematy w e-podręcznikach</p>
+
+                    {% comment %}<form method="get" action=""
+                          class="course-finder-form clearfix">{% endcomment %}
+                    <div class="course-finder-form clearfix">
+                        {% comment %}klasa selector is span są dodawane przez uniform, {% endcomment %}
+                        {% comment %}pierwszy wpis (option) bez wartości - brany jako domyślny {% endcomment %}
+                        {% comment %}<div class="selector" style="width: 100%">
+                            <span style="width: 100%">Temat</span>
+                            <select name="keyword-type">
+                                <option value="course_id">Matematyka</option>
+                            </select>
+                        </div>{% endcomment %}
+                        {% comment %}<select name="keyword-type">
+                            <option>Temat</option>
+                            <option value="course_id_1">Matematyka</option>
+                            <option value="course_id_2">Historia</option>
+                        </select>
+
+                        <input type="text" onblur="if(this.value=='')this.value='Słowa kluczowe';"
+                               onfocus="if(this.value=='Słowa kluczowe')this.value='';" value="Słowa kluczowe" name="s">
+                               {% endcomment %}
+                        <input type="submit" class="search-epodreczniki search-button search" value="Szukaj w e-podręcznikach"
+                                onclick="window.location.href='{% host_url "search" "classic_search" %}'"/>
+                        <input type="submit" class="search-kzd search-button" value="Szukaj w zasobach
+                        dodatkowych" onclick="window.location.href='{% url "kzd_main" %}'"/>
+                        {% comment %}</form>{% endcomment %}
+                    </div>
+
+                </div>
+
+
+                <div class="widget content-block">
+                    <a href="{% pageurl site_root %}faq" class="nsu-submit homepage-button-light">Częste pytania</a>
+                </div>
+
+
+                {% gallery_panel %}
+
+                <!-- END .sidebar-left -->
+            </div>
+
+            <!-- BEGIN .center-content -->
+            <div class="center-content page-content">
+
+                <!-- BEGIN .slides -->
+                {% blog_listing_homepage count=20 %}
+
+                <div class="widget content-block">
+                    <h3 class="block-title">Multimedia</h3>
+
+                    <div class="slider-blocks slider-video clearfix">
+                        <ul class="slides slide-loader2">
+                            {% for mi in self.multimedia_items.all %}
+                                <li>
+                                    <div class="video-wrapper clearfix">
+                                        <iframe style="width: 100%; visibility: hidden;" height="215"
+                                                src="{{ mi.embed_url|force_html5 }}" allowfullscreen></iframe>
+                                    </div>
+
+
+                                    <p>{{ mi.caption }}</p>
+                                </li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- END .center-content -->
+            </div>
+
+            <!-- BEGIN .sidebar-right -->
+            {% include "begin/includes/sidebar.html" with page=self side="right" %}
+            <!-- END .content-wrapper-inner -->
+        </div>
+
+        <!-- END .content-wrapper -->
+    </div>
+
+    {% block extra_js %}
+
+
+    {% endblock %}
+    <!-- END body -->
+
+{% endblock %}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load compress staticfiles %}
+<html class="ie-zoom" lang="pl">
+<head>
+
+    {% block head %}
+    {% endblock %}
+
+
+    {% block stylesheets %}
+    {% endblock %}
+
+
+    {% compress js %}
+        <script src="{{ STATIC_URL }}common/js/libs/require.js"></script>
+    {% endcompress %}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}editor/js/build/common.js"></script>
+    {% endcompress %}
+
+    {% block scripts_top %}
+    {% endblock %}
+
+</head>
+
+<body>
+
+{% block content %}
+{% endblock %}
+
+{% block scripts_bottom %}
+{% endblock %}
+
+</body>
+
+</html>

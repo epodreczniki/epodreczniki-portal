@@ -1,0 +1,158 @@
+{% extends "bindery/base.html" %}
+
+{% block main_content %}
+<div class="create-objects"></div>
+
+<div class="dashboard-workarea">
+    <div class="workspace-list">
+        <div class="dashboard-workarea-header workspace-list-header">
+            <span>Ostatnio używane przestrzenie</span>
+            <a>więcej</a>
+
+            <div class="workspace-list-advanced-view-icon"></div>
+            <div class="workspace-list-simple-view-icon"></div>
+        </div>
+
+        <div class="workspace-list-container">
+
+            {% comment %}Generate the list from last used workspaces {% endcomment %}
+
+            {% for space in spaces %}
+              <div class="workspace-list-item">
+                    <div class="workspace-list-item-content">
+                        <div class="workspace-list-item-icon"></div>
+                        {% comment %} To be generated and inserted as background-image {% endcomment %}
+                        <div class="workspace-list-item-description">
+                            <div class="workspace-list-item-name">
+                                <span>{{ space.label }}</span>
+
+                                <div class="workspace-list-item-privacy-icon shared"></div>
+                                <!-- private/shared generated -->
+                            </div>
+                            <div class="workspace-list-item-owner">
+                                <div class="workspace-list-item-owner-icon locked"></div>
+                                <!-- locked/unlocked generated -->
+                                <span>Massachussets Institute of Technology</span>
+                            </div>
+                            <div class="workspace-list-item-last-activity">
+                                <div class="workspace-list-item-last-activity-header">
+                                    <span>Ostatnia aktywność:</span>
+                                </div>
+                                <div class="workspace-list-item-last-activity-content">
+                                    <div class="workspace-list-item-last-activity-date">
+                                        <div>27.02.2015</div>
+                                    </div>
+                                    <div class="workspace-list-item-last-activity-description">
+                                        <p>Edycja modułu "<span>Nazwa modułu</span>"
+                                            przez <span>Jan Kowalski</span>.
+                                            <a> pokaż więcej aktywności</a></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="workspace-list-item-options">
+                        <div class="workspace-list-item-details-icon"><a href="{% url 'editres.views.space_main' space.identifier %}"></a></div>
+                        <div class="workspace-list-item-options-icon"><a></a></div>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="last-modified-objects-list">
+        <div class="dashboard-workarea-header last-modified-objects-list-header">
+            <span>Ostatnio używane elementy</span>
+            <a>więcej</a><!-- go to workspace details (workspace containing the current object) -->
+        </div>
+        <!-- here a list of last modified objects needs to be inserted -->
+
+        <div class="last-modified-object-tile-date">26.02.2015</div>
+
+        <div class="last-modified-object-tile">
+            <div class="last-modified-object-tile-header"><!-- depending on type: collection/module/WOMI -->
+                <div class="last-modified-object-type collection">
+                    <div class="last-modified-object-type-icon"></div>
+                    <span>Kolekcja</span>
+                </div>
+                <div class="last-modified-object-title">Tytuł kolekcji</div>
+                <div class="last-modified-object-link"></div>
+            </div>
+            <div class="last-modified-object-tile-content">
+                <p>
+                    <span>Jan Kowalski</span>
+                    Cras dictum leo sed lectus vestibulum ultricies. Pellentesque dapibus aliquet porta. Sed sed
+                    feugiat
+                    lacus. Cras dictum leo sed lectus vestibulum ultricies. Pellentesque dapibus aliquet porta. Sed
+                    sed feugiat
+                    lacus.</p>
+            </div>
+        </div>
+
+        <div class="last-modified-object-tile">
+            <div class="last-modified-object-tile-header"><!-- depending on type: collection/module/WOMI -->
+                <div class="last-modified-object-type module">
+                    <div class="last-modified-object-type-icon"></div>
+                    <span>Moduł</span>
+                </div>
+                <div class="last-modified-object-title">Tytuł modułu</div>
+                <div class="last-modified-object-link"></div>
+            </div>
+            <div class="last-modified-object-tile-content">
+                <p>
+                    <span>Jan Kowalski</span>
+                    Cras dictum leo sed lectus vestibulum ultricies. Pellentesque dapibus aliquet porta. Sed sed
+                    feugiat
+                    lacus.</p>
+            </div>
+        </div>
+
+        <div class="last-modified-object-tile">
+            <div class="last-modified-object-tile-header"><!-- depending on type: collection/module/WOMI -->
+                <div class="last-modified-object-type womi">
+                    <div class="last-modified-object-type-icon"></div>
+                    <span>WOMI</span>
+                </div>
+                <div class="last-modified-object-title">Tytuł WOMI</div>
+                <div class="last-modified-object-link"></div>
+            </div>
+            <div class="last-modified-object-tile-content">
+                <p>
+                    <span>Jan Kowalski</span>
+                    Cras dictum leo sed lectus vestibulum ultricies. Pellentesque dapibus aliquet porta. Sed sed
+                    feugiat
+                    lacus. Cras dictum leo sed lectus vestibulum ultricies. </p>
+            </div>
+        </div>
+
+        <div class="last-modified-object-tile-date">24.02.2015</div>
+
+        <div class="last-modified-object-tile">
+            <div class="last-modified-object-tile-header"><!-- depending on type: collection/module/WOMI -->
+                <div class="last-modified-object-type womi">
+                    <div class="last-modified-object-type-icon"></div>
+                    <span>WOMI</span>
+                </div>
+                <div class="last-modified-object-title">Tytuł WOMI</div>
+                <div class="last-modified-object-link"></div>
+            </div>
+            <div class="last-modified-object-tile-content">
+                <p>
+                    <span>Jan Kowalski</span>
+                    Cras dictum leo sed lectus vestibulum ultricies. Pellentesque dapibus aliquet porta. Sed sed
+                    feugiat
+                    lacus. Cras dictum leo sed lectus vestibulum ultricies. Pellentesque dapibus aliquet porta. Sed
+                    sed feugiat
+                    lacus.</p>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock main_content %}

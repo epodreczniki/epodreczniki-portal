@@ -1,0 +1,17 @@
+{% extends "bindery/edit_object.html" %}
+
+{% block item_context_workarea_image %}
+    <div class="item-context-workarea-image foldable">
+        <div class="item-context-workarea-image-icon"></div>{# add background-image from data #}
+        <div class="item-context-workarea-image-edit"><span>Zmień ikonę WOMI</span></div>
+    </div>
+{% endblock %}
+
+{% block item_context_workarea_description_header_options %}
+    <div class="item-context-workarea-description-header-options">
+        <div class="item-context-workarea-description-header-editor">Przejdź do edytora WOMI</div>
+        <div class="item-context-workarea-description-header-edit">Edytuj dane WOMI</div>
+        <div class="item-context-workarea-description-header-options-icon icon"></div>
+    </div>
+{% endblock %}
+

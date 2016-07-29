@@ -1,0 +1,35 @@
+.reader-content {
+    a {
+        color: #3d71b8;
+        border-bottom: none;
+
+        &:visited {
+            color: #3d71b8;
+        }
+    }
+
+    p {
+        margin: 0 0 16px 0;
+        padding: 0;
+        line-height: 125%;
+    }
+}
+
+.watermark {
+    div {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        writing-mode: lr-tb;
+        background-color: yellowgreen;
+        color: white;
+        text-shadow: 0 1px 0 #000;
+        text-align: center;
+        width: 200px;
+    }
+    position: fixed;
+    bottom: 40px;
+    left: -40px;
+    z-index: -100;
+}

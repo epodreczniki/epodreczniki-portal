@@ -1,0 +1,34 @@
+@media all and (min-width: 0px) and (max-width: 1024px) {
+    .too-low-resolution-warning {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        z-index: 2147483647;
+
+        background: @green0;
+        color: @white;
+
+        text-align: center;
+
+        .logo {
+            background-image: url("../../../img/logo.svg");
+            background-size: cover;
+            height: 51px;
+            width: auto;
+            max-width: 280px;
+            display: block;
+            margin: 20px auto;
+        }
+    }
+}
+
+@media all and (min-width: 1024px) {
+    .too-low-resolution-warning {
+        display: none;
+        z-index: -1;
+    }
+}
+

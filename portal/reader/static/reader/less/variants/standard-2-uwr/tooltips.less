@@ -1,0 +1,44 @@
+.reader-content {
+
+    a[data-link-type="tooltip"] {
+        font-family: inherit;
+    }
+
+    a[data-link-type="biography"],
+    a[data-link-type="tooltip"] {
+        border-bottom: 1px solid #353535;// EPP-7448  #575757;
+        color: inherit;
+        font-family: inherit;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    .fancybox-inner {
+        .tooltip-header {
+            display: none;
+            padding-bottom: @space-A;
+            line-height: 100%;
+
+            .title {
+                line-height: 1.25;
+            }
+        }
+
+        .concept-header,
+        .definition-header {
+            display: none;
+        }
+    }
+
+        a[data-link-type="tooltip"] {
+        &:hover,
+        &:focus {
+            box-shadow: inset 0 -2px 0;
+            text-decoration: none;
+        }
+    }
+
+
+}

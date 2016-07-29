@@ -1,0 +1,9 @@
+{# this is a placeholder for a common object data, needed by various editors #}
+<div id='editor-common-metadata' style='display: none'
+    data-object-spaceid="{{ driver.spaceid }}"
+    data-object-category="{{ driver.category }}"
+    data-object-identifier="{{ driver.identifier }}"
+    data-object-version="{{ driver.version }}"
+    data-object-repository="{{ driver.repository.name}}"
+    data-object-user-roles="{{ driver.user_effective_roles|join:' ' }}">
+</div>

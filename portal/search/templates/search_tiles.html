@@ -1,0 +1,234 @@
+{% extends "front/base_front_with_navbar.html" %}
+
+{% load staticfiles compress search_functions url_process common_ext %}
+
+{% block body_class %}class="theme-100percent search-results-page"{% endblock %}
+
+
+{% block content %}
+    {{ block.super }}
+
+    {% block searchbar %}
+        {% if not collection_id %}
+            <form class="search_form" action="{% host_url 'search' 'classic_search'  %}{% if level or class %}?{% if level %}level={{ level }}{% if class %}&{% endif %}{% endif %}{% if class %}class={{ class }}{% endif %}{% endif %}" method="get">
+        {% else %}
+            <form class="search_form" action="{% host_url 'search' 'classic_search_details' collection_id version variant  %}{% if level or class %}?{% if level %}level={{ level }}{% if class %}&{% endif %}{% endif %}{% if class %}class={{ class }}{% endif %}{% endif %}" method="get">
+        {% endif %}
+            <div class="searchbar">
+                <div class="searchbar-inner">
+                    <div class="search-more" title="więcej filtrów wyszukiwania" style="display: none">
+
+                    </div>
+                    <div class="search-input">
+                        <input type="text" name="q" placeholder="Wpisz wyszukiwaną frazę" value="{% if query %}{{ query }}{% endif %}"
+                               autocomplete="off" autofocus/>
+                        {% if level %}
+                        <input type="hidden" name="level" value="{{ level }}"/>
+                        {% endif %}
+                        {% if class %}
+                        <input type="hidden" name="class" value="{{ class }}"/>
+                        {% endif %}
+                    </div>
+                    <button type="submit" class="search-button">Szukaj</button>
+
+                </div>
+                <div class="search-tabs">
+                    <ul>
+                        <li class="active">Wszystkie</li>
+                        <li>E-podręczniki</li>
+                        <li>Grafika</li>
+                        <li>więcej</li>
+                        {# insert ul with more lis #}
+                    </ul>
+                </div>
+            </div>
+        </form>
+    {% endblock %}
+
+    {% block search_box %}
+    {% endblock %}
+
+    {% block container %}
+    {% endblock %}
+    {% comment %}<form class="search_form" action="{% host_url 'search' 'front.views.search_tiles' education_level %}" method="get">
+        <div class="control-group">
+
+            <label class="control-label" for="textinput"></label>
+
+            <div class="controls">
+                {% if query != "" %}
+                    <input id="textinput" name="text_input" type="text" value="{{ query }}" autocomplete="off">
+                {% else %}
+                    <input id="textinput" name="text_input" type="text" placeholder="Szukaj..." autocomplete="off">
+                {% endif %}
+
+                <p class="help-block">Wyszukaj e-podręczniki</p>
+            </div>
+        </div>
+    </form>{% endcomment %}
+
+    {% comment %}<form class="close-button" action="{% url 'front.views.new_index' education_level=education_level %}"
+          method="get">
+        <div>
+            <input type="submit" value="Cancel">
+        </div>
+    </form>{% endcomment %}
+
+
+    <section class="results search-under-topbar">
+
+        {% block results_source %}
+        <div class="results-source">
+        {% if collection_id %}
+            <p>Wyszukiwanie w aktualnym e-podręczniku</p>
+        {% elif level or class%}
+            <p>Wyszukiwanie zgodnie z poziomem nauczania</p>
+        {% else %}
+            <p>Wyszukiwanie we wszystkich e-podręcznikach</p>
+        {% endif %}
+        </div>
+        {% endblock %}
+
+        {% comment %} Powinien się wyświetlać dopiero po wyszukaniu {% endcomment %}
+        {% if query %}
+        <div class="results-count">
+            {% if solr_metric.total_count > 0%}
+                <p>Liczba znalezionych wyników: {{ solr_metric.total_count }}</p>
+            {% else %}
+                <p>Nie znaleziono wyników.</p>
+            {% endif %}
+        </div>
+        {% endif %}
+        {% if results %}
+            <div class="search-num-pages" data-pages="{{ results.num_pages }}"></div>
+
+            {% include 'includes/search_pagination.html' %}
+
+            {% for result in results %}
+                {% with result_link=result.link|search_link_prepare highlights=result.solr_highlights %}
+
+                    <article class="result">
+                        <a class="result-cover" href="{% search_result_url result_link %}" aria-hidden="true">
+                            {# TODO!!! Add result-typed icons on cover #}
+                            <img src="{{ result.collection_cover_url }}" style="height: 100%"/>
+                        </a>
+                        <section class="result-content">
+                            <a class="result-header" href="{% search_result_url result_link %}">
+                                {% autoescape off %}
+                                    {{ result.collection_title }}
+                                {% endautoescape %}
+                            </a>
+                            <div class="result-description">
+                                {% if highlights.title or highlights.alttext or highlights.content or highlights.full_content or highlights.summary %}
+                                    {% if highlights.title %}
+                                        <a class="result-title" href="{% search_result_url result_link %}"><p>{% autoescape off %}{{ highlights.title.0 }}{% endautoescape %}</p></a>
+                                    {% endif %}
+                                    {% if highlights.alttext %}
+                                        <a class="result-alttext" href="{% search_result_url result_link %}"><p>{% autoescape off %}{{ highlights.alttext.0 }}{% endautoescape %}</p></a>
+                                    {% endif %}
+                                    {% if highlights.content %}
+                                        <a href="{% search_result_url result_link %}"><p>{% autoescape off %}{{ highlights.content.0 }}{% endautoescape %}</p></a>
+                                    {% endif %}
+                                    {% if highlights.summary %}
+                                        <a href="{% search_result_url result_link %}"><p>{% autoescape off %}{{ highlights.summary.0 }}{% endautoescape %}</p></a>
+                                    {% endif %}
+                                    {% comment %}
+                                    {% if highlights.content %}
+                                        <a href="{% search_result_url result_link %}"><p>{% autoescape off %}{{ highlights.content.0 }}{% endautoescape %}</p></a>
+                                    {% elif highlights.full_content %}
+                                        <a href="{% search_result_url result_link %}"><p>{% autoescape off %}{{ highlights.full_content.0 }}{% endautoescape %}</p></a>
+                                    {% endif %}
+                                    {% endcomment %}
+                                {% elif result.title %}
+                                        <a class="result-title" href="{% search_result_url result_link %}"><p>{% autoescape off %}{{ result.title }}{% endautoescape %}</p></a>
+                                {% endif %}
+
+                                <div class="result-taglist">
+                                {% if result.collection_school_type_code %}
+                                    <a href="{% host_url 'www' 'front.views.new_index' education_level=result.collection_school_type_code %}">
+                                        <span
+                                            class="search-result-tag search-result-level">{{ result.collection_school_type }}</span>
+                                    </a>
+                                {% endif %}
+                                    {% if result.collection_ep_class and result.collection_school_type_code %}
+                                        <a href="{% host_url 'www' 'front.views.new_index' education_level=result.collection_school_type_code level=result.collection_ep_class %}">
+                                            <span
+                                                class="search-result-tag search-result-class">klasa {{ result.collection_ep_class }}</span>
+                                        </a>
+                                    {% endif %}
+
+                                    {% if result.collection_subject or highlights.subject_ngram %}
+                                    <span class="search-result-tag search-result-subject">
+                                        {% autoescape off %}
+                                            {% if highlights.subject_ngram %}
+                                                {{ highlights.subject_ngram.0 }}
+                                            {% else %}
+                                                {{ result.collection_subject }}
+                                            {% endif %}
+                                        {% endautoescape %}
+                                    </span>
+                                    {% endif %}
+
+                                    <span class="search-result-tag search-result-variant">{{ result.collection_variant_name }}</span>
+
+                                    {% if highlights.keyword_ngram %}
+                                        <span class="search-result-tag search-result-keyword" title="Słowo kluczowe">
+                                        {% autoescape off %}
+                                            {{ highlights.keyword_ngram.0 }}
+                                        {% endautoescape %}
+                                        </span>
+                                    {% elif highlights.keyword %}
+                                        <span class="search-result-tag search-result-keyword" title="Słowo kluczowe">
+                                        {% autoescape off %}
+                                            {{ highlights.keyword.0 }}
+                                        {% endautoescape %}
+                                        </span>
+                                    {% endif %}
+
+                                    {% if highlights.alttext %}
+                                        <span class="search-result-tag search-result-keyword" title="Tekst alternatywny">Tekst alternatywny</span>
+                                    {% endif %}
+
+                                    {% if result.type %}
+                                        {% if result.type == "womi-index-item" %}
+                                            {% if result.subtype %}
+                                                {% if result.subtype == "graphics"%}
+                                                    <span class="search-result-tag search-result-keyword" title="Ilustracja">Ilustracja</span>
+                                                {% elif result.subtype == "sound"%}
+                                                    <span class="search-result-tag search-result-keyword" title="Nagranie">Nagranie</span>
+                                                {% elif result.subtype == "movie"%}
+                                                    <span class="search-result-tag search-result-keyword" title="Film">Film</span>
+                                                {% elif result.subtype == "interactive"%}
+                                                    <span class="search-result-tag search-result-keyword" title="Obiekt interaktywny">Obiekt interaktywny</span>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </section>
+                    </article>
+
+                {% endwith %}
+                {# model of a single result item #}
+            {% endfor %}
+
+            {% include 'includes/search_pagination.html' %}
+
+        {% endif %}
+    </section>
+
+<div id="search-link" data-link="{% if search_url %}{{ search_url }}{% else %}{% host_url 'search' 'classic_search' %}{% endif %}"></div>
+
+{% endblock %}
+
+{% block scripts_bottom %}
+    {{ block.super }}
+    {% compress js %}
+        <script src="{{ STATIC_URL }}common/js/libs/jquery-2.0.3.min.js"></script>
+        <script src="{{ STATIC_URL }}search/js/libs/bootstrap.min.js"></script>
+        <script src="{{ STATIC_URL }}search/js/libs/tabenizer.js"></script>
+        <script type="text/requirejs" src="{{ STATIC_URL }}search/js/build/search.js"></script>
+    {% endcompress %}
+
+{% endblock %}

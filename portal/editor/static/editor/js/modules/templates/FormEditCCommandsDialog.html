@@ -1,0 +1,11 @@
+<div class="type-role-dialog">
+    <form action="#">
+        <ul class="no-ul">
+            <% _.each(attrs, function(attr) { %>
+            <li class="">
+                <input class="full-input" value="<%= attr.value %>">
+            </li>
+            <% }); %>
+        </ul>
+    </form>
+</div>

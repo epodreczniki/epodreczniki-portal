@@ -1,0 +1,255 @@
+@basic-blue: #3d71b8;
+@item-details-purple: #9c27b0;
+@item-details-lightgray: #eeeeee;
+
+.item-details {
+  position: relative;
+  display: none;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid @basic-blue;
+  width: 520px;
+
+  .item-info-bar {
+    line-height: 52px;
+    background-color: @basic-blue;
+
+    span {
+      margin-left: 42px;
+      color: #fff;
+    }
+
+    .item-details-close {
+      float: right;
+      margin-right: 23px;
+      margin-top: 13px;
+      width: 26px;
+      height: 26px;
+      background-image: url("../img/kzd/kzd-close-icon.png");
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+  }
+
+  .item-description {
+    section {
+      padding: 15px 30px;
+
+      .result-item-taglist {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+      }
+
+      .result-item-label {
+        font-family: "open_sanssemibold", sans-serif;
+        margin-bottom: 15px;
+      }
+
+      .result-item-category {
+        display: inline-block;
+        border: 1px solid #000000;
+        background-color: @item-details-lightgray;
+        padding: 5px 25px 5px 8px;
+
+        .result-item-category-icon {
+          display: inline-block;
+          float: left;
+          width: 30px;
+          height: 30px;
+          margin-right: 13px;
+          background-color: rgba(0, 0, 0, 0.35);
+          background-repeat: no-repeat;
+          background-size: 19px 19px;
+          background-position: 50% 50%;
+          border-radius: 50%;
+        }
+
+        span {
+          display: inline-block;
+          vertical-align: middle;
+          line-height: 30px;
+        }
+
+        .epodreczniki {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/epodreczniki.svg');
+        }
+        .podreczniki {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/podreczniki-white.svg');
+        }
+        .multimedia-edukacyjne {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/multimedia-edukacyjne-white.svg');
+        }
+        .poradniki-dla-nauczycieli {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/poradniki-dla-nauczycieli-white.svg');
+        }
+        .mapy {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/mapy-white.svg');
+        }
+        .programy-nauczania {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/programy-nauczania-white.svg');
+        }
+        .karty-pracy {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/karty-pracy-white.svg');
+        }
+        .scenariusze-lekcji {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/scenariusze-lekcji-white.svg');
+        }
+        .lektury-szkolne {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/lektury-szkolne-white.svg');
+        }
+        .zdjecia-i-ilustracje {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/zdjecia-i-ilustracje-white.svg');
+        }
+        .czcionka {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/czcionka-white.svg');
+        }
+        .nagrania-edukacyjne {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/nagrania-edukacyjne-white.svg');
+        }
+        .generator-kart-pracy {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/generator-kart-pracy-white.svg');
+        }
+        .podstawa-programowa {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/podstawa-programowa-white.svg');
+        }
+        .literatura {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/literatura-white.svg');
+        }
+        .gry-edukacyjne {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/gry-edukacyjne-white.svg');
+        }
+        .e-learning {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/e-learning-white.svg');
+        }
+        .testy-i-sprawdziany {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/testy-i-sprawdziany-white.svg');
+        }
+        .wirtualne-wycieczki {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/wirtualne-wycieczki-white.svg');
+        }
+        .doswiadczenia {
+          .result-item-category-icon();
+          background-image: url('../img/kzd/category-icons/doswiadczenia-white.svg');
+        }
+      }
+
+      .tags-label {
+        margin-bottom: 14px;
+      }
+
+      .result-item-tag {
+        border: 1px solid #000000;
+        padding: 6px 19px;
+        background-color: @item-details-lightgray;
+        line-height: 28px;
+        margin-bottom: 16px;
+        margin-right: 16px;
+
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-grow: 0;
+        flex-grow: 0;
+
+        &:last-of-type {
+          margin-right: 0;
+        }
+      }
+
+    }
+
+    .preview {
+      text-align: center;
+    }
+
+    .preview-button {
+      display: inline-block;
+      background-color: @basic-blue;
+      border: 1px solid #fff;
+      padding: 10px 30px;
+      vertical-align: middle;
+
+      a {
+        color: #fff;
+      }
+      &:focus, &:hover {
+        background-color: #214885;
+      }
+    }
+
+    .social-media {
+      position: relative;
+      text-align: center;
+
+      &-inner {
+        position: relative;
+        display: inline-block;
+        width: 360px;
+
+        .social-media-icon {
+          position: relative;
+          display: inline-block;
+          float: left;
+          width: 60px;
+          height: 60px;
+          margin-right: 40px;
+          background-size: 60px 60px;
+          background-color: #f1f1f1;
+          background-repeat: no-repeat;
+          border: none;
+          border-radius: 50%;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+
+        .facebook-icon {
+          background-image: url("../img/kzd/1260-facebook@2x.svg");
+        }
+
+        .googleplus-icon {
+          background-image: url("../img/kzd/1266-googleplus@2x.svg");
+        }
+
+        .twitter-icon {
+          background-image: url("../img/kzd/1282-twitter@2x.svg");
+        }
+
+        .pinterest-icon {
+          background-image: url("../img/kzd/1272-pinterest@2x.svg");
+        }
+      }
+    }
+  }
+
+}
+
+.visible {
+  width: calc(~"100% - 480px");
+  float: left;
+  display: inline-block;
+  margin-left: 10px;
+}

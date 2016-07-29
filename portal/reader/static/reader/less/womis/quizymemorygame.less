@@ -1,0 +1,116 @@
+/*
+ CSS for Memogry game plugin
+ Author: Yane Frenski
+*/
+
+/* the stle for the wrapper element */
+.quizy-memorygame {
+    position: relative;
+    width: 100%;
+}
+
+/* styles of the card to show */
+.quizy-memorygame .mgcard-show {
+    width: 156px;
+    height: 156px;
+    background: url('../../../img/quizymemorygame/mg-mcard.svg');
+}
+
+.quizy-memorygame .quizy-mg-item {
+    position: absolute;
+    cursor: pointer;
+    text-align: center;
+}
+
+.quizy-memorygame .quizy-mg-item .quizy-mg-item-bottom, .quizy-memorygame .quizy-mg-item .quizy-mg-item-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+}
+
+.quizy-mg-item .quizy-mg-item-top {
+    background: url('../../../reader/img/quizymemorygame/quizy-mg-item-top.svg');
+}
+
+/* styles for the popup notifications */
+.quizy-mg-notification-fly {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    z-index: 1000;
+    display: none;
+}
+
+.quizy-mg-notification-fly-neg {
+    background: url('../../../img/quizymemorygame/quizy-mg-notif-neg.svg');
+}
+
+.quizy-mg-notification-fly-pos {
+    background: url('../../../img/quizymemorygame/quizy-mg-notif-pos.svg');
+}
+
+/* styles for the game summary */
+#quizy-game-summary {
+    width: 300px;
+    height: 160px;
+    position: absolute;
+    z-index: 1001;
+    background: #fff;
+    /* box-shadow: rgba(0,0,0,0.7) 0 0 4px, inset 0 0 20px rgba(0, 0, 0, 0.4); */
+    border: 5px solid #B8B8B8;
+    display: none;
+    text-align: center;
+}
+
+#quizy-game-summary div.gs-column {
+    width: 75px;
+    float: left;
+    padding: 10px 0 10px 20px;
+    color: #000;
+    /*text-shadow: 1px 1px 1px rgba(0,0,0, 0.5);*/
+    text-align: center;
+}
+
+#quizy-game-summary #gs-column1 {
+    font-size: 16px;
+    padding-top: 30px;
+}
+
+#quizy-game-summary #gs-column2 {
+    font-size: 12px;
+    padding-top: 65px;
+    background: url('../../../img/quizymemorygame/mg-timeicon.png') no-repeat 70% 25%;
+}
+
+#quizy-game-summary #gs-column3 {
+    font-size: 12px;
+    padding-top: 65px;
+    background: url('../../../img/quizymemorygame/mg-clickicon.png') no-repeat 70% 25%;
+}
+
+#quizy-game-summary #gs-closebut,
+#quizy-game-summary #gs-replaybut {
+    display: inline-block;
+    margin-top: 10px;
+    width: 70px;
+    padding: 10px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #049cdb;
+    color: #049cdb;
+    cursor: pointer;
+}
+
+#quizy-game-summary #gs-closebut:hover,
+#quizy-game-summary #gs-replaybut:hover {
+    background: #fff;
+}
+
+#quizy-game-summary #gs-replaybut {
+    margin-right: 20px;
+}
+
+.quizy-game-clear {
+    clear: both;
+}

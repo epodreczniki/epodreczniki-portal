@@ -1,0 +1,91 @@
+{% extends "begin/base.html" %}
+
+{% load static begin_tags wagtailimages_tags wagtailembeds_tags wagtailcore_tags common_ext %}
+
+{% get_site_root as site_root %}
+{% block menu %}
+{% endblock %}
+
+{% block body_class %}template-{{ self.get_verbose_name|slugify }} home page page-id-8 page-template
+    page-template-page-templatestemplate-homepage-php loading{% endblock %}
+
+
+{% block content %}
+    <div class="slider clearfix intro-slider">
+        <ul class="slides slide-loader">
+            {% comment %}{% for carousel_item in self.carousel_items.all %}
+                {% image carousel_item.image width-1920 as carouselimagedata %}
+                <li style="background:url({{ carouselimagedata.url }}) no-repeat bottom center">
+                    {% if carousel_item.caption %}
+                        <div class="flex-caption-wrapper">
+                            <div class="flex-caption">
+                                <p>{{ carousel_item.caption }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </li>
+            {% endfor %}{% endcomment %}
+
+            <li style="background: url({% static 'begin/images/epo/bez_logowania.jpg' %}) no-repeat center center">
+                <div class="flex-caption-wrapper">
+                    <div class="flex-caption">
+                        <p>Witamy w szkole przyszłości</p>
+                    </div>
+                </div>
+            </li>
+
+            <li style="background: url({% static 'begin/images/epo/jestem_uczniem.jpg' %}) no-repeat center center">
+                <div class="flex-caption-wrapper">
+                    <div class="flex-caption">
+                        <p>Witamy w szkole przyszłości</p>
+                    </div>
+                </div>
+            </li>
+
+            <li style="background: url({% static 'begin/images/epo/nauczycielka_x3840.jpg' %}) no-repeat center 100%; background-size: auto 100%">
+                <div class="flex-caption-wrapper">
+                    <div class="flex-caption">
+                        <p>Witamy w szkole przyszłości</p>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+    <div class="intro-fixed-footer">
+    <div class="header-block-wrapper usertype-intro-wrapper clearfix">
+        <div class="header-block-inner usertype-intro">
+            <a href="{% pageurl site_root %}" class="header-block-3 usertype-intro-block-1 clearfix">
+                   <div class="intro-triangle-div"></div>
+                <h2>Wchodzę bez logowania</h2>
+            </a>
+            {% comment %}
+            {% if EPO_READER_AUTH_ENABLE %}
+            <a href="{% host_url 'user' 'auth.views.epo_login' %}" class="header-block-3 usertype-intro-block-2 clearfix">
+            {% else %}{% endcomment %}
+                <a href="{% pageurl site_root %}" class="header-block-3 usertype-intro-block2 clearfix">
+            {% comment %}{% endif %}{% endcomment %}
+                 <div class="intro-triangle-div"></div>
+                <h2>Jestem uczniem</h2>
+            </a>
+            {% comment %}<a href="{% pageurl site_root %}" class="header-block-3 usertype-intro-block-3 clearfix">{% endcomment %}
+            <a href="{% pageurl site_root %}" class="header-block-3 usertype-intro-block-3 clearfix">
+               <div class="intro-triangle-div"></div>
+                <h2>Jestem nauczycielem</h2>
+            </a>
+        </div>
+    </div>
+
+    {% include "begin/includes/footer.html" %}
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}begin/js/intro-triangles.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}begin/js/intro.js"></script>
+{% endblock %}
+<!-- END body -->

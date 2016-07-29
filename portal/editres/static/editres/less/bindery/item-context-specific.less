@@ -1,0 +1,226 @@
+//Stylesheet with rules applying to item-context-specific elements (workspace/collection/module/WOMI details view)
+@itemContextStandardMargin: 15px;
+@itemContextTwoColumnsMinWidth: 1500px;
+@itemContextWorkareaLastActivityWidth: 450px;
+
+@itemContextBorderColor: #a6a6a6;
+
+//gray button gradient
+.gradient-button {
+    border: 1px solid #b7b7b7;
+    border-radius: @dashboard-border-radius;
+    cursor: pointer;
+
+    background: #fbfbfb; /* Old browsers */
+    background: -moz-linear-gradient(top, #fbfbfb 0%, #ebebeb 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fbfbfb), color-stop(100%, #ebebeb)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #fbfbfb 0%, #ebebeb 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #fbfbfb 0%, #ebebeb 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #fbfbfb 0%, #ebebeb 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #fbfbfb 0%, #ebebeb 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fbfbfb', endColorstr='#ebebeb', GradientType=0); /* IE6-9 */
+}
+
+.item-context-workarea {
+    position: relative;
+    width: 100%;
+    padding-bottom: 20px;
+    font-size: 15px;
+
+    .item-context-workarea-inner {
+        position: relative;
+        width: calc(~"100% - 2*"@dashboard-whitespace);
+        margin: 0 auto;
+        font-size: 15px;
+        height: 100%;
+
+        .item-context-workarea-header {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: -webkit-flex;
+            display: flex;
+
+            .item-context-workarea-description-header-options {
+                position: absolute;
+                top: -40px;
+                right: 0;
+                height: 40px;
+
+                .item-context-workarea-description-header-edit,
+                .item-context-workarea-description-header-editor {
+                    display: inline;
+                    //font-size: 16px;
+                    padding: 8px 14px;
+                    .gradient-button;
+                }
+
+                .item-context-workarea-description-header-editor {
+                  margin-right: 15px;
+                }
+
+                .item-context-workarea-description-header-options-icon {
+                    display: inline;
+                    float: right;
+                    width: 22px;
+                    height: 22px;
+                    margin-left: @itemContextStandardMargin;
+                    margin-right: 3px;
+                    background-image: url('../../img/icons/opcje.svg');
+                    cursor: pointer;
+                }
+            }
+
+            .item-context-workarea-image {
+                position: relative;
+                float: left;
+                display: inline;
+                width: 300px;
+                height: 356px;
+
+                @media all and (max-width: @itemContextTwoColumnsMinWidth) {
+                    width: 200px;
+                    height: 256px;
+                }
+
+                .item-context-workarea-image-icon {
+                    position: relative;
+                    height: 300px;
+                    width: 300px;
+
+                    background-color: #fff;
+                    background-repeat: no-repeat;
+                    background-size: 100% 100%;
+                    background-position: center center;
+                    background-image: url('../../img/mit-logo.png');
+
+                    @media all and (max-width: @itemContextTwoColumnsMinWidth) {
+                        width: 200px;
+                        height: 200px;
+                    }
+                }
+
+                .item-context-workarea-image-edit {
+                    margin-top: @itemContextStandardMargin;
+                    width: 100%;
+                    height: 31px;
+                    .gradient-button;
+                    padding-top: 10px;
+                    text-align: center;
+                }
+            }
+
+            .item-context-workarea-container {
+                position: relative;
+                width: calc(~"100% - 300px");
+                height: 100%;
+
+                @media all and (max-width: @itemContextTwoColumnsMinWidth) {
+                    width: calc(~"100% - 200px");
+                }
+
+                .item-context-workarea-section-header {
+                    position: relative;
+                    width: 100%;
+                    height: 37px;
+                    border-bottom: 1px solid @itemContextBorderColor;
+                    padding-top: 16px;
+
+                    div {
+                        display: inline;
+                    }
+
+                    span {
+                        float: left;
+                        margin-left: @itemContextStandardMargin;
+                    }
+
+                    a {
+                        float: right;
+                        margin-right: 25px;
+                    }
+                }
+
+                section {
+                    position: relative;
+                    border-radius: @dashboard-border-radius;
+
+                    @media all and (max-width: @itemContextTwoColumnsMinWidth) {
+                        display: -webkit-flex;
+                        display: flex;
+                        -webkit-flex-direction: column;
+                        flex-direction: column;
+                    }
+
+                    &:not(.item-context-workarea-description-header){
+                        background-color: #fff;
+                    }
+
+                    section {
+                        margin: @itemContextStandardMargin;
+                    }
+                }
+
+                .item-context-workarea-section {
+                    position: relative;
+                    width: calc(~"100% - 30px");
+                    margin: @itemContextStandardMargin;
+
+                    @media all and (max-width: @itemContextTwoColumnsMinWidth) {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+
+        .item-context-workarea-list-container {
+            position: relative;
+            width: 100%;
+            height: 100px;
+            margin-top: 20px;
+            //background-color: hotpink;
+        }
+    }
+}
+
+.folding {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: center;
+    justify-content: center;
+    margin: @itemContextStandardMargin 0;
+
+    .folding-inner {
+        display: -webkit-flex;
+        display: flex;
+
+        width: 66px;
+        height: 28px;
+
+        background-color: #fddb90;
+        border: 1px solid #deaf47;
+        border-radius: @dashboard-border-radius;
+
+        cursor: pointer;
+
+        .icon;
+        background-size: 10px 6px;
+        background-image: url('../../img/icons/folded.svg');
+    }
+
+    .folded-icon {
+        background-image: url('../../img/icons/foldable.svg');
+    }
+}
+
+.full-width {
+    width: 100% !important;
+
+    .item-context-workarea-description-header {
+        margin-left: 0 !important;
+        width: 100%!important;
+    }
+}
+

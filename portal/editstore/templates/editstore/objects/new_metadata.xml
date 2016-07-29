@@ -1,0 +1,22 @@
+
+<md:content-id>{{ identifier }}</md:content-id>
+<md:repository>https://epodreczniki.pcss.pl/repo</md:repository>
+<md:version>{{ version }}</md:version>
+<md:created>{{ timestamp }}</md:created>
+<md:revised>{{ timestamp }}</md:revised>
+<md:title>{{ title }}</md:title>
+<md:language>pl-PL</md:language>
+<md:license url="http://creativecommons.org/licenses/by/3.0/pl/legalcode">CC BY 3.0</md:license>
+
+<md:actors>
+    <md:person userid="1">
+        <md:fullname>{{ author_user.username }}</md:fullname>
+        <md:firstname>{{ author_user.first_name|default:"nieznany" }}</md:firstname>
+        <md:surname>{{ author_user.last_name|default:"nieznany" }}</md:surname>
+        <md:email>{{ author_user.email }}</md:email>
+    </md:person>
+</md:actors>
+
+<md:roles>
+    <md:role type="author">1</md:role>
+</md:roles>

@@ -1,0 +1,637 @@
+/* Common styles for all mobile formats @ standard-2-przyroda variant */
+
+/* icons */
+
+.reader-content {
+    .biography { // Biogram
+        .biography-header {
+            .label {
+                background-image: url('icons/standard-2-przyroda/biogram.@{icon-format}');
+            }
+        }
+    }
+
+    .command { // Polecenie
+        .command-header {
+            .label {
+                background-image: url('icons/standard-2-przyroda/polecenie.@{icon-format}');
+            }
+        }
+
+        .command-contents {
+            .note-tip {
+                .note-header {
+                    .label {
+                        background-image: url('icons/standard-2-przyroda/wskazowka-do-ramki.@{icon-format}');
+                    }
+                }
+            }
+        }
+
+        &.exposed {
+            .command-header {
+                .label {
+                    background-image: url('icons/standard-2-przyroda/polecenie-do-ramki.@{icon-format}');
+                }
+            }
+        }
+    }
+
+    .definition { // Definicja
+        .definition-header {
+            .label {
+                background-image: url('icons/standard-2-przyroda/definicja.@{icon-format}');
+            }
+
+            .title {
+                background-image: none;
+            }
+        }
+    }
+
+    .concept { // Pojęcie
+        .concept-header {
+            .title {
+                background-image: url('icons/standard-2-przyroda/definicja.@{icon-format}');
+            }
+        }
+    }
+
+    .effect { // Nauczysz się
+        .effect-header {
+            .label {
+                background-image: url('icons/standard-2-przyroda/tego-sie-nauczysz-do-ramki.@{icon-format}');
+            }
+        }
+    }
+
+    .event { // Wydarzenie
+        .event-header {
+            .label {
+                //background-image: url('icons/standard-2-przyroda/ .@{icon-format}');
+            }
+        }
+    }
+
+    .example { // Przykład
+        .example-header {
+            .label {
+                background-image: url('icons/standard-2-przyroda/przyklad.@{icon-format}');
+            }
+        }
+    }
+
+    .exercise { // Zadania
+        .exercise-header {
+            .label {
+                background-image: url('icons/standard-2-przyroda/zadania.@{icon-format}');
+            }
+        }
+    }
+
+    .experiment,
+    .experiment.no-title { // Doświadczenie
+        .experiment-header {
+            .title {
+                background-image: url('icons/standard-2-przyroda/doswiadczenie.@{icon-format}');
+            }
+
+            .label {
+                background-image: none;
+            }
+        }
+    }
+
+    .intro {
+        .intro-header {
+            .label {
+                //background-image: url('icons/standard-2-przyroda/ .@{icon-format}');
+            }
+        }
+    }
+
+    .literary-work-description {
+        .literary-work-description-header {
+            .label {
+                //background-image: url('icons/standard-2-przyroda/ .@{icon-format}');
+            }
+        }
+    }
+
+    .literary-work-summary {
+        .literary-work-summary-header {
+            .label {
+                //background-image: url('icons/standard-2-przyroda/ .@{icon-format}');
+            }
+        }
+    }
+
+    .note {
+        ._typical-note(@svg) {
+            .note-header {
+                .label {
+                    background-image: url(@svg);
+                }
+            }
+        }
+        &-curiosity { // Ciekawostka
+            ._typical-note('icons/standard-2-przyroda/ciekawostka.@{icon-format}');
+        }
+        &-tip { // Wskazówka
+            ._typical-note('icons/standard-2-przyroda/wskazowka.@{icon-format}');
+        }
+        &-remember { // Zapamiętaj
+            ._typical-note('icons/standard-2-przyroda/zapamietaj.@{icon-format}');
+        }
+        &-important { // Ważne
+            ._typical-note('icons/standard-2-przyroda/wazne.@{icon-format}');
+        }
+        &-warning { // Uwaga
+            ._typical-note('icons/standard-2-przyroda/uwaga.@{icon-format}');
+        }
+        &-see-also { // Zobacz także
+            ._typical-note('icons/standard-2-przyroda/zobacz-takze.@{icon-format}');
+        }
+        &-consider { // Zastanów się
+            .content {
+                background-image: url('icons/standard-2-przyroda/zastanow-sie.@{icon-format}');
+            }
+        }
+    }
+
+    .observation,
+    .observation.no-title { // Obserwacja
+        .observation-header {
+            .title {
+                background-image: url('icons/standard-2-przyroda/obserwacja.@{icon-format}');
+            }
+
+            .label {
+                background-image: none;
+            }
+        }
+    }
+
+    .prerequisite {
+        .prerequisite-header {
+            .label {
+                background-image: url('icons/standard-2-przyroda/przygotuj-przed-lekcja.@{icon-format}');
+            }
+        }
+    }
+
+    .procedure-instructions {
+        .procedure-instructions-header {
+            .label {
+                background-image: url('icons/standard-2-przyroda/instrukcja.@{icon-format}');
+            }
+        }
+    }
+
+    blockquote.quote { // Cytat
+        .quote-header {
+            .label {
+                background-image: url('icons/standard-2-przyroda/cytat.@{icon-format}');
+            }
+        }
+    }
+
+    .revisal { // Już wiesz
+        .revisal-header {
+            .label {
+                background-image: url('icons/standard-2-przyroda/juz-wiesz-do-ramki.@{icon-format}');
+            }
+        }
+    }
+
+    .rule { // Reguła / Twierdzenie / Prawo
+        .rule-header {
+            .label {
+                background-image: url('icons/standard-2-przyroda/regula-twierdzenie-prawo.@{icon-format}');
+            }
+        }
+    }
+
+    .student-work { // Praca domowa
+        .student-work-header {
+            .label {
+                background-image: url('icons/standard-2-przyroda/zadanie-domowe.@{icon-format}');
+            }
+        }
+
+        &.exercise-set {
+            .student-work-header {
+                .label {
+                    background-image: url('icons/standard-2-przyroda/zestaw-zadan.@{icon-format}');
+                }
+            }
+        }
+    }
+}
+
+/* foldable icons */
+
+.reader-content {
+    .experiment,
+    .observation {
+        .foldable {
+            .foldable-header {
+                .additional-image {
+                    background-image: url('icons/standard-2-przyroda/foldable/yellow-down.@{icon-format}');
+                }
+
+                .additional-image.folded {
+                    background-image: url('icons/standard-2-przyroda/foldable/yellow-up.@{icon-format}');
+                }
+            }
+        }
+    }
+
+    .revisal,
+    .effect {
+        &.foldable {
+            .foldable-header {
+                button.additional-image {
+                    background-image: url('icons/standard-2-przyroda/foldable/white-down.@{icon-format}');
+                }
+
+                button.additional-image.folded {
+                    background-image: url('icons/standard-2-przyroda/foldable/white-up.@{icon-format}');
+                }
+            }
+        }
+    }
+
+    .note-curiosity {
+        &.foldable {
+            margin: 0;
+            padding: 32px 22px 0;
+
+            .foldable-header {
+                button.additional-image {
+                    background-image: url('icons/standard-2-przyroda/foldable/pink-down.@{icon-format}');
+                }
+
+                button.additional-image.folded {
+                    background-image: url('icons/standard-2-przyroda/foldable/pink-up.@{icon-format}');
+                }
+            }
+        }
+    }
+}
+
+/* foldable */
+
+.reader-content {
+    .foldable {
+        .foldable-header {
+            background-size: 20px auto;
+            background-position: 100% 25%;
+        }
+    }
+}
+
+/* title page */
+
+.reader-content {
+    .second_page {
+        .section-contents {
+            .section-header {
+                margin-left: 0px;
+                text-indent: -40px;
+
+                .title {
+                    margin-left: 40px;
+                }
+            }
+
+            .section {
+                .section-contents {
+                    .section.content.level_3 {
+                        .section-contents {
+                            .table.table-layout-auto {
+                                float: left;
+                                margin-top: 5px;
+
+                                .label-status-content {
+                                    .label-status-content-R,
+                                    .label-status-content-N {
+                                        padding-right: 25px;
+                                        display: inline;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.second_page_signature {
+                    position: relative;
+                    top: 120px;
+                    right: 200px;
+                }
+            }
+        }
+    }
+}
+
+/* headers */
+
+.reader-content {
+    .level_1 {
+        &:not(:first-child) {
+            overflow: visible;
+        }
+    }
+}
+
+/* biography */
+
+.biography .biography-contents .biography-info .biography-metrics .birth .birth-contents .date .date-contents,
+.biography .biography-contents .biography-info .biography-metrics .death .death-contents .date .date-contents,
+.biography .biography-contents .biography-info .biography-metrics .birth .birth-contents .location .location-contents,
+.biography .biography-contents .biography-info .biography-metrics .death .death-contents .location .location-contents {
+    float: inherit;
+}
+
+/* experiment/observation */
+
+.reader-content {
+    .experiment {
+        &.no-title {
+            .experiment-header {
+                .title {
+                    margin-left: -215px;
+                    padding: 10px 10px 10px 50px;
+                }
+
+                &.warning {
+                    margin-left: 10px;
+                    padding: 10px 10px 10px 50px;
+
+                    .label {
+                        @media (max-width: 480px) {
+                            margin-left: -40px;
+                            left: 15px;
+                        }
+                    }
+
+                    .title {
+                        margin-left: -270px;
+                        @media (max-width: 480px) {
+                            margin-left: -236px;
+                        }
+                    }
+
+                    .warning-message {
+                        float: none;
+                        position: inherit;
+                    }
+                }
+            }
+        }
+
+        .experiment-header {
+            &.warning {
+                text-indent: -34px;
+
+                .label {
+                    left: 15px;
+                }
+
+                .title {
+                    margin-left: -127px;
+                    padding-top: 13px;
+                }
+
+                .warning-message {
+                    margin: 16px 0 0;
+                    text-indent: 0px;
+                    font-size: 11px;
+                    color: #bf4f4f;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        .experiment {
+            .experiment-header {
+                .label {
+                    left: 20px;
+                }
+
+                &.warning {
+                    text-indent: -34px;
+
+                    .label {
+                        left: 15px;
+                    }
+
+                    .title {
+                        margin-left: -127px;
+                        padding-top: 13px;
+                    }
+
+                    .warning-message {
+                        margin: 16px 0 0 -54px;
+                        text-indent: 0px;
+                        font-size: 11px;
+                        color: #bf4f4f;
+                    }
+                }
+            }
+
+            .experiment-contents {
+                margin-left: 0;
+            }
+        }
+    }
+
+    .observation {
+        .observation-header {
+            &.warning {
+                text-indent: -34px;
+
+                .label {
+                    left: 15px;
+                }
+
+                .title {
+                    margin-left: -110px;
+                    padding-top: 13px;
+                }
+
+                .warning-message {
+                    margin: 16px 0 0;
+                    text-indent: 0px;
+                    font-size: 11px;
+                    color: #bf4f4f;
+                }
+            }
+        }
+
+        &.no-title {
+            .observation-header {
+                .title {
+                    margin-left: -160px;
+                    padding: 10px 10px 10px 50px;
+                }
+
+                &.warning {
+                    margin-left: 10px;
+                    padding: 10px 10px 10px 50px;
+                    text-indent: inherit;
+
+                    .label {
+                        left: -50px;
+
+                        @media (max-width: 480px) {
+                            margin-left: -40px;
+                            left: 15px;
+                        }
+                    }
+
+                    .title {
+                        margin-left: -270px;
+                        @media (max-width: 480px) {
+                            margin-left: -236px;
+                        }
+                    }
+
+                    .warning-message {
+                        float: none;
+                        position: inherit;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        .observation {
+            .observation-header {
+                .label {
+                    left: 20px;
+                }
+
+                &.warning {
+                    text-indent: -34px;
+
+                    .label {
+                        left: 15px;
+                    }
+
+                    .title {
+                        margin-left: -110px;
+                        padding-top: 13px;
+                    }
+
+                    .warning-message {
+                        margin: 16px 0 0 -54px;
+                        text-indent: 0px;
+                        font-size: 11px;
+                        color: #bf4f4f;
+                    }
+                }
+            }
+
+            .observation-contents {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+/* concept/definition */
+
+.reader-content {
+    .concept,
+    .definition {
+        &-header {
+            margin-left: 40px;
+            text-indent: -43px;
+        }
+    }
+}
+
+/* links breaker */
+
+.reader-content {
+    a {
+        word-break: break-all;
+    }
+}
+
+/* mobile exercise buton */
+
+.reader-content {
+    .standard-interactive-object {
+        @media (max-width: 480px) {
+            height: 100%;
+        }
+
+        .play-div {
+            .play-button.play-button-interactive-exercise {
+                top: 125px;
+
+                @media (max-width: 480px) {
+                    top: 100px;
+                    background-size: 80%;
+                }
+            }
+        }
+    }
+}
+
+/* mobile exerciss */
+
+.womi-content {
+    .standard-interactive-object.momi {
+        padding: 0 10px;
+
+        .value.picture {
+            img.ex-block {
+                max-width: 100%;
+            }
+        }
+
+        .ex-main {
+            select,
+            input[type="text"] {
+                margin: 0 5px;
+            }
+
+            .value {
+                word-break: break-word;
+            }
+        }
+    }
+}
+
+/* others */
+
+.reader-content .section-header .title .content-status-expanding,
+.reader-content .module-header .title .content-status-expanding {
+    padding-right: 18px;
+}
+
+.reader-content {
+    .womi-gallery {
+        .ga-container {
+            .ga-aso-text {
+                text-align: center;
+            }
+        }
+    }
+}
+
+.reader-content {
+    table {
+        div.img {
+            img {
+                display: inline;
+            }
+        }
+    }
+}

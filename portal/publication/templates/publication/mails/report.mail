@@ -1,0 +1,22 @@
+{% extends "publication/mails/base.mail" %}
+{% load common_ext %}
+
+{% block lead %}Raport publikacji - {{ TOP_DOMAIN }}{% endblock %}
+
+{% block content %}
+Udane publikacje z ostatniej doby:{% for context in succeeded %}
+- https://www.{{ TOP_DOMAIN }}{{ context.driver.published_url }}
+{% endfor %}
+
+
+Publikacje w trakcie obecne w systemie:{% for context in in_progress %}
+- https:{% host_url 'www' 'publication.views.publication_view' context.category context.identifier context.version context.aspect %}
+{% endfor %}
+
+
+Nieudane publikacje w systemie:{% for context in failed %}
+- https:{% host_url 'www' 'publication.views.publication_view' context.category context.identifier context.version context.aspect %}
+{% endfor %}
+
+
+{% endblock %}

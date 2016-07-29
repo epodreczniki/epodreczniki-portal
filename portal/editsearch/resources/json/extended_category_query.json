@@ -1,0 +1,15 @@
+{
+  "name": "education level",
+  "filter": {
+    "operator": "and",
+    "operands": [
+      {
+        "field": "extended_category",
+        "value": ["programy nauczania"],
+        "mode": "exact",
+        "fixed": true
+      }
+    ]
+  },
+  "fields": ["identifier", "attributes.*"]
+}

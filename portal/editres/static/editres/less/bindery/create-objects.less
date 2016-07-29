@@ -1,0 +1,109 @@
+/* Rules for create-objects bar */
+
+.create-objects {
+    position: relative;
+    height: 75px; //100px;
+    padding-left: @dashboard-whitespace;
+    margin-bottom: 35px; //added to avoid overlapping with view switch tabs on smaller screens
+
+    .create-objects-inner {
+        position: relative;
+        background-color: #fff;
+        //border: 1px solid @dashboard-create-objects-border-gray;
+        border-radius: @dashboard-border-radius;
+
+        height: 49px; //65px;
+        margin-top: 17px;
+
+        display: -webkit-inline-flex;
+        display: inline-flex;
+        -webkit-flex-direction: row;
+            flex-direction: row;
+        -webkit-justify-content: flex-start;
+            justify-content: flex-start;
+
+        .create-workspace, .create-collection, .create-module, .create-womi {
+            position: relative;
+
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: space-around;
+            justify-content: space-around;
+
+            float: left;
+            height: 49px; //65px;
+            margin-right: 37px; //50px;
+
+            font-size: 15px; //18px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            div, span {
+                display: -webkit-flex;
+                display: flex;
+            }
+
+            .create-object-icon {
+                width: 20px; //26px;
+                height: 20px; //26px;
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                background-position: center center;
+                margin-right: 7px; // 10px;
+            }
+        }
+
+        .create-plus {
+            position: relative;
+            display: inline;
+            float: left;
+            background-color: #eaeaea;
+            border: 1px solid @dashboard-create-objects-border-gray;
+            border-right: 2px solid @dashboard-create-objects-border-gray;
+            border-bottom: 2px solid @dashboard-create-objects-border-gray;
+
+            border-bottom-left-radius: 2px;
+            border-top-left-radius: 2px;
+
+            background-image: url('../../img/icons/plus.svg');
+            background-repeat: no-repeat;
+            background-size: 21px 21px; //28px 28px;
+            background-position: center center;
+
+            width: 47px; //63px;
+            height: 47px; //63px;
+
+            margin-right: 19px; //25px;
+        }
+
+        .create-workspace {
+            .create-object-icon {
+                background-image: url('../../img/icons/workspace.svg');
+            }
+        }
+
+        .create-collection {
+            .create-object-icon {
+                background-image: url('../../img/icons/collection.svg');
+            }
+        }
+
+        .create-module {
+            .create-object-icon {
+                background-image: url('../../img/icons/module.svg');
+            }
+        }
+
+        .create-womi {
+            .create-object-icon {
+                background-image: url('../../img/icons/womi.svg');
+            }
+            margin-right: 20px;
+        }
+    }
+}

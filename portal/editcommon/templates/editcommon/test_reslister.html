@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load compress staticfiles %}
+<html class="ie-zoom" lang="pl">
+<head>
+
+    {% block head %}
+    {% endblock %}
+
+    {% block stylesheets %}
+        {% compress css %}
+            <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editcommon/less/pickadate/all.less">
+            <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editcommon/less/res_lister/main_lister.less">
+        {% endcompress %}
+    {% endblock %}
+
+    {% compress js %}
+        <script src="{{ STATIC_URL }}common/js/libs/require.js"></script>
+    {% endcompress %}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}editcommon/js/build/resources_lister.js"></script>
+    {% endcompress %}
+    {% compress js %}
+    {# <script type="text/requirejs" src="{{ STATIC_URL }}editcommon/js/build/womi_dialog.js"></script> #}
+    {% endcompress %}
+
+    {% block scripts_top %}
+    {% endblock %}
+
+</head>
+
+<body>
+
+{% block content %}
+
+<div id="lister-hook"></div>
+
+{% endblock %}
+
+{% block scripts_bottom %}
+{% endblock %}
+
+</body>
+
+</html>

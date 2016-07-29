@@ -1,0 +1,13 @@
+﻿<tr data-id="<%= id %>">
+    <% for (var i = 0; i < cap; i++) { %>
+        <td class="cap"></td>
+    <% }; %>
+
+    <td class="index"><%= id %>.</td>
+
+    <% for (var i = cap; i < wordLength + cap; i++) { %>
+        <td class="letter<% if (solutionPosition === i + 1 ) { %> solution-letter<% }; %>"<% if (i == cap) { %> id="<%= fullId %>"<% } %>>
+            <input type="text" maxlength="1" aria-label="Litera <%= i - cap + 1 %><% if (solutionPosition === i + 1 ) { %> litera rozwiązania<% }; %>">
+        </td>
+    <% }; %>
+</tr>

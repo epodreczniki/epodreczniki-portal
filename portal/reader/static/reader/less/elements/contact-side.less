@@ -1,0 +1,104 @@
+@import "common-variables";
+
+span.kopertka {
+    display: block;
+    height: 18px;
+    width: 30px;
+    background-image: url('../../../img/new/topbar-icons/kontakt.svg');
+    background-repeat: no-repeat;
+    background-position: 0% center;
+    background-size: 200% 100%;
+    margin: 0 auto;
+    margin-top: 5px;
+    margin-left: 10px;
+    float: left;
+}
+
+body.high-contrast span.kopertka {
+  background: none;
+  &:before {
+    content: url('../../../img/new/topbar-icons/high-contrast/kontakt.png');
+    position: relative;
+    top: -4px;
+  }
+}
+
+span.contact-button-text {
+    margin-left: 17px;
+    float: left;
+    margin-top: 5px;
+}
+
+#contact_side {
+    position: absolute;
+    top: @topbar-height;
+    height: 39px!important;
+    width: 160px;
+    right: 10%;
+    background: rgba(61, 113, 184, 1);
+    color: white;
+    text-align: center;
+    padding: 5px 10px 10px 10px;
+    font-size: 100%!important;
+    line-height: 18px!important;
+    font-family: "open_sansbold";
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: 2px solid rgba(61, 113, 184, 0);
+    border-top: none;
+    z-index: 1900;
+
+    &:hover,
+    &:active,
+    &:focus {
+        color: @m-blue;
+        border: 2px solid @m-blue;
+        border-top: none;
+
+        .kopertka {
+            background-position: 100% center;
+        }
+    }
+
+    button {
+       padding-top: 10px;
+    }
+
+    @media all and (max-width: 699px) {
+        width: 50px;
+
+        .kopertka {
+            margin-left: 0;
+        }
+
+        .contact-button-text {
+            display: none;
+        }
+    }
+}
+
+.fancybox-modal-contact {
+    header#dialog_form-header {
+        color: @m-blue!important;
+        border: none;
+    }
+    #dialog_form p {
+        background: #f0f0f0;
+        padding: 5px;
+        font-size: 90%;
+    }
+
+    #dialog_form {
+        min-width: 350px;
+    }
+
+    label.captcha {
+        color: red;
+    }
+    input, select, textarea {
+        margin-bottom: 15px!important;
+    }
+    textarea {
+        width: 100%;
+    }
+}

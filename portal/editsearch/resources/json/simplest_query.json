@@ -1,0 +1,7 @@
+{
+  "name": "fajny filtr",
+  "filter": {
+    "operator": "and",
+    "operands": []
+  }
+}

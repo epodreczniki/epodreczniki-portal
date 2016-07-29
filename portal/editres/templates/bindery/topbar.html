@@ -1,0 +1,26 @@
+<nav class="nav-topbar">
+    <div class="nav-inner">
+        <div class="nav-logo">
+            <div class="nav-logo-inner"><a href="{% url 'editres.views.dashboard' %}"></a></div>
+            <!-- change to proper dashboard later -->
+        </div>
+        <div class="nav-description"><a href="{% url 'editres.views.dashboard' %}">Pulpit</a></div>
+        <div class="nav-menu">
+            {% include "bindery/menu.html" %}
+        </div>
+
+        <div class="nav-options">
+            <div class="nav-search">
+                <div class="nav-search-icon"></div>
+                <div class="nav-search-description"><a href="#">Wyszukaj obiekty</a></div>
+            </div>
+
+            <div class="nav-profile">
+                <div class="nav-profile-user-icon"></div>
+                <div class="nav-profile-user">{{ request.user.username }}</div>
+                <div class="nav-profile-options-icon"></div>
+                <!-- <div class="nav-profile-logout-icon"></div>-->
+            </div>
+        </div>
+    </div>
+</nav>

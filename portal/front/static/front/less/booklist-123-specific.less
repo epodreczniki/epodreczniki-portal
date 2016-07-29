@@ -1,0 +1,67 @@
+//sizes may not be quite accurate - mockup wasn't readable
+@import "123/123.less";
+
+//needed for the bubbles to be rendered correctly
+
+
+#filters123 {
+  position: relative;
+}
+
+.fullwidth-footer {
+  position: relative;
+  height: 90px;
+  padding-top: 15px;
+  margin: 0 auto;
+
+  .footer-container {
+    position: relative;
+    width: 100%;
+    text-align: center;
+
+    img {
+      position: relative;
+      width: 90%;
+      max-width: 1480px;
+    }
+  }
+}
+
+.movie-icon-container {
+  position: absolute;
+  top: 120px;
+  left: 30px;
+  width: 360px;
+  text-align: center;
+
+  @media all and (max-width: 940px) {
+    top: 30px;
+    left: 30px;
+    width: 90px;
+  }
+
+  #camera {
+    display: inline-block;
+    position: relative;
+    width: 88px;
+    height: 88px;
+    background-image: url("../../front/img/one2three/film_ikony.svg");
+    background-position: 0% center;
+    background-size: 300% 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+
+    &:hover {
+      background-position: center center;
+    }
+  }
+}
+
+.front123 {
+  .fancybox-close {
+    background-image: url("../img/one2three/close-123.svg");
+    background-size: 22px 22px;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}

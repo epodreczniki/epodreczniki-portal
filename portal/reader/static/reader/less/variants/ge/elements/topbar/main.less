@@ -1,0 +1,348 @@
+.shadow-ge {
+  -webkit-box-shadow: 4px 5px 5px 0px rgba(102, 102, 102, 0.75);
+  -moz-box-shadow: 4px 5px 5px 0px rgba(102, 102, 102, 0.75);
+  box-shadow: 4px 5px 5px 0px rgba(102, 102, 102, 0.75);
+}
+
+.topbar-ge * {
+  font-weight: normal !important;
+}
+
+.topbar-ge {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2100;
+
+  .topbar-ge-inner {
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    margin: 0;
+    background-color: @green0;
+    border-bottom-style: solid;
+    border-bottom-color: #ffffff;
+    box-shadow: 0px 3px 5px 0px rgba(109, 109, 109, 0.75);
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  ul.top-level-list {
+    li {
+      float: left;
+    }
+  }
+
+  ul.breadcrumbs-buttons {
+    padding: 0px;
+    padding-left: 3px;
+
+    li {
+      padding: 0px;
+    }
+
+    li:first-of-type {
+      margin-right: 46px;
+    }
+
+    li:last-of-type {
+      margin-right: 23px;
+    }
+
+    button {
+      cursor: default;
+      color: transparent;
+      background-image: url('../../../img/GE/not_jablko.svg');
+      background-position: 50% 0%;
+      background-size: cover;
+      margin: 0px !important;
+
+      &:focus {
+        outline: black dotted thin !important;
+      }
+    }
+  }
+
+  .main-navigation-tabs {
+
+    button {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      background: @green3;
+      color: @white;
+      border: none;
+      padding: 0px;
+
+      &:hover, &:focus {
+        background: @blue2;
+        color: @white;
+      }
+
+      &.active {
+        background: @white;
+        color: @green1;
+
+        &:focus {
+          outline: black dotted thin !important;
+        }
+      }
+    }
+
+    .dropdown-content {
+      display: none; // By default, not shown.
+      position: absolute;
+      overflow-y: scroll;
+      background: @white;
+      color: @green1;
+      border: 1px solid #f0f0f0;
+      border-top: none !important;
+      .shadow-ge();
+
+      div {
+        display: inline;
+        vertical-align: middle;
+        height: 100%;
+      }
+
+      * {
+        margin: 0px;
+      }
+    }
+
+    .supplementary-tasks-content {
+      ul {
+        margin: 0px !important;
+        list-style: disc inside none;
+
+        li {
+          float: none;
+          min-height: 48px;
+        }
+      }
+    }
+
+    .exercise-list-content {
+      overflow-y: auto;
+
+      p {
+        font-weight: bold !important;
+        margin: 0px;
+      }
+
+      li {
+        width: 100%;
+        position: relative;
+        display: table;
+
+        .title {
+          cursor: pointer;
+          display: block;
+          display: -webkit-flex;
+          display: flex;
+          -webkit-align-items: center;
+          align-items: center;
+
+          &.active {
+            text-decoration: underline; //for testing purposes - afterwards make the icon appear
+          }
+
+          &:focus {
+            outline: black dotted thin !important;
+          }
+        }
+      }
+
+      span {
+        position: relative;
+        height: 100% !important;
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+      .print-card-module {
+        vertical-align: middle;
+        width: 100%;
+        padding: 0px;
+        //background-color: lightblue;
+        display: table;
+
+        span, a {
+          display: table-cell;
+        }
+      }
+
+      a.title {
+        display: inherit;
+      }
+    }
+
+    .core-curriculum-content {
+      a {
+        text-decoration: none;
+        color: @green1;
+
+        &:hover, &:focus {
+          text-decoration: underline;
+        }
+      }
+
+      .one-cc-item {
+        border-top: 2px solid @green0;
+      }
+
+      .education-type {
+        font-weight: bold !important;
+      }
+    }
+  }
+
+  ul.additional-navigation-buttons {
+    position: relative;
+    float: right;
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-align-items: center;
+    align-items: center;
+
+    li.search-box {
+      //display: none;
+      width: 71px;
+      height: 71px;
+    }
+
+    button {
+      display: -webkit-flex;
+      display: flex;
+      width: 71px;
+      height: 71px;
+      position: relative;
+      float: right;
+      color: transparent;
+      background-image: url("../../../img/GE/search.svg");
+      background-size: cover;
+      margin-right: 19px;
+      .rounded(50px, @white, 5px);
+
+      &:hover {
+        background-position: 50%;
+      }
+    }
+
+    button.help {
+      background-image: url("../../../img/GE/help.svg");
+      background-size: cover;
+      color: transparent;
+      margin-right: 23px;
+
+      &:hover {
+        background-position: 50%;
+      }
+    }
+  }
+
+  .toggle-topbar {
+    background-image: url("../../../img/GE/fiszka_ikony.svg");
+    background-color: transparent;
+    background-size: 300% 100% !important;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    //display: block;
+    position: absolute !important;
+    z-index: -10;
+    margin: 0px !important;
+    padding: 0px !important;
+    border: none !important;
+
+    &:hover, &:focus {
+      background-position: 50% 0%;
+    }
+    &:active, &.active {
+      background-position: 100% 0%;
+    }
+  }
+
+  .contact-form-trigger {
+    background-image: url("../../../img/GE/uwagi.svg");
+    background-color: transparent;
+    background-size: 200% 100%;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    //display: block;
+    position: absolute !important;
+    z-index: -10;
+    margin: 0px !important;
+    padding: 0px !important;
+    border: none !important;
+
+    &:hover, &:focus {
+      background-position: 100% 0;
+    }
+    &:active, &.active {
+      background-position: top right;
+    }
+  }
+
+  #supplementary-tasks {
+    display: none;
+  }
+
+  #licenses-content {
+    .copyright {
+      a {
+        .link-no-style();
+        color: @green1;
+        //font-size: 25px;
+
+        &:focus {
+          outline: black dotted thin !important;
+        }
+      }
+
+      .icon {
+        width: 64px;
+        height: 64px;
+        margin-right: 13px;
+        vertical-align: middle;
+        display: inline-block;
+
+        background-image: url("../../../img/GE/copyright-single.svg");
+        background-position: 0% 0%;
+        background-size: cover;
+      }
+    }
+  }
+
+  .module-print-card-link {
+    color: transparent;
+    display: inline-block;
+    background-color: transparent;
+    background-image: url("../../../img/GE/pobierz.svg");
+    background-size: 300% 100%;
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    //.rounded(50px, @white, 1px);
+
+    &:hover, &:focus {
+      background-position: center 0%;
+    }
+
+    &:active {
+      background-position: 100% 0%;
+    }
+  }
+}

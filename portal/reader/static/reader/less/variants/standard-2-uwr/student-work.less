@@ -1,0 +1,67 @@
+.reader-content {
+
+    .student-work.exercise-set,
+    .student-work.homework,
+    .student-work.project {
+        padding: 0;
+        border: 0;
+
+        .student-work-header {
+            //display: none;
+            font-size: inherit;
+
+            .label {
+                margin: 0;
+                padding: 0;
+                background: none;
+            }
+        }
+
+        .student-work-contents {
+            margin: 0;
+
+            .exercise {
+                margin-top: @space-B;
+                padding: 0;
+                padding-left: @space-B;
+                border-left: 1px solid red;
+                border-radius: 0;
+
+                .exercise-header {
+                    margin: 0;
+                    padding-bottom: @space-A;
+                    border: 0;
+                    background: inherit;
+                    color: red;
+                    font-size: 14px;
+
+                    .label {
+                        display: inline;
+                        margin: 0;
+                        padding: 0;
+                        background: none;
+                        color: red;
+                    }
+
+                    .numbering {
+                        padding: 0;
+                        background: inherit;
+                        color: inherit;
+
+                        .numbering-end-character {
+                            display: none;
+                        }
+
+                        .numbering-prefix {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .student-work .exercise .exercise-contents .womi-container {
+        margin-left: 0;
+    }
+}

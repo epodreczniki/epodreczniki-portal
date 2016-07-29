@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="100%"
+   height="100%"
+   viewBox="0 0 46 46"
+   id="Layer_1"
+   xml:space="preserve"><metadata
+   id="metadata16"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs14" />
+<circle
+   cx="22.6"
+   cy="23"
+   r="23"
+   transform="translate(0.39999962,0)"
+   id="circle3"
+   style="opacity:0.5;fill:#001022" />
+<g
+   transform="matrix(0.80000004,0,0,0.80000004,5.5079121,6.0021068)"
+   id="g4365_1_">
+	<g
+   id="g4367_1_">
+		<path
+   d="M 31.2,0.5 H 12.5 L 3.7,9.8 V 34.5 H 31.1 V 0.5 z M 11.7,4.4 V 8.5 H 7.8 L 11.7,4.4 z M 29,32.4 H 5.8 V 10.7 h 8 v -8 H 29 l 0,29.7 0,0 z"
+   id="path4369_1_"
+   style="fill:#ffffff" />
+		<rect
+   width="18"
+   height="2.4000001"
+   x="8.3999996"
+   y="16.6"
+   id="rect4371_1_"
+   style="fill:#ffffff" />
+		<rect
+   width="18"
+   height="2.4000001"
+   x="8.3999996"
+   y="21.4"
+   id="rect4373_1_"
+   style="fill:#ffffff" />
+		<rect
+   width="18"
+   height="2.4000001"
+   x="8.3999996"
+   y="26.299999"
+   id="rect4375_1_"
+   style="fill:#ffffff" />
+		<polygon
+   points="36.8,40.1 36.8,6.1 32.3,6.1 32.3,8.2 34.7,8.2 34.7,37.9 11.5,37.9 11.5,35.6 9.3,35.6 9.3,40.1 "
+   id="polygon4377_1_"
+   style="fill:#ffffff" />
+	</g>
+</g>
+</svg>

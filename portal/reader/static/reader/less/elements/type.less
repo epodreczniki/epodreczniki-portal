@@ -1,0 +1,41 @@
+// TODO-jhoffmann: comment, what this file is for
+// TODO: Change this filename to "anchors" or something... (M. Kuik 2014-06-25)
+
+.exercise {
+    .anchor, .qr-anchor {
+        display: none;
+    }
+}
+
+// temporary disabled quiz anchors
+
+.anchor-container {
+    display: none;
+    float: right;
+    opacity: 0.3;
+
+    .qr-anchor,
+    .anchor {
+        color: #000 !important;
+        text-decoration: none;
+        display: inline;
+        background-repeat: no-repeat;
+        background-position: 0px 50%;
+        background-size: auto 1em; /* em'y zamierzone */
+        padding: 1em 0 1em 1.2em;
+        height: 1em;
+        width: 1em;
+    }
+
+    .anchor {
+        background-image: url('../../../img/awesome-icons/anchor.svg');
+    }
+
+    .qr-anchor {
+        background-image: url('../../../img/awesome-icons/qrcode.svg');
+    }
+}
+
+#lab_mod_checkbox {
+    padding-bottom: 5px;
+}

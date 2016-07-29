@@ -1,0 +1,162 @@
+// TODO przerobić mixin
+@import "detail";
+
+.observation { // Obserwacja
+    .experiment_and_observation_common(observation, '../../../img/new-icons/ic-obserwacja.svg');
+}
+
+.reader-content {
+    .observation {
+        .common-spacing();
+
+        .observation-header {
+            border: none;
+            padding: 10px 10px 5px 0;
+
+            .label {
+                background-image: none;
+                position: relative;
+                bottom: 26px;
+                left: 37px;
+                font-size: 11px;
+            }
+
+            .title {
+                margin-left: -92px;
+                padding: 10px 10px 10px 50px;
+                background-image: url('../../../img/new-icons/ic-obserwacja.svg');
+                background-repeat: no-repeat;
+                background-position: 0 5%;
+                podition: relative;
+                top: 2px;
+            }
+        }
+
+        .warning {
+            .label {
+                font-family: @sansRegular;
+                color: #bf4f4f;
+                left: 28px;
+            }
+
+            .title {
+                margin-left: -378px;
+                background-image: url('../../../img/new-icons/ic-obserwacja-opieka.svg');
+            }
+        }
+
+        .observation-contents {
+            margin: 16px @side-space 0;
+
+            & > div:last-child {
+                border-bottom: 3px solid #d9d9d9;
+            }
+
+            .foldable {
+                margin: 22px 8px 22px 0;
+                border-bottom: 1px solid #d9d9d9;
+                padding: 0;
+
+                .foldable-header {
+                    margin-bottom: 0;
+                }
+
+                .list {
+                    margin: 0;
+                }
+            }
+
+            .objective {
+                margin-bottom: 36px;
+                border-radius: 7px;
+                padding: 27px;
+                background-color: #a8dff4;
+                
+                .objective-header {
+                    margin-bottom: 16px;
+                }
+
+                .para:last-child {
+                    margin-bottom: 0;
+                    padding-bottom: 0;
+                }
+            }
+
+            .instruments {
+            }
+
+            .instructions {
+                &-header {
+                    margin: 0;
+                }
+
+                .para:last-child {
+                    margin-bottom: 0;
+                }
+
+                ul, ol {
+                    li:last-child {
+                        .para {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+
+            .conclusions {
+            }
+
+            .objective-header,
+            .instruments-header,
+            .instructions-header,
+            .conclusions-header {
+                font-family: @sansRegular;
+                font-size: 18px;
+            }
+        }
+
+        &.no-title {
+            .observation-header {
+                padding-left: 5px;
+
+                .label {
+                    padding: 10px 10px 10px 50px;
+                    background-image: url('../../../img/new-icons/ic-obserwacja.svg');
+                    background-size: 42px auto;
+                    bottom: 8px;
+                    left: 0;
+                    font-size: 24px;
+                }
+
+                .title {
+                    padding: 0;
+                    margin: 0;
+                    background-image: none;
+                }
+
+                &.warning {
+                    padding-left: 65px;
+
+                    .warning-message {
+                        float: right;
+                        position: relative;
+                        bottom: 8px;
+                        right: 20px;
+                    }
+
+                    .label {
+                        background-image: url('../../../img/new-icons/ic-obserwacja-opieka.svg');
+                        position: relative;
+                        left: -4px;
+                    }
+                }
+            }
+        }
+
+        .para {
+            margin: 0;
+            padding: 0 0 8px;
+            font-size: 14px;
+        }
+    }
+}

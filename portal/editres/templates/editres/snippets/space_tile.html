@@ -1,0 +1,52 @@
+<div class="col-sm-6 col-xs-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row tile-heading">
+                <div class="col-xs-9 tile-link">
+                    <span><a href="{{ space_driver.presentation_url }}">{{ space_driver.presentation_label|upper }}</a></span>
+                </div>
+                <div class="col-xs-3">
+                    <a class='btn btn-primary btn-xs pull-right' href="{{ space_driver.presentation_url }}">
+                        <span class='glyphicon glyphicon-chevron-right'></span> Więcej
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+
+                <div class='col-xs-3 media'>
+                    <div class='media-middle'>
+                        {% if space_driver.leading_collection_driver %}
+                        <a href="{{ space_driver.leading_collection_driver.presentation_url }}">
+                            <img src="{{ space_driver.leading_collection_driver.effective_cover_url }}" class="img-responsive media-object" alt="">
+                        </a>
+                        {% else %}
+                        <a href="{{ space_driver.presentation_url }}">
+                            <img src="{{ space_driver.effective_cover_url }}" class="img-responsive media-object" alt="">
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class='col-xs-9'>
+                    <span>Uprawnienia: </span>
+                    {% for role in space_driver.user_defined_roles %}
+                    <span class="label label-primary">
+                        {{ role|capfirst }}
+                    </span>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row">
+                {% for category_driver in space_driver.category_drivers %}
+                    <div class='col-xs-4'>
+                        <a class='btn btn-sm btn-default' href="{{ category_driver.presentation_url }}">
+                            <span class='glyphicon glyphicon-chevron-right'></span> {{ category_driver.presentation_label }} ({{ category_driver.objects_count }})
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

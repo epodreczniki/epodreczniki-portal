@@ -1,0 +1,466 @@
+{
+    "root": {
+
+        "children": [
+            {
+                "namespace": "col",
+                "tag": "collection",
+                "type": "object",
+                "children": [
+                    {
+                        "namespace": "col",
+                        "tag": "metadata",
+                        "attrs": ["mdml-version"],
+                        "type": "object",
+                        "children": [
+                            {
+                                "namespace": "md",
+                                "tag": "content-id"
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "repository"
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "version"
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "created"
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "revised"
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "title"
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "subtitle"
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "language"
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "license",
+                                "attrs": ["url"]
+                            },
+                            {
+                            	"namespace": "md",
+                            	"tag": "education-levellist",
+                            	"type": "object",
+                            	"children":[
+                            		{
+                            			"namespace": "md",
+                                		"tag": "education-level"
+                            		}
+                            	]
+                            },
+                            {
+                            	"namespace": "md",
+                            	"tag": "subjectlist",
+                            	"type": "object",
+                            	"children":[
+                            		{
+                            			"namespace": "md",
+                                		"tag": "subject"
+                            		}
+                            	]
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "abstract"
+                            },
+							{
+                                "namespace": "ep",
+                                "tag": "e-textbook",
+                                "type": "object",
+                                "attrs": ["ep:content-status", "ep:recipient", "ep:version"],
+                                "children":[
+                                	{
+                                		"namespace": "ep",
+                                		"tag": "cover",
+                                		"attrs": ["ep:cover-type"]
+                                	},
+                                	{
+                                		"namespace": "ep",
+                                		"tag": "class"
+                                	},
+                                    {
+                                        "namespace": "ep",
+                                        "tag": "volume"
+                                    },
+                                	{
+                                		"namespace": "ep",
+                                		"tag": "signature"
+                                	},
+                                	{
+                                		"namespace": "ep",
+                                		"tag": "stylesheet"
+                                	},
+                                	{
+                                		"namespace": "ep",
+                                		"tag": "environment-type"
+                                	},
+                                     {
+                                		"namespace": "ep",
+                                		"tag": "show-technical-remarks"
+                                	},
+                                    {
+                                        "namespace": "ep",
+                                        "tag": "references",
+                                        "children": [
+                                            {
+                                                "namespace": "ep",
+                                                "tag": "collection-header",
+                                                "attrs": ["ep:title-presentation"],
+                                                "children": [
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "reference",
+                                                        "attrs": ["ep:id"]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "namespace": "ep",
+                                                "tag": "collection-toc",
+                                                "children": [
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "reference",
+                                                        "attrs": ["ep:id"],
+                                                        "children": [
+                                                            {
+                                                                "namespace": "ep",
+                                                                "tag": "link",
+                                                                "attrs": ["ep:toc-id", "ep:module-id"]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "namespace": "ep",
+                                        "tag": "learning-objectives",
+                                        "children": [
+                                            {
+                                                "namespace": "ep",
+                                                "tag": "learning-objective",
+                                                "children": [
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "learning-objective-version",
+                                                        "attrs": ["ep:key"]
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "learning-objective-stage",
+                                                        "attrs": ["ep:key"]
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "learning-objective-school",
+                                                        "attrs": ["ep:key"]
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "learning-objective-subject",
+                                                        "attrs": ["ep:key"]
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "learning-objective-scope",
+                                                        "attrs": ["ep:key"]
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "learning-objective-name",
+                                                        "attrs": ["ep:key"]
+                                                    },
+                                                    {
+                                                        "namespace": "ep",
+                                                        "tag": "learning-objective-text"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "actors",
+                                "type": "object",
+                                "related": "person",
+                                "children": [
+                                    {
+                                        "namespace": "md",
+                                        "tag": "person",
+                                        "attrs": ["userid"],
+                                        "children": [
+                                            {
+                                                "namespace": "md",
+                                                "tag": "firstname",
+                                                "label": "imię"
+                                            },
+                                            {
+                                                "namespace": "md",
+                                                "tag": "surname",
+                                                "label": "nazwisko"
+                                            },
+                                            {
+                                                "namespace": "md",
+                                                "tag": "fullname",
+                                                "label": "pełna nazwa"
+                                            },
+                                            {
+                                                "namespace": "md",
+                                                "tag": "email"
+                                            }
+                                        ]
+
+                                    },
+                                    {
+                                        "namespace": "md",
+                                        "tag": "organization",
+                                        "attrs": ["userid"],
+                                        "children": [
+                                            {
+                                                "namespace": "md",
+                                                "tag": "fullname",
+                                                "label": "pełna nazwa"
+                                            },
+                                            {
+                                                "namespace": "md",
+                                                "tag": "shortname",
+                                                "label": "nazwa skrócona"
+                                            }
+                                        ]
+
+                                    }
+                                ]
+                            },
+                            {
+                                "namespace": "md",
+                                "tag": "roles",
+                                "type": "object",
+                                "children": [
+                                    {
+                                        "namespace": "md",
+                                        "tag": "role",
+                                        "attrs": ["type"]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "namespace": "col",
+                        "tag": "content",
+                        "type": "object",
+                        "children": [
+                            {
+                            	"namespace": "col",
+                            	"tag": "subcollection",	 
+                            	"type": "object",
+                                "attrs": ["ep:id"],
+                            	"children": [
+                            	 	{
+                            	 		"namespace": "md",
+                            	 		"tag": "title"
+                            	 	},
+                            	 	{
+                            	 		"namespace": "ep",
+                            	 		"tag": "view-attributes",
+                            	 		"type": "object",
+                            	 		"children": [
+                            	 			{
+                            	 				"namespace": "ep",
+                            	 				"tag" : "view-attribute",
+                            	 				"type" : "object",
+                            	 				"attrs": ["ep:type", "ep:id", "ep:value"]
+                            	 			}
+                            	 		]
+                            	 	},
+                            	 	{
+                            	 		"namespace": "col",
+                            	 		"tag" : "content",
+                            	 		"type": "object",
+                            	 		"children": [
+                            	 			{
+                            	 				"namespace" : "col",
+                            					"tag" : "module",
+                            					"type": "object",
+                            					"attrs" : ["document", "repository", "version", "cnxsi:version-at-this-collection-version"],
+                            					"children": [
+                            						{
+                            							"namespace" : "md",
+                            							"tag": "title"
+                            						}
+                            					]	
+                            	 			},
+                            	 			{
+                            	 				"namespace": "col",
+				                            	"tag": "subcollection",	 
+				                            	"type": "object",
+                                                "attrs": ["ep:id"],
+				                            	 "children": [
+				                            	 	{
+				                            	 		"namespace": "md",
+				                            	 		"tag": "title"
+				                            	 	},
+				                            	 	{
+				                            	 		"namespace": "ep",
+				                            	 		"tag": "view-attributes",
+				                            	 		"type": "object",
+				                            	 		"children": [
+				                            	 			{
+				                            	 				"namespace": "ep",
+				                            	 				"tag" : "view-attribute",
+				                            	 				"type" : "object",
+				                            	 				"attrs": ["ep:type", "ep:id", "ep:value"]
+				                            	 			}
+				                            	 		]
+				                            	 	},
+				                            	 	{
+				                            	 		"namespace": "col",
+				                            	 		"tag" : "content",
+				                            	 		"type": "object",
+				                            	 		"children": [
+				                            	 			{
+				                            	 				"namespace" : "col",
+				                            					"tag" : "module",
+				                            					"type": "object",
+				                            					"attrs" : ["document", "repository", "version", "cnxsi:version-at-this-collection-version"],
+				                            					"children": [
+				                            						{
+				                            							"namespace" : "md",
+				                            							"tag": "title"
+				                            						}
+				                            					]	
+				                            	 			},
+				                            	 			{
+
+				                            	 				"namespace": "col",
+								                            	"tag": "subcollection",
+								                            	"type": "object",
+                                                                "attrs": ["ep:id"],
+								                            	 "children": [
+								                            	 	{
+								                            	 		"namespace": "md",
+								                            	 		"tag": "title"
+								                            	 	},
+								                            	 	{
+								                            	 		"namespace": "ep",
+								                            	 		"tag": "view-attributes",
+								                            	 		"type": "object",
+								                            	 		"type": "object",
+								                            	 		"children": [
+								                            	 			{
+								                            	 				"namespace": "ep",
+								                            	 				"tag" : "view-attribute",
+								                            	 				"type" : "object",
+								                            	 				"attrs": ["ep:type", "ep:id", "ep:value"]
+								                            	 			}
+								                            	 		]
+								                            	 	},
+								                            	 	{
+								                            	 		"namespace": "col",
+								                            	 		"tag" : "content",
+								                            	 		"type": "object",
+								                            	 		"children": [
+								                            	 			{
+								                            	 				"namespace" : "col",
+								                            					"tag" : "module",
+								                            					"type": "object",
+								                            					"attrs" : ["document", "repository", "version", "cnxsi:version-at-this-collection-version"],
+								                            					"children": [
+								                            						{
+								                            							"namespace" : "md",
+								                            							"tag": "title"
+								                            						}
+								                            					]	
+								                            	 			},
+								                            	 			{
+								                            	 				"namespace": "col",
+												                            	"tag": "subcollection",	 
+												                            	"type": "object",
+                                                                                "attrs": ["ep:id"],
+												                            	 "children": [
+												                            	 	{
+												                            	 		"namespace": "md",
+												                            	 		"tag": "title"
+												                            	 	},
+												                            	 	{
+												                            	 		"namespace": "ep",
+												                            	 		"tag": "view-attributes",
+												                            	 		"type": "object",
+												                            	 		"children": [
+												                            	 			{
+												                            	 				"namespace": "ep",
+												                            	 				"tag" : "view-attribute",
+												                            	 				"type" : "object",
+												                            	 				"attrs": ["ep:type", "ep:id", "ep:value"]
+												                            	 			}
+												                            	 		]
+												                            	 	},
+												                            	 	{
+												                            	 		"namespace": "col",
+												                            	 		"tag" : "content",
+												                            	 		"type": "object",
+												                            	 		"children": [
+												                            	 			{
+												                            	 				"namespace" : "col",
+												                            					"tag" : "module",
+												                            					"attrs" : ["document", "repository", "version", "cnxsi:version-at-this-collection-version"],
+												                            					"type": "object",
+												                            					"children": [
+												                            						{
+												                            							"namespace" : "md",
+												                            							"tag": "title"
+												                            						}
+												                            					]	
+												                            	 			}
+												                            	 		]
+												                            	 	}
+												                            	 ]
+								                            	 			}
+								                            	 		]
+								                            	 	}
+								                            	 ]
+				                            	 			}
+				                            	 		]
+				                            	 	}
+				                            	 ]
+                            	 			}
+                            	 		]
+                            	 	}
+                            	]
+                            },
+                            {
+                            	"namespace" : "col",
+                            	"tag" : "module",
+                            	"attrs" : ["document", "repository", "version", "cnxsi:version-at-this-collection-version"],
+                            	"type": "object",
+                            	"children": [
+                            		{
+                            			"namespace" : "md",
+                            			"tag": "title"
+                            		}
+                            	]	
+                            }
+                        ] 
+                    }
+                ]
+            }
+        ]
+    }
+}

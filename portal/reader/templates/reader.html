@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% load compress staticfiles extensions common_ext endpoints %}
+
+{% block title %}{{ module.md_title }} - {{ collection.md_title }} • epodreczniki.pl{% endblock %}
+
+{% block head %}
+    <base id="module-base"
+          href="{{ module_occurrence.subdomain }}"
+          data-static-url="{{ STATIC_URL }}"
+          data-base="{{ module_occurrence.subdomain }}"
+          data-dependencies-url="{% absolute_path module_occurrence.dependencies_url %}"
+          data-ajax-url="{{ module_occurrence.html_url|make_schemeless }}"
+          data-module-id="{{ module.md_content_id }}"
+          data-module-version="{{ module.md_version }}"
+          data-collection-id="{{ collection.md_content_id }}"
+          data-collection-version="{{ collection.md_version }}"
+          data-collection-variant="{{ collection.variant }}"
+          data-collection-class="{{ collection.md_school.ep_class }}"
+          data-subdomain="{{ module_occurrence.CONFIG.SUBDOMAIN }}"
+          data-title-pattern="{% block title_pattern %}{0} - {{ collection.md_title }} • epodreczniki.pl{% endblock %}"
+          data-womi-embed-pattern="{% womi_embed_pattern module_occurrence.CONFIG %}"
+          {% block base_additional %}
+            data-register-collection="yes"
+          {% endblock %}
+          {% endpoints_data_attrs endpoints %}
+
+          {% include "common/snippets/womi_references.html" with content=collection only %}
+          {% include "common/snippets/data_attributes.html" with content=collection only %}
+            >
+{% endblock %}
+
+{% block content %}
+
+    {% block reader_definition %}
+        <div id="reader-definition" data-stylesheet="{{ collection.normalized_ep_stylesheet }}"
+             data-environment-type="{{ collection.ep_environment_type }}"></div>
+    {% endblock %}
+
+    {% block pre_layout %}
+    {# nothing here #}
+    {% endblock %}
+
+    {% if collection.ep_environment_type == 'early-education' or collection.ep_environment_type == 'ee' %}
+        {% include 'layouts/ge/main.html' %}
+    {% else %}
+        {# {% include 'layouts/default/main.html' %} #}
+        {% include 'layouts/default/main.html' %}
+    {% endif %}
+
+{% endblock %}
+
+
+
+{% block stylesheets %}
+    {% include 'styles_map.html' %}
+{% endblock %}
+
+{% block scripts_bottom %}
+    {% compress js %}
+
+        <script src="{{ STATIC_URL }}reader/js/libs/matchmedia.js"></script>
+
+    {% endcompress %}
+
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}reader/js/build/common.js"></script>
+    {% endcompress %}
+
+    {% if collection.ep_environment_type == "uwr" %}
+        {% compress js %}
+            <script type="text/requirejs" src="{{ STATIC_URL }}reader/js/build/uwr_reader.js"></script>
+        {% endcompress %}
+    {% elif collection.ep_environment_type == "early-education" or collection.ep_environment_type == "ee" %}
+        {% if use_static_ge %}
+            {% compress js %}
+                <script type="text/requirejs" src="{{ STATIC_URL }}reader/js/build/static_ge_reader.js"></script>
+            {% endcompress %}
+        {% else %}
+            {% compress js %}
+                <script type="text/requirejs" src="{{ STATIC_URL }}reader/js/build/ge_reader.js"></script>
+            {% endcompress %}
+        {% endif %}
+    {% else %}
+        {% compress js %}
+            <script type="text/requirejs" src="{{ STATIC_URL }}reader/js/build/reader.js"></script>
+        {% endcompress %}
+    {% endif %}
+    {#    {% compress js%}#}
+    {#        <script type="text/requirejs" src="{{ STATIC_URL }}reader/js/build/womi_exercise.js"></script>#}
+    {#    {% endcompress %}#}
+    {% if use_test %}
+        {% block scripts_testing %}
+            <script>
+                console = {
+                    log: function () {
+
+                    },
+                    debug: function () {
+
+                    },
+                    error: function () {
+
+                    },
+                    warn: function(){}
+                }
+            </script>
+            <div id="mocha"></div>
+            <div id="messages"></div>
+            <div id="fixtures"></div>
+            {% compress css %}
+                <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}common/less/mocha.less">
+            {% endcompress %}
+            {% compress js %}
+                <script type="text/requirejs" src="{{ STATIC_URL }}reader/js/build/test/reader.js"></script>
+
+            {% endcompress %}
+
+        {% endblock %}
+    {% endif %}
+{% endblock %}
+
+

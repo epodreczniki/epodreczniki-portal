@@ -1,0 +1,221 @@
+@import "../../common-portal";
+@import "../colors";
+@import "../levels";
+@import "../exercise";
+@import "../tables";
+@import "../qml";
+@import "../definition";
+@import "../rule";
+@import "../revisal";
+@import "../womi-container";
+@import "../elements";
+@import "../lists";
+
+h3.subcollection-title,
+h3.module-header {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.reader-content h2 {
+    font-size: 26px;
+}
+
+.reader-content .subcollection-title + .module-header {
+  margin-bottom: 10px !important;
+}
+
+/* Second page */
+.table-of-mark-tasks td.desc-effect-of-education-A,
+.table-of-mark-tasks td.desc-effect-of-education-B,
+.table-of-mark-tasks td.desc-effect-of-education-C,
+.table-of-mark-tasks td.desc-effect-of-education-K,
+.table-of-mark-tasks td.desc-exercise-on-paper {
+  padding-left: 3px;
+  height: 20px;
+}
+
+.table-of-mark-tasks td.label-exercise-on-paper .label-exercise {
+    display: none;
+}
+
+.table-of-mark-tasks td.label-exercise-on-paper {
+  background-image: url('../../../img/new-icons/ic-zadanie-do-zeszytu-pdf.svg');
+  background-repeat: no-repeat;
+  background-position: 0px 1px;
+  width: 20px;
+  height: 21px;
+  display: block;
+  margin-left: -4px;
+}
+
+.table-of-mark-tasks td.desc-exercise-on-paper {
+ padding-bottom: 2px;
+}
+
+/* Icons for expanding content and content for teachers */
+.label-status-content-R,
+.label-status-content-N {
+  background-image: url('../../../img/awesome-icons/star.svg');
+  background-repeat: no-repeat;
+  width: 19px;
+  height: 19px;
+  display: inline-block;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+.label-status-content-N {
+  background-image: url('../../../img/awesome-icons/university-pdf.svg');
+}
+
+.reader-content .section-contents .womi-container.after-text {
+  margin-top: 8px !important;
+}
+.example .example-header {
+  margin-bottom: 8px !important;
+}
+
+/* Womi with QR-codes formating */
+.reader-content .para > .womi-movie,
+.reader-content .para > .womi-interactive,
+.reader-content .para > .womi-audio,
+.reader-content .section-contents > .womi-movie,
+.reader-content .section-contents > .womi-interactive,
+.reader-content .section-contents > .womi-audio,
+.reader-content .example-contents > .womi-movie,
+.reader-content .example-contents > .womi-interactive,
+.reader-content .example-contents > .womi-audio {
+  padding-bottom: 60px !important;
+}
+
+/* Exercises formating */
+.exercise .exercise-header {
+    margin-bottom: 10px;
+}
+
+.exercise-contents .qr-code img {
+    margin-top: 43px;
+    margin-right: 98px;
+    width: 66px !important;
+    height: 66px !important;
+}
+
+.exercise-contents .womi-container + .qr-code img {
+  margin-top: 16px;
+}
+
+
+/* List margins */
+.reader-content .list.after-text {
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
+}
+
+.qmlitem .question {
+    margin-bottom: 2px;
+    padding-bottom: 2px;
+}
+
+.qmlitem .question .section-contents .para {
+    margin-bottom: 8px;
+}
+
+/* Exercises margins */
+.exercise .exercise-contents .problem-contents .para {
+    margin-top: 8px !important;
+}
+
+.exercise .exercise-header {
+    margin-bottom: 6px !important;
+}
+
+.reader-content .section-contents .exercise-contents .womi-interactive,
+.reader-content .section-contents .exercise-contents .womi-movie,
+.reader-content .section-contents .exercise-contents .womi-audio {
+    margin-bottom: 20px !important;
+}
+
+.reader-content .exercise .qr-code + .show-answer {
+    margin-bottom: 5px;
+}
+
+.reader-content .list li .womi-container.after-text.womi-interactive,
+.reader-content .list li .womi-container.after-text.womi-movie,
+.reader-content .list li .womi-container.after-text.womi-audio {
+    margin-bottom: 8px !important;
+}
+
+.reader-content .list .lower-alpha .item {
+    padding-bottom: 8px;
+}
+
+/* Tables margins and avoiding page break*/
+.reader-content .table {
+    margin: 10px 0px;
+    page-break-inside: avoid;
+}
+
+/* List items left margins */
+.reader-content .answer {
+    padding-left: 0px;
+}
+.reader-content ul li {
+    margin-left: 16px;
+}
+
+/* Page breaking fixes */
+/* In list item */
+ul.answers-list li {
+    page-break-inside: avoid;
+}
+
+/* Before answer list */
+.answers-list {
+    page-break-before: auto !important;
+}
+
+/* Between some content and womi */
+.reader-content .example p > div > .pdf .image-container {
+  page-break-before: auto;
+}
+
+.reader-content .example p > div:first-of-type > .pdf .image-container {
+  page-break-before: avoid;
+}
+
+.reader-content .equation {
+  margin-top: 10px;
+}
+.reader-content .newline {
+  line-height: 16px;
+}
+
+.exercise-contents .womi-container + .newline + .womi-container {
+  page-break-before: auto;
+}
+
+/* Too big images rescaling */
+.reader-content .womi-container .image-container img {
+  max-height: 350px !important;
+  width: auto;
+}
+
+.example {
+    margin-top: 20px;
+}
+
+.reader-content .exercise .exercise-contents .problem + .qr-code {
+    float: none;
+    text-align: right;
+    margin: -37px 0px 3px !important;
+}
+
+.reader-content .exercise .exercise-contents .problem + .qr-code img {
+    margin: 0px !important;
+}
+
+/* Scaling too wide tables */
+.reader-content div.table {
+  transform: scale(0.7);
+  margin-left: -15%;
+}

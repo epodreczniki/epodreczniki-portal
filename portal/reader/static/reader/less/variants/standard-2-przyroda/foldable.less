@@ -1,0 +1,120 @@
+.reader-content {
+    .foldable {
+        .foldable-header {
+            &.section-without-header-wrapper {
+                padding-bottom: 0;
+            }
+
+            &.section-without-header {
+                padding-left: 46px;
+            }
+
+            .section-without-header {
+                button.additional-image {
+                    display: none;
+                }
+            }
+
+            &.section-header {
+                margin: 0 @space-D 0 0;
+                text-indent: 0;
+
+                button.additional-image {
+                    left: 0;
+                }
+
+                .content-status-expanding {
+                    position: relative;
+                    bottom: 40px;
+                }
+            }
+
+            .additional-image {
+                background-size: 100% auto;
+                float: none;
+                top: -8px;
+                left: 10px;
+            }
+        }
+
+        .foldable-contents .para:first-child {
+            margin-top: @space-B;
+        }
+        &.note-curiosity .foldable-contents .para:first-child {
+            margin-top: 0px;
+        }
+    }
+
+    .experiment,
+    .observation {
+        .foldable {
+            .foldable-header {
+                .additional-image {
+                    background-image: url('../../../img/new-icons/variants/przyroda//foldable/yellow-down.svg');
+                    top: -6px;
+
+                    @media screen and (-webkit-min-device-pixel-ratio:0) { //webkit hack
+                        top: 2px;
+                    }
+                }
+
+                .additional-image.folded {
+                    background-image: url('../../../img/new-icons/variants/przyroda//foldable/yellow-up.svg');
+                }
+            }
+        }
+    }
+
+    .revisal,
+    .effect {
+        &.foldable {
+            .foldable-header {
+                button.additional-image {
+                    background-image: url('../../../img/new-icons/variants/przyroda//foldable/white-down.svg');
+                    top: -7px;
+
+                    @media screen and (-webkit-min-device-pixel-ratio:0) { //webkit hack
+                        top: 0px;
+                    }
+                }
+
+                button.additional-image.folded {
+                    background-image: url('../../../img/new-icons/variants/przyroda//foldable/white-up.svg');
+                }
+            }
+        }
+    }
+
+    .effect {
+        &.foldable {
+            .foldable-header {
+                button.additional-image {
+                    top: -6px;
+
+                    @media screen and (-webkit-min-device-pixel-ratio:0) { //webkit hack
+                        top: 0px;
+                    }
+                }
+            }
+        }
+    }
+
+    .note-curiosity {
+        &.foldable {
+            .foldable-header {
+                button.additional-image {
+                    background-image: url('../../../img/new-icons/variants/przyroda//foldable/pink-down.svg');
+                    top: -7px;
+
+                    @media screen and (-webkit-min-device-pixel-ratio:0) { //webkit hack
+                        top: 0px;
+                    }
+                }
+
+                button.additional-image.folded {
+                    background-image: url('../../../img/new-icons/variants/przyroda//foldable/pink-up.svg');
+                }
+            }
+        }
+    }
+}

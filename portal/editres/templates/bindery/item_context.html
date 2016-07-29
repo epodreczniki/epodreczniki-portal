@@ -1,0 +1,141 @@
+{% extends "bindery/base.html" %}
+
+{% block main_content %}
+{# for now identical, may be extended if needed #}
+{% block notifications %}
+    <div class="notifications">
+        <div class="notifications-inner">
+            <div class="notifications-last-activity">
+                <span>Ostatnia aktywność</span>
+
+                <div class="notifications-alert-icon">
+                    <span>Nowe!</span>
+                    <div class="notifications-alert-icon-triangle"></div>
+                </div>
+            </div>
+            <div class="notifications-annotations">
+                <span>Adnotacje</span>
+
+                <div class="notifications-alert-icon">
+                    <span>Nowe!</span>
+                    <div class="notifications-alert-icon-triangle"></div>
+                </div>
+            </div>
+            <div class="notifications-authors">
+                <span>Autorzy</span>
+                <div class="notifications-round-icon">
+                    <span>6</span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% comment %}{% block create_objects %}
+{% endblock %}{% endcomment %}
+
+
+<div class="item-context-workarea">
+    <div class="item-context-workarea-inner">
+        <div class="item-context-workarea-header">
+            {% block item_context_workarea_description_header_options %}
+            {% endblock %}
+
+            {% block item_context_workarea_image %}
+            {% endblock %}
+
+            <div class="item-context-workarea-container">
+                {% block item_context_workarea_container %}
+                {% endblock %}
+
+
+                {% block item-context-sidebar %}{# to be extended if needed - no available data for now #}
+                    <div class="item-context-sidebar foldable">
+                        <section class="item-context-workarea-description-last-activity">
+                            <div class="item-context-workarea-section-header">
+                                <span>Ostatnia aktywność</span>
+                                <a>więcej</a>
+                            </div>
+                            <section class="item-context-workarea-section">
+                                {% for i in 'xxx' %}
+                                    <article class="last-activity-item">
+                                        <div class="last-activity-item-date">
+                                            <span>21.07.2015</span>
+                                        </div>
+                                        <div class="last-activity-item-description">
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                                                fermentum
+                                                finibus ex. Phasellus blandit augue et aliquet mattis. Praesent ut
+                                                mollis
+                                                ex.
+                                            </p>
+                                        </div>
+                                    </article>
+                                {% endfor %}
+                            </section>
+                        </section>
+
+                        <section class="item-context-workarea-description-annotations">
+                            <div class="item-context-workarea-section-header">
+                                <span>Adnotacje</span>
+                                <a>więcej</a>
+                            </div>
+                            <section class="item-context-workarea-section">
+                                <article class="annotation-item">
+                                    <div class="annotation-item-date">
+                                        <span>21.07.2015</span>
+                                    </div>
+                                    <div class="annotation-item-description">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum
+                                            finibus ex. Phasellus blandit augue et aliquet mattis. Praesent ut mollis
+                                            ex.
+                                        </p>
+                                    </div>
+                                </article>
+                                <article class="annotation-item">
+                                    <div class="annotation-item-date">
+                                        <span>21.07.2015</span>
+                                    </div>
+                                    <div class="annotation-item-description">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum
+                                            finibus ex. Phasellus blandit augue et aliquet mattis. Praesent ut mollis
+                                            ex.
+                                            <a>czytaj więcej</a>
+                                        </p>
+                                    </div>
+                                </article>
+                                <article class="annotation-item">
+                                    <div class="annotation-item-date">
+                                        <span>21.07.2015</span>
+                                    </div>
+                                    <div class="annotation-item-description">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum
+                                            finibus ex. Phasellus blandit augue et aliquet mattis. Praesent ut mollis
+                                            ex.
+                                            <a>czytaj więcej</a>
+                                        </p>
+                                    </div>
+                                </article>
+
+                            </section>
+                        </section>
+                    </div>
+                {% endblock %}
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="folding">
+            <div class="folding-inner icon"></div>
+        </div>
+
+        <div class="item-context-workarea-list-container"></div>{# Resource lister placeholder #}
+    </div>
+</div>
+
+{% endblock main_content %}

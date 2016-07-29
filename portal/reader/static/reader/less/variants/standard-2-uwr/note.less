@@ -1,0 +1,88 @@
+.reader-content {
+
+    .note-no-label {
+        margin-top: @space-D;
+        padding: 0 @space-B;
+        padding-right: 0;
+        border-left: 1px solid red;
+
+        *:first-child {
+            margin-top: 0;
+        }
+    }
+
+    .note-curiosity,
+    .note-for-interested,
+    .note-good-to-know,
+    .note-important,
+    .note-warning,
+    .note-remember,
+    .note-time-capsule,
+    .note-tip {
+        .note-no-label;
+
+        .note-header {
+            color: red;
+            font-size: 16px;
+
+            .label {
+                margin: 0;
+                padding: 0;
+                background: none;
+            }
+        }
+
+        .note-contents {
+            margin: @space-B 0 0 0;
+
+            *:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+
+    .note-curiosity,
+    .note-important,
+    .note-warning {
+        padding: @space-B;
+        border-left: 1px solid #0074D9;
+        background: #eff0f0;
+
+        .note-header {
+            color: #0074D9;
+        }
+    }
+
+    .note-curiosity {
+        background: inherit; // unification with mockups 2015-08-26
+    }
+
+    .note-tip.teacher {
+
+        .label:before {
+            content: "";
+            display: inline-block;
+            vertical-align: bottom;
+            width: 22px;
+            height: 22px;
+            margin-right: 0.5em;
+            background: url('../../../img/new-icons/variants/uwr/icon-teacher.svg') center center/100% auto no-repeat;
+        }
+    }
+
+    .note-for-interested {
+
+        .note-header {
+
+            .label:before {
+                content: "";
+                display: inline-block;
+                vertical-align: bottom;
+                width: 22px;
+                height: 22px;
+                margin-right: 0.5em;
+                background: url('../../../img/new-icons/variants/uwr/icon-expanding.svg') center center/100% auto no-repeat;
+            }
+        }
+    }
+}

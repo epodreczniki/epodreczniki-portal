@@ -1,0 +1,12 @@
+{
+  "name": "fajny filtr",
+  "filter": {
+    "operator": "and",
+    "operands": []
+  },
+  "favorites": {
+    "field": "identifier",
+    "values": ["i0ScZ53UF1","309"],
+    "weight": 10
+  }
+}

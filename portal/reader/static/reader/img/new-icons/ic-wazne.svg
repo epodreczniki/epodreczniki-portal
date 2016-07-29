@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="40"
+   height="40"
+   id="svg3315">
+  <defs
+     id="defs3317" />
+  <metadata
+     id="metadata3320">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="matrix(0.99007899,0,0,0.990099,4.9155585,-1.5254244)"
+     id="g3350">
+    <path
+       d="m 15.235186,41.940679 c -11.2000004,0 -20.2000004,-9.1 -20.2000004,-20.2 0,-11.2 9.1,-20.2000002 20.2000004,-20.2000002 11.1,0 20.2,9.1000002 20.2,20.2000002 0.1,11.1 -9,20.2 -20.2,20.2 z m 0,-36.5000002 c -9.0000004,0 -16.20000038,7.3000002 -16.20000038,16.2000002 0,8.9 7.29999998,16.2 16.20000038,16.2 9,0 16.2,-7.3 16.2,-16.2 0,-8.9 -7.2,-16.2000002 -16.2,-16.2000002 z"
+       id="path99"
+       style="fill:#585858" />
+    <polygon
+       points="68.8,1231.5 56.9,1231.5 59.5,1235.7 56.9,1246 62.2,1246 62.2,1253.1 63.5,1253.1 63.5,1246 68.8,1246 66.2,1235.7 "
+       transform="translate(-47.564814,-1220.4593)"
+       id="polygon101"
+       style="fill:#585858" />
+  </g>
+</svg>

@@ -1,0 +1,29 @@
+.example { // Przykład
+    .common-spacing();
+    .contents-cleaner();
+
+    .example-header {
+        .simple-block-header();
+        margin-bottom: @space-B;
+        padding-bottom: 0;
+
+        .label {
+            padding-left: 1.75em;
+            background-image: url('../../../img/new-icons/ic-przyklad.svg');
+            background-repeat: no-repeat;
+            background-position: 0px 50%;
+            background-size: auto 100%;
+
+            @media screen and (-ms-high-contrast: active) {
+                background-image: none;
+                background-color: transparent;
+            }
+
+            .numbering {
+                display: none;
+            }
+        }
+    }
+
+    .bottom-cleaner();
+}

@@ -1,0 +1,29 @@
+<div class="teacher" id="teacher_<%= id %>">
+    <div class="teacher-view" id="teacher_view_<%= id %>">
+        <div class="teacher-info-label"><%= level %> - <%= subject %></div>
+        <div class="teachers-edit-button" data-id="<%= id %>">edytuj</div>
+    </div>
+    <input type="text" class="field-value disabled-field" disabled value="<%= email %>">
+    <div class="edit-teacher" id="edit_teacher_<%= id %>" style="display:none;">
+        <div class="edit-level-select-box">
+            <div class="profile-dropdown">
+                <select name="teacher_level_select" id="teacher_level_select_<%= id %>">
+                    <% _.each(levelList, function(l){ %>
+                        <option value="<%= l.levelId %>" <%= level === l.levelName ? 'selected' : void 0 %> ><%= l.levelName %></option>
+                    <% }); %>
+                </select>
+                <select name="teacher_subject_select" id="teacher_subject_select_<%= id %>">
+                    <% _.each(subjectList, function(s){ %>
+                        <option value="<%= s.subjectId %>" <%= subject === s.subjectName ? 'selected' : void 0 %> ><%= s.subjectName %></option>
+                    <% }); %>
+                </select>
+                <input class="field-value new-teacher-email" id="teacher_email_<%= id %>" placeholder="Adres email" type="text" value="<%= email %>">
+            </div>
+            <div class="close-edit-teacher" data-id="<%= id %>">x</div>
+        </div>
+        <div class="teacher-edit-buttons-box">
+            <button class="remove-teacher-button" data-id="<%= id %>">Usuń</button>
+            <button class="save-teacher-button" data-id="<%= id %>">Zapisz</button>
+        </div>
+    </div>
+</div>

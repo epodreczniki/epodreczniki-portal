@@ -1,0 +1,23 @@
+@import "detail";
+
+.reader-content {
+    .prerequisite { //Przygotuj przed lekcją
+        .typical-simple-block(prerequisite, '../../../img/new-icons/ic-przygotuj.svg');
+        margin-top: @space-D;
+        padding: @space-B;
+        background-color: #E8E0BB;
+
+        .prerequisite-header {
+            padding-bottom: @space-A;
+        }
+
+        .prerequisite-contents {
+            margin: 0 @side-space;
+            
+            li {
+                line-height: 20px; // convert to 1.45
+                margin-top: 8px;
+            }
+        }
+    }
+}

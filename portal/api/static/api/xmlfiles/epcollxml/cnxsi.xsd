@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    targetNamespace="http://cnx.rice.edu/system-info"
+    xmlns="http://cnx.rice.edu/system-info"
+    elementFormDefault="qualified"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" vc:minVersion="1.1">
+    
+    <xs:attribute name="version-at-this-collection-version" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>An attribute that specifies the version of the module that is used in the version of the collection expressed by the containing CollXML 'collection'.  If the collection author has selected a particular version of the module to be used in this collection version, then the value will be that version number; if the collection author has chosen to use the 'latest' version of the module in this collection version, then the value will be the particular version of the module that was the latest version when this collection version was published.</xs:documentation>
+        </xs:annotation>
+    </xs:attribute>
+</xs:schema>

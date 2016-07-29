@@ -1,0 +1,107 @@
+{% extends "front/base_front_with_navbar.html" %}
+{% load compress staticfiles common_ext collection_cover collections %}
+{% block container %}
+
+    <div id="template">
+        <div class="theme fullscreen">
+            <div class="content terms-template-content">
+
+                <div class="container">
+                    <h2>Polityka prywatności</h2>
+                    <ol>
+                        <li>Niniejsza polityka prywatności określa zasady gromadzenia, przetwarzania i wykorzystywania
+                            informacji, w tym danych osobowych użytkowników serwisu http://www.epodreczniki.pl (dalej
+                            „Serwis”).
+                        </li>
+                        <li>Administratorem danych osobowych użytkowników Serwisu jest Ośrodek Rozwoju Edukacji z
+                            siedzibą w Warszawie przy Alejach Ujazdowskich 28 (dalej „ORE”).
+                        </li>
+                        <li>Dane osobowe użytkowników Serwisu przetwarzane są zgodnie ustawą z dnia 29 sierpnia 1997 r.
+                            o ochronie danych osobowych (Dz. U. 2015 poz. 2135 z późn. zm.).
+                        </li>
+                        <li>Ochrona prywatności, w tym ochrona danych osobowych użytkowników Serwisu traktowana jest
+                            przez ORE w sposób priorytetowy. ORE dokłada wszelkich starań w tym stosuje wszelkie środki
+                            ostrożności oraz zabezpieczania, aby przekazywane przez użytkowników Serwisu dane osobowe
+                            były chronione przed utratą, zniszczeniem, ujawnieniem lub dostępem osób niepowołanych.
+                        </li>
+                        <li>Dokonując rejestracji w Serwisie poprzez wypełnienie formularza rejestracji, użytkownik
+                            wyraża zgodę na umieszczenie zawartych w formularzu danych osobowych w bazie danych ORE oraz
+                            na ich przetwarzanie przez ORE. Dane osobowe przekazane przez użytkowników Serwisu mogą być
+                            wykorzystywane w celach marketingowych jedynie po uzyskaniu od nich odpowiedniej zgody.
+                        </li>
+                        <li>Zgodnie z ustawą, o której mowa w pkt. 3 użytkownikom Serwisu przysługuje prawo do wglądu do
+                            dotyczących ich danych osobowych oraz możliwość ich poprawiania i żądania ich usunięcia.
+                            Podawanie danych osobowych przez użytkowników Serwisu jest dobrowolne.
+                        </li>
+                        <li>Dane osobowe użytkowników Serwisu nie są przez ORE sprzedawane ani użyczane. Zgodnie z
+                            zapisami art. 31 ustawy, o której mowa w pkt. 3 przetwarzanie danych osobowych użytkowników
+                            Serwisu może być przez ORE powierzone podmiotom trzecim, w szczególności świadczącym usługi
+                            hostingowe Serwisu.
+                        </li>
+                        <li>ORE ma prawo i obowiązek udzielić informacji o posiadanych danych osobowych użytkowników
+                            Serwisu organom państwowym, uprawnionym do ich otrzymania na podstawie odrębnych przepisów
+                            prawa, na potrzeby prowadzonych przez nie postępowań.
+                        </li>
+                        <li>Niniejsza polityka prywatności dotyczy jedynie Serwisu. ORE nie ponosi odpowiedzialności za
+                            zasady polityki prywatności stron www, na które będzie wchodził użytkownik Serwisu poprzez
+                            linki zamieszczone w Serwisie.
+                        </li>
+                        <li>Wszelkie zmiany niniejszego polityki prywatności będą komunikowane użytkownikom Serwisu
+                            poprzez zamieszczenie w Serwisie odpowiedniej informacji. Informacja, o której mowa w zdaniu
+                            poprzednim będzie umieszczana nie później niż na 2 dni przed wejściem w życie zmian.
+                        </li>
+                    </ol>
+
+                    <h2 id="cookies">Pliki cookies</h2>
+
+                    <p>Do prawidłowego działania oraz Państwa wygody nasza strona używa plików cookies. Korzystanie z
+                        naszej strony bez zmiany ustawień dotyczących plików cookies oznacza, że będą one zapisane w
+                        pamięci komputera.</p>
+
+                    <p>Pliki cookies to niewielkie pliki tekstowe, nazywane ciasteczkami (z ang. cookie – ciastko),
+                        wysyłane przez serwis internetowy, który odwiedzamy. Są one zapisywane na urządzeniu końcowym
+                        (komputerze, laptopie, smartfonie), z którego korzystamy podczas przeglądania stron
+                        internetowych. Niektóre strony internetowe gromadzą w ciasteczkach informacje o użytkownikach
+                        przeglądających zawartość strony (przykładowo koszyk zakupów w sklepie internetowym).</p>
+
+                    <p>W niektórych przypadkach nasza strona internetowa może korzystać z ciasteczek (np. do
+                        zapamiętania tzw. zmiennych sesji). Serwis www.epodreczniki.pl nie wykorzystuje oraz nie
+                        zamierza wykorzystywać jakichkolwiek informacji o użytkowniku mogących się znaleźć w
+                        ciasteczku. </p>
+
+                    <p>Jeśli nie chcesz, by pliki cookies były zapisywane na Twoim dysku, zmień ustawienia swojej
+                        przeglądarki: </p>
+
+                    <ul>
+                        <li>
+                            <a href="http://help.opera.com/Windows/12.10/pl/cookies.html">Opera</a>
+                        </li>
+                        <li>
+                            <a href="https://support.mozilla.org/pl/kb/W%C5%82%C4%85czanie%20i%20wy%C5%82%C4%85czanie%20obs%C5%82ugi%20ciasteczek">Firefox</a>
+                        </li>
+                        <li>
+                            <a href="https://support.google.com/chrome/answer/95647?hl=pl">Chrome</a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/pl-pl/windows7/block-enable-or-allow-cookies">Internet Explorer</a>
+                        </li>
+                        <li>
+                            <a href="https://support.apple.com/kb/PH5042?locale=en_US">Safari</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            {% include 'front/footer.html' %}
+        </div>
+    </div>
+    <script type="text/javascript">
+        if (window.location.hash == '#cookies') {
+            var cookiesDIv = document.getElementById('cookies');
+            cookiesDIv.style.border = '2px solid #316bbb';
+            cookiesDIv.style.marginBottom = '28px';
+            cookiesDIv.style.padding = '28px 10px 0px 10px';
+        }
+    </script>
+
+{% endblock %}

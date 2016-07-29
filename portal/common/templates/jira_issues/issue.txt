@@ -1,0 +1,8 @@
+{{ cleaned.message }}
+---------------------
+{% block details %}
+URL: {{ cleaned.url }}
+email: {{ cleaned.email }}
+Rozdzielczość: {{ cleaned.width_of_browser }} x {{ cleaned.height_of_browser }}
+Przeglądarka: {{ cleaned.user_agent }}
+{% endblock %}

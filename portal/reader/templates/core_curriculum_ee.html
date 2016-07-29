@@ -1,0 +1,32 @@
+{% block content %}
+
+    {% for list in cc_list reversed %}
+
+    <li class="one-cc-item">
+
+        {% for item in list %}
+                   
+            {% if forloop.first %}  
+                <p>Rodzaj edukacji: <span class="education-type">{{ item.subject.value }}</span></p>
+                <p>{% autoescape off %}{{ item.authors_comment }}{% endautoescape %}</p>
+                <p>Podstawa programowa:<br/> p.:
+            {% endif %}
+            
+            {% if forloop.counter0 > 0 %}
+                {% with "http://uspp.pl/ability/"|add:item.ability.key as uspp_url %}
+                    <a href="{{ uspp_url }}" target="_blank">{% spaceless %}{{ item.authors_comment }}{% endspaceless %}</a>{% if forloop.last %}{% else %},{% endif %}
+                {% endwith %}
+
+            {% endif %}
+
+            {% if forloop.last %}  
+                </p>
+            {% endif %}
+
+        {% endfor %}
+
+        </li>
+
+    {% endfor %}
+
+{% endblock %}

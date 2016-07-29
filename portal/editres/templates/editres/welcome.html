@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load compress staticfiles common_ext %}
+<html class="ie-zoom" lang="pl">
+<head>
+<meta charset="utf-8">
+    {% block head %}
+    {% endblock %}
+
+
+    {% block stylesheets %}
+        {% compress css %}
+            <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editres/less/landing-page.less">
+        {% endcompress %}
+    {% endblock %}
+
+</head>
+
+<body>
+
+
+{% block content %}
+    <div class="hero"></div>
+    <nav class="nav-topbar">
+        <div class="nav-inner">
+            <div class="nav-logo"></div>
+            <div class="nav-description">Edycja online</div>
+
+                 <ul>
+                    <li><a>O serwisie</a></li>
+                    <li><a>Galeria</a></li>
+                    <li><a>Blog</a></li>
+                </ul>
+
+                <div class="login-register">
+                    <div class="signin">
+                        <a href="{% host_url 'user' 'auth.views.epo_login' %}?next=/www{% url 'editres.views.dashboard' %}">Login</a>
+                    </div>
+                    <div class="signup">
+                        <a>Rejestracja</a>
+                    </div>
+                </div>
+
+        </div>
+    </nav>
+
+
+    <div class="center">
+        <p class="header">Zapraszamy do edycji treści&nbsp;edukacyjnych.</p>
+
+        <div class="welcome-page-description">
+            <div class="welcome-page-description-header">
+                <div class="welcome-page-description-header-text"><p>Zapoznaj się z wyjątkowymi możliwościami naszego
+                    serwisu</p>
+                </div>
+                <div class="signup-double">
+                    <span>Dołącz do nas</span><!-- afterwards change it to double the signup, with clickable button -->
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="welcome-page-description-content">
+                <div class="welcome-page-description-column">
+                    <div class="welcome-page-description-column-image column1"></div>
+                    <div class="welcome-page-description-column-header">Zasoby</div>
+                    <p>System edycji treści pozwala na tworzenie i&nbsp;modyfikację podręczników. Wykorzystaj istniejące
+                        treści bądź stwórz własne.</p>
+                </div>
+
+                <div class="welcome-page-description-column">
+                    <div class="welcome-page-description-column-image column2"></div>
+                    <div class="welcome-page-description-column-header">Wygoda</div>
+                    <p>Nasze edytory nie wymagają od użytkownika specjalistycznej wiedzy - każdy może zostać autorem
+                        swojego
+                        podręcznika.</p>
+                </div>
+
+                <div class="welcome-page-description-column">
+                    <div class="welcome-page-description-column-image column3"></div>
+                    <div class="welcome-page-description-column-header">Narzędzia</div>
+                    <p>Dostarczamy narzędzia do tworzenia podręczników, pojedynczych lekcji (modułów) i&nbsp;ćwiczeń
+                        interaktywnych.</p>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    <footer>
+        <div class="footer-content"></div>
+    </footer>
+
+{% endblock %}

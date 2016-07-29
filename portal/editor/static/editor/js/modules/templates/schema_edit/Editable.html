@@ -1,0 +1,23 @@
+<div class="attr-edit xml-prop" style="">
+    <p class="text-center"><%= header %></p>
+
+    <form action="#">
+        <ul class="no-ul">
+            <% _.each(attrs, function(attr) { %>
+            <li class="">
+                <label class="input-label text-center" for="<%= attr.id %>"><%= attr.name %></label>
+                <input class="full-input" id="<%= attr.id %>" name="<%= attr.id %>" data-attr="<%= attr.name %>"
+                       value="<%= attr.value %>">
+            </li>
+            <% }); %>
+        </ul>
+        <% if(_new) { %>
+        <button class="createButton full-button" data-role="create" data-create="<%= path %>">Utwórz</button>
+        <% }else { %>
+            <% if(_del) { %>
+            <button class="deleteButton full-button" data-role="delete" data-del="<%= path %>">Usuń</button>
+            <% } %>
+        <button class="saveButton full-button" data-role="save">Zapisz</button>
+        <% } %>
+    </form>
+</div>

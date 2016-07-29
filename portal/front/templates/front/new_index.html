@@ -1,0 +1,198 @@
+{% extends "front/base_front_with_navbar.html" %}
+{% load staticfiles compress requirejs extensions common_ext collection_cover url_process %}
+
+{% block topbar_include %}
+    {% include 'topbars/topbar_library.html' %}
+{% endblock %}
+
+{% block container %}
+
+    <div id="booklist">
+    <div class="fullscreen">
+        {% if active_education_level.id == 1 %}
+            <div class="content fullscreen-bubbles">
+        {% else %}
+            <div class="content">
+        {% endif %}
+        <div class="level-box" data-active-level-id="{{ active_education_level.id }}">
+            <div class="education-level-new">
+                <button class="prev-x">Poprzedni poziom</button>
+                <div class="current">{{ active_education_level.name }}</div>
+                <button class="next-x" onclick="">Następny poziom</button>
+            </div>
+
+            <div class="education-class-new"
+                 {% if active_education_level.id == 1 %}style="display: none"{% endif %}> {# meant to be this way #}
+                {% for level in levels %}
+                    <a {% if active_level.ep_class == level.ep_class %} class="active" {% endif %} role="button"
+                                                                        href="{% host_url 'www' 'front.views.new_index' education_level=chosen_education_level level=level.ep_class subject=chosen_subject %}">{{ level.ep_class }}
+                    </a>
+                {% endfor %}
+            </div>
+
+            {# movie icon on front 123 only #}
+            {% if active_education_level.id == 1 %}
+
+                {% if front_movie_id %}
+                    <div class="movie-icon-container">
+                        <div id="camera">
+                        </div>
+                    </div>
+                {% endif %}
+
+            {% endif %}
+        </div>
+        {# end .level-box #}
+
+        {% if active_education_level.id > 1 %}
+            <div id="filters" class="library-filters">
+        {% else %}
+            <div id="filters-123" class="library-filters">
+        {% endif %}
+        <div class="btn-group dropdown-group" style="display: none;">
+
+            <button id="school-btn" type="button" class="btn btn-primary dropdown-toggle"
+                    data-toggle="dropdown">
+                <span class="label">Wybierz szkołę</span>
+                {{ active_education_level.name }}
+                <span class="caret"></span>
+            </button>
+
+            <div id="list-of-levels">
+                <ul id="school-list" class="dropdown-menu" role="menu" aria-live="polite">
+                    {% for education_level in education_levels %}
+                        <li role="menuitem">
+                            <a href="{% host_url 'www' 'front.views.new_index' education_level=education_level.id subject=chosen_subject %}">{{ education_level.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+            <div class="btn-group dropdown-group">
+
+                <button id="class-btn" type="button" class="btn btn-primary dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="label">Wybierz klasę</span>
+                    {% if chosen_level %}
+                        {{ active_level.ep_class }}
+                    {% else %}
+                        Wszystkie
+                    {% endif %}
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-live="polite">
+                    <li role="menuitem">
+                        <a href="{% host_url 'www' 'front.views.new_index' education_level=chosen_education_level subject=chosen_subject %}">Wszystkie</a>
+                    </li>
+
+                    {% for level in levels %}
+                        <li role="menuitem">
+                            <a href="{% host_url 'www' 'front.views.new_index' education_level=chosen_education_level level=level.ep_class subject=chosen_subject %}">{{ level.ep_class }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+            <div class="btn-group dropdown-group">
+
+                <button id="subject-btn" type="button" class="btn btn-primary dropdown-toggle"
+                        data-toggle="dropdown">
+                    <span class="label">Wybierz przedmiot</span>
+                    {% if chosen_subject %}
+                        {{ active_subject.md_name }}
+                    {% else %}
+                        Wszystkie
+                    {% endif %}
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-live="polite">
+                    <li role="menuitem">
+                        <a href="{% host_url 'www' 'front.views.new_index' education_level=chosen_education_level level=chosen_level %}">Wszystkie</a>
+                    </li>
+                    {% for subject in subjects %}
+                        <li role="menuitem">
+                            <a href="{% host_url 'www' 'front.views.new_index' education_level=chosen_education_level level=chosen_level subject=subject.id %}">{{ subject.md_name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        {% if active_education_level.id > 1 %}
+            {% for collection_presentation in collection_presentations %}
+                <a href="{{ collection_presentation.detail_url }}" role="button">
+                    <div data-active-ep-class='{{ collection_presentation.collection.md_school.ep_class|default_if_none:"none" }}' data-active-level-id="{{ collection_presentation.collection.md_school.education_code }}">
+                        <div
+                                class="book-holder {% if collection_presentation.collection.ep_dummy %}dummy{% endif %}">
+
+                            <div
+                                    class="book-cover 01 {% if collection_presentation.collection.ep_dummy %}white-appl{% endif %}">
+                                <img alt="{{ collection_presentation.collection.md_title }}"
+                                     aria-hidden="true"
+                                     src="{{ collection_presentation.collection|cover_url }}">
+
+                                <div class="book-title">
+                                    {% if collection_presentation.collection.ep_environment_type != 'ee' %}
+                                        <div class="book-title-text{% if collection_presentation.collection.volume %} with-title{% endif %}">{{ collection_presentation.collection.md_subject.md_name }}
+                                            {{ collection_presentation.collection.md_school.ep_class|default_if_none:"" }}</div>
+                                        {% if collection_presentation.collection.volume %}
+                                            <div class="book-title-text with-title">
+                                                Tom {{ collection_presentation.collection.volume }}</div>
+                                        {% endif %}
+                                    {% else %}
+                                        <div class="book-title-text with-title">{{ collection_presentation.collection.md_subject.md_name }}
+                                            {{ collection_presentation.collection.md_school.ep_class|default_if_none:"" }}</div>
+                                        <div class="book-title-text with-title">{{ collection_presentation.collection.md_title }}</div>
+                                    {% endif %}
+                                </div>
+                                {% comment %}
+                                    <div class="book-title">
+                                        <h2>{{ collection_presentation.collection.md_title }}</h2>
+                                    </div> {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% empty %}
+                <div class="parent">
+                    <div style="float:left;width:15%;">&nbsp;</div>
+                    <p class="no-collections"><i class="icon-info"></i>&nbsp;&nbsp;
+                        <span class="b1">Brak podręczników spełniających kryteria</span>
+                    </p>
+
+                    <div style="float:right;width:14%;">&nbsp;</div>
+                </div>
+            {% endfor %}
+            </div>{# end #filters #}
+
+        {% else %}
+            {% include 'front/includes/front123_filters.html' %}
+        {% endif %}
+
+        </div>
+        {# end .content #}
+        </div>
+        {# end .fullscreen #}
+        {% if active_education_level.id > 1 %}
+            {% include 'front/footer.html' %}
+        {% else %}
+            {% include 'front/includes/front123_filters_footer.html' %}
+        {% endif %}
+    </div>{# end #booklist #}
+
+    {% if front_movie_id %}
+        <div id="showcase-video" class="hidden-showcase"
+             data-showcase-url="{% url front_movie_view front_movie_id '1' %}">
+    {% endif %}
+
+{% endblock %}
+
+{% block scripts_bottom %}
+    {{ block.super }}
+    {% compress js %}
+        <script type="text/requirejs" src="{{ STATIC_URL }}front/js/build/front123v2.js"></script>
+    {% endcompress %}
+{% endblock %}
+

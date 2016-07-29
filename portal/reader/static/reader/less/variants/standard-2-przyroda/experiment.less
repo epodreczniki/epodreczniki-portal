@@ -1,0 +1,91 @@
+.reader-content {
+    .experiment {
+        border-left: 2px solid #FFDE40;
+        padding: 0 32px;
+
+        &.no-title {
+            .experiment-header {
+                .label {
+                    background-image: url('../../../img/new-icons/variants/przyroda/doswiadczenie.svg');
+                    left: 43px;
+                }
+            }
+        }
+
+        .experiment-header {
+            padding-left: 60px;
+            text-indent: -40px;
+            font-family: @sansSemiBold;
+
+            &.warning {
+                padding-left: 58px;
+                text-indent: -38px;
+            }
+        }
+
+        .warning {
+            .label {
+                left: 20px;
+            }
+
+            .title {
+                margin-left: -403px;
+            }
+        }
+
+        .experiment-contents {
+            margin-left: 58px;
+
+            .experiment-problem {
+                background-color: #FFDE40;
+                font-family: @sansBold;
+                font-size: 16px;
+
+                .experiment-problem-header {
+                    font-family: @sansBold;
+                    text-transform: uppercase;
+                }
+
+                .experiment-problem-contents {
+                    font-family: @sansBold;
+                }
+            }
+
+            .objective {
+                background-color: #FFDE40;
+                font-family: @sansBold;
+                font-size: 16px;
+
+                .objective-header {
+                    font-family: @sansBold;
+                    text-transform: uppercase;
+                }
+
+                .objective-contents {
+                    font-family: @sansBold;
+                }
+            }
+
+            .foldable {
+                .foldable-header {
+                    font-family: @sansSemiBold;
+                    font-size: 16px;
+                    text-transform: uppercase;
+                }
+            }
+
+            .note-header {
+                .label {
+                    background-image: none;
+                    color: #bf4f4f;
+                    position: relative;
+//                    right: 12px;
+                }
+            }
+
+            .note-contents {
+                padding: 0 0 24px;
+            }
+        }
+    }
+}

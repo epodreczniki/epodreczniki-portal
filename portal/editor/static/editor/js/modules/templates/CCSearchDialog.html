@@ -1,0 +1,24 @@
+<div>
+    <div class="dialog-menu-categories">
+        <button class="full-button" data-role="search-ability">Szukaj</button>
+        <% _.each(attributes, function(attr) { %>
+            <% if(attr.input) { %>
+                <%= attr.name %>
+                <input class="full-input" type="text" name="<%= attr.name %>" data-param="<%= attr.param %>" value="<%= attr.value %>">
+            <% }else if(attr.select) { %>
+                <%= attr.name %>
+                <select class="full-input" data-param="<%= attr.param %>">
+                    <% _.each(attr.select, function(opt){ %>
+                    <option value="<%= opt.code %>" <%= (opt.code == attr.value ? 'selected' : '') %> ><%= opt.name || opt.code %></option>
+                    <% }); %>
+                </select>
+            <% } %>
+
+        <% }); %>
+    </div>
+    <div class="dialog-menu-items">
+        <ol style="position: relative" data-role="sortable">
+        </ol>
+    </div>
+    <div class="ui-helper-clearfix"></div>
+</div>

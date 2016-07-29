@@ -1,0 +1,157 @@
+<div id="metadata-tabs">
+
+    <div class="panel panel-default">
+        <div class='panel-heading'>
+            <div class='row'>
+                <div class='col-xs-2'>
+                    <h6>Moduł</h6>
+                </div>
+
+                <div class='col-xs-10'>
+                    <ul class="nav nav-pills" role="tablist">
+                        <li class='active'><a href="#editcoll-basic-tab" role="tab" data-toggle="tab">Podstawowe</a></li>
+                        <li><a href="#editcoll-operations-tab" role="tab" data-toggle="tab">Operacje</a></li>
+                        <li><a href="#editcoll-next-tab" role="tab" class='editcoll-moduleNextVersion' data-toggle="tab" style="display: none;">Nowsza</a></li>
+
+                        <li class='pull-right'><a href="#editcoll-xml-tab" role="tab" data-toggle="tab"><span class='glyphicon glyphicon-wrench'></span> XML</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class='panel-body'>
+            <div class="tab-content editcoll-write-only">
+
+<div class="tab-pane active" id="editcoll-basic-tab">
+
+<form class="form-horizontal" role="form">
+
+    <div class="form-group">
+        <label for="editcoll-moduleTitle-input" class="col-sm-2 control-label">Tytuł</label>
+        <div class='col-sm-10'>
+            <input type="text" readonly class="form-control" id="editcoll-moduleTitle-input" placeholder="Tytuł">
+        </div>
+    </div>
+
+    <div class='form-group'>
+        <label for="editcoll-moduleDoc-input" class="col-sm-2 control-label">Identyfikator</label>
+        <div class='col-sm-4'>
+            <input readonly type="text" class="form-control" id="editcoll-moduleDoc-input" placeholder="identyfikator">
+        </div>
+
+        <label for="editcoll-moduleVersionFull-input" class="col-sm-2 control-label">Wersja</label>
+        <div class='col-sm-1'>
+            <input readonly type="text" class="form-control" id="editcoll-moduleVersionFull-input" placeholder="wersja">
+        </div>
+
+        <label for="editcoll-moduleVersionLatest-input" class="col-sm-2 control-label">Najnowsza</label>
+        <div class="col-sm-1 checkbox">
+            <input id="editcoll-moduleVersionLatest-input" type="checkbox">
+        </div>
+    </div>
+
+</form>
+
+<form class="form-horizontal" role="form">
+    <div class='form-group'>
+        <label for="editcoll-moduleState" class="col-sm-2 control-label">Status</label>
+        <div class="col-sm-4 checkbox">
+            <input readonly type="text" class="form-control" id="editcoll-moduleState" placeholder="...">
+        </div>
+    </div>
+</form>
+
+
+<div class="row">
+    <div class="col-sm-2">
+        <button type="button" class="btn btn-primary" id="editcoll-moduleViewButton">
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Podgląd
+        </button>
+    </div>
+    <div class="col-sm-4">
+        <!-- they are never seen together -->
+        <button type="button" style="display: none;" class="btn btn-default editcoll-module-in-edition" id="editcoll-moduleEditButton">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Kontynuuj edycję
+        </button>
+        <button type="button" style="display: none;" class="cascade-forms-initializer btn btn-primary editcoll-module-in-repository" id="editcoll-moduleImportAndEditButton"
+            data-cascade-forms-auto-run='true'
+            data-cascade-forms-container-id="import-section"
+        >
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rozpocznij edycję
+        </button>
+    </div>
+    <div class="col-sm-2">
+        <button type="button" style="display: none;" class="cascade-forms-initializer btn btn-primary editcoll-module-in-repository" id="editcoll-moduleImportButton"
+            data-cascade-forms-container-id="import-section"
+        >
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Importuj...
+        </button>
+    </div>
+    <div class="col-sm-2">
+        <button type="button" style="display: none;" class="btn btn-default" id="editcoll-moduleNextVersionButton">
+            <span class="glyphicon" aria-hidden="true"></span> Nowsza
+        </button>
+    </div>
+    <div class="col-sm-2">
+        <button type="button" style="display: none;" class="btn btn-default editcoll-module-in-edition" id="editcoll-modulePageButton">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Detale
+        </button>
+    </div>
+</div>
+
+
+
+
+<div class="well" id="import-section" style="display: none">
+
+</div>
+
+</div>
+
+
+<div class="tab-pane" id="editcoll-operations-tab">
+
+    <div class="row">
+        <div class="col-sm-4">
+            <button type="button" style="display: none;" class="cascade-forms-initializer btn btn-primary editcoll-module-in-edition" id="editcoll-moduleCloneButton"
+                data-cascade-forms-container-id="clone-section"
+            >
+                <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span> Sklonuj
+            </button>
+        </div>
+
+        <div class="col-sm-12">
+            <button type="button" style="display: none;" class="btn btn-default editcoll-module-in-edition" id="editcoll-moduleRefreshTitleButton">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Popraw tytuł: <span id='editcoll-refreshTitle-value'></span>
+            </button>
+        </div>
+    </div>
+
+
+    <div class="well" id="clone-section" style="display: none">
+
+    </div>
+
+</div>
+
+<div class="tab-pane" id="editcoll-next-tab" class='editcoll-moduleNextVersion' style="display: none;">
+
+    <div class='row'>
+        <label for="editcoll-moduleDoc-input" class="col-sm-3 control-label">Nowsza wersja</label>
+        <div class='col-sm-6'>
+            <input readonly type="text" class="form-control" id="editcoll-moduleStateNext" placeholder="identyfikator">
+        </div>
+        <div class='col-sm-3'>
+            <button type="button" class="btn btn-default" id="editcoll-moduleUpdateButton">Uaktualnij</button>
+        </div>
+    </div>
+
+</div>
+
+<div class="tab-pane" id="editcoll-xml-tab">
+    <textarea class="editcoll-metadata form-control" id="editcoll-xml" rows="13" placeholder="xml" readonly></textarea>
+</div>
+            </div>
+        </div>
+    </div>
+</div>

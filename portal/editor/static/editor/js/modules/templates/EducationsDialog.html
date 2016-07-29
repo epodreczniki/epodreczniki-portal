@@ -1,0 +1,19 @@
+<div class="type-role-dialog">
+    <ul class="no-ul">
+        <% if(typeof attributes != 'undefined') { _.each(attributes, function(attr) { %>
+        <li class="">
+             <% if(attr.name == 'eduName'){ %>
+              	Edukacja: <select class="full-input" data-param="<%= attr.name %>">
+              	<option value="polonistyczna">polonistyczna</option>
+              	<option value="matematyczna">matematyczna</option>
+              	<option value="przyrodnicza">przyrodnicza</option>
+              	<option value="społeczna">społeczna</option>
+              	</select>
+            <% }else{ %>
+              	Opis: <textarea class="full-input" data-param="<%= attr.name %>"></textarea>
+            <% } %>
+        </li>
+        <% }); } %>
+    </ul>
+    <div class="ui-helper-clearfix"></div>
+</div>

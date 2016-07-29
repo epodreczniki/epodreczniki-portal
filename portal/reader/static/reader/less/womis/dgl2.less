@@ -1,0 +1,125 @@
+@dragging: #63a0f4;
+@hover: #bdbdbd;
+
+.drag-drop-arrows {
+    position: relative;
+
+    // This stuff should be more generic, but when? :(
+    .interactive-exercise-content, .womi-container {
+        margin: 0!important;
+        padding: 0!important;
+        text-align: center;
+    };
+    img {
+        max-height: 100px!important;
+    }
+    .image-container {
+        text-align: center;
+    }
+    .column {
+        width: 48%;
+        float: left;
+        .dgl-element {
+            display: table;
+            padding: 10px;
+            border: 1px solid #d7d7d7;
+            //background: #f0f0f0; 
+            background: linear-gradient(to bottom, #ffffff 0%, #f0f0f0 40%, #f0f0f0 60%, #ebebeb 100%); /* W3C */
+            text-align: center;
+            cursor: move;
+            width: 100%;
+            margin-bottom: 5px;
+
+            .dgl-content {
+                display: table-cell;
+                vertical-align: middle;
+                padding: 0 5px 0 15px;
+            }
+            .dgl-icon {
+                background: url('../../../img/border_move-y_M1.svg') center center no-repeat;
+                width: 40px;
+                height: 40px;
+                top: 50%;
+                margin-top: -20px;
+                position: absolute;
+            }
+        }
+        .dgl-element:before {
+            content: "";
+            position: absolute;
+            height: 0;
+            width: 0;
+            top: 50%;
+            margin-top: -12px;
+            border: 12px solid transparent;
+            z-index: 99999999;
+        }
+        .dgl-element:after {
+            content: "";
+            position: absolute;
+            height: 0;
+            width: 0;
+            top: 50%;
+            margin-top: -13px;
+            border: 13px solid transparent;
+            z-index: 9999999;
+        }
+        .ui-draggable-dragging {
+            background: @dragging;
+            opacity: 0.8;
+            width: inherit;
+        }
+        .moving {
+            opacity: 0.5;
+        }
+        .drop-hover {
+            background: @hover;
+        }
+
+        .correct { background: @kolor-zadania-tak };
+        .wrong   { background: @kolor-zadania-nie };
+    }
+    .column-one {
+        margin-right: 4%;
+        .dgl-element .dgl-icon {
+            right: -5px;
+        }
+        .dgl-element .dgl-content {
+        }
+        .dgl-element:before {
+            left: 100%;
+            border-left: 12px solid #f0f0f0;
+        }
+        .dgl-element.correct:before {
+            border-left-color: @kolor-zadania-tak;
+        }
+        .dgl-element.wrong:before {
+            border-left-color: @kolor-zadania-nie;
+        }
+        .dgl-element:after {
+            left: 100%;
+            border-left: 13px solid #d7d7d7;
+        }
+    }
+    .column-two {
+        .dgl-element .dgl-icon {
+            left: -5px;
+        }
+        .dgl-element .dgl-content {
+        }
+        .dgl-element:before {
+            right: 100%;
+            border-right: 12px solid #f0f0f0;
+        }
+        .dgl-element.correct:before {
+            border-right-color: @kolor-zadania-tak;
+        }
+        .dgl-element.wrong:before {
+            border-right-color: @kolor-zadania-nie;
+        }
+        .dgl-element:after {
+            right: 100%;
+            border-right: 13px solid #d7d7d7;
+        }
+    }
+};

@@ -1,0 +1,2 @@
+SOLR_HOST = '127.0.0.1'
+SOLR_PORT = '8080'

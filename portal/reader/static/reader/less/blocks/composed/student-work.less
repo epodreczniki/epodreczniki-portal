@@ -1,0 +1,151 @@
+// Obecnie inne elementy zagnieżdżone w bloku student-work nie stylują się w sposób specyficzny dla bloku (a powinny).
+// Jest to zgodne z życzeniem partnerów (obiecali nie używać wewnątrz elementów innych niż polecenie).
+
+@import "detail";
+
+.student-work,
+.student-work.homework { // Praca domowa
+    .frame();
+    .common-spacing();
+    border: 1px solid #d9d9d9;
+
+    &.exercise-set {
+
+        .student-work-header {
+            .label {
+                background-image: url('../../../img/new-icons/ic-zestaw-zadan.svg');
+            }
+        }
+
+        .student-work-contents {
+            margin: 0;
+
+            .problem {
+                .problem-contents {
+                    .para:first-child {
+                        margin: 0;
+                    }
+                }
+            }
+
+            .exercise {
+                border: none;
+
+                .exercise-header {
+                    margin-bottom: 36px;
+                    border-bottom: 1px solid #d9d9d9;
+                    padding-bottom: 16px;
+
+                    .numbering {
+                        float: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .student-work-header {
+        .simple-block-header();
+
+        .label {
+            background-image: url('../../../img/new-icons/ic-zadanie-domowe.svg');
+            background-repeat: no-repeat;
+            background-position: 0px 50%;
+            background-size: auto 100%;
+
+            .numbering-prefix {
+                display: none;
+            }
+        }
+    }
+
+    .student-work-contents {
+        .command {
+            .contents-cleaner();
+            margin: @space-B 0 0;
+            padding: 0;
+            border: none;
+
+            .command-header {
+                display: none;
+                padding: 0;
+                border: none;
+            }
+
+            .command-contents {
+                .list,
+                ul,
+                ol {
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+    .exercise {
+        .exercise-header {
+            background: none;
+            border: none;
+            margin: 0;
+            padding: 0;
+            line-height: 1.5em; // ---> convert to 1.5
+
+            .label {
+                display: none;
+            }
+
+            .numbering {
+                float: left;
+                margin-right: 6px;
+                padding: 0px 6px;
+                background-color: @kolor-motywu-ciemny;
+                color: #FFF;
+                font-family: @sansLight;
+            }
+        }
+
+        .exercise-contents .womi-container {
+            padding-top: 0; // Przesuwanie tytułu zadania w górę - do usunięcia, kiedy tytuł będzie wrzucany do headera
+            margin-left: 28px;
+        }
+    }
+
+    .command {
+        margin: 0;
+        padding: 0;
+
+        .command-header {
+            display: none;
+        }
+
+        .problem {
+            margin-bottom: 16px;
+
+            &:last-child {
+                margin-bottom: 0px;
+            }
+
+            .problem-header {
+                .label {
+                    display: none;
+                    clear: both;
+                }
+
+                .numbering {
+                    float: left;
+                    margin-right: 6px;
+                    padding: 0 6px;
+                    background-color: #eaeaea;
+                    color: #353535; // EPP-7448 rgb(87, 87, 87);
+                    font-family: "open_sanssemibold", sans-serif;
+                }
+
+                .problem-contents {
+                    float: left;
+                    display: block;
+                }
+            }
+        }
+    }
+}

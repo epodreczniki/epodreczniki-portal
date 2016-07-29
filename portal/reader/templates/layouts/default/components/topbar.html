@@ -1,0 +1,146 @@
+{% load extensions common_ext staticfiles %}
+
+<header id="main-header">
+    <div id="topbar">
+        <div class="topbar-inner">
+            <nav class="left-navigation">
+
+                <div class="logo-wrapper">
+                    <a href="{% begin_start_page_url %}" class="logo" title="Powrót do strony głównej"></a>
+
+                    <div class="logo-separator"></div>
+                </div>
+                <a class="library-link" href="{% host_url 'www' 'front.views.new_index' education_level=2 %}" title="Biblioteka"><span
+                    class="icon-20"></span><span class="icon-title">Biblioteka</span></a>
+                <a class="about" href="{{ presentation.detail_url }}"><span class="icon-20"></span><span class="icon-title" title="O e-podręczniku">O e-podręczniku</span></a>
+            </nav>
+            <nav class="right-navigation">
+                {% if not presentation.config.is_preview %}
+                    <button class="search" title="Szukaj" onclick="window.location.href='{% host_url 'search' 'classic_search_details' collection.md_content_id collection.md_version collection.variant %}'"><span class="icon-20"></span><span
+                                        class="icon-title">Szukaj</span>
+                                    </button>
+               {% endif %}
+
+                <a class="help-link" href="//www.{{ top_domain }}/reader/c/190307/v/latest/t/student-canon" title="Pomoc"><span class="icon-20"></span><span class="icon-title">Pomoc</span></a>
+                <button class="print-button" title="Drukuj"><span class="icon-20"></span><span class="icon-title">Drukuj</span></button>
+
+                <div class="epo-auth-hook"></div>
+
+                <div class="settings-container">
+                    <button class="settings" title="Ustawienia"><span class="icon-20"></span><span class="icon-title"></span>
+                    </button>
+                    <ul class="top-dropdown is-hidden">
+                        <li>
+                                <button id="core_curriculum" class="btn-in-dropdown">podstawa programowa</button>
+                        </li>
+                        <li>
+                                <button id="license" class="btn-in-dropdown">licencje</button>
+                        </li>
+                        <li>
+                                <button id="license_switch" class="btn-in-dropdown">licencje dla obiektów
+                                    <span class="tick-icon"></span>
+                                </button>
+                        </li>
+                        <hr/>
+                        <li id="alt-text-switcher"></li>
+                        <li>
+                            <button id="alt_desc_switch" class="btn-in-dropdown">opisy dodatkowe
+                                <span class="tick-icon"></span>
+                            </button>
+                        </li>
+                        <li>
+                                <button id="contact_form" class="btn-in-dropdown">kontakt</button>
+                        </li>
+                        <hr/>
+                        <li id="epxml-switcher"></li>
+                        <li id="html-switcher"></li>
+                        <li id="logout-hook">
+                            <button class="logout">wyloguj</button>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+        </div>
+        <button id="contact_side" title="Zgłoś uwagi"><span class="kopertka"></span><span class="contact-button-text">Zgłoś uwagi</span>
+        </button>
+    </div>
+    <div id="contentbar">
+        <div class="contentbar-inner">
+            <nav class="left-navigation">
+                <button class="toc-toggle" title="Spis treści">
+                    <span class="icon-20"></span>
+                    <span class="icon-title">Spis treści</span>
+                </button>
+                <button class="play-and-learn" title="{% collection_specific_translate collection 'Baw się i ucz' %}">
+                    <span class="icon-20"></span>
+                    <span class="icon-title">{% collection_specific_translate collection 'Baw się i ucz' %}</span>
+                </button>
+                <div class="title-page-num"></div>
+            </nav>
+            <nav class="right-navigation">
+                 <button class="notes-toggle" title="Moje notatki">
+                     <span class="icon-20"></span>
+                     <span class="icon-title">Moje notatki</span>
+                 </button>
+            </nav>
+        </div>
+    </div>
+    <div id="header-title" class="header-title"></div>
+    <div id="header-image">
+
+    </div>
+</header>
+
+<div class="table-of-contents">
+
+    <div class="toc-dropdown">
+        <div class="table-of-contents-buttons">
+            <button class="hastip toc-close" title="Schowaj spis treści"><span class="wcag-hidden-inside">Schowaj spis treści</span>
+            </button>
+        </div>
+        {% block col_sidebar %}
+            <!-- <div class="col-sidebar"> -->
+            <!-- end .toggle-sidebar-bar -->
+            <div class="toc-scrollable-area">
+
+                {% comment %} Displaying different data if the information about the collection is incomplete {% endcomment %}
+                {% if collection.md_school.get_md_education_level_display and collection.md_school.class_human_readable_form and collection.md_subject %}
+                    <div class="book-attributes">{{ collection.md_school.get_md_education_level_display }}
+                        / {{ collection.md_school.class_human_readable_form }} / {{ collection.md_subject }}</div>
+                {% elif collection.md_school.get_md_education_level_display and collection.md_school.class_human_readable_form %}
+                    <div class="book-attributes">{{ collection.md_school.get_md_education_level_display }}
+                        / {{ collection.md_school.class_human_readable_form }}</div>
+                {% elif collection.md_school.get_md_education_level_display and collection.md_subject %}
+                    <div class="book-attributes">{{ collection.md_school.get_md_education_level_display }}
+                        / {{ collection.md_subject }}</div>
+                {% elif collection.md_school.class_human_readable_form and collection.md_subject %}
+                    <div class="book-attributes">{{ collection.md_school.class_human_readable_form }}
+                        / {{ collection.md_subject }}</div>
+                {% elif collection.md_school.get_md_education_level_display %}
+                    <div class="book-attributes">{{ collection.md_school.get_md_education_level_display }}</div>
+                {% elif collection.md_school.class_human_readable_form %}
+                    <div class="book-attributes">{{ collection.md_school.class_human_readable_form }}</div>
+                {% elif collection.md_subject %}
+                    <div class="book-attributes">{{ collection.md_subject }}</div>
+                {% endif %}
+
+                <div class="book-title">
+                    {{ collection.md_title }}
+                </div>
+
+                <div class="toc-book-index-content">
+                    <div id="table-of-contents" class="toc-modules-list accordion"
+                         data-component="table-of-contents">
+                        {% esi_url 'www' presentation.config.TABLE_OF_CONTENTS_VIEW presentation.collection.identifier presentation.collection.version presentation.collection.variant %}
+                    </div>
+                    <!-- end #table-of-contents .modules-list .accordion -->
+                </div>
+                <!-- end .book-index-content -->
+            </div>
+            <!-- end .scrollable-area -->
+            <!-- </div> -->
+            <!-- end .col-sidebar -->
+        {% endblock %}
+    </div>
+</div>

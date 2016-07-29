@@ -1,0 +1,91 @@
+<col:subcollection ep:id="<%= id %>">
+<md:title><%= title %></md:title>
+<ep:view-attributes>
+<% _.each(viewAttrs, function(viewAttr){ %>
+<ep:view-attribute ep:id="<%= viewAttr.id %>" ep:type="<%= viewAttr.type %>" />
+<% }); %>
+</ep:view-attributes>
+<col:content>
+    <% _.each(content, function(contentObject) { %>
+            <% if(contentObject.contentType == "subcollection"){ %>
+        <col:subcollection ep:id="<%= contentObject.id %>">
+		<md:title><%= contentObject.title %></md:title>
+		<ep:view-attributes>
+		<% _.each(contentObject.viewAttributes, function(viewAttr){ %>
+			<ep:view-attribute ep:id="<%= viewAttr.id %>" ep:type="<%= viewAttr.type %>" ep:value="<%= viewAttr.value %>"/>
+		<% }); %>
+		</ep:view-attributes>
+        <col:content>
+		    <% if(contentObject.content.length > 0) { %>
+		        <% _.each(contentObject.content, function(contentObj){ %>
+                    <% if(contentObj.contentType == "subcollection"){ %>
+            <col:subcollection ep:id="<%= contentObj.id %>">
+		        <md:title><%= contentObj.title %></md:title>
+		        <ep:view-attributes>
+		                <% _.each(contentObj.viewAttributes, function(viewAttr){ %>
+			    <ep:view-attribute ep:id="<%= viewAttr.id %>" ep:type="<%= viewAttr.type %>" ep:value="<%= viewAttr.value %>"/>
+		                <% }); %>
+   		        </ep:view-attributes>
+                <col:content>
+                        <% if(contentObj.content.length > 0) { %>
+		                    <% _.each(contentObj.content, function(contObject){ %>
+                                <% if(contObject.contentType == "subcollection"){ %>
+                    <col:subcollection ep:id="<%= contObject.id %>">
+		                <md:title><%= contObject.title %></md:title>
+		                <ep:view-attributes>
+		                            <% _.each(contObject.viewAttributes, function(viewAttr){ %>
+			            <ep:view-attribute ep:id="<%= viewAttr.id %>" ep:type="<%= viewAttr.type %>" ep:value="<%= viewAttr.value %>"/>
+		                            <% }); %>
+   		                </ep:view-attributes>
+                        <col:content>
+                                    <% if(contObject.content.length > 0) { %>
+		                                <% _.each(contObject.content, function(cObj){ %>
+                                            <% if(cObj.contentType == "subcollection"){ %>
+                            <col:subcollection ep:id="<%= cObj.id %>">
+		                        <md:title><%= cObj.title %></md:title>
+		                        <ep:view-attributes>
+		                                        <% _.each(cObj.viewAttributes, function(viewAttr){ %>
+			                        <ep:view-attribute ep:id="<%= viewAttr.id %>" ep:type="<%= viewAttr.type %>" ep:value="<%= viewAttr.value %>"/>
+		                                        <% }); %>
+   		                        </ep:view-attributes>
+                                <col:content>
+
+
+                                </col:content>
+                            </col:subcollection>
+                                            <% } else { %>
+                            <col:module cnxsi:version-at-this-collection-version="<%= cObj.versionAtThisCollectionVersion %>" document="<%= cObj.document %>" repository="<%= cObj.repository %>" version="<%= cObj.version %>">
+                                <md:title><%= cObj.title %></md:title>
+                            </col:module>
+                                            <% } %>
+		                                <% }); %>
+		                            <% } %>
+                        </col:content>
+                    </col:subcollection>
+                                <% } else { %>
+                    <col:module cnxsi:version-at-this-collection-version="<%= contObject.versionAtThisCollectionVersion %>" document="<%= contObject.document %>" repository="<%= contObject.repository %>" version="<%= contObject.version %>">
+                        <md:title><%= contObject.title %></md:title>
+                    </col:module>
+                                <% } %>
+		                    <% }); %>
+		                 <% } %>
+                </col:content>
+            </col:subcollection>
+                    <% } else { %>
+            <col:module cnxsi:version-at-this-collection-version="<%= contentObj.versionAtThisCollectionVersion %>" document="<%= contentObj.document %>" repository="<%= contentObj.repository %>" version="<%= contentObj.version %>">
+                <md:title><%= contentObj.title %></md:title>
+            </col:module>
+                     <% }%>
+		        <% }); %>
+		    <% } %>
+        </col:content>
+        </col:subcollection>
+            <% } else { %>
+        <col:module cnxsi:version-at-this-collection-version="<%= contentObject.versionAtThisCollectionVersion %>" document="<%= contentObject.document %>" repository="<%= contentObject.repository %>" version="<%= contentObject.version %>">
+			<md:title><%= contentObject.title %></md:title>
+		</col:module>
+            <% }%>
+        <% }); %>
+
+</col:content>
+</col:subcollection>

@@ -1,0 +1,35 @@
+<div class="note-all-overlay"></div>
+<div class="note-dialog-window">
+    <div class="top-controls">
+        <% if (!editable) { %>
+            <button id="switch-editable"></button>
+        <% } else { %>
+            <% if (accepted) { %>
+            <button id="switch-editable" class="selected"></button>
+            <button id="delete"></button>
+            <% } %>
+            <div class="clear"></div>
+        <% } %>
+        <div class="note-types">
+            <%= colors %>
+        </div>
+    </div>
+
+    <div class="note-dialog-body">
+        <% if (editable) { %>
+            <input type="text" id="note-title" placeholder="tytuł notatki" value="<%= title %>">
+            <textarea id="note-content" placeholder="wpisz treść notatki"><%= value %></textarea>
+        <% } else { %>
+            <div id="note-title"> <%= title %> </div>
+            <div id="note-content">
+                <%= value ? value : 'notatka bez treści' %>
+            </div>
+        <% } %>
+    </div>
+    <% if (editable) { %>
+    <div class="bottom-controls">
+        <button id="save-note">zapisz</button>
+        <button id="discard">anuluj</button>
+    </div>
+    <% } %>
+</div>

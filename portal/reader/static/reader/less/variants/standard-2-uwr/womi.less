@@ -1,0 +1,94 @@
+.reader-content {
+
+    .section-contents {
+
+        .womi-container,
+        .womi-gallery {
+
+            .title,
+            .caption {
+                text-align: left; // EPUW-159
+                font-family: @sansRegular;
+                font-size: 0.75rem; // value from Content Plus mock-up
+
+                .label {
+                    font-family: inherit;
+                    font-size: inherit;
+                }
+            }
+
+            .title {
+                font-size: 0.875rem; // EPUW-159
+            }
+
+            .caption {
+                padding: 0;
+                color: #aaa;
+            }
+        }
+
+        .womi-container {
+
+            .title {
+                padding: 16px 0 0;
+            }
+
+            .image-container {
+                position: relative; // EPUW-168
+            }
+
+            .full-width-image-details { // EPUW-168
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                padding: (@space-A - 2) (@space-A + 2);
+                background: rgba(255, 255, 255, 0.9);
+                z-index: 9999;
+
+                .title {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .caption {
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+
+            &.fullscreen-image-container {
+
+                .full-width-image-details { // EPUW-168
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    padding: (@space-A - 2) (@space-A + 2);
+                    background: rgba(255, 255, 255, 0.9);
+                    z-index: 9999;
+
+                    .title {
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    .caption {
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
+            }
+        }
+
+        .womi-gallery-header {
+            padding: 0;
+
+            .label {
+                color: red;
+            }
+        }
+    }
+}
+
+.fullscreen-background {
+    background-color: white;
+}

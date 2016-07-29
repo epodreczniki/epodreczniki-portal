@@ -1,0 +1,5 @@
+<ul>
+  <% _.each(readings, function(reading){ %>
+   <li><a href='<%= reading.get("url") %>'><%= reading.get("title") %></a></li>
+  <% }); %>
+</ul>

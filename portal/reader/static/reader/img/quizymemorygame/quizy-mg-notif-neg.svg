@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>Line</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs>
+        <rect id="path-1" x="1" y="1" width="119" height="119" rx="2"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Rectangle-1">
+            <use stroke="#F7F7F7" stroke-width="8" fill="#DF4313" fill-rule="evenodd" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+            <use stroke="#979797" stroke-width="1" fill="none" xlink:href="#path-1"></use>
+        </g>
+        <path d="M32.3717949,88.6282051 L89.7487934,31.2512092" id="Line" stroke="#F7F7F7" stroke-width="9" sketch:type="MSShapeGroup"></path>
+        <path d="M89.6282051,88.6282051 L32.2512092,31.2512066" id="Line" stroke="#F7F7F7" stroke-width="9" sketch:type="MSShapeGroup"></path>
+    </g>
+</svg>

@@ -1,0 +1,9 @@
+<li class="pp-item">
+    <% if(imgUrl == null) { %>
+        <div class="pp-thumb <%= thumbClass %>"></div>
+    <% } else { %>
+        <div class="pp-thumb" style="background-image: url('<%= imgUrl %>')"></div>
+    <% } %>
+    <p class="pin-item-title"><%= title %></p>
+    <!--<span class="pin-item-title"><a href=""><%= title %></a></span>-->
+</li>

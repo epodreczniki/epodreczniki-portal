@@ -1,0 +1,13 @@
+{% regroup authored_content.authorships.all by role_number as authorship_roles %}
+{% for authorship_role in authorship_roles %}
+<p class="pull-left">
+    <strong>{{ authorship_role.list.0.role_type }}: </strong>
+    {% for authorship in authorship_role.list %}
+        {% if authorship.author.is_person %}
+            <span>{{ authorship.author.firstname }} {{ authorship.author.surname }}</span>{% if not forloop.last %}, {% endif %}
+        {% else %}
+            <span>{{ authorship.author.fullname }}</span>{% if not forloop.last %}, {% endif %}
+        {% endif %}
+    {% endfor %}
+</p>
+{% endfor %}

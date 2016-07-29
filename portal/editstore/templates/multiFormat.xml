@@ -1,0 +1,4 @@
+<formats>
+    <format id="INTERACTIVE_PACKAGE_CLASSIC" mainFile="{{ filename }}"/>
+    <alternatives exist="false"/>
+</formats>

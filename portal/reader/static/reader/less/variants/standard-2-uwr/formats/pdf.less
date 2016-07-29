@@ -1,0 +1,266 @@
+@import "../../common-portal";
+@import "../../../elements/variable-width";
+
+@import "../config";
+@import "../header-image";
+@import "../headers";
+@import "../tooltips";
+@import "../quote";
+@import "../revisal";
+@import "../command";
+@import "../exercise";
+@import "../student-work";
+@import "../note";
+@import "../concept-and-definition";
+@import "../womi";
+@import "../womi-aside";
+@import "../biography-and-event";
+@import "../bibliography";
+@import "../audio-container";
+
+.reader-content {
+  .section.level_1 {
+    .section-header {
+      margin-top: 30px;
+    }
+  }
+
+  .level_2 {
+    .section-header {
+      border: none;
+      background: none;
+      line-height: 1.2;
+      font-family: playfair-display-regular, Times, serif;
+    }
+  }
+
+  .section .section-header + .section-contents .para:first-child .newline:first-child {
+    display: none;
+    page-break-before: avoid;
+  }
+
+  h3.subcollection-title,
+  h3.module-header {
+    font-size: 24px;
+  }
+
+  .womi-aside {
+    .pdf {
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  .womi-container + .qr-code:not(.full-width) {
+    margin-right: -245px !important;
+    margin-left: 0 !important;
+  }
+
+  .module-header-caption {
+    display: none;
+  }
+
+  .work-area-container,
+  .work-area {
+    border: #cccccc solid;
+    border-width: 1px 0;
+    line-height: 31px;
+    width: @default-width;
+    margin: 31px 0;
+
+  }
+  .work-area-container {
+    height: 62px;
+    border-top: 0;
+  }
+  .work-area {
+    height: 31px;
+    overflow-y: hidden;
+  }
+
+  .extended-width,
+  .full-width,
+  .extended-shifted-width {
+    max-width: @default-width !important;
+  }
+
+}
+
+.reader-content .exercise {
+  padding-left: 22px !important;
+}
+
+.exercise-contents .womi-caption {
+  margin-left: 0px !important;
+}
+
+.para > .womi-movie,
+.para > .womi-interactive,
+.para > .womi-audio,
+.section-contents > .womi-movie,
+.section-contents > .womi-interactive,
+.section-contents > .womi-audio {
+  padding: 0px 0px 0px 22px;
+  border-left: 1px solid #F00;
+}
+
+.exercise .para > .womi-movie,
+.exercise .para > .womi-interactive,
+.exercise .para > .womi-audio {
+  border-left: 0;
+}
+
+.reader-content .womi-container .pdf > .womi-full-title {
+  display: none;
+}
+
+.womi-audio + .qr-code img,
+.womi-movie + .qr-code img,
+.womi-interactive + .qr-code img {
+  margin-top: 30px;
+}
+
+.exercise .womi-audio + .qr-code img,
+.exercise .womi-movie + .qr-code img,
+.exercise .womi-interactive + .qr-code img {
+  margin-top: 20px;
+  margin-right: 247px;
+}
+
+.womi-aside .womi-caption {
+    width: 100% !important;
+}
+
+*:not(.gallery-legend) > .womi-caption {
+  margin-left: 0px !important;
+}
+
+.reader-content .womi-gallery .womi-gallery-header,
+.reader-content .womi-gallery .womi-gallery-contents,
+.reader-content .womi-gallery .womi-gallery-contents-others {
+  padding: 0 0 14px;
+  font-family: "open_sansregular",sans-serif;
+  font-size: 15px;
+  line-height: 19px;
+  text-align: center;
+  color: #000000;
+}
+
+
+.reader-content .exercise.expanding .exercise-header .label::before {
+  background-image: url('../../../img/new-icons/variants/uwr/icon-expanding-pdf.svg');
+  background-repeat: no-repeat;
+}
+
+.reader-content .exercise.pair-work .exercise-header:before {
+  background-image: url('../../../img/new-icons/variants/uwr/icon-pair-work-pdf.svg');
+  background-repeat: no-repeat;
+  margin-left: -55px;
+}
+
+.reader-content .exercise.groupwork .exercise-header:before {
+  background-image: url('../../../img/new-icons/variants/uwr/icon-groupwork-pdf.svg');
+  background-repeat: no-repeat;
+  margin-left: -55px;
+}
+
+/* Table of marks */
+.table-of-mark-tasks .label-exercise {
+    display: none;
+}
+
+.table-of-mark-tasks td.label-exercise-expanding {
+  background-image: url('../../../img/new-icons/variants/uwr/icon-expanding-pdf.svg');
+  background-repeat: no-repeat;
+  width: 27px;
+  height: 24px;
+  display: block;
+  margin-top: 3px;
+}
+.table-of-mark-tasks td.label-exercise-groupwork {
+  background-image: url('../../../img/new-icons/variants/uwr/icon-groupwork-pdf.svg');
+  background-repeat: no-repeat;
+  width: 27px;
+  height: 24px;
+  display: block;
+  margin-top: 3px;
+    
+}
+.table-of-mark-tasks td.label-exercise-pairwork {
+  background-image: url('../../../img/new-icons/variants/uwr/icon-pair-work-pdf.svg');
+  background-repeat: no-repeat;
+  width: 27px;
+  height: 24px;
+  display: block;
+  margin-top: 3px;
+}
+
+/* table-of-status-content hiding */
+.section.second_page > .section-contents > .section.second_page_status_content {
+  display: none;
+}
+
+.reader-content h3.subcollection-title, .reader-content h3.module-header {
+    font-size: 22px;
+}
+
+/* show exercise prefix */
+.reader-content .student-work.exercise-set .student-work-contents .exercise .exercise-header .numbering .numbering-prefix,
+.reader-content .student-work.homework .student-work-contents .exercise .exercise-header .numbering .numbering-prefix,
+.reader-content .student-work.project .student-work-contents .exercise .exercise-header .numbering .numbering-prefix {
+  display: inline;
+}
+
+.reader-content .tooltip .tooltip-header {
+  display: none;
+}
+
+.reader-content .tooltip.glossary {
+    margin-top: 0px !important;
+}
+
+.reader-content .tooltip .tooltip-contents {
+    padding: 5px 0px;
+}
+
+.reader-content .quote .source,
+.reader-content .definition .definition-contents .source {
+    font-size: 12px;
+    margin-top: 6px;
+    padding-top: 4px;
+    margin-bottom: 4px;
+    page-break-before: avoid;
+}
+
+.reader-content .quote p,
+.reader-content .definition .definition-contents p {
+    margin-bottom: 0px;
+}
+
+.reader-content a[data-link-type="biography"],
+.reader-content a[data-link-type="tooltip"] {
+  border-bottom: 0;
+  text-decoration: underline;
+}
+
+.reader-content .level_1 h2.section-header .title {
+    font-size: 26px;
+}
+
+:not(.zebra-module) .sr_JPOL_E3_E4_Dodatkowyopiszasobow {
+    padding: 20px 10px 20px 10px;
+}
+
+.reader-content .note-for-interested .note-header .label::before {
+    background-image: url('../../../img/new-icons/variants/uwr/icon-expanding-pdf.svg');
+    background-repeat: no-repeat;
+}
+
+.reader-content .section.sr_JPOL_E3_E4_Dodatkowyopiszasobow .section-contents p.para:first-child,
+.reader-content .note-time-capsule .note-contents p.para:first-child {
+    page-break-after: avoid;
+}
+
+.reader-content .exercise .womi-container {
+    margin-top: 38px !important;
+}

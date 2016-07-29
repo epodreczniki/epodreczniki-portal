@@ -1,0 +1,15 @@
+{% extends "base_error_page.html" %}
+
+{% block error_title %}Podgląd kolekcji nie jest jeszcze dostępny.{% endblock %}
+
+{% block error_content %}Trwa przetwarzanie kolekcji: <span class='emp'>{{ collection.md_title }}</span>
+<!--{{ minutes_awaited }}-->
+{% endblock %}
+
+{% block error_more %}
+{% for n in notifications %}
+    {% if n.comment %}
+        <p>{{ n.comment }}</p>
+    {% endif %}
+{% endfor %}
+{% endblock %}

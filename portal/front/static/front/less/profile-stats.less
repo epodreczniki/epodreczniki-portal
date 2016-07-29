@@ -1,0 +1,51 @@
+.bar {
+    fill: #F47221;
+}
+.bar:hover {
+    fill: #FF7221;
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #CBCACC;
+    shape-rendering: crispEdges;
+}
+.x.axis path {
+    display: none;
+}
+
+div.tooltip {   
+    position: fixed;           
+    text-align: center;           
+    width: 160px;                  
+    max-height: 120px;
+    height: 100%;
+    padding: 2px;             
+    font: 12px sans-serif;        
+    background: lightsteelblue;   
+    border: 0px;      
+    border-radius: 8px;           
+    padding: 3px;
+    .tooltip-inside {
+        text-align: left;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        a {
+            width: 100%;
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px solid white;
+            padding: 3px;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.axis text {
+    font-family: 'open_sanslight';
+    font-size: 10px;
+}

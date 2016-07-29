@@ -1,0 +1,430 @@
+@import "mixins";
+@import "profile-variables";
+
+@profileBorderGray: #d7d7d7;
+@profile-blue: #3d71b8;
+
+//Shadow around notes
+.profile-note-shadow {
+  -webkit-box-shadow: 2px 3px 9px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 2px 3px 9px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 3px 9px 1px rgba(0, 0, 0, 0.2);
+}
+
+.color-box {
+  width: 25px;
+  height: 25px;
+  border: 2px solid #cdcccc;
+  display: block;
+  margin-right: 15px;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  &.active {
+    border: 2px solid #000;
+  }
+}
+
+.color-radio {
+  width: 15px;
+  height: 15px;
+  margin-left: 2px;
+  margin-top: 2px;
+  float: left;
+  display: inline-block;
+}
+
+.filter-button {
+  position: relative;
+  width: calc(~"100% - 16px");
+
+  font-family: open_sanssemibold, sans-serif;
+  font-size: 14px;
+  line-height: 34px;
+  display: block;
+  background-color: @profile-blue;
+  color: #ffffff;
+  margin-top: 38px;
+  cursor: pointer;
+
+  @media all and (max-width: @profileMediumSize) {
+    max-width: 216px;
+  }
+}
+
+/*Note and annotation colors */
+.note-color-1, .red {
+  background-color: #facdd2;
+}
+
+.note-color-4, .green {
+  background-color: #b6dba6;
+}
+
+.note-color-2, .yellow {
+  background-color: #f9f5a1;
+}
+
+.note-color-3, .blue {
+  background-color: #b9e5f9;
+}
+
+.note-color-5, .purple {
+  background-color: #e1cfe5;
+}
+
+/* end of note and annotation colors */
+
+.note-color-picker {
+  margin-bottom: 28px;
+
+  .note-color-pick {
+    display: inline-block;
+  }
+
+  input[type=radio] {
+    visibility: hidden;
+    position: absolute;
+  }
+}
+
+.profile-date-container {
+
+  .profile-date-element, .profile-date-element > span {
+    position: relative;
+    .flex-display();
+    .flex-wrap(row, nowrap);
+    -ms-flex-align: center;
+    .flex-align(center);
+  }
+
+  .profile-date-element {
+    width: calc(~"100% - 16px");
+    margin-bottom: 16px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    @media all and (max-width: @profileSmallSize) {
+      width: 100%;
+    }
+
+    label {
+      margin-top: -2px;
+    }
+  }
+
+  input[type="text"] {
+    position: relative;
+    width: calc(~"100% - 20px - 23px");
+    margin: 0 5px 0 15px;
+    line-height: 27px;
+
+    //shadow
+    -webkit-box-shadow: inset 0px 0px 5px 0px rgba(72, 112, 183, 0.25);
+    -moz-box-shadow: inset 0px 0px 5px 0px rgba(72, 112, 183, 0.25);
+    box-shadow: inset 0px 0px 5px 0px rgba(72, 112, 183, 0.25);
+
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      height: 27px;
+    }
+  }
+
+  .field-date-value {
+    text-align: center;
+  }
+
+  .ui-datepicker-trigger {
+    margin-top: -2px;
+    height: 23px;
+    width: 23px;
+  }
+
+}
+
+/* Notes and annotations */
+
+.note-small-padding {
+  padding-left: 30px;
+  padding-right: 27px;
+}
+
+.note-big-padding-header {
+  padding-left: 31px;
+  padding-right: 11px;
+}
+
+.note-small-padding-footer {
+  padding-left: 33px;
+  padding-right: 2px;
+}
+
+/* Styles for both notes and annotations */
+.note-single, .annotation-single {
+  position: relative;
+  margin-left: 2px;
+  margin-bottom: 18px;
+  border: 1px solid @profileBorderGray;
+  .profile-note-shadow();
+
+  @media all and (max-width: @profileMediumSize) {
+    margin-bottom: 4px;
+  }
+
+  &-header, &-date {
+    font-family: open_sansbold, sans-serif;
+    font-size: 14px;
+    color: #000;
+  }
+
+  &-date, &-read {
+    color: #979797;
+    width: 90px;
+    text-align: center;
+  }
+
+  &-header {
+    max-height: 19px;
+    overflow: hidden;
+  }
+
+  &-date {
+    margin-right: 33px;
+    margin-top: 7px;
+  }
+
+  &-read {
+    .profile-read-button();
+    margin-top: -2px;
+  }
+
+  &-header-wrap {
+    width: calc(~"100% - 200px");
+
+    @media all and (max-width: @profileMediumSize) {
+      width: 100%;
+      padding-bottom: 10px;
+    }
+  }
+
+  &-module {
+    font-family: open_sansregular, sans-serif;
+    font-size: 10px;
+    margin-bottom: 3px;
+    .profile-word-break();
+
+    @media all and (max-width: @profileMediumSize) {
+      margin-bottom: 3px;
+    }
+  }
+
+  @media all and (max-width: @profileMediumSize) {
+    .note-single-footer, .annotation-single-footer {
+      .flex-display();
+      -ms-flex-pack: justify;
+      .flex-justify(space-between);
+      -ms-flex-align: center;
+      .flex-align(center);
+      width: calc(~"100% - 35px");
+      .note-small-padding-footer();
+      padding-top: 3px;
+      padding-bottom: 1px;
+      background-color: #f5f5f5;
+
+      .note-single-date, .annotation-single-date {
+        margin-top: 0;
+        text-align: left;
+      }
+    }
+
+  }
+
+}
+
+.annotation-color, .note-color {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: calc(~"100% - 2px");
+  border-top: 1px solid @profileBorderGray;
+  border-left: 1px solid @profileBorderGray;
+  border-bottom: 2px solid @profileBorderGray;
+  border-right: 2px solid @profileBorderGray;
+}
+
+/* Note-single specific */
+.note-single {
+  padding-bottom: 13px;
+
+  @media all and (max-width: @profileMediumSize) {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+
+  &:hover {
+    .note-header {
+      background-color: #e9f2fa;
+    }
+  }
+
+  .note-header, .note-contents {
+    .flex-display();
+
+    p {
+      overflow: auto;
+    }
+  }
+
+  .note-header {
+    -ms-flex-align: start;
+    .flex-align(flex-start);
+    padding-top: 9px;
+    padding-bottom: 8px;
+    .note-big-padding-header();
+
+    @media all and (max-width: @profileMediumSize) {
+      .note-small-padding();
+    }
+  }
+
+  .note-single-header-wrap {
+    @media all and (max-width: @profileMediumSize) {
+      padding-bottom: 0;
+    }
+  }
+
+  .note-single-header {
+    .profile-word-break();
+  }
+
+  .note-contents {
+    border-top: 1px solid #f2f2f2;
+    padding-top: 8px;
+    margin: 0 27px;
+    padding-left: 2px;
+    padding-right: 0px;
+
+    @media all and (max-width: @profileMediumSize) {
+      padding-top: 8px;
+      padding-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 18px;
+      .profile-word-break();
+    }
+  }
+}
+
+// Firefox quirk
+@-moz-document url-prefix() {
+  .note-single > .note-contents > p {
+    line-height: 19px;
+  }
+}
+
+/* Annotation only */
+.annotation-single {
+  .flex-display();
+  padding-top: 13px;
+  padding-bottom: 13px;
+  .note-big-padding-header();
+
+  @media all and (max-width: @profileMediumSize) {
+    .flex-wrap(row, wrap);
+    padding: 10px 0 0 0;
+  }
+
+  &:hover {
+    background-color: #e9f2fa;
+  }
+
+  &-header-wrap {
+    @media all and (max-width: @profileMediumSize) {
+      .note-big-padding-header();
+    }
+  }
+
+  &-read {
+    margin-top: -2px;
+  }
+
+}
+
+/* Foldable and its folded state - for big notes */
+.note-foldable-big {
+  cursor: pointer;
+}
+
+.note-foldable-big:not(.folded) {
+  .note-contents > p {
+    max-height: 1.5em;
+    overflow: hidden;
+  }
+}
+
+/* Foldable and its folded state - for small notes*/
+.note-foldable {
+  cursor: pointer;
+}
+
+.note-foldable.folded {
+  padding-top: 0;
+  padding-bottom: 0;
+
+  &.annotation-single {
+    padding-top: 6px;
+    padding-bottom: 8px;
+  }
+
+  .note-single-footer, .annotation-single-footer,
+  .note-single-module, .annotation-single-module {
+    display: none;
+  }
+
+  .annotation-single-header-wrap {
+    //padding-top: 6px;
+    padding-bottom: 0;
+    max-height: 19px;
+    overflow: hidden;
+  }
+
+  .note-single-header, .note-contents > p {
+    max-height: 19px;
+    overflow: hidden;
+  }
+
+  .note-contents > p {
+    max-height: 18px;
+  }
+
+  .note-header {
+    padding-top: 6px;
+    padding-bottom: 9px;
+  }
+
+  .note-contents {
+    border-top: 1px solid #fff;
+    padding-top: 0;
+    padding-bottom: 9px;
+  }
+}
+
+// Firefox quirk
+@-moz-document url-prefix() {
+  .note-foldable.folded > .note-contents > p {
+    max-height: 19px;
+  }
+}
+
+/* ui-datepicker */
+.ui-datepicker {
+  background-color: #FFFFFF;
+
+}
+

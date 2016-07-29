@@ -1,0 +1,8 @@
+{% extends "publication/mails/base_object.mail" %}
+
+{% block extra %}
+Potwierdzenie zlecenie powyższej publikacji jest możliwe tutaj:
+https://www.{{ other_instance_domain }}{% url 'publication.views.publication_aspects_view' driver.category driver.identifier driver.version %}
+
+Po zakończeniu publikacji na platformie {{ other_instance_domain }}, to zlecenie zostanie automatycznie oznaczone jako wykonane.
+{% endblock extra %}

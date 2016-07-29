@@ -1,0 +1,24 @@
+<div class="gallery-creator-content">
+    <div class="dialog-menu-categories gallery-creator-menu-categories">
+        <button class="full-button" data-role="button-add-womi">Dodaj WOMI</button>
+        <% _.each(attributes, function(attr) { %>
+            <% if(attr.input) { %>
+                <%= attr.name %>
+                <input class="full-input" type="text" name="<%= attr.name %>" data-param="<%= attr.name %>" value="<%= attr.value %>">
+            <% }else if(attr.select) { %>
+                <%= attr.name %>
+                <select class="full-input" data-param="<%= attr.name %>">
+                    <% _.each(attr.select, function(opt){ %>
+                    <option value="<%= opt %>" <%= (opt == attr.value ? 'selected' : '') %> ><%= opt %></option>
+                    <% }); %>
+                </select>
+            <% } %>
+
+        <% }); %>
+    </div>
+    <div class="dialog-menu-items gallery-creator-menu-items">
+        <ol style="position: relative" data-role="sortable">
+        </ol>
+    </div>
+    <div class="ui-helper-clearfix"></div>
+</div>

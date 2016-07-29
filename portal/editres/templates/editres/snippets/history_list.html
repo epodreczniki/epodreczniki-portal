@@ -1,0 +1,9 @@
+{% load editres_general %}
+{% for entry in entries %}
+{% if entry.content %}
+<li class='list-group-item edit-history-entry' data-stream-streams='{{ entry.streams|join:" "}}'>
+    {% style_icon entry.style %}
+    {{ entry.content }}
+</li>
+{% endif %}
+{% endfor %}

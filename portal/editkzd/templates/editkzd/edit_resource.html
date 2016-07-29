@@ -1,0 +1,62 @@
+{% extends "editres/base.html" %}
+{% load compress staticfiles %}
+
+{% block title_block %}Edycja zasobu KZD{% endblock title_block %}
+
+{% block stylesheets %}
+    {{ block.super }}
+
+    {% compress css %}
+        <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}editkzd/less/editkzd.less">
+    {% endcompress %}
+{% endblock %}
+
+{% block main_content %}
+    {% load addcss %}
+
+    <div class="container">
+
+    <div class="pull-right">
+        <button id="btn-delete" class="btn btn-danger" 
+            data-url="{% url 'delete_resource' womi_id=resource.womi_id womi_version=resource.womi_version %}">
+            Usuń zasób
+        </button>
+    </div>
+
+    <h2>Edycja zasobu &ndash; <span id="custom-id">{{ resource.custom_id }}</span></h2>
+
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}" class="col-sm-2 control-label">{{ field.label }}</label>
+                <div class="col-sm-10">
+                    {{ field|addcss:'form-control' }}
+                    {{ field.errors }}
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <p class="help-block">
+                W polu Podstawy programowej pokazywane są identyfikatory <a href="http://uspp.pl/" target="_blank">uspp.pl</a>.<br>
+                W polu Okładki należy wskazać ścieżkę do pliku graficznego z okładką zasobu znajdującego się na serwerze FTP MEN.</p>
+            <button class="btn btn-primary" type="submit">Zapisz zmiany</button>
+            <p class="help-block">Zapisane zmiany będą widoczne w portalu (beta.)epodreczniki.pl z pewnym opóźnieniem.</p>
+          </div>
+        </div>
+    </form>
+
+    </div>
+
+{% endblock main_content %}
+
+{% block scripts_bottom %}
+    {{ block.super }}
+
+    {% compress js %}
+        <script type="text/javascript" src="{{ STATIC_URL }}editkzd/js/editkzd.js"></script>
+    {% endcompress %}
+{% endblock %}
+
