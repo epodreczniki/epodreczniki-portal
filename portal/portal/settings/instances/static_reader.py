@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 
-from .dev import *
+from .simple import *
 
 EPO_READER_AUTH_ENABLE = False
 STATIC_URL = '/static/'

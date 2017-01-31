@@ -17,7 +17,7 @@ def static(request, path):
 @cors_headers(profile='open')
 @xframe_options_exempt
 def content(request, path):
-    response = explicit_serve(request, path, document_root=utils.django_project_path_join('static/repository/content'))
+    response = explicit_serve(request, path, document_root=utils.django_project_path_join('static/repository'))
     del response['Content-Length']
     return response
 
@@ -42,3 +42,4 @@ def redirect_domain(request):
         return redirect('http://%s%s' % (host, request.get_full_path()))
 
     raise Exception('this view (redirect_domain) should not match that domain (%s)' % request.get_host())
+

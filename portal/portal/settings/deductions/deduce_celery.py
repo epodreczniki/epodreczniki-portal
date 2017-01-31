@@ -19,6 +19,8 @@ if not SURROUND_RUNNING_ON_PLATFORM:
         raise Exception('invalid value of EPO_DEV_CELERY_MODE setting: %s' % EPO_DEV_CELERY_MODE)
 
 if BROKER_URL is None:
+    BROKER_URL = 'amqp://epo:epo@127.0.0.1:5672/epo'
+    BROKER_API = 'http://epo:epo@127.0.0.1:15672/api'
 
 
 CELERY_QUEUES = []

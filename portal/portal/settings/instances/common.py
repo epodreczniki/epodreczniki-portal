@@ -512,6 +512,7 @@ EPO_KZD_MEN_FTP_HOST = '?'
 EPO_KZD_MEN_FTP_USER = '?'
 EPO_KZD_MEN_FTP_PASSWORD = '?'
 
+EPO_KZD_CONTENT_REPOSITORY_DIRECTORY_ID = 1
 
 EPO_NOTIFY_SK_DIRECTLY = False
 
@@ -702,6 +703,16 @@ EPO_EDITCOMMON_STANDARD_CACHE_TIME = 60 * 60
 
 EPO_REPO_ADVANCED_ENABLE_SEALING = True
 
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.SHA1PasswordHasher',
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+    'django.contrib.auth.hashers.CryptPasswordHasher',
+    'ssha512.SSHA512PasswordHasher',
+)
 
 
 #user endopints config

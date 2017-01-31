@@ -390,14 +390,14 @@ class EditSearchDriver(object):
 
 
     @method_task(ignore_result=True, queue='indexer')
-    def index_all(self):
-        return self.index_in_batches(self.list_source(all=True))
+    def index_all(self, async=True):
+        return self.index_in_batches(self.list_source(all=True), async=async)
 
 
-    def index_kzd(self):
+    def index_kzd(self, async=True):
         import repo
         womis = list(repo.repositories.content.get_kzd_womis())
-        self.index_in_batches(womis)
+        self.index_in_batches(womis, async=async)
         for obj in self.objects.all():
             driver = repo.objects.drivers.bind(category=obj['category'], identifier=obj['identifier'], version=obj['version'])
             if driver not in womis:

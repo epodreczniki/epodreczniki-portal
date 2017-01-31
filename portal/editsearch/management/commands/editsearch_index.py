@@ -76,6 +76,11 @@ class Command(BaseCommand):
             dest='kzd',
             default=False,
             help='scan KZD'),
+        make_option('--synchronous',
+            action='store_true',
+            dest='synchronous',
+            default=False,
+            help='index synchronously'),
     )
 
     def handle(self, *args, **options):
@@ -102,10 +107,10 @@ class Command(BaseCommand):
                 raise
 
         if self.options.edition or self.options.repositories or self.options.all:
-            editsearch_driver.index_in_batches(editsearch_driver.list_source(edition=self.options.edition, repositories=self.options.repositories, all=self.options.all, category=self.options.category))
+            editsearch_driver.index_in_batches(editsearch_driver.list_source(edition=self.options.edition, repositories=self.options.repositories, all=self.options.all, category=self.options.category), async=(not self.options.synchronous))
 
         if self.options.kzd:
-            editsearch_driver.index_kzd()
+            editsearch_driver.index_kzd(async=(not self.options.synchronous))
 
         for order in self.options.index_orders:
             try:

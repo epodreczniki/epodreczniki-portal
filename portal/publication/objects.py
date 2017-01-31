@@ -650,10 +650,12 @@ class CollectionDriver(CollectionPublicationMixin, PortalPublicationDriver):
     def are_files_ready(self):
         try:
             from editcommon.parsers import EditCommonParser
-
-            collection_variant = EditCommonParser.imported_collection_variant(identifier=self.identifier, version=self.version, variant=self.metadata_xml.variant_names[0])
-            module = next(collection_variant.modules)
-            result = self.bind_file_driver('metadata.xml').exists_in_subdomain('preview') and self.bind_file_driver('%s/%s/module.html' % (collection_variant.variant, module.identifier)).exists_in_subdomain('preview', fail_on_headers=self.download_fail_on_headers)
+            if self.metadata_xml is None:
+                result = False
+            else:
+                collection_variant = EditCommonParser.imported_collection_variant(identifier=self.identifier, version=self.version, variant=self.metadata_xml.variant_names[0])
+                module = next(collection_variant.modules)
+                result = self.bind_file_driver('metadata.xml').exists_in_subdomain('preview') and self.bind_file_driver('%s/%s/module.html' % (collection_variant.variant, module.identifier)).exists_in_subdomain('preview', fail_on_headers=self.download_fail_on_headers)
         except Http404:
             result = False
 

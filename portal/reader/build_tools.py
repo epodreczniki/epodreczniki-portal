@@ -140,6 +140,7 @@ before_render.connect(handler, weak=False)
 def run_command_collect_static():
     call_command('collectstatic', ignore_patterns=['3rdparty',
                                                    'repository',
+                                                   'other',
                                                    'edit*',
                                                    'django*',
                                                    'wagtail*',
